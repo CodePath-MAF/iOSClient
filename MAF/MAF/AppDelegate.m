@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Crittercism.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
@@ -15,6 +16,11 @@
 {
   // Uncomment when we're ready to capture services/crash reports
 //  [Crittercism enableWithAppID:@"APP_ID"];
+  
+  [Parse setApplicationId:@"qK7qJuFt6weBIrBx9eTzK1UBWJvkqb3jH6l8aw22"
+                clientKey:@"SPC4XFKVlnX4ChVu7jS0IwTjfKDAY9uxXh1Y8jsy"];
+  
+  [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
