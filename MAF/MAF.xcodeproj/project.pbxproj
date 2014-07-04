@@ -19,7 +19,8 @@
 		2CBA46AC1965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
 		2CBA46B41965DE3A00C6BEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46B21965DE3A00C6BEDF /* InfoPlist.strings */; };
 		2CBA46B61965DE3A00C6BEDF /* MAFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA46B51965DE3A00C6BEDF /* MAFTests.m */; };
-		2CBA46C51965ED3400C6BEDF /* MAFKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46C41965ED3400C6BEDF /* MAFKeys.plist */; };
+		BA9F872519666C1C005AA0C4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F872419666C1C005AA0C4 /* User.m */; };
+		BA9F8728196678C6005AA0C4 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F8727196678C6005AA0C4 /* Goal.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +52,11 @@
 		2CBA46B11965DE3A00C6BEDF /* MAFTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFTests-Info.plist"; sourceTree = "<group>"; };
 		2CBA46B31965DE3A00C6BEDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CBA46B51965DE3A00C6BEDF /* MAFTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFTests.m; sourceTree = "<group>"; };
-		2CBA46C41965ED3400C6BEDF /* MAFKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MAFKeys.plist; sourceTree = "<group>"; };
 		2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.xcconfig"; path = "Pods/Pods-MAF.xcconfig"; sourceTree = "<group>"; };
+		BA9F872319666C1C005AA0C4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
+		BA9F872419666C1C005AA0C4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
+		BA9F8726196678C6005AA0C4 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
+		BA9F8727196678C6005AA0C4 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +128,6 @@
 				2CBA46A01965DE3A00C6BEDF /* AppDelegate.m */,
 				2CBA46A21965DE3A00C6BEDF /* Images.xcassets */,
 				2CBA46971965DE3A00C6BEDF /* Supporting Files */,
-				2CBA46C41965ED3400C6BEDF /* MAFKeys.plist */,
 			);
 			path = MAF;
 			sourceTree = "<group>";
@@ -175,6 +178,10 @@
 		2CBA46C11965DF5900C6BEDF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BA9F872319666C1C005AA0C4 /* User.h */,
+				BA9F872419666C1C005AA0C4 /* User.m */,
+				BA9F8726196678C6005AA0C4 /* Goal.h */,
+				BA9F8727196678C6005AA0C4 /* Goal.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -271,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
-				2CBA46C51965ED3400C6BEDF /* MAFKeys.plist in Resources */,
 				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,8 +330,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9F8728196678C6005AA0C4 /* Goal.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
+				BA9F872519666C1C005AA0C4 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
