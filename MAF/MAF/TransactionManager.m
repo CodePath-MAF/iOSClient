@@ -76,7 +76,7 @@
 + (BFTask *)fetchTransactionsForUserId:(NSString *)userId {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
-    [query whereKey:@"user" equalTo:userId];
+    [query whereKey:@"user" equalTo:[PFUser objectWithoutDataWithObjectId:userId]];
     // TODO should be limiting these so we're returning paginated results
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -91,7 +91,7 @@
 + (BFTask *)fetchTransactionsForUserId:(NSString *)userId ofType:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
-    [query whereKey:@"user" equalTo:userId];
+    [query whereKey:@"user" equalTo:[PFUser objectWithoutDataWithObjectId:userId]];
     [query whereKey:@"type" equalTo:@(type)];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {

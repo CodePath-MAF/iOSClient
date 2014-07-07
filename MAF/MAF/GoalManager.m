@@ -86,7 +86,7 @@
 + (BFTask *)fetchGoalsForUserId:(NSString *)userId {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Goal query];
-    [query whereKey:@"user" equalTo:userId];
+    [query whereKey:@"user" equalTo:[PFUser objectWithoutDataWithObjectId:userId]];
     // TODO add limit to this query to support pagination
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
