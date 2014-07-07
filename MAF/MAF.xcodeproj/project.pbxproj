@@ -27,6 +27,7 @@
 		BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144327196A3BB400C2BB38 /* GoalManager.m */; };
 		BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432A196A43BF00C2BB38 /* TransactionManager.m */; };
 		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
+		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,8 @@
 		BF14432A196A43BF00C2BB38 /* TransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
 		BF14432C196A471300C2BB38 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
 		BF14432D196A471300C2BB38 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
+		BF14432F196A4FAD00C2BB38 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		BF144330196A4FAD00C2BB38 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 				BF14432D196A471300C2BB38 /* Goal.m */,
 				BF144326196A3BB400C2BB38 /* GoalManager.h */,
 				BF144327196A3BB400C2BB38 /* GoalManager.m */,
+				BF14432F196A4FAD00C2BB38 /* Transaction.h */,
+				BF144330196A4FAD00C2BB38 /* Transaction.m */,
 				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
 				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 			);
@@ -367,6 +372,7 @@
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
+				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

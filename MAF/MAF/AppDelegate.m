@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 
 #import "Goal.h"
+#import "Transaction.h"
 
 #import "MainViewController.h"
 
@@ -21,6 +22,7 @@
 //  [Crittercism enableWithAppID:@"APP_ID"];
   
     [Goal registerSubclass];
+    [Transaction registerSubclass];
     [Parse setApplicationId:@"qK7qJuFt6weBIrBx9eTzK1UBWJvkqb3jH6l8aw22"
                 clientKey:@"SPC4XFKVlnX4ChVu7jS0IwTjfKDAY9uxXh1Y8jsy"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
