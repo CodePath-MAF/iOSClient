@@ -19,7 +19,9 @@
     
     Transaction *transaction = [Transaction object];
     transaction.user = [PFUser objectWithoutDataWithObjectId:userId];
-    transaction.goal = [Goal objectWithoutDataWithObjectId:goalId];
+    if (goalId != nil) {
+        transaction.goal = [Goal objectWithoutDataWithObjectId:goalId];
+    }
     transaction.amountInCents = amountInCents;
     transaction.description = description;
     transaction.type = type;

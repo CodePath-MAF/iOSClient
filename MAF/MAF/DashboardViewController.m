@@ -8,11 +8,13 @@
 
 #import <Parse/Parse.h>
 #import "CreateGoalViewController.h"
+#import "CreateTransactionViewController.h"
 #import "DashboardViewController.h"
 
 @interface DashboardViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
 - (IBAction)createGoal:(id)sender;
+- (IBAction)createTransaction:(id)sender;
 
 @end
 
@@ -34,4 +36,9 @@
 - (IBAction)createGoal:(id)sender {
     [self presentViewController:[[CreateGoalViewController alloc] init] animated:YES completion:nil];
 }
+
+- (IBAction)createTransaction:(id)sender {
+    [self presentViewController:[[CreateTransactionViewController alloc] init] animated:YES completion:nil];
+}
+
 @end

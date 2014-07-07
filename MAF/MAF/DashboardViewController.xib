@@ -32,6 +32,16 @@
                         <action selector="createGoal:" destination="-1" eventType="touchUpInside" id="MOU-gH-sMe"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrj-Uj-Yfe">
+                    <rect key="frame" x="20" y="124" width="103" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="+ Transaction">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="createTransaction:" destination="-1" eventType="touchUpInside" id="2yN-c6-zOv"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.70730737570000002" green="0.89141614599999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

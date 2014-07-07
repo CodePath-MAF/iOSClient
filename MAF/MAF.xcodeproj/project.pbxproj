@@ -30,6 +30,8 @@
 		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
 		BF14433A196A7B6300C2BB38 /* CreateGoalForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144339196A7B6300C2BB38 /* CreateGoalForm.m */; };
 		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
+		BF144340196A8E1000C2BB38 /* CreateTransactionForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433F196A8E1000C2BB38 /* CreateTransactionForm.m */; };
+		BF144343196A8F9C00C2BB38 /* CreateTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,10 @@
 		BF144339196A7B6300C2BB38 /* CreateGoalForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalForm.m; sourceTree = "<group>"; };
 		BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalViewController.h; sourceTree = "<group>"; };
 		BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalViewController.m; sourceTree = "<group>"; };
+		BF14433E196A8E1000C2BB38 /* CreateTransactionForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionForm.h; sourceTree = "<group>"; };
+		BF14433F196A8E1000C2BB38 /* CreateTransactionForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionForm.m; sourceTree = "<group>"; };
+		BF144341196A8F9C00C2BB38 /* CreateTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionViewController.h; sourceTree = "<group>"; };
+		BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,8 @@
 				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
 				BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */,
 				BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */,
+				BF144341196A8F9C00C2BB38 /* CreateTransactionViewController.h */,
+				BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -247,6 +255,8 @@
 			children = (
 				BF144338196A7B6300C2BB38 /* CreateGoalForm.h */,
 				BF144339196A7B6300C2BB38 /* CreateGoalForm.m */,
+				BF14433E196A8E1000C2BB38 /* CreateTransactionForm.h */,
+				BF14433F196A8E1000C2BB38 /* CreateTransactionForm.m */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -386,10 +396,12 @@
 				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
 				BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */,
+				BF144340196A8E1000C2BB38 /* CreateTransactionForm.m in Sources */,
 				BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
+				BF144343196A8F9C00C2BB38 /* CreateTransactionViewController.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
 				BF14433A196A7B6300C2BB38 /* CreateGoalForm.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
