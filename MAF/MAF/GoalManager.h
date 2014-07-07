@@ -11,11 +11,11 @@
 
 @interface GoalManager : NSObject
 
-+ (void)createGoal:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status amountInCents:(NSInteger)amountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate;
++ (void)createGoal:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status amountInCents:(NSInteger)amountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate withBlock:(PFBooleanResultBlock)block;
 
-+ (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value;
++ (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value withBlock:(PFBooleanResultBlock)block;
 
-+ (void)deleteGoal:(NSString *)goalId;
++ (void)deleteGoal:(NSString *)goalId withBlock:(PFBooleanResultBlock)block;
 
 
 @end

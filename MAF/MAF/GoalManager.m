@@ -12,7 +12,7 @@
 
 @implementation GoalManager
 
-+ (void)createGoal:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status amountInCents:(NSInteger)amountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
++ (void)createGoal:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status amountInCents:(NSInteger)amountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate withBlock:(PFBooleanResultBlock)block {
     
     Goal *goal = [Goal object];
     goal.name = name;
@@ -21,18 +21,11 @@
     goal.status = status;
     goal.amountInCents = amountInCents;
     goal.numPayments = numPayments;
-    goal.goalDate = goalDate;
-    [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error) {
-            NSLog(@"Failed to save goal: %@", error);
-        } else {
-            NSLog(@"Goal saved");
-        }
-    }];
+    [goal saveInBackgroundWithBlock:block];
     
 }
 
-+ (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value {
++ (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value withBlock:(PFBooleanResultBlock)block {
     
     [[Goal query] getObjectInBackgroundWithId:goalId block:^(PFObject *object, NSError *error) {
         
@@ -41,31 +34,19 @@
         } else {
             Goal *goal = ((Goal *)object);
             [goal setObject:value forKey:keyName];
-            [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (error) {
-                    NSLog(@"Failed to update goal: %@", error);
-                } else {
-                    NSLog(@"Goal updated");
-                }
-            }];
+            [goal saveInBackgroundWithBlock:block];
         }
         
     }];
     
 }
 
-+ (void)deleteGoal:(NSString *)goalId {
++ (void)deleteGoal:(NSString *)goalId withBlock:(PFBooleanResultBlock)block {
     [[Goal query] getObjectInBackgroundWithId:goalId block:^(PFObject *goal, NSError *error) {
         if (error) {
             NSLog(@"Error fetching goal: %@ (id %@)", error, goalId);
         } else {
-            [goal deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (error) {
-                    NSLog(@"Error deleting goal: %@ (id %@)", error, goalId);
-                } else {
-                    NSLog(@"Successfully deleted goal");
-                }
-            }];
+            [goal deleteInBackgroundWithBlock:block];
         }
     }];
 }

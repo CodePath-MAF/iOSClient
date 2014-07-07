@@ -15,4 +15,12 @@
     return @"Goal";
 }
 
+@dynamic name;
+@dynamic description;
+@dynamic type;
+@dynamic status;
+@dynamic amountInCents;
+@dynamic numPayments;
+@dynamic goalDate;
+
 @end
