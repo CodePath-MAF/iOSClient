@@ -7,10 +7,12 @@
 //
 
 #import <Parse/Parse.h>
+#import "CreateGoalViewController.h"
 #import "DashboardViewController.h"
 
 @interface DashboardViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
+- (IBAction)createGoal:(id)sender;
 
 @end
 
@@ -29,4 +31,7 @@
     self.currentUserEmailLabel.text = [[PFUser currentUser] username];
 }
 
+- (IBAction)createGoal:(id)sender {
+    [self presentViewController:[[CreateGoalViewController alloc] init] animated:YES completion:nil];
+}
 @end

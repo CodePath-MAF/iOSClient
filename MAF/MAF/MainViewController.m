@@ -36,7 +36,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [PFUser logOut];
     if (![PFUser currentUser]) {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         [loginViewController setDelegate:self];

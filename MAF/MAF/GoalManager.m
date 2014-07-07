@@ -14,7 +14,7 @@
 
 @implementation GoalManager
 
-+ (BFTask *)createGoal:(NSString *)userId name:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
++ (BFTask *)createGoalForUserId:(NSString *)userId name:(NSString *)name description:(NSString *)description type:(enum GoalType)type totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
     
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
@@ -23,7 +23,7 @@
     goal.name = name;
     goal.description = description;
     goal.type = type;
-    goal.status = status;
+    goal.status = GoalStatusInProgress;
     goal.totalInCents = totalInCents;
     goal.paymentInterval = paymentInterval;
     goal.paymentAmountInCents = paymentAmountInCents;
@@ -59,6 +59,10 @@
     }];
     return task.task;
     
+}
+
++ (BFTask *)completeGoal:(NSString *)goalId {
+    return [self updateGoal:goalId keyName:@"status" value:@(GoalStatusAcheived)];
 }
 
 + (BFTask *)deleteGoal:(NSString *)goalId {

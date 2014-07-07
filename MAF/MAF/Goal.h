@@ -8,18 +8,18 @@
 
 #import <Parse/Parse.h>
 
-enum GoalType: NSInteger {
+NS_ENUM(NSInteger, GoalType) {
     GoalTypeLoan = 1,
     GoalTypeDeposit = 2,
     GoalTypeVacation = 3,
 };
 
-enum GoalStatus: NSInteger {
+NS_ENUM(NSInteger, GoalStatus) {
     GoalStatusInProgress = 1,
     GoalStatusAcheived = 2,
 };
 
-enum GoalPaymentInterval: NSInteger {
+NS_ENUM(NSInteger, GoalPaymentInterval) {
     GoalPaymentIntervalDaily = 1,
     GoalPaymentIntervalBiWeekly = 2,
     GoalPaymentIntervalWeekly = 3,

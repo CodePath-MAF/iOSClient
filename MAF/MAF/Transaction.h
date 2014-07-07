@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import "Goal.h"
 
-enum TransactionType: NSInteger {
+NS_ENUM(NSInteger, TransactionType) {
     TransactionTypeDebit = 1,
     TransactionTypeCredit = 2,
 };

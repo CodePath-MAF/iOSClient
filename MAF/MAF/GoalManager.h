@@ -12,7 +12,9 @@
 
 @interface GoalManager : NSObject
 
-+ (BFTask *)createGoal:(NSString *)userId name:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate;
++ (BFTask *)createGoalForUserId:(NSString *)userId name:(NSString *)name description:(NSString *)description type:(enum GoalType)type totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate;
+
++ (BFTask *)completeGoal:(NSString *)goalId;
 
 + (BFTask *)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value;
 

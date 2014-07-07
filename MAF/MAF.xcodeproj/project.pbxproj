@@ -28,6 +28,8 @@
 		BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432A196A43BF00C2BB38 /* TransactionManager.m */; };
 		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
 		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
+		BF14433A196A7B6300C2BB38 /* CreateGoalForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144339196A7B6300C2BB38 /* CreateGoalForm.m */; };
+		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,10 @@
 		BF14432D196A471300C2BB38 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		BF14432F196A4FAD00C2BB38 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		BF144330196A4FAD00C2BB38 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		BF144338196A7B6300C2BB38 /* CreateGoalForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalForm.h; sourceTree = "<group>"; };
+		BF144339196A7B6300C2BB38 /* CreateGoalForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalForm.m; sourceTree = "<group>"; };
+		BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalViewController.h; sourceTree = "<group>"; };
+		BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		2CBA46961965DE3A00C6BEDF /* MAF */ = {
 			isa = PBXGroup;
 			children = (
+				BF144337196A7B4C00C2BB38 /* Forms */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
 				2CBA46C21965DF6800C6BEDF /* APIs */,
 				2CBA46C11965DF5900C6BEDF /* Models */,
@@ -193,6 +200,8 @@
 				BF144321196A2A6600C2BB38 /* DashboardViewController.h */,
 				BF144322196A2A6600C2BB38 /* DashboardViewController.m */,
 				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
+				BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */,
+				BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -231,6 +240,15 @@
 			children = (
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		BF144337196A7B4C00C2BB38 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				BF144338196A7B6300C2BB38 /* CreateGoalForm.h */,
+				BF144339196A7B6300C2BB38 /* CreateGoalForm.m */,
+			);
+			name = Forms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,11 +385,13 @@
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
+				BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */,
 				BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
+				BF14433A196A7B6300C2BB38 /* CreateGoalForm.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
 			);
