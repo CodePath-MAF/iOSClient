@@ -23,7 +23,7 @@
 
 - (void)submitCreateGoalForm:(UITableViewCell<FXFormFieldCell> *)cell {
     CreateGoalForm *form = cell.field.form;
-    [[GoalManager createGoalForUserId:[[PFUser currentUser] objectId] name:form.name description:form.description type:form.goalType totalInCents:form.totalInCents paymentInterval:form.paymentInterval paymentAmountInCents:form.paymentAmountInCents numPayments:form.numPayments goalDate:form.dueDate] continueWithBlock:^id(BFTask *task) {
+    [[GoalManager createGoalForUser:[PFUser currentUser] name:form.name description:form.description type:form.goalType totalInCents:form.totalInCents paymentInterval:form.paymentInterval paymentAmountInCents:form.paymentAmountInCents numPayments:form.numPayments goalDate:form.dueDate] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating goal: %@", task.error);
         } else {

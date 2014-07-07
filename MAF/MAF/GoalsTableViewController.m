@@ -43,7 +43,7 @@
 }
 
 - (BFTask *)fetchData {
-    return [GoalManager fetchGoalsForUserId:[PFUser currentUser]];
+    return [GoalManager fetchGoalsForUser:[PFUser currentUser]];
 }
 
 #pragma mark - Table view data source
