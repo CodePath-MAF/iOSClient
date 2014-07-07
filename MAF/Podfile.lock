@@ -3,17 +3,21 @@ PODS:
   - CrittercismSDK (4.3.4)
   - Facebook-iOS-SDK (3.15.1):
     - Bolts
+  - FXForms (1.1.6)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
 
 DEPENDENCIES:
+  - Bolts (~> 1.1)
   - CrittercismSDK
-  - Parse
+  - FXForms (~> 1.1.6)
+  - Parse (~> 1.2)
 
 SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
   Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
+  FXForms: 9387c60ee6f3e1c75e0f8998012acc1ce0ad8d0a
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
 
 COCOAPODS: 0.33.1

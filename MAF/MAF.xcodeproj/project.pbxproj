@@ -19,8 +19,27 @@
 		2CBA46AC1965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
 		2CBA46B41965DE3A00C6BEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46B21965DE3A00C6BEDF /* InfoPlist.strings */; };
 		2CBA46B61965DE3A00C6BEDF /* MAFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA46B51965DE3A00C6BEDF /* MAFTests.m */; };
-		BA9F872519666C1C005AA0C4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F872419666C1C005AA0C4 /* User.m */; };
-		BA9F8728196678C6005AA0C4 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F8727196678C6005AA0C4 /* Goal.m */; };
+		BF144316196A231100C2BB38 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144314196A231100C2BB38 /* LoginViewController.m */; };
+		BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144319196A274B00C2BB38 /* MainViewController.m */; };
+		BF144320196A293600C2BB38 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14431F196A293600C2BB38 /* SignupViewController.m */; };
+		BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144322196A2A6600C2BB38 /* DashboardViewController.m */; };
+		BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144323196A2A6600C2BB38 /* DashboardViewController.xib */; };
+		BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144327196A3BB400C2BB38 /* GoalManager.m */; };
+		BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432A196A43BF00C2BB38 /* TransactionManager.m */; };
+		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
+		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
+		BF14433A196A7B6300C2BB38 /* CreateGoalForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144339196A7B6300C2BB38 /* CreateGoalForm.m */; };
+		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
+		BF144340196A8E1000C2BB38 /* CreateTransactionForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433F196A8E1000C2BB38 /* CreateTransactionForm.m */; };
+		BF144343196A8F9C00C2BB38 /* CreateTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */; };
+		BF144347196A921B00C2BB38 /* GoalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144345196A921B00C2BB38 /* GoalsTableViewController.m */; };
+		BF144348196A921B00C2BB38 /* GoalsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144346196A921B00C2BB38 /* GoalsTableViewController.xib */; };
+		BF14434C196A92D300C2BB38 /* GoalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14434A196A92D300C2BB38 /* GoalTableViewCell.m */; };
+		BF14434D196A92D300C2BB38 /* GoalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF14434B196A92D300C2BB38 /* GoalTableViewCell.xib */; };
+		BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */; };
+		BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */; };
+		BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144354196A963000C2BB38 /* TransactionsTableViewController.m */; };
+		BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
 
@@ -53,10 +72,43 @@
 		2CBA46B31965DE3A00C6BEDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CBA46B51965DE3A00C6BEDF /* MAFTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFTests.m; sourceTree = "<group>"; };
 		2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.xcconfig"; path = "Pods/Pods-MAF.xcconfig"; sourceTree = "<group>"; };
-		BA9F872319666C1C005AA0C4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
-		BA9F872419666C1C005AA0C4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
-		BA9F8726196678C6005AA0C4 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
-		BA9F8727196678C6005AA0C4 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
+		BF144313196A231100C2BB38 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		BF144314196A231100C2BB38 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		BF144318196A274B00C2BB38 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		BF144319196A274B00C2BB38 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		BF14431E196A293600C2BB38 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		BF14431F196A293600C2BB38 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		BF144321196A2A6600C2BB38 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		BF144322196A2A6600C2BB38 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		BF144323196A2A6600C2BB38 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		BF144326196A3BB400C2BB38 /* GoalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalManager.h; sourceTree = "<group>"; };
+		BF144327196A3BB400C2BB38 /* GoalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalManager.m; sourceTree = "<group>"; };
+		BF144329196A43BF00C2BB38 /* TransactionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionManager.h; sourceTree = "<group>"; };
+		BF14432A196A43BF00C2BB38 /* TransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
+		BF14432C196A471300C2BB38 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
+		BF14432D196A471300C2BB38 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
+		BF14432F196A4FAD00C2BB38 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		BF144330196A4FAD00C2BB38 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		BF144338196A7B6300C2BB38 /* CreateGoalForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalForm.h; sourceTree = "<group>"; };
+		BF144339196A7B6300C2BB38 /* CreateGoalForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalForm.m; sourceTree = "<group>"; };
+		BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalViewController.h; sourceTree = "<group>"; };
+		BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalViewController.m; sourceTree = "<group>"; };
+		BF14433E196A8E1000C2BB38 /* CreateTransactionForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionForm.h; sourceTree = "<group>"; };
+		BF14433F196A8E1000C2BB38 /* CreateTransactionForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionForm.m; sourceTree = "<group>"; };
+		BF144341196A8F9C00C2BB38 /* CreateTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionViewController.h; sourceTree = "<group>"; };
+		BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionViewController.m; sourceTree = "<group>"; };
+		BF144344196A921B00C2BB38 /* GoalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalsTableViewController.h; sourceTree = "<group>"; };
+		BF144345196A921B00C2BB38 /* GoalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalsTableViewController.m; sourceTree = "<group>"; };
+		BF144346196A921B00C2BB38 /* GoalsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewController.xib; sourceTree = "<group>"; };
+		BF144349196A92D300C2BB38 /* GoalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalTableViewCell.h; sourceTree = "<group>"; };
+		BF14434A196A92D300C2BB38 /* GoalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalTableViewCell.m; sourceTree = "<group>"; };
+		BF14434B196A92D300C2BB38 /* GoalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalTableViewCell.xib; sourceTree = "<group>"; };
+		BF14434E196A95D600C2BB38 /* TransactionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionTableViewCell.h; sourceTree = "<group>"; };
+		BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTableViewCell.m; sourceTree = "<group>"; };
+		BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
+		BF144353196A963000C2BB38 /* TransactionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsTableViewController.h; sourceTree = "<group>"; };
+		BF144354196A963000C2BB38 /* TransactionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsTableViewController.m; sourceTree = "<group>"; };
+		BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +171,7 @@
 		2CBA46961965DE3A00C6BEDF /* MAF */ = {
 			isa = PBXGroup;
 			children = (
+				BF144337196A7B4C00C2BB38 /* Forms */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
 				2CBA46C21965DF6800C6BEDF /* APIs */,
 				2CBA46C11965DF5900C6BEDF /* Models */,
@@ -164,6 +217,25 @@
 		2CBA46BF1965DF4F00C6BEDF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BF144313196A231100C2BB38 /* LoginViewController.h */,
+				BF144314196A231100C2BB38 /* LoginViewController.m */,
+				BF144318196A274B00C2BB38 /* MainViewController.h */,
+				BF144319196A274B00C2BB38 /* MainViewController.m */,
+				BF14431E196A293600C2BB38 /* SignupViewController.h */,
+				BF14431F196A293600C2BB38 /* SignupViewController.m */,
+				BF144321196A2A6600C2BB38 /* DashboardViewController.h */,
+				BF144322196A2A6600C2BB38 /* DashboardViewController.m */,
+				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
+				BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */,
+				BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */,
+				BF144341196A8F9C00C2BB38 /* CreateTransactionViewController.h */,
+				BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */,
+				BF144344196A921B00C2BB38 /* GoalsTableViewController.h */,
+				BF144345196A921B00C2BB38 /* GoalsTableViewController.m */,
+				BF144346196A921B00C2BB38 /* GoalsTableViewController.xib */,
+				BF144353196A963000C2BB38 /* TransactionsTableViewController.h */,
+				BF144354196A963000C2BB38 /* TransactionsTableViewController.m */,
+				BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -171,6 +243,12 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF144349196A92D300C2BB38 /* GoalTableViewCell.h */,
+				BF14434A196A92D300C2BB38 /* GoalTableViewCell.m */,
+				BF14434B196A92D300C2BB38 /* GoalTableViewCell.xib */,
+				BF14434E196A95D600C2BB38 /* TransactionTableViewCell.h */,
+				BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */,
+				BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -178,10 +256,14 @@
 		2CBA46C11965DF5900C6BEDF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BA9F872319666C1C005AA0C4 /* User.h */,
-				BA9F872419666C1C005AA0C4 /* User.m */,
-				BA9F8726196678C6005AA0C4 /* Goal.h */,
-				BA9F8727196678C6005AA0C4 /* Goal.m */,
+				BF14432C196A471300C2BB38 /* Goal.h */,
+				BF14432D196A471300C2BB38 /* Goal.m */,
+				BF144326196A3BB400C2BB38 /* GoalManager.h */,
+				BF144327196A3BB400C2BB38 /* GoalManager.m */,
+				BF14432F196A4FAD00C2BB38 /* Transaction.h */,
+				BF144330196A4FAD00C2BB38 /* Transaction.m */,
+				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
+				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -198,6 +280,17 @@
 			children = (
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		BF144337196A7B4C00C2BB38 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				BF144338196A7B6300C2BB38 /* CreateGoalForm.h */,
+				BF144339196A7B6300C2BB38 /* CreateGoalForm.m */,
+				BF14433E196A8E1000C2BB38 /* CreateTransactionForm.h */,
+				BF14433F196A8E1000C2BB38 /* CreateTransactionForm.m */,
+			);
+			name = Forms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +370,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
 				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
+				BF14434D196A92D300C2BB38 /* GoalTableViewCell.xib in Resources */,
+				BF144348196A921B00C2BB38 /* GoalsTableViewController.xib in Resources */,
+				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
+				BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,10 +428,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA9F8728196678C6005AA0C4 /* Goal.m in Sources */,
+				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
+				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
+				BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */,
+				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
+				BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */,
+				BF14434C196A92D300C2BB38 /* GoalTableViewCell.m in Sources */,
+				BF144340196A8E1000C2BB38 /* CreateTransactionForm.m in Sources */,
+				BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */,
+				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
+				BF144347196A921B00C2BB38 /* GoalsTableViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
-				BA9F872519666C1C005AA0C4 /* User.m in Sources */,
+				BF144343196A8F9C00C2BB38 /* CreateTransactionViewController.m in Sources */,
+				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
+				BF14433A196A7B6300C2BB38 /* CreateGoalForm.m in Sources */,
+				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
+				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
+				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

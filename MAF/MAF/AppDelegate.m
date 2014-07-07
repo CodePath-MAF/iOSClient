@@ -10,23 +10,31 @@
 #import "Crittercism.h"
 #import <Parse/Parse.h>
 
+#import "Goal.h"
+#import "Transaction.h"
+
+#import "MainViewController.h"
+
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Uncomment when we're ready to capture services/crash reports
 //  [Crittercism enableWithAppID:@"APP_ID"];
   
-  [Parse setApplicationId:@"qK7qJuFt6weBIrBx9eTzK1UBWJvkqb3jH6l8aw22"
+    [Goal registerSubclass];
+    [Transaction registerSubclass];
+    [Parse setApplicationId:@"qK7qJuFt6weBIrBx9eTzK1UBWJvkqb3jH6l8aw22"
                 clientKey:@"SPC4XFKVlnX4ChVu7jS0IwTjfKDAY9uxXh1Y8jsy"];
-  
-  [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-  
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  // Override point for customization after application launch.
-  self.window.backgroundColor = [UIColor whiteColor];
-  [self.window makeKeyAndVisible];
-  return YES;
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    MainViewController *vc = [[MainViewController alloc] init];
+    self.window.rootViewController = vc;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

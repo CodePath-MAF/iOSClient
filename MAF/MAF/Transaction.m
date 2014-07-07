@@ -1,5 +1,5 @@
 //
-//  Goal.m
+//  Transaction.m
 //  MAF
 //
 //  Created by mhahn on 7/6/14.
@@ -7,23 +7,19 @@
 //
 
 #import <Parse/PFObject+Subclass.h>
-#import "Goal.h"
+#import "Transaction.h"
 
-@implementation Goal
+@implementation Transaction
 
 + (NSString *)parseClassName {
-    return @"Goal";
+    return @"Transaction";
 }
 
 @dynamic user;
-@dynamic name;
+@dynamic goal;
+@dynamic amountInCents;
 @dynamic description;
 @dynamic type;
-@dynamic status;
-@dynamic paymentInterval;
-@dynamic totalInCents;
-@dynamic paymentAmountInCents;
-@dynamic numPayments;
-@dynamic goalDate;
+//@dynamic categoryId;
 
 @end
