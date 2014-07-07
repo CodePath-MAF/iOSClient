@@ -19,12 +19,14 @@
 		2CBA46AC1965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
 		2CBA46B41965DE3A00C6BEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46B21965DE3A00C6BEDF /* InfoPlist.strings */; };
 		2CBA46B61965DE3A00C6BEDF /* MAFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA46B51965DE3A00C6BEDF /* MAFTests.m */; };
-		BA9F8728196678C6005AA0C4 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9F8727196678C6005AA0C4 /* Goal.m */; };
 		BF144316196A231100C2BB38 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144314196A231100C2BB38 /* LoginViewController.m */; };
 		BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144319196A274B00C2BB38 /* MainViewController.m */; };
 		BF144320196A293600C2BB38 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14431F196A293600C2BB38 /* SignupViewController.m */; };
 		BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144322196A2A6600C2BB38 /* DashboardViewController.m */; };
 		BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144323196A2A6600C2BB38 /* DashboardViewController.xib */; };
+		BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144327196A3BB400C2BB38 /* GoalManager.m */; };
+		BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432A196A43BF00C2BB38 /* TransactionManager.m */; };
+		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
 
@@ -57,8 +59,6 @@
 		2CBA46B31965DE3A00C6BEDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CBA46B51965DE3A00C6BEDF /* MAFTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFTests.m; sourceTree = "<group>"; };
 		2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.xcconfig"; path = "Pods/Pods-MAF.xcconfig"; sourceTree = "<group>"; };
-		BA9F8726196678C6005AA0C4 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
-		BA9F8727196678C6005AA0C4 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		BF144313196A231100C2BB38 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BF144314196A231100C2BB38 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BF144318196A274B00C2BB38 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -68,6 +68,12 @@
 		BF144321196A2A6600C2BB38 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		BF144322196A2A6600C2BB38 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		BF144323196A2A6600C2BB38 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		BF144326196A3BB400C2BB38 /* GoalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalManager.h; sourceTree = "<group>"; };
+		BF144327196A3BB400C2BB38 /* GoalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalManager.m; sourceTree = "<group>"; };
+		BF144329196A43BF00C2BB38 /* TransactionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionManager.h; sourceTree = "<group>"; };
+		BF14432A196A43BF00C2BB38 /* TransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
+		BF14432C196A471300C2BB38 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
+		BF14432D196A471300C2BB38 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,8 +204,12 @@
 		2CBA46C11965DF5900C6BEDF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BA9F8726196678C6005AA0C4 /* Goal.h */,
-				BA9F8727196678C6005AA0C4 /* Goal.m */,
+				BF14432C196A471300C2BB38 /* Goal.h */,
+				BF14432D196A471300C2BB38 /* Goal.m */,
+				BF144326196A3BB400C2BB38 /* GoalManager.h */,
+				BF144327196A3BB400C2BB38 /* GoalManager.m */,
+				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
+				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -349,12 +359,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
+				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
-				BA9F8728196678C6005AA0C4 /* Goal.m in Sources */,
 				BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
+				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

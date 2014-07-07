@@ -10,6 +10,8 @@
 #import "Crittercism.h"
 #import <Parse/Parse.h>
 
+#import "Goal.h"
+
 #import "MainViewController.h"
 
 @implementation AppDelegate
@@ -18,6 +20,7 @@
   // Uncomment when we're ready to capture services/crash reports
 //  [Crittercism enableWithAppID:@"APP_ID"];
   
+    [Goal registerSubclass];
     [Parse setApplicationId:@"qK7qJuFt6weBIrBx9eTzK1UBWJvkqb3jH6l8aw22"
                 clientKey:@"SPC4XFKVlnX4ChVu7jS0IwTjfKDAY9uxXh1Y8jsy"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
