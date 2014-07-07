@@ -28,7 +28,7 @@
 
 - (void)submitCreateTransactionForm:(UITableViewCell<FXFormFieldCell> *)cell {
     CreateTransactionForm *form = cell.field.form;
-    [[TransactionManager createTransactionForUserId:[[PFUser currentUser] objectId] goalId:nil amountInCents:form.amountInCents description:form.description type:form.transactionType] continueWithBlock:^id(BFTask *task) {
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amountInCents:form.amountInCents description:form.description type:form.transactionType] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
         } else {

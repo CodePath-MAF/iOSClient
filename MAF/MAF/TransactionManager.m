@@ -14,11 +14,11 @@
 
 @implementation TransactionManager
 
-+ (BFTask *)createTransactionForUserId:(NSString *)userId goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type {
++ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
-    transaction.user = [PFUser objectWithoutDataWithObjectId:userId];
+    transaction.user = user;
     if (goalId != nil) {
         transaction.goal = [Goal objectWithoutDataWithObjectId:goalId];
     }
@@ -73,10 +73,10 @@
     return task.task;
 }
 
-+ (BFTask *)fetchTransactionsForUserId:(NSString *)userId {
++ (BFTask *)fetchTransactionsForUser:(PFUser *)user {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
-    [query whereKey:@"user" equalTo:[PFUser objectWithoutDataWithObjectId:userId]];
+    [query whereKey:@"user" equalTo:user];
     // TODO should be limiting these so we're returning paginated results
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -88,10 +88,10 @@
     return task.task;
 }
 
-+ (BFTask *)fetchTransactionsForUserId:(NSString *)userId ofType:(enum TransactionType)type {
++ (BFTask *)fetchTransactionsForUser:(PFUser *)user ofType:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
-    [query whereKey:@"user" equalTo:[PFUser objectWithoutDataWithObjectId:userId]];
+    [query whereKey:@"user" equalTo:user];
     [query whereKey:@"type" equalTo:@(type)];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {

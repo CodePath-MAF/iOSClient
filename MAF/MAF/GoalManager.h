@@ -20,6 +20,6 @@
 
 + (BFTask *)deleteGoal:(NSString *)goalId;
 
-+ (BFTask *)fetchGoalsForUserId:(NSString *)userId;
++ (BFTask *)fetchGoalsForUserId:(PFUser *)user;
 
 @end

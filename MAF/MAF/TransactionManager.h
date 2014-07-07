@@ -14,14 +14,14 @@
 
 @interface TransactionManager : NSObject
 
-+ (BFTask *)createTransactionForUserId:(NSString *)userId goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type;
++ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type;
 
 + (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
 
 + (BFTask *)deleteTransaction:(NSString *)transactionId;
 
-+ (BFTask *)fetchTransactionsForUserId:(NSString *)userId;
++ (BFTask *)fetchTransactionsForUserId:(PFUser *)user;
 
-+ (BFTask *)fetchTransactionsForUserId:(NSString *)userId ofType:(enum TransactionType)type;
++ (BFTask *)fetchTransactionsForUserId:(PFUser *)user ofType:(enum TransactionType)type;
 
 @end

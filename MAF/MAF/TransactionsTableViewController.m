@@ -1,5 +1,5 @@
 //
-//  GoalsTableViewController.m
+//  TransactionsTableViewController.m
 //  MAF
 //
 //  Created by mhahn on 7/7/14.
@@ -7,43 +7,42 @@
 //
 
 #import "Bolts.h"
-#import "GoalsTableViewController.h"
-#import "GoalTableViewCell.h"
-#import "GoalManager.h"
+#import "TransactionsTableViewController.h"
+#import "TransactionTableViewCell.h"
+#import "TransactionManager.h"
 
-@interface GoalsTableViewController () {
-    NSArray *goals;
+@interface TransactionsTableViewController () {
+    NSArray *transactions;
 }
 
 @end
 
-@implementation GoalsTableViewController
+@implementation TransactionsTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    UINib *goalCellNib = [UINib nibWithNibName:@"GoalTableViewCell" bundle:nil];
-    [self.tableView registerNib:goalCellNib forCellReuseIdentifier:@"GoalCell"];
-    
+    UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
+    [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self fetchData] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
-            NSLog(@"Error fetching goals for user: %@", task.error);
+            NSLog(@"Error fetching transactions for user: %@", task.error);
         } else {
-            goals = task.result;
-            [self.tableView reloadData];
+            transactions = task.result;
         }
         return task;
     }];
 }
 
 - (BFTask *)fetchData {
-    return [GoalManager fetchGoalsForUserId:[PFUser currentUser]];
+    return [TransactionManager fetchTransactionsForUserId:[PFUser currentUser]];
 }
 
 #pragma mark - Table view data source
@@ -53,14 +52,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [goals count];
+    return [transactions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GoalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GoalCell" forIndexPath:indexPath];
-    cell.goal = goals[indexPath.row];
+    TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
+    cell.transaction = transactions[indexPath.row];
     return cell;
 }
+
 
 /*
 // Override to support conditional editing of the table view.
