@@ -27,12 +27,11 @@
 
 + (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value withBlock:(PFBooleanResultBlock)block {
     
-    [[Goal query] getObjectInBackgroundWithId:goalId block:^(PFObject *object, NSError *error) {
+    [[Goal query] getObjectInBackgroundWithId:goalId block:^(PFObject *goal, NSError *error) {
         
         if (error) {
             NSLog(@"Error: %@", error);
         } else {
-            Goal *goal = ((Goal *)object);
             [goal setObject:value forKey:keyName];
             [goal saveInBackgroundWithBlock:block];
         }
