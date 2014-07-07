@@ -6,48 +6,92 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+#import "Bolts.h"
 #import <Parse/Parse.h>
+
 #import "GoalManager.h"
 #import "Goal.h"
 
 @implementation GoalManager
 
-+ (void)createGoal:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status amountInCents:(NSInteger)amountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate withBlock:(PFBooleanResultBlock)block {
++ (BFTask *)createGoal:(NSString *)userId name:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
     
+    BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
+    
+    goal.user = [PFUser objectWithoutDataWithObjectId:userId];
     goal.name = name;
     goal.description = description;
     goal.type = type;
     goal.status = status;
-    goal.amountInCents = amountInCents;
+    goal.totalInCents = totalInCents;
+    goal.paymentInterval = paymentInterval;
+    goal.paymentAmountInCents = paymentAmountInCents;
     goal.numPayments = numPayments;
-    [goal saveInBackgroundWithBlock:block];
+    [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            [task setError:error];
+        } else {
+            [task setResult:goal];
+        }
+    }];
+    return task.task;
     
 }
 
-+ (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value withBlock:(PFBooleanResultBlock)block {
++ (BFTask *)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value {
     
+    BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     [[Goal query] getObjectInBackgroundWithId:goalId block:^(PFObject *goal, NSError *error) {
-        
         if (error) {
-            NSLog(@"Error: %@", error);
+            [task setError:error];
         } else {
             [goal setObject:value forKey:keyName];
-            [goal saveInBackgroundWithBlock:block];
+            [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    [task setError:error];
+                } else {
+                    [task setResult:goal];
+                }
+            }];
         }
         
     }];
+    return task.task;
     
 }
 
-+ (void)deleteGoal:(NSString *)goalId withBlock:(PFBooleanResultBlock)block {
++ (BFTask *)deleteGoal:(NSString *)goalId {
+    BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     [[Goal query] getObjectInBackgroundWithId:goalId block:^(PFObject *goal, NSError *error) {
         if (error) {
-            NSLog(@"Error fetching goal: %@ (id %@)", error, goalId);
+            [task setError:error];
         } else {
-            [goal deleteInBackgroundWithBlock:block];
+            [goal deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    [task setError:error];
+                } else {
+                    [task setResult:@(succeeded)];
+                }
+            }];
         }
     }];
+    return task.task;
+}
+
++ (BFTask *)fetchGoalsForUserId:(NSString *)userId {
+    BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
+    PFQuery *query = [Goal query];
+    [query whereKey:@"user" equalTo:userId];
+    // TODO add limit to this query to support pagination
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            [task setError:error];
+        } else {
+            [task setResult:objects];
+        }
+    }];
+    return task.task;
 }
 
 @end

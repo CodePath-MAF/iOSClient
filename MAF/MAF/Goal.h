@@ -19,13 +19,26 @@ enum GoalStatus: NSInteger {
     GoalStatusAcheived = 2,
 };
 
+enum GoalPaymentInterval: NSInteger {
+    GoalPaymentIntervalDaily = 1,
+    GoalPaymentIntervalBiWeekly = 2,
+    GoalPaymentIntervalWeekly = 3,
+    GoalPaymentIntervalBiMonthly = 4,
+    GoalPaymentIntervalMonthly = 5,
+    GoalPaymentIntervalBiYearly = 6,
+    GoalPaymentIntervalYearly = 7,
+};
+
 @interface Goal : PFObject <PFSubclassing>
 
+@property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, assign) enum GoalType type;
 @property (nonatomic, assign) enum GoalStatus status;
-@property (nonatomic, assign) NSInteger amountInCents;
+@property (nonatomic, assign) enum GoalPaymentInterval paymentInterval;
+@property (nonatomic, assign) NSInteger totalInCents;
+@property (nonatomic, assign) NSInteger paymentAmountInCents;
 @property (nonatomic, assign) NSInteger numPayments;
 @property (nonatomic, strong) NSDate *goalDate;
 

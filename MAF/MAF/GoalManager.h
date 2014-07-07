@@ -7,15 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Bolts.h"
 #import "Goal.h"
 
 @interface GoalManager : NSObject
 
-+ (void)createGoal:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status amountInCents:(NSInteger)amountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate withBlock:(PFBooleanResultBlock)block;
++ (BFTask *)createGoal:(NSString *)userId name:(NSString *)name description:(NSString *)description type:(enum GoalType)type status:(enum GoalStatus)status totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate;
 
-+ (void)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value withBlock:(PFBooleanResultBlock)block;
++ (BFTask *)updateGoal:(NSString *)goalId keyName:(NSString *)keyName value:(id)value;
 
-+ (void)deleteGoal:(NSString *)goalId withBlock:(PFBooleanResultBlock)block;
++ (BFTask *)deleteGoal:(NSString *)goalId;
 
++ (BFTask *)fetchGoalsForUserId:(NSString *)userId;
 
 @end
