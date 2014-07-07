@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+#import "Bolts.h"
 #import <Parse/Parse.h>
 #import <Foundation/Foundation.h>
 
@@ -13,10 +14,14 @@
 
 @interface TransactionManager : NSObject
 
-+ (void)createTransactionForUser:(NSString *)userId goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type withBlock:(PFBooleanResultBlock)block;
++ (BFTask *)createTransactionForUser:(NSString *)userId goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type;
 
-+ (void)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value withBlock:(PFBooleanResultBlock)block;
++ (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
 
-+ (void)deleteTransaction:(NSString *)transactionId withBlock:(PFBooleanResultBlock)block;
++ (BFTask *)deleteTransaction:(NSString *)transactionId;
+
++ (BFTask *)fetchTransactionsForUserId:(NSString *)userId;
+
++ (BFTask *)fetchTransactionsForUserId:(NSString *)userId ofType:(enum TransactionType)type;
 
 @end
