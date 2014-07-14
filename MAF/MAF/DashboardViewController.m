@@ -34,26 +34,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.currentUserEmailLabel.text = [[PFUser currentUser] username];
+  self.parentViewController.title = [[PFUser currentUser] username];
+  
+//    self.currentUserEmailLabel.text = [[PFUser currentUser] username];
 }
 
 - (IBAction)createGoal:(id)sender {
-    [self presentViewController:[[CreateGoalViewController alloc] init] animated:YES completion:nil];
+    [self.parentViewController.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
 }
 
 - (IBAction)createTransaction:(id)sender {
-    [self presentViewController:[[CreateTransactionViewController alloc] init] animated:YES completion:nil];
+    [self.parentViewController.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
 }
 
 - (IBAction)viewGoals:(id)sender {
     // TODO should be wrapped in a navigation conroller
-    [self presentViewController:[[GoalsTableViewController alloc] initWithNibName:@"GoalsTableViewController" bundle:nil] animated:YES completion:nil];
+    [self.parentViewController.navigationController pushViewController:[[GoalsTableViewController alloc] initWithNibName:@"GoalsTableViewController" bundle:nil] animated:YES];
     
 }
 
 - (IBAction)viewTransactions:(id)sender {
     // TODO should be wrapped in a navigation controller
-    [self presentViewController:[[TransactionsTableViewController alloc] initWithNibName:@"TransactionsTableViewController" bundle:nil] animated:YES completion:nil];
+    [self.parentViewController.navigationController pushViewController:[[TransactionsTableViewController alloc] initWithNibName:@"TransactionsTableViewController" bundle:nil] animated:YES];
 }
 
 @end

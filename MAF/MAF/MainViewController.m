@@ -11,10 +11,12 @@
 #import "DashboardViewController.h"
 #import "LoginViewController.h"
 #import "SignupViewController.h"
+#import "ContentViewController.h"
 
-@interface MainViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate> {
-    DashboardViewController *dashboardViewController;
-}
+@interface MainViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+
+@property (nonatomic, strong) DashboardViewController *dashboardViewController;
+@property (nonatomic, strong) UIViewController *currentViewController;
 
 @end
 
@@ -29,8 +31,11 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  
+  self.title = @"CONTAINER";
+
+  
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -47,7 +52,7 @@
         
         [self presentViewController:loginViewController animated:NO completion:NULL];
     } else {
-        [self presentDashboardViewController:self animated:NO];
+      [self presentDashboardViewController];
     }
 }
 
@@ -68,7 +73,7 @@
 
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     // TODO send a notification via NotificationCenter that the user was logged in
-    [self presentDashboardViewController:logInController animated:YES];
+    [self presentDashboardViewController];
 }
 
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
@@ -94,14 +99,41 @@
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     // TODO send a notification via NotificationCenter that the user was signed up
-    [self presentDashboardViewController:signUpController animated:YES];
+    [self presentDashboardViewController];
 }
      
-- (void)presentDashboardViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if (!dashboardViewController) {
-        dashboardViewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
-    }
-    [viewController presentViewController:dashboardViewController animated:animated completion:nil];
+- (void)presentDashboardViewController {
+  NSLog(@"Presenting Dashboard");
+  if (!self.dashboardViewController) {
+    self.dashboardViewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
+  }
+  [self displayContentController:self.dashboardViewController];
+}
+
+#pragma mark - Container View Methods
+
+- (void) displayContentController:(UIViewController*)content
+{
+  NSLog(@"Displaying Content");
+  [self addChildViewController:content];            // 1
+  content.view.frame = self.view.frame;             // 2
+  [self.view addSubview:content.view];
+  self.currentViewController = content;
+  [content didMoveToParentViewController:self];          // 3
+}
+
+- (void) hideContentController:(UIViewController*)content
+{
+  NSLog(@"Hiding Content");
+  [content willMoveToParentViewController:nil];  // 1
+  [content.view removeFromSuperview];            // 2
+  [content removeFromParentViewController];      // 3
+}
+
+- (CGRect)frameForContentController{
+  CGRect contentFrame = self.view.bounds;
+  
+  return contentFrame;
 }
 
 @end

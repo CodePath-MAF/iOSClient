@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C00F0C91971FDE8007561D9 /* LiquidAssetView.m */; };
+		2C00F0D11972038F007561D9 /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C00F0D01972038F007561D9 /* ServicesConfig.plist */; };
+		2C667486197449B000434802 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C667485197449B000434802 /* MainViewController.xib */; };
 		2CBA46911965DE3A00C6BEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46901965DE3A00C6BEDF /* Foundation.framework */; };
 		2CBA46931965DE3A00C6BEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */; };
 		2CBA46951965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
@@ -55,6 +58,10 @@
 
 /* Begin PBXFileReference section */
 		16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MAF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C00F0C81971FDE8007561D9 /* LiquidAssetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiquidAssetView.h; sourceTree = "<group>"; };
+		2C00F0C91971FDE8007561D9 /* LiquidAssetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiquidAssetView.m; sourceTree = "<group>"; };
+		2C00F0D01972038F007561D9 /* ServicesConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
+		2C667485197449B000434802 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		2CBA468D1965DE3A00C6BEDF /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBA46901965DE3A00C6BEDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -221,6 +228,7 @@
 				BF144314196A231100C2BB38 /* LoginViewController.m */,
 				BF144318196A274B00C2BB38 /* MainViewController.h */,
 				BF144319196A274B00C2BB38 /* MainViewController.m */,
+				2C667485197449B000434802 /* MainViewController.xib */,
 				BF14431E196A293600C2BB38 /* SignupViewController.h */,
 				BF14431F196A293600C2BB38 /* SignupViewController.m */,
 				BF144321196A2A6600C2BB38 /* DashboardViewController.h */,
@@ -249,6 +257,8 @@
 				BF14434E196A95D600C2BB38 /* TransactionTableViewCell.h */,
 				BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */,
 				BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */,
+				2C00F0C81971FDE8007561D9 /* LiquidAssetView.h */,
+				2C00F0C91971FDE8007561D9 /* LiquidAssetView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -278,6 +288,7 @@
 		2CBA46C31965EC1200C6BEDF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2C00F0D01972038F007561D9 /* ServicesConfig.plist */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -370,11 +381,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C00F0D11972038F007561D9 /* ServicesConfig.plist in Resources */,
 				BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
 				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
 				BF14434D196A92D300C2BB38 /* GoalTableViewCell.xib in Resources */,
 				BF144348196A921B00C2BB38 /* GoalsTableViewController.xib in Resources */,
+				2C667486197449B000434802 /* MainViewController.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */,
 			);
@@ -437,6 +450,7 @@
 				BF144340196A8E1000C2BB38 /* CreateTransactionForm.m in Sources */,
 				BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
+				2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */,
 				BF144347196A921B00C2BB38 /* GoalsTableViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
