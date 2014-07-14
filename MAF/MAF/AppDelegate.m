@@ -49,7 +49,7 @@
   
   
   // Uncomment when we're ready to capture services/crash reports
-  [Crittercism enableWithAppID:CRITTERCISM_APP_ID];
+//  [Crittercism enableWithAppID:CRITTERCISM_APP_ID];
   
   [Goal registerSubclass];
   [Transaction registerSubclass];

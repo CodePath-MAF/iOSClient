@@ -33,7 +33,7 @@
             NSLog(@"Error creating transaction: %@", task.error);
         } else {
             NSLog(@"Successfully created transaction: %@", task.result);
-            [self presentViewController:[[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil] animated:YES completion:nil];
+            [self.parentViewController.navigationController dismissViewControllerAnimated:YES completion:nil];
         }
         return task;
     }];

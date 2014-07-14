@@ -7,11 +7,7 @@
 //
 
 #import <Parse/Parse.h>
-#import "CreateGoalViewController.h"
-#import "CreateTransactionViewController.h"
 #import "DashboardViewController.h"
-#import "GoalsTableViewController.h"
-#import "TransactionsTableViewController.h"
 
 @interface DashboardViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
@@ -33,29 +29,28 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-  self.parentViewController.title = [[PFUser currentUser] username];
+  [super viewDidLoad];
+  self.parentViewController.title = @"Dashboard";
   
-//    self.currentUserEmailLabel.text = [[PFUser currentUser] username];
+  self.currentUserEmailLabel.text = [[PFUser currentUser] username];
 }
 
 - (IBAction)createGoal:(id)sender {
-    [self.parentViewController.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
+  [self.delegate createGoal:sender];
 }
 
 - (IBAction)createTransaction:(id)sender {
-    [self.parentViewController.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
+  [self.delegate createTransaction:sender];
 }
 
 - (IBAction)viewGoals:(id)sender {
     // TODO should be wrapped in a navigation conroller
-    [self.parentViewController.navigationController pushViewController:[[GoalsTableViewController alloc] initWithNibName:@"GoalsTableViewController" bundle:nil] animated:YES];
-    
+  [self.delegate viewGoals:sender];
 }
 
 - (IBAction)viewTransactions:(id)sender {
     // TODO should be wrapped in a navigation controller
-    [self.parentViewController.navigationController pushViewController:[[TransactionsTableViewController alloc] initWithNibName:@"TransactionsTableViewController" bundle:nil] animated:YES];
+  [self.delegate viewTransactions:sender];
 }
 
 @end

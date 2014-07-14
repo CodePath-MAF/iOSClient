@@ -28,7 +28,7 @@
             NSLog(@"Error creating goal: %@", task.error);
         } else {
             NSLog(@"Successfully created goal: %@", task.result);
-            [self presentViewController:[[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil] animated:YES completion:nil];
+          [self.parentViewController.navigationController dismissViewControllerAnimated:YES completion:nil];
         }
         return task;
     }];

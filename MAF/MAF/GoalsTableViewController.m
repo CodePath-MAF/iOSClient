@@ -26,7 +26,6 @@
     
     UINib *goalCellNib = [UINib nibWithNibName:@"GoalTableViewCell" bundle:nil];
     [self.tableView registerNib:goalCellNib forCellReuseIdentifier:@"GoalCell"];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

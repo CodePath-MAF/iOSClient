@@ -21,44 +21,46 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+  [super viewDidLoad];
+  
+  self.title = @"Transactions";
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
     
-    UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
-    [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];
+  UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
+  [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[self fetchData] continueWithBlock:^id(BFTask *task) {
-        if (task.error) {
-            NSLog(@"Error fetching transactions for user: %@", task.error);
-        } else {
-            transactions = task.result;
-        }
-        return task;
-    }];
+  [super viewWillAppear:animated];
+  [[self fetchData] continueWithBlock:^id(BFTask *task) {
+      if (task.error) {
+          NSLog(@"Error fetching transactions for user: %@", task.error);
+      } else {
+          transactions = task.result;
+      }
+      return task;
+  }];
 }
 
 - (BFTask *)fetchData {
-    return [TransactionManager fetchTransactionsForUserId:[PFUser currentUser]];
+  return [TransactionManager fetchTransactionsForUser:[PFUser currentUser]];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [transactions count];
+  return [transactions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
-    cell.transaction = transactions[indexPath.row];
-    return cell;
+  TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
+  cell.transaction = transactions[indexPath.row];
+  return cell;
 }
 
 

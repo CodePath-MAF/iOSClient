@@ -20,8 +20,8 @@
 
 + (BFTask *)deleteTransaction:(NSString *)transactionId;
 
-+ (BFTask *)fetchTransactionsForUserId:(PFUser *)user;
++ (BFTask *)fetchTransactionsForUser:(PFUser *)user;
 
-+ (BFTask *)fetchTransactionsForUserId:(PFUser *)user ofType:(enum TransactionType)type;
++ (BFTask *)fetchTransactionsForUser:(PFUser *)user ofType:(enum TransactionType)type;
 
 @end
