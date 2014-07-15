@@ -5,8 +5,8 @@ target "MAF" do
 
 pod 'Bolts', '~> 1.1'
 pod 'CrittercismSDK'
-pod 'FXForms', '~> 1.1.6'
 pod 'Parse', '~> 1.2'
+pod 'XLForm', '~> 2.0'
 
 end
 

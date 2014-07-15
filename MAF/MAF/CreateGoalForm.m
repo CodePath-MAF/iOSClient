@@ -1,43 +1,84 @@
 //
-//  CreateGoalForm.m
+//  CreateGoalForm2.m
 //  MAF
 //
-//  Created by mhahn on 7/6/14.
+//  Created by mhahn on 7/7/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
 #import "CreateGoalForm.h"
+#import "Goal.h"
+#import "MAFActionFormButtonCell.h"
 
-// TODO add form validation (this would go in the CreateGoalViewController?)
+NSString *const kGoalName = @"name";
+NSString *const kGoalDescription = @"description";
+NSString *const kGoalType = @"type";
+NSString *const kGoalPaymentInterval = @"paymentInterval";
+NSString *const kGoalTotal = @"total";
+NSString *const kGoalTargetDate = @"targetDate";
+NSString *const kGoalCreate = @"create";
+
 
 @implementation CreateGoalForm
 
-- (NSArray *)extraFields {
-    return @[
-        @{FXFormFieldTitle: @"Create Goal", FXFormFieldHeader: @"", FXFormFieldAction: @"submitCreateGoalForm:"},
++ (XLFormDescriptor *)formDescriptorWithTitle:(NSString *)title {
+    XLFormDescriptor *form = [super formDescriptorWithTitle:title];
+    XLFormSectionDescriptor *section;
+    XLFormRowDescriptor *row;
+    
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalName rowType:XLFormRowDescriptorTypeText title:@"Name"];
+    row.required = YES;
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalDescription rowType:XLFormRowDescriptorTypeText title:@"Description"];
+    row.required = YES;
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalType rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Goal Type"];
+    row.required = YES;
+    row.selectorOptions = @[
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalTypeLoan) displayText:@"Loan"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalTypeDeposit) displayText:@"Deposit"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalTypeVacation) displayText:@"Vacation"],
     ];
-}
-
-// TODO if we use the master of this repo: https://github.com/nicklockwood/FXForms we can get FXFormFieldDefault to default the goal type
-- (NSDictionary *)goalTypeField {
-    return @{
-        FXFormFieldCell: [FXFormOptionPickerCell class],
-        FXFormFieldOptions: @[@(GoalTypeLoan), @(GoalTypeDeposit), @(GoalTypeVacation)],
-        FXFormFieldValueTransformer: ^(id input) {
-            return @{@(GoalTypeLoan): @"Loan", @(GoalTypeDeposit): @"Deposit", @(GoalTypeVacation): @"Vacation"}[input];
-        },
-    };
-}
-
-- (NSDictionary *)paymentIntervalField {
-    return @{
-         FXFormFieldCell: [FXFormOptionPickerCell class],
-         FXFormFieldOptions: @[@(GoalPaymentIntervalDaily), @(GoalPaymentIntervalBiWeekly), @(GoalPaymentIntervalWeekly), @(GoalPaymentIntervalBiMonthly), @(GoalPaymentIntervalMonthly), @(GoalPaymentIntervalBiYearly), @(GoalPaymentIntervalYearly)],
-         FXFormFieldValueTransformer: ^(id input) {
-             return @{@(GoalPaymentIntervalDaily): @"Daily", @(GoalPaymentIntervalBiWeekly): @"Twice a week", @(GoalPaymentIntervalWeekly): @"Weekly", @(GoalPaymentIntervalBiMonthly): @"Twice a month", @(GoalPaymentIntervalMonthly): @"Monthly", @(GoalPaymentIntervalBiYearly): @"Twice a year", @(GoalPaymentIntervalYearly): @"Yearly",
-            }[input];
-         },
-    };
+    row.value = row.selectorOptions[0];
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalPaymentInterval rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Payment Interval"];
+    row.required = YES;
+    row.selectorOptions = @[
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalDaily) displayText:@"Daily"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiWeekly) displayText:@"Twice a week"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalWeekly) displayText:@"Weekly"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiMonthly) displayText:@"Twice a month"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalMonthly) displayText:@"Monthly"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiYearly) displayText:@"Twice a year"],
+        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalYearly) displayText:@"Yearly"],
+    ];
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalTotal rowType:XLFormRowDescriptorTypeInteger title:@"Total"];
+    row.required = YES;
+    [section addFormRow:row];
+    
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalTargetDate rowType:XLFormRowDescriptorTypeDateInline title:@"Target Date"];
+    row.value = [NSDate new];
+    [section addFormRow:row];
+    
+    
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    
+    XLFormRowDescriptor *submitRow = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalCreate rowType:@"XLFormRowDescriptorTypeCustom" title:@"Create Goal"];
+    submitRow.cellClass = [MAFActionFormButtonCell class];
+    [section addFormRow:submitRow];
+    
+    return form;
+    
 }
 
 @end
