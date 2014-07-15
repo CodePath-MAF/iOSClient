@@ -8,11 +8,12 @@
 
 #import "Bolts.h"
 #import "GoalsTableViewController.h"
+#import "GoalDetailViewController.h"
 #import "GoalTableViewCell.h"
 #import "GoalManager.h"
 
 @interface GoalsTableViewController () {
-    NSArray *goals;
+    NSMutableArray *goals;
 }
 
 @end
@@ -23,7 +24,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+  
     UINib *goalCellNib = [UINib nibWithNibName:@"GoalTableViewCell" bundle:nil];
     [self.tableView registerNib:goalCellNib forCellReuseIdentifier:@"GoalCell"];
 }
@@ -34,7 +35,7 @@
         if (task.error) {
             NSLog(@"Error fetching goals for user: %@", task.error);
         } else {
-            goals = task.result;
+            goals = [NSMutableArray arrayWithArray:task.result];
             [self.tableView reloadData];
         }
         return task;
@@ -99,7 +100,7 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
@@ -107,13 +108,13 @@
 {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    GoalDetailViewController *detailViewController = [[GoalDetailViewController alloc] init];
     
     // Pass the selected object to the new view controller.
-    
+    detailViewController.goal = [goals objectAtIndex:indexPath.row];
+  
     // Push the view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
-*/
 
 @end

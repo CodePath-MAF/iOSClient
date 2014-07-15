@@ -1,8 +1,9 @@
 PODS:
   - Bolts (1.1.0)
   - CrittercismSDK (4.3.4)
-  - Facebook-iOS-SDK (3.15.1):
+  - Facebook-iOS-SDK (3.16):
     - Bolts
+  - MHPrettyDate (1.1.1)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
   - XLForm (2.0.0)
@@ -10,13 +11,15 @@ PODS:
 DEPENDENCIES:
   - Bolts (~> 1.1)
   - CrittercismSDK
+  - MHPrettyDate
   - Parse (~> 1.2)
   - XLForm (~> 2.0)
 
 SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
-  Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
+  Facebook-iOS-SDK: 82ad03cb9ce568855057e20a099054cf1e34ef12
+  MHPrettyDate: d9f42f2ec3dfece6352f18ac77aa33312174e09e
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
   XLForm: e065ea92da75acb51a577c40f2bb540c814982a3
 

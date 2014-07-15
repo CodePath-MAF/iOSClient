@@ -133,12 +133,8 @@
 {
   NSLog(@"Displaying Content");
   [self addChildViewController:content];            // 1
-  CGRect frame = self.view.frame;
-#warning this may change if we customize the navigation bar
-  CGFloat heightOffset = self.navigationController.navigationBar.frame.size.height;
-  frame.origin.y += heightOffset;
-  frame.size.height -= heightOffset;
-  content.view.frame = frame;             // 2
+  
+  content.view.frame = [self frameForContentController];             // 2
   [self.view addSubview:content.view];
   self.currentViewController = content;
   [content didMoveToParentViewController:self];          // 3
@@ -153,9 +149,11 @@
   [content removeFromParentViewController];      // 3
 }
 
-- (CGRect)frameForContentController{
+- (CGRect)frameForContentController {
   CGRect contentFrame = self.view.bounds;
-  
+  CGFloat heightOffset = self.navigationController.navigationBar.frame.size.height;
+  contentFrame.origin.y += heightOffset;
+  contentFrame.size.height -= heightOffset;
   return contentFrame;
 }
 

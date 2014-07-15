@@ -38,7 +38,7 @@
         NSDictionary *formValues = self.formValues;
         NSLog(@"Saving form: %@", formValues);
         // TODO need to figure out what the updated fields for the goal are
-        [self.parentViewController.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

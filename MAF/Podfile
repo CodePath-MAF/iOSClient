@@ -7,6 +7,7 @@ pod 'Bolts', '~> 1.1'
 pod 'CrittercismSDK'
 pod 'Parse', '~> 1.2'
 pod 'XLForm', '~> 2.0'
+pod 'MHPrettyDate'
 
 end
 

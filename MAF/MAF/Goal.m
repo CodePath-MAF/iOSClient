@@ -24,6 +24,6 @@
 @dynamic totalInCents;
 @dynamic paymentAmountInCents;
 @dynamic numPayments;
-@dynamic goalDate;
+@dynamic targetDate;
 
 @end

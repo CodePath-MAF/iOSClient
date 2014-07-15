@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MHPrettyDate.h"
+
+#define CENTS_TO_DOLLARS_CONSTANT 100
 
 @interface Utilities : NSObject
 

@@ -24,10 +24,10 @@
     goal.description = description;
     goal.type = type;
     goal.status = GoalStatusInProgress;
-    goal.totalInCents = totalInCents;
+    goal.totalInCents = [NSNumber numberWithInteger:totalInCents];
     goal.paymentInterval = paymentInterval;
-    goal.paymentAmountInCents = paymentAmountInCents;
-    goal.numPayments = numPayments;
+    goal.paymentAmountInCents = [NSNumber numberWithInteger:paymentAmountInCents];
+    goal.numPayments = [NSNumber numberWithInteger:numPayments];
     [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];
