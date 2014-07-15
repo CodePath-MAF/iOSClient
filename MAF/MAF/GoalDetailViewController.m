@@ -45,8 +45,16 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   
+  [self setupRoundedButton:self.makePaymentButton
+          withCornerRadius:40.0f
+               borderColor:nil];
+  
+  [self setupRoundedButton:self.previousPaymentsButton
+          withCornerRadius:40.0f
+               borderColor:nil];
+  
   self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.paymentAmountInCents];
-  self.timeTilDueLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.goalDate];
+//  self.timeTilDueLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.goalDate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,4 +70,17 @@
 - (IBAction)makePayment:(id)sender {
   NSLog(@"Make a Payment");
 }
+
+
+#pragma mark Helper Functions
+
+- (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius borderColor:(UIColor *)borderColor {
+  button.layer.cornerRadius = cornerRadius;
+  button.layer.masksToBounds = YES;
+  
+#warning TODO add border and apply color
+  
+  return button;
+}
+
 @end

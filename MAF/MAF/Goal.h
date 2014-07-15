@@ -21,12 +21,9 @@ NS_ENUM(NSInteger, GoalStatus) {
 
 NS_ENUM(NSInteger, GoalPaymentInterval) {
     GoalPaymentIntervalDaily = 1,
-    GoalPaymentIntervalBiWeekly = 2,
-    GoalPaymentIntervalWeekly = 3,
-    GoalPaymentIntervalBiMonthly = 4,
-    GoalPaymentIntervalMonthly = 5,
-    GoalPaymentIntervalBiYearly = 6,
-    GoalPaymentIntervalYearly = 7,
+    GoalPaymentIntervalWeekly = 7,
+    GoalPaymentIntervalBiWeekly = 14,
+    GoalPaymentIntervalMonthly = 30,
 };
 
 @interface Goal : PFObject <PFSubclassing>
