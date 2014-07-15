@@ -1,5 +1,5 @@
 //
-//  CreateTransactionViewController.h
+//  MAFActionFormButtonCell.h
 //  MAF
 //
 //  Created by mhahn on 7/7/14.
@@ -8,6 +8,6 @@
 
 #import "XLForm.h"
 
-@interface CreateTransactionViewController : XLFormViewController
+@interface MAFActionFormButtonCell : XLFormBaseCell
 
 @end

@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "FXForms.h"
+#import "XLForm.h"
 
-@interface CreateGoalViewController : FXFormViewController
+@interface CreateGoalViewController : XLFormViewController
 
 @end
