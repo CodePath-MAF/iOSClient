@@ -300,12 +300,8 @@
 			children = (
 				BF14432C196A471300C2BB38 /* Goal.h */,
 				BF14432D196A471300C2BB38 /* Goal.m */,
-				BF144326196A3BB400C2BB38 /* GoalManager.h */,
-				BF144327196A3BB400C2BB38 /* GoalManager.m */,
 				BF14432F196A4FAD00C2BB38 /* Transaction.h */,
 				BF144330196A4FAD00C2BB38 /* Transaction.m */,
-				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
-				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -313,6 +309,10 @@
 		2CBA46C21965DF6800C6BEDF /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				BF144326196A3BB400C2BB38 /* GoalManager.h */,
+				BF144327196A3BB400C2BB38 /* GoalManager.m */,
+				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
+				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
