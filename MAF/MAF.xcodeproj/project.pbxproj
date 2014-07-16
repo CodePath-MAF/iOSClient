@@ -35,7 +35,6 @@
 		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
 		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
 		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
-		BF144343196A8F9C00C2BB38 /* CreateTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */; };
 		BF144347196A921B00C2BB38 /* GoalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144345196A921B00C2BB38 /* GoalsTableViewController.m */; };
 		BF144348196A921B00C2BB38 /* GoalsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144346196A921B00C2BB38 /* GoalsTableViewController.xib */; };
 		BF14434C196A92D300C2BB38 /* GoalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14434A196A92D300C2BB38 /* GoalTableViewCell.m */; };
@@ -112,8 +111,6 @@
 		BF144330196A4FAD00C2BB38 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalViewController.h; sourceTree = "<group>"; };
 		BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalViewController.m; sourceTree = "<group>"; };
-		BF144341196A8F9C00C2BB38 /* CreateTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionViewController.h; sourceTree = "<group>"; };
-		BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionViewController.m; sourceTree = "<group>"; };
 		BF144344196A921B00C2BB38 /* GoalsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalsTableViewController.h; sourceTree = "<group>"; };
 		BF144345196A921B00C2BB38 /* GoalsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalsTableViewController.m; sourceTree = "<group>"; };
 		BF144346196A921B00C2BB38 /* GoalsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalsTableViewController.xib; sourceTree = "<group>"; };
@@ -263,8 +260,6 @@
 				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
 				BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */,
 				BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */,
-				BF144341196A8F9C00C2BB38 /* CreateTransactionViewController.h */,
-				BF144342196A8F9C00C2BB38 /* CreateTransactionViewController.m */,
 				BF144344196A921B00C2BB38 /* GoalsTableViewController.h */,
 				BF144345196A921B00C2BB38 /* GoalsTableViewController.m */,
 				BF144346196A921B00C2BB38 /* GoalsTableViewController.xib */,
@@ -505,7 +500,6 @@
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
-				BF144343196A8F9C00C2BB38 /* CreateTransactionViewController.m in Sources */,
 				BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
 				BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */,
