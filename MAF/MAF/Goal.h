@@ -34,8 +34,8 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
 @property (nonatomic, assign) enum GoalType type;
 @property (nonatomic, assign) enum GoalStatus status;
 @property (nonatomic, assign) enum GoalPaymentInterval paymentInterval;
-@property (nonatomic, assign) NSInteger totalInCents;
-@property (nonatomic, assign) NSInteger paymentAmountInCents;
+@property (nonatomic, assign) float total;
+@property (nonatomic, assign) float paymentAmount;
 @property (nonatomic, assign) NSInteger numPayments;
 @property (nonatomic, strong) NSDate *goalDate;
 

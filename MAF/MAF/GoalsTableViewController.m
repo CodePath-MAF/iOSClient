@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Goals";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     

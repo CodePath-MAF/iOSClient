@@ -7,9 +7,16 @@
 //
 
 #import <Parse/Parse.h>
+
 #import "DashboardViewController.h"
 
+#import "CreateGoalViewController.h"
+#import "CreateTransactionViewController.h"
+#import "GoalsTableViewController.h"
+#import "TransactionsTableViewController.h"
+
 @interface DashboardViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
 - (IBAction)createGoal:(id)sender;
 - (IBAction)createTransaction:(id)sender;
@@ -29,28 +36,37 @@
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.parentViewController.title = @"Dashboard";
-  
-  self.currentUserEmailLabel.text = [[PFUser currentUser] username];
+    [super viewDidLoad];
+    self.title = @"Dashboard";
+    self.currentUserEmailLabel.text = [[PFUser currentUser] username];
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    
+    self.navigationItem.leftBarButtonItem = profileButton;
+    
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createGoal:)];
+    
+    self.navigationItem.rightBarButtonItem = goalButton;
 }
 
 - (IBAction)createGoal:(id)sender {
-  [self.delegate createGoal:sender];
+    [self.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
 }
 
 - (IBAction)createTransaction:(id)sender {
-  [self.delegate createTransaction:sender];
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
 }
 
 - (IBAction)viewGoals:(id)sender {
-    // TODO should be wrapped in a navigation conroller
-  [self.delegate viewGoals:sender];
+    [self.navigationController pushViewController:[[GoalsTableViewController alloc] init] animated:YES];
 }
 
 - (IBAction)viewTransactions:(id)sender {
-    // TODO should be wrapped in a navigation controller
-  [self.delegate viewTransactions:sender];
+    [self.navigationController pushViewController:[[TransactionsTableViewController alloc] init] animated:YES];
+}
+
+- (void)showProfile:(id)sender {
+#warning show profile view here
+    NSLog(@"Show Profile");
 }
 
 @end

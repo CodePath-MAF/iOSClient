@@ -8,6 +8,11 @@
 
 #import "XLForm.h"
 
+extern NSString *const kTransactionDescription;
+extern NSString *const kTransactionType;
+extern NSString *const kTransactionAmount;
+extern NSString *const kTransactionCreate;
+
 @interface CreateTransactionForm : XLFormDescriptor
 
 @end

@@ -10,7 +10,6 @@
 #import "CreateTransactionForm.h"
 #import "MAFActionFormButtonCell.h"
 
-
 NSString *const kTransactionDescription = @"description";
 NSString *const kTransactionType = @"type";
 NSString *const kTransactionAmount = @"amount";

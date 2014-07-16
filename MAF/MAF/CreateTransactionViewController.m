@@ -8,6 +8,7 @@
 
 #import "XLForm.h"
 
+
 #import "CreateTransactionForm.h"
 #import "CreateTransactionViewController.h"
 #import "DashboardViewController.h"
@@ -36,9 +37,18 @@
         NSLog(@"Error saving form: %@", validationErrors);
     } else {
         NSDictionary *formValues = self.formValues;
-        NSLog(@"Saving form: %@", formValues);
-        // TODO need to figure out what the updated fields for the goal are
-        [self.parentViewController.navigationController dismissViewControllerAnimated:YES completion:nil];
+        NSNumber *amount = formValues[kTransactionAmount];
+        XLFormOptionsObject *type = formValues[kTransactionType];
+        [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:[amount floatValue] description:formValues[kTransactionDescription] type:(NSInteger)type.formValue] continueWithBlock:^id(BFTask *task) {
+            if (task.error) {
+                NSLog(@"Error creating transaction: %@", task.error);
+            } else {
+                NSLog(@"Successfully saved transaction: %@", task.result);
+                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            }
+            return task;
+        }];
+
     }
 }
 

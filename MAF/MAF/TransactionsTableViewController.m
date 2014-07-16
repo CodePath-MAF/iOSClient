@@ -19,10 +19,8 @@
 
 @implementation TransactionsTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
   self.title = @"Transactions";
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
@@ -38,6 +36,7 @@
           NSLog(@"Error fetching transactions for user: %@", task.error);
       } else {
           transactions = task.result;
+          [self.tableView reloadData];
       }
       return task;
   }];
@@ -50,17 +49,17 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [transactions count];
+    return [transactions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
-  cell.transaction = transactions[indexPath.row];
-  return cell;
+    TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
+    cell.transaction = transactions[indexPath.row];
+    return cell;
 }
 
 

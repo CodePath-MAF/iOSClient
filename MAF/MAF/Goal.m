@@ -21,8 +21,8 @@
 @dynamic type;
 @dynamic status;
 @dynamic paymentInterval;
-@dynamic totalInCents;
-@dynamic paymentAmountInCents;
+@dynamic total;
+@dynamic paymentAmount;
 @dynamic numPayments;
 @dynamic goalDate;
 

@@ -53,7 +53,7 @@
           withCornerRadius:40.0f
                borderColor:nil];
   
-  self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.paymentAmountInCents];
+  self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.paymentAmount];
 //  self.timeTilDueLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.goalDate];
 }
 

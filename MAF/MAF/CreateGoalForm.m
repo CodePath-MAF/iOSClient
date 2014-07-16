@@ -18,7 +18,6 @@ NSString *const kGoalTotal = @"total";
 NSString *const kGoalTargetDate = @"targetDate";
 NSString *const kGoalCreate = @"create";
 
-
 @implementation CreateGoalForm
 
 + (XLFormDescriptor *)formDescriptorWithTitle:(NSString *)title {
@@ -53,10 +52,7 @@ NSString *const kGoalCreate = @"create";
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalDaily) displayText:@"Daily"],
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalWeekly) displayText:@"Weekly"],
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiWeekly) displayText:@"Twice a week"],
-//        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiMonthly) displayText:@"Twice a month"],
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalMonthly) displayText:@"Monthly"],
-//        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiYearly) displayText:@"Twice a year"],
-//        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalYearly) displayText:@"Yearly"],
     ];
     [section addFormRow:row];
     
