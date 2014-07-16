@@ -30,6 +30,7 @@
     }
     return self;
 }
+
 - (void)didSelectButton {
     
     NSArray *validationErrors = self.formValidationErrors;

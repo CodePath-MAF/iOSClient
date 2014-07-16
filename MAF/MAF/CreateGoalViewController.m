@@ -27,6 +27,7 @@
 }
 
 - (void)didSelectButton {
+    
     NSArray *validationErrors = self.formValidationErrors;
     if (validationErrors.count > 0) {
         NSLog(@"Error saving form: %@", validationErrors);
