@@ -12,6 +12,7 @@
 
 #import "Goal.h"
 #import "Transaction.h"
+#import "TransactionCategory.h"
 
 #import "MainViewController.h"
 
@@ -53,6 +54,8 @@
   
     [Goal registerSubclass];
     [Transaction registerSubclass];
+    [TransactionCategory registerSubclass];
+    
     [Parse setApplicationId:PARSE_APP_ID
               clientKey:PARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

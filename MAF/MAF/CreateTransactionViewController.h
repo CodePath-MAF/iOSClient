@@ -10,4 +10,6 @@
 
 @interface CreateTransactionViewController : XLFormViewController
 
+- initWithCategories:(NSArray *)categories;
+
 @end

@@ -20,6 +20,6 @@
 @dynamic amount;
 @dynamic detail;
 @dynamic type;
-//@dynamic categoryId;
+@dynamic category;
 
 @end

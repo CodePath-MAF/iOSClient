@@ -14,9 +14,11 @@
 #import "CreateTransactionViewController.h"
 #import "GoalsTableViewController.h"
 #import "TransactionsTableViewController.h"
+#import "TransactionCategoryManager.h"
 
 @interface DashboardViewController ()
 
+@property (strong, nonatomic) NSArray *categories;
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
 - (IBAction)createGoal:(id)sender;
 - (IBAction)createTransaction:(id)sender;
@@ -53,7 +55,24 @@
 }
 
 - (IBAction)createTransaction:(id)sender {
-    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
+    if (!self.categories) {
+        [[TransactionCategoryManager fetchCategories] continueWithBlock:^id(BFTask *task) {
+            if (task.error) {
+                // TODO raise an error message with TSMessages
+                NSLog(@"Error fetchign categories: %@", task.error);
+            } else {
+                self.categories = task.result;
+                [self pushCreateTransactionViewController];
+            }
+            return task;
+        }];
+    } else {
+        [self pushCreateTransactionViewController];
+    }
+}
+
+- (void)pushCreateTransactionViewController {
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:self.categories] animated:YES];
 }
 
 - (IBAction)viewGoals:(id)sender {

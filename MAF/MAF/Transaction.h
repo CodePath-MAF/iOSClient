@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import "Goal.h"
+#import "TransactionCategory.h"
 
 NS_ENUM(NSInteger, TransactionType) {
     TransactionTypeDebit = 1,
@@ -21,6 +22,6 @@ NS_ENUM(NSInteger, TransactionType) {
 @property (nonatomic, assign) float amount;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, assign) enum TransactionType type;
-//@property (nonatomic, strong) NSString *categoryId;
+@property (nonatomic, strong) TransactionCategory *category;
 
 @end

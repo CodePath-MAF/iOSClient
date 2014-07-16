@@ -10,11 +10,12 @@
 #import <Parse/Parse.h>
 #import "Goal.h"
 #import "Transaction.h"
+#import "TransactionCategory.h"
 #import "TransactionManager.h"
 
 @implementation TransactionManager
 
-+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type {
++ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
@@ -25,6 +26,7 @@
     transaction.amount = amount;
     transaction.detail = detail;
     transaction.type = type;
+    transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];
     [transaction saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];
