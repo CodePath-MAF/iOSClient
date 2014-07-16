@@ -31,24 +31,20 @@
     if (validationErrors.count > 0) {
         NSLog(@"Error saving form: %@", validationErrors);
     } else {
-        NSDictionary *formValues = self.formValues;
-        NSLog(@"Saving form: %@", formValues);
-        // TODO need to figure out what the updated fields for the goal are
-        [self.parentViewController.navigationController dismissViewControllerAnimated:YES completion:nil];
+        NSNumber *total = self.formValues[kGoalTotal];
+        XLFormOptionsObject *type = self.formValues[kGoalType];
+        XLFormOptionsObject *paymentInterval = self.formValues[kGoalPaymentInterval];
+        [[GoalManager createGoalForUser:[PFUser currentUser] name:self.formValues[kGoalName] detail:self.formValues[kGoalDetail] type:(NSInteger)type.formValue total:[total floatValue] paymentInterval:(NSInteger)paymentInterval.formValue paymentAmount:0 numPayments:0 goalDate:self.formValues[kGoalTargetDate]] continueWithBlock:^id(BFTask *task) {
+            if (task.error) {
+                NSLog(@"Error creating goal: %@", task.error);
+            } else {
+                NSLog(@"Successfully created goal: %@", task.result);
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            return task;
+        }];
+
     }
 }
-
-//- (void)submitCreateGoalForm:(UITableViewCell<FXFormFieldCell> *)cell {
-//    CreateGoalForm *form = cell.field.form;
-//    [[GoalManager createGoalForUser:[PFUser currentUser] name:form.name description:form.description type:form.goalType totalInCents:form.totalInCents paymentInterval:form.paymentInterval paymentAmountInCents:form.paymentAmountInCents numPayments:form.numPayments goalDate:form.dueDate] continueWithBlock:^id(BFTask *task) {
-//        if (task.error) {
-//            NSLog(@"Error creating goal: %@", task.error);
-//        } else {
-//            NSLog(@"Successfully created goal: %@", task.result);
-//            [self presentViewController:[[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil] animated:YES completion:nil];
-//        }
-//        return task;
-//    }];
-//}
 
 @end

@@ -30,7 +30,7 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
 
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *detail;
 @property (nonatomic, assign) enum GoalType type;
 @property (nonatomic, assign) enum GoalStatus status;
 @property (nonatomic, assign) enum GoalPaymentInterval paymentInterval;

@@ -18,7 +18,7 @@
 @dynamic user;
 @dynamic goal;
 @dynamic amount;
-@dynamic description;
+@dynamic detail;
 @dynamic type;
 //@dynamic categoryId;
 

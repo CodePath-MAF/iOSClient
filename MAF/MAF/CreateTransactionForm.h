@@ -8,7 +8,7 @@
 
 #import "XLForm.h"
 
-extern NSString *const kTransactionDescription;
+extern NSString *const kTransactionDetail;
 extern NSString *const kTransactionType;
 extern NSString *const kTransactionAmount;
 extern NSString *const kTransactionCreate;

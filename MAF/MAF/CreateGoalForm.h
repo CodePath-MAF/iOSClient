@@ -9,7 +9,7 @@
 #import "XLForm.h"
 
 extern NSString *const kGoalName;
-extern NSString *const kGoalDescription;
+extern NSString *const kGoalDetail;
 extern NSString *const kGoalType;
 extern NSString *const kGoalPaymentInterval;
 extern NSString *const kGoalTotal;

@@ -10,7 +10,7 @@
 #import "CreateTransactionForm.h"
 #import "MAFActionFormButtonCell.h"
 
-NSString *const kTransactionDescription = @"description";
+NSString *const kTransactionDetail = @"detail";
 NSString *const kTransactionType = @"type";
 NSString *const kTransactionAmount = @"amount";
 NSString *const kTransactionCreate = @"create";
@@ -25,7 +25,7 @@ NSString *const kTransactionCreate = @"create";
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kTransactionDescription rowType:XLFormRowDescriptorTypeText title:@"Description"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kTransactionDetail rowType:XLFormRowDescriptorTypeText title:@"Detail"];
     row.required = YES;
     [section addFormRow:row];
     

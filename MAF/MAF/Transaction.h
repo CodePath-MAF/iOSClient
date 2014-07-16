@@ -19,7 +19,7 @@ NS_ENUM(NSInteger, TransactionType) {
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) Goal *goal;
 @property (nonatomic, assign) float amount;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *detail;
 @property (nonatomic, assign) enum TransactionType type;
 //@property (nonatomic, strong) NSString *categoryId;
 

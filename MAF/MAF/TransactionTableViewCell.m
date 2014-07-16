@@ -18,7 +18,7 @@
 
 - (void)setTransaction:(Transaction *)transaction {
     _transaction = transaction;
-    self.transactionDescriptionLabel.text = transaction.description;
+    self.transactionDescriptionLabel.text = transaction.detail;
 }
 
 @end

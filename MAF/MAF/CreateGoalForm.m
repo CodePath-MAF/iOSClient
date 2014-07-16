@@ -11,7 +11,7 @@
 #import "MAFActionFormButtonCell.h"
 
 NSString *const kGoalName = @"name";
-NSString *const kGoalDescription = @"description";
+NSString *const kGoalDetail = @"detail";
 NSString *const kGoalType = @"type";
 NSString *const kGoalPaymentInterval = @"paymentInterval";
 NSString *const kGoalTotal = @"total";
@@ -32,7 +32,7 @@ NSString *const kGoalCreate = @"create";
     row.required = YES;
     [section addFormRow:row];
     
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalDescription rowType:XLFormRowDescriptorTypeText title:@"Description"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalDetail rowType:XLFormRowDescriptorTypeText title:@"Detail"];
     row.required = YES;
     [section addFormRow:row];
     

@@ -36,33 +36,19 @@
     if (validationErrors.count > 0) {
         NSLog(@"Error saving form: %@", validationErrors);
     } else {
-        NSDictionary *formValues = self.formValues;
-        NSNumber *amount = formValues[kTransactionAmount];
-        XLFormOptionsObject *type = formValues[kTransactionType];
-        [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:[amount floatValue] description:formValues[kTransactionDescription] type:(NSInteger)type.formValue] continueWithBlock:^id(BFTask *task) {
+        NSNumber *amount = self.formValues[kTransactionAmount];
+        XLFormOptionsObject *type = self.formValues[kTransactionType];
+        [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:[amount floatValue] detail:self.formValues[kTransactionDetail] type:(NSInteger)type.formValue] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error creating transaction: %@", task.error);
             } else {
                 NSLog(@"Successfully saved transaction: %@", task.result);
-                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             return task;
         }];
 
     }
 }
-
-//- (void)submitCreateTransactionForm:(UITableViewCell<FXFormFieldCell> *)cell {
-//    CreateTransactionForm *form = cell.field.form;
-//    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amountInCents:form.amountInCents description:form.description type:form.transactionType] continueWithBlock:^id(BFTask *task) {
-//        if (task.error) {
-//            NSLog(@"Error creating transaction: %@", task.error);
-//        } else {
-//            NSLog(@"Successfully created transaction: %@", task.result);
-//            [self presentViewController:[[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil] animated:YES completion:nil];
-//        }
-//        return task;
-//    }];
-//}
 
 @end

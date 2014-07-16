@@ -14,14 +14,14 @@
 
 @implementation GoalManager
 
-+ (BFTask *)createGoalForUser:(PFUser *)user name:(NSString *)name description:(NSString *)description type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
++ (BFTask *)createGoalForUser:(PFUser *)user name:(NSString *)name detail:(NSString *)detail type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
     
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
     
     goal.user = user;
     goal.name = name;
-    goal.description = description;
+    goal.detail = detail;
     goal.type = type;
     goal.status = GoalStatusInProgress;
     goal.total = total;

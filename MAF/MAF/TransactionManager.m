@@ -14,7 +14,7 @@
 
 @implementation TransactionManager
 
-+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount description:(NSString *)description type:(enum TransactionType)type {
++ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
@@ -23,7 +23,7 @@
         transaction.goal = [Goal objectWithoutDataWithObjectId:goalId];
     }
     transaction.amount = amount;
-    transaction.description = description;
+    transaction.detail = detail;
     transaction.type = type;
     [transaction saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
