@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
 @protocol DashBoardViewControllerDelegate <NSObject>
@@ -24,5 +25,6 @@
 @interface DashboardViewController : UIViewController
 
 @property (nonatomic, weak) id <DashBoardViewControllerDelegate> delegate;
+@property (nonatomic, strong) PFUser *user;
 
 @end

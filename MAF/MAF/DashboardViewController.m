@@ -6,15 +6,18 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#import <Parse/Parse.h>
-#import "DashboardViewController.h"
 
-@interface DashboardViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
-- (IBAction)createGoal:(id)sender;
-- (IBAction)createTransaction:(id)sender;
-- (IBAction)viewGoals:(id)sender;
-- (IBAction)viewTransactions:(id)sender;
+#import "DashboardViewController.h"
+#import "Bolts.h"
+#import "GoalDetailViewController.h"
+#import "GoalCardView.h"
+#import "GoalManager.h"
+
+@interface DashboardViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic, strong) NSMutableArray *goals;
 
 @end
 
@@ -29,28 +32,81 @@
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.parentViewController.title = @"Dashboard";
-  
-  self.currentUserEmailLabel.text = [[PFUser currentUser] username];
+    [super viewDidLoad];
+    self.parentViewController.title = @"Dashboard";
+    
+    // Set Up Collection View delegate & data source
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    // Stub Goals Cell
+    
+    // Create Assets View (Collection Section Header)
+    
+    //
+    
 }
 
-- (IBAction)createGoal:(id)sender {
-  [self.delegate createGoal:sender];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self fetchData] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error fetching goals for user: %@", task.error);
+        } else {
+            self.goals = [NSMutableArray arrayWithArray:task.result];
+            [self.collectionView reloadData];
+        }
+        return task;
+    }];
 }
 
-- (IBAction)createTransaction:(id)sender {
-  [self.delegate createTransaction:sender];
+#pragma mark - Data Loading Methods
+
+- (BFTask *)fetchData {
+    return [GoalManager fetchGoalsForUser:[PFUser currentUser]];
 }
 
-- (IBAction)viewGoals:(id)sender {
-    // TODO should be wrapped in a navigation conroller
-  [self.delegate viewGoals:sender];
+#pragma mark - UICollectionView Datasource
+// 1
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    return [self.goals count];
+}
+// 2
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+    return 1;
+}
+// 3
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView " forIndexPath:indexPath];
+    
+    // TODO Check if Goal has been Achieved, display if not
+    
+    cell.backgroundColor = [UIColor whiteColor];
+    return cell;
+}
+// 4
+/*- (UICollectionReusableView *)collectionView:
+ (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+ {
+ return [[UICollectionReusableView alloc] init];
+ }*/
+
+#pragma mark - Collection View Delegates
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.view.bounds.size.width - 20, 44);
 }
 
-- (IBAction)viewTransactions:(id)sender {
-    // TODO should be wrapped in a navigation controller
-  [self.delegate viewTransactions:sender];
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // TODO custom transition into a Goal Detail View Controller
 }
+
+//- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+//    return NO;
+//}
+
+#pragma mark - Collection View Layout Delegates
+
+// TODO for custom movements and fun stuff
 
 @end
