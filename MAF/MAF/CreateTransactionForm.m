@@ -17,6 +17,7 @@ NSString *const kTransactionDetail = @"detail";
 NSString *const kTransactionType = @"type";
 NSString *const kTransactionCategory = @"category";
 NSString *const kTransactionAmount = @"amount";
+NSString *const kTransactionDate = @"date";
 NSString *const kTransactionCreate = @"create";
 
 @implementation CreateTransactionForm
@@ -55,6 +56,11 @@ NSString *const kTransactionCreate = @"create";
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kTransactionAmount rowType:XLFormRowDescriptorTypeInteger title:@"Amount"];
     row.required = YES;
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kTransactionDate rowType:XLFormRowDescriptorTypeDateInline title:@"Transaction Date"];
+    row.required = YES;
+    row.value = [NSDate new];
     [section addFormRow:row];
     
     section = [XLFormSectionDescriptor formSection];

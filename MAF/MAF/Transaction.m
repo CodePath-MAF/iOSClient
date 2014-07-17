@@ -21,5 +21,6 @@
 @dynamic detail;
 @dynamic type;
 @dynamic category;
+@dynamic transactionDate;
 
 @end

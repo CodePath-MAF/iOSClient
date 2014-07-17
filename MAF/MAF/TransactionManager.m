@@ -15,7 +15,7 @@
 
 @implementation TransactionManager
 
-+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId {
++ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
@@ -27,6 +27,7 @@
     transaction.detail = detail;
     transaction.type = type;
     transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];
+    transaction.transactionDate = transactionDate;
     [transaction saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];
@@ -79,6 +80,7 @@
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
     [query whereKey:@"user" equalTo:user];
+    [query includeKey:@"category"];
     // TODO should be limiting these so we're returning paginated results
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {

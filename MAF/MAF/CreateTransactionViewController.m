@@ -43,7 +43,7 @@
         NSNumber *amount = self.formValues[kTransactionAmount];
         XLFormOptionsObject *type = self.formValues[kTransactionType];
         XLFormOptionsObject *category = self.formValues[kTransactionCategory];
-        [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:[amount floatValue] detail:self.formValues[kTransactionDetail] type:(NSInteger)type.formValue categoryId:category.formValue] continueWithBlock:^id(BFTask *task) {
+        [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:[amount floatValue] detail:self.formValues[kTransactionDetail] type:(NSInteger)type.formValue categoryId:category.formValue transactionDate:self.formValues[kTransactionDate]] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error creating transaction: %@", task.error);
             } else {
