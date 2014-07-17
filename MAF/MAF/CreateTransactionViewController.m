@@ -9,6 +9,7 @@
 #import "CreateTransactionViewController.h"
 #import "CreateTransactionTableViewCell.h"
 #import "Transaction.h"
+#import "TransactionCategory.h"
 #import "TransactionManager.h"
 #import <Parse/Parse.h>
 
@@ -56,6 +57,15 @@
     return self;
 }
 
+- (id)initWithCategories:(NSMutableArray *)categories {
+    self = [super initWithNibName:@"CreateTransactionViewController" bundle:nil];
+    self.sectionName = [[NSMutableArray alloc] init];
+    for (TransactionCategory *category in categories) {
+        [self.sectionName addObject:category.name];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,23 +88,6 @@
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
     self.cellNumber=2;
-    self.sectionName=[[NSMutableArray alloc] initWithObjects:@"Income",
-                      @"Expense",
-                      @"Education",
-                      @"Shopping",
-                      @"Personal Care",
-                      @"Health & Fitness",
-                      @"Kids",
-                      @"Food & Dining",
-                      @"Gifts & Donations",
-                      @"Investments",
-                      @"Bills & Utilities",
-                      @"Auto & Transport",
-                      @"Travel",
-                      @"Fees & Charges",
-                      @"Business Services",
-                      @"Taxes",
-                      @"Misc", nil];
     if (self.typePicker == nil) {
         self.typePicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
         self.typePicker.delegate = self;

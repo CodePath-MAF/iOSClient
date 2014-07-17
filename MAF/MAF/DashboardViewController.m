@@ -18,7 +18,7 @@
 
 @interface DashboardViewController ()
 
-@property (strong, nonatomic) NSArray *categories;
+@property (strong, nonatomic) NSMutableArray *categories;
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
 - (IBAction)createGoal:(id)sender;
 - (IBAction)createTransaction:(id)sender;
@@ -72,7 +72,7 @@
 }
 
 - (void)pushCreateTransactionViewController {
-    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:self.categories] animated:YES];
 }
 
 - (IBAction)viewGoals:(id)sender {

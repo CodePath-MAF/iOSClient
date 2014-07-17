@@ -10,5 +10,5 @@
 #import "MyPickerView.h"
 
 @interface CreateTransactionViewController : UIViewController <MyPickerViewDataSource, MyPickerViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
-
+- (id)initWithCategories:(NSMutableArray *)categories;
 @end
