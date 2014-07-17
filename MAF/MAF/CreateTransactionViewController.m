@@ -213,28 +213,25 @@
 }
 - (IBAction)finished:(id)sender {
     NSLog(@"You're Finished! %@", self.transactionInProgress);
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount name:self.transactionInProgress.name type:@(TransactionTypeDebit) category:self.transactionInProgress.category transactionDate:self.transactionInProgress.transactionDate] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error creating transaction: %@", task.error);
+        } else {
+            NSLog(@"Successfully created transaction: %@", task.result);
+        }
+        return task;
+    }];
 }
 - (IBAction)finishedBack:(id)sender {
     [self changeProgress:3];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.nameText resignFirstResponder];
+    if (self.currentViewIndex == 1) {
+        [self nameNext:self];
+    }
     return YES;
 }
-//+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents name:(NSString *)name type:(enum TransactionType)type category:(int)category;
-
-
-//- (void)submitCreateTransactionForm {
-//    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amountInCents:self.transactionInProgress.amountInCents name:self.transactionInProgress.name type:@(TransactionTypeDebit) category:self.transactionInProgress.category] continueWithBlock:^id(BFTask *task) {
-//        if (task.error) {
-//            NSLog(@"Error creating transaction: %@", task.error);
-//        } else {
-//            NSLog(@"Successfully created transaction: %@", task.result);
-//        }
-//        return task;
-//    }];
-//}
 
 #pragma mark MyPickerViewDelegate
 
