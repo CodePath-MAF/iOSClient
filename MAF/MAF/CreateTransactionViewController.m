@@ -174,7 +174,7 @@
     NSString *subLabel;
     if (index == 0) {
         mainLabel = @"Amount";
-        subLabel = [NSString stringWithFormat:@"%i", self.transactionInProgress.amount];
+        subLabel = [NSString stringWithFormat:@"%f", self.transactionInProgress.amount];
     } else if (index == 1) {
         mainLabel = @"Name";
         subLabel = self.transactionInProgress.name;
@@ -213,7 +213,9 @@
 }
 - (IBAction)finished:(id)sender {
     NSLog(@"You're Finished! %@", self.transactionInProgress);
-    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount name:self.transactionInProgress.name type:@(TransactionTypeDebit) category:self.transactionInProgress.category transactionDate:self.transactionInProgress.transactionDate] continueWithBlock:^id(BFTask *task) {
+    
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:@(TransactionTypeDebit) categoryId:self.sectionName[self.transactionInProgress.category] transactionDate:self.transactionInProgress.transactionDate]
+     continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
         } else {

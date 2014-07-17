@@ -25,7 +25,7 @@
     }
     transaction.amount = amount;
     transaction.detail = detail;
-    transaction.name = name;
+//    transaction.name = name;
     transaction.type = type;
     transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];
     transaction.transactionDate = transactionDate;

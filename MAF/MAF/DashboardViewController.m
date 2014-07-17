@@ -72,7 +72,7 @@
 }
 
 - (void)pushCreateTransactionViewController {
-    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:self.categories] animated:YES];
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
 }
 
 - (IBAction)viewGoals:(id)sender {

@@ -21,7 +21,7 @@
 - (void)setTransaction:(Transaction *)transaction {
     _transaction = transaction;
     self.transactionDetailLabel.text = transaction.detail;
-    self.transactionCategoryLabel.text = transaction.category.name;
+//    self.transactionCategoryLabel.text = transaction.category.name;
     self.transactionAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", transaction.amount];
 }
 
