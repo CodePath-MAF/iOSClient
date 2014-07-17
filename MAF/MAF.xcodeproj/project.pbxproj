@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C00F0C91971FDE8007561D9 /* LiquidAssetView.m */; };
-		2C00F0D11972038F007561D9 /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C00F0D01972038F007561D9 /* ServicesConfig.plist */; };
 		2C667486197449B000434802 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C667485197449B000434802 /* MainViewController.xib */; };
 		2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6674881974923F00434802 /* GoalDetailViewController.m */; };
 		2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6674891974923F00434802 /* GoalDetailViewController.xib */; };
@@ -25,6 +24,14 @@
 		2CBA46AC1965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
 		2CBA46B41965DE3A00C6BEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46B21965DE3A00C6BEDF /* InfoPlist.strings */; };
 		2CBA46B61965DE3A00C6BEDF /* MAFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA46B51965DE3A00C6BEDF /* MAFTests.m */; };
+		BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */; };
+		BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */; };
+		BA2F75D71975CCE40022F22A /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2F75D61975CCE40022F22A /* ServicesConfig.plist */; };
+		BA77DF261977348F00FD0F8A /* MyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA77DF211977348F00FD0F8A /* MyPickerView.m */; };
+		BA77DF271977348F00FD0F8A /* WheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA77DF231977348F00FD0F8A /* WheelView.m */; };
+		BA77DF281977348F00FD0F8A /* MagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA77DF251977348F00FD0F8A /* MagnifierView.m */; };
+		BAFB2C1C1975D39400A11C56 /* CreateTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAFB2C1A1975D39400A11C56 /* CreateTransactionViewController.m */; };
+		BAFB2C1D1975D39400A11C56 /* CreateTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAFB2C1B1975D39400A11C56 /* CreateTransactionViewController.xib */; };
 		BF144316196A231100C2BB38 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144314196A231100C2BB38 /* LoginViewController.m */; };
 		BF14431A196A274B00C2BB38 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144319196A274B00C2BB38 /* MainViewController.m */; };
 		BF144320196A293600C2BB38 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14431F196A293600C2BB38 /* SignupViewController.m */; };
@@ -92,6 +99,19 @@
 		2CBA46B31965DE3A00C6BEDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CBA46B51965DE3A00C6BEDF /* MAFTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFTests.m; sourceTree = "<group>"; };
 		2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.xcconfig"; path = "Pods/Pods-MAF.xcconfig"; sourceTree = "<group>"; };
+		BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionTableViewCell.h; sourceTree = "<group>"; };
+		BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionTableViewCell.m; sourceTree = "<group>"; };
+		BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTransactionTableViewCell.xib; sourceTree = "<group>"; };
+		BA2F75D61975CCE40022F22A /* ServicesConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ServicesConfig.plist; path = ../ServicesConfig.plist; sourceTree = "<group>"; };
+		BA77DF201977348F00FD0F8A /* MyPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPickerView.h; sourceTree = "<group>"; };
+		BA77DF211977348F00FD0F8A /* MyPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPickerView.m; sourceTree = "<group>"; };
+		BA77DF221977348F00FD0F8A /* WheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelView.h; sourceTree = "<group>"; };
+		BA77DF231977348F00FD0F8A /* WheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelView.m; sourceTree = "<group>"; };
+		BA77DF241977348F00FD0F8A /* MagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifierView.h; sourceTree = "<group>"; };
+		BA77DF251977348F00FD0F8A /* MagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnifierView.m; sourceTree = "<group>"; };
+		BAFB2C191975D39400A11C56 /* CreateTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionViewController.h; sourceTree = "<group>"; };
+		BAFB2C1A1975D39400A11C56 /* CreateTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionViewController.m; sourceTree = "<group>"; };
+		BAFB2C1B1975D39400A11C56 /* CreateTransactionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTransactionViewController.xib; sourceTree = "<group>"; };
 		BF144313196A231100C2BB38 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BF144314196A231100C2BB38 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BF144318196A274B00C2BB38 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -170,6 +190,7 @@
 		2CBA46841965DE3A00C6BEDF = {
 			isa = PBXGroup;
 			children = (
+				BA2F75D61975CCE40022F22A /* ServicesConfig.plist */,
 				2CBA46961965DE3A00C6BEDF /* MAF */,
 				2CBA46AF1965DE3A00C6BEDF /* MAFTests */,
 				2CBA468F1965DE3A00C6BEDF /* Frameworks */,
@@ -269,6 +290,9 @@
 				2C6674871974923F00434802 /* GoalDetailViewController.h */,
 				2C6674881974923F00434802 /* GoalDetailViewController.m */,
 				2C6674891974923F00434802 /* GoalDetailViewController.xib */,
+				BAFB2C191975D39400A11C56 /* CreateTransactionViewController.h */,
+				BAFB2C1A1975D39400A11C56 /* CreateTransactionViewController.m */,
+				BAFB2C1B1975D39400A11C56 /* CreateTransactionViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -276,6 +300,7 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA77DF1F1977347800FD0F8A /* PickerView */,
 				BF144349196A92D300C2BB38 /* GoalTableViewCell.h */,
 				BF14434A196A92D300C2BB38 /* GoalTableViewCell.m */,
 				BF14434B196A92D300C2BB38 /* GoalTableViewCell.xib */,
@@ -287,6 +312,9 @@
 				BF1B2FFC197757AB00F68B2E /* TransactionsSummaryTableViewCell.h */,
 				BF1B2FFD197757AB00F68B2E /* TransactionsSummaryTableViewCell.m */,
 				BF1B2FFE197757AB00F68B2E /* TransactionsSummaryTableViewCell.xib */,
+				BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */,
+				BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */,
+				BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -327,6 +355,19 @@
 				2C66748D1974FDB600434802 /* Utilities.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		BA77DF1F1977347800FD0F8A /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				BA77DF201977348F00FD0F8A /* MyPickerView.h */,
+				BA77DF211977348F00FD0F8A /* MyPickerView.m */,
+				BA77DF221977348F00FD0F8A /* WheelView.h */,
+				BA77DF231977348F00FD0F8A /* WheelView.m */,
+				BA77DF241977348F00FD0F8A /* MagnifierView.h */,
+				BA77DF251977348F00FD0F8A /* MagnifierView.m */,
+			);
+			name = PickerView;
 			sourceTree = "<group>";
 		};
 		BF277996196BB9D7005D4838 /* Forms */ = {
@@ -421,15 +462,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C00F0D11972038F007561D9 /* ServicesConfig.plist in Resources */,
 				BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */,
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
 				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
 				BF14434D196A92D300C2BB38 /* GoalTableViewCell.xib in Resources */,
+				BA2F75D71975CCE40022F22A /* ServicesConfig.plist in Resources */,
 				BF144348196A921B00C2BB38 /* GoalsTableViewController.xib in Resources */,
 				2C667486197449B000434802 /* MainViewController.xib in Resources */,
+				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
+				BAFB2C1D1975D39400A11C56 /* CreateTransactionViewController.xib in Resources */,
 				BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */,
 				BF1B3000197757AB00F68B2E /* TransactionsSummaryTableViewCell.xib in Resources */,
 			);
@@ -483,7 +526,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA77DF271977348F00FD0F8A /* WheelView.m in Sources */,
+				BA77DF261977348F00FD0F8A /* MyPickerView.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
+				BA77DF281977348F00FD0F8A /* MagnifierView.m in Sources */,
 				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
@@ -495,12 +541,14 @@
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
+				BAFB2C1C1975D39400A11C56 /* CreateTransactionViewController.m in Sources */,
 				BF144347196A921B00C2BB38 /* GoalsTableViewController.m in Sources */,
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
 				BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */,
+				BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
 				BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
