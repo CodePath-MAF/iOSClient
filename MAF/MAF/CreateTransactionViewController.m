@@ -209,7 +209,9 @@
 - (IBAction)finished:(id)sender {
     NSLog(@"You're Finished! %@", self.transactionInProgress);
     
-    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:@(TransactionTypeDebit) categoryId:self.sectionNamesWithId[self.transactionInProgress.category] transactionDate:self.transactionInProgress.transactionDate]
+    TransactionCategory *category = self.sectionNamesWithId[self.transactionInProgress.category];
+    
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:@(TransactionTypeDebit) categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
