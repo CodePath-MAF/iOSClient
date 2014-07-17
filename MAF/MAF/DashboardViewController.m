@@ -18,7 +18,7 @@
 
 @interface DashboardViewController ()
 
-@property (strong, nonatomic) NSArray *categories;
+@property (strong, nonatomic) NSMutableArray *categories;
 @property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
 - (IBAction)createGoal:(id)sender;
 - (IBAction)createTransaction:(id)sender;
