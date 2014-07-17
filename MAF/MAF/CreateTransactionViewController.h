@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MyPickerView.h"
 
-@interface CreateTransactionViewController : UIViewController <MyPickerViewDataSource, MyPickerViewDelegate, UITextFieldDelegate>
+@interface CreateTransactionViewController : UIViewController <MyPickerViewDataSource, MyPickerViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

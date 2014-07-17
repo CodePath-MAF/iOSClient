@@ -229,7 +229,6 @@
     
     if (animated) {
         
-        NSLog(@"111");
         
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:changeLayerLayout completion:^(BOOL finished){}];
         
@@ -291,13 +290,11 @@
         
         
         
-        NSLog(@"rearrange:%d",rearrange);
         //当滚动的角度大于一角度的时候 改变currentIndex的值；并且当滑动停止的时候重新排列；
         if (fabs(angle / dAngle) >0.9 || rearrange) {
             
             if (fabs(angle / dAngle) >0.9 ) {
                 
-                NSLog(@"fab:%f",angle / dAngle);
                 duration = rearrange ? 0.25 * (1.0 - fabs(angle / dAngle)) : 0;
                 
                 if ([velocity doubleValue]<0) {
@@ -317,7 +314,6 @@
                 }
             }
             
-            NSLog(@"currentindex:%d",(int)currentIndex);
             if (rearrange) {
                 for (int index = 0; index < viewsNum; index++) {
                     

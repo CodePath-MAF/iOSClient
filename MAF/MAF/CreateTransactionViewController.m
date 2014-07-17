@@ -66,8 +66,6 @@
     self.transactionProgress.dataSource = self;
     self.nameText.delegate = self;
     self.transactionProgress.rowHeight = 50;
-//    self.transactionProgress.separatorColor = [UIColor blackColor];
-    NSLog(@"table width %f", self.transactionProgress.frame.size.width);
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
     UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
     self.formContainer.backgroundColor = lightGreen;
@@ -132,7 +130,7 @@
     
 }
 
-- (void)changeProgress:(NSInteger)index {
+- (void)changeProgress:(int)index {
     [self saveState];
     [self.allSteps[self.currentViewIndex] removeFromSuperview];
 
@@ -140,7 +138,6 @@
         self.previousViewIndex = self.currentViewIndex;
     }
     self.currentViewIndex = index;
-    NSLog(@"%i", index);
     self.transactionProgressHeight.constant = 50.0 * self.currentViewIndex;
     [self.transactionProgress reloadData];
     [self.formContainer addSubview:self.allSteps[self.currentViewIndex]];
@@ -149,7 +146,7 @@
 
 - (void)saveState {
     if (self.currentViewIndex == 0) {
-        self.transactionInProgress.amountInCents = [self.amountText.text integerValue];
+        self.transactionInProgress.amount = [self.amountText.text integerValue];
     } else if (self.currentViewIndex == 1) {
         self.transactionInProgress.name = self.nameText.text;
     } else if (self.currentViewIndex == 2) {
@@ -177,7 +174,7 @@
     NSString *subLabel;
     if (index == 0) {
         mainLabel = @"Amount";
-        subLabel = [NSString stringWithFormat:@"%i", self.transactionInProgress.amountInCents];
+        subLabel = [NSString stringWithFormat:@"%i", self.transactionInProgress.amount];
     } else if (index == 1) {
         mainLabel = @"Name";
         subLabel = self.transactionInProgress.name;
