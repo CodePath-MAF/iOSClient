@@ -16,6 +16,7 @@
 - (NSDictionary *)transactionsTotalByDate;
 - (NSDictionary *)transactionsTotalByCategoryForDate:(NSDate *)date;
 - (NSDictionary *)transactionsTotalByCategoryByDate;
+- (NSDictionary *)transactionsByDate;
 - (float)transactionsTotalForCurrentWeek;
 
 

@@ -81,6 +81,7 @@
     PFQuery *query = [Transaction query];
     [query whereKey:@"user" equalTo:user];
     [query includeKey:@"category"];
+    [query orderByDescending:@"transactionDate"];
     // TODO should be limiting these so we're returning paginated results
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {

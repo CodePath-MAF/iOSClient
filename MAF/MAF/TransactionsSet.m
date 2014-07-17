@@ -9,9 +9,11 @@
 #import "TransactionsSet.h"
 
 #import "Transaction.h"
+#import "Utilities.h"
 
 @interface TransactionsSet() {
     NSDictionary *totalByDate;
+    NSDictionary *transactionsByDate;
 }
 
 @end
@@ -26,18 +28,12 @@
     return self;
 }
 
-- (NSDate *)dateWithoutTime:(NSDate *)date {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    NSDate *strippedDate = [[NSCalendar currentCalendar] dateFromComponents:components];
-    return strippedDate;
-}
-
 - (NSDictionary *)transactionsTotalByDate {
     // Calculate the totals for the transactions, grouped by date.
     if (!totalByDate) {
         NSMutableDictionary *transactionDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
-            NSDate *strippedDate = [self dateWithoutTime:transaction.transactionDate];
+            NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
             float total = [(NSNumber *)[transactionDict objectForKey:strippedDate] ?: [[NSNumber alloc] initWithFloat:0.0] floatValue];
             float newTotal = total + transaction.amount;
             [transactionDict setObject:@(newTotal) forKey:strippedDate];
@@ -72,6 +68,20 @@
 - (NSDictionary *)transactionsTotalByCategoryByDate {
     // loop over the array and compile transactionsTotalByCategoryByDate (this should be cached on the instance of the set)
     return [[NSDictionary alloc] init];
+}
+
+- (NSDictionary *)transactionsByDate {
+    if (!transactionsByDate) {
+        NSMutableDictionary *transactionsByDateDict = [[NSMutableDictionary alloc] init];
+        for (Transaction *transaction in self.transactions) {
+            NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
+            NSMutableArray *transactionsForDate = [transactionsByDateDict objectForKey:strippedDate] ?: [[NSMutableArray alloc] init];
+            [transactionsForDate addObject:transaction];
+            [transactionsByDateDict setObject:transactionsForDate forKey:strippedDate];
+        }
+        transactionsByDate = transactionsByDateDict;
+    }
+    return transactionsByDate;
 }
 
 @end
