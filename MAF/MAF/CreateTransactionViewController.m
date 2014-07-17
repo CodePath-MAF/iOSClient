@@ -41,6 +41,7 @@
 
 @property (strong, nonatomic) MyPickerView *typePicker;
 @property (strong, nonatomic) NSMutableArray *sectionName;
+@property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
 @property (assign, nonatomic) int cellNumber;
 @property (strong, nonatomic) Transaction *transactionInProgress;
 
@@ -60,6 +61,7 @@
 - (id)initWithCategories:(NSMutableArray *)categories {
     self = [super initWithNibName:@"CreateTransactionViewController" bundle:nil];
     self.sectionName = [[NSMutableArray alloc] init];
+    self.sectionNamesWithId = [[NSMutableArray alloc] initWithArray:categories];
     for (TransactionCategory *category in categories) {
         [self.sectionName addObject:category.name];
     }
@@ -207,7 +209,7 @@
 - (IBAction)finished:(id)sender {
     NSLog(@"You're Finished! %@", self.transactionInProgress);
     
-    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:@(TransactionTypeDebit) categoryId:self.sectionName[self.transactionInProgress.category] transactionDate:self.transactionInProgress.transactionDate]
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:@(TransactionTypeDebit) categoryId:self.sectionNamesWithId[self.transactionInProgress.category] transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
