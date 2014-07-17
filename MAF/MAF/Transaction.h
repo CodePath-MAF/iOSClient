@@ -21,8 +21,10 @@ NS_ENUM(NSInteger, TransactionType) {
 @property (nonatomic, strong) Goal *goal;
 @property (nonatomic, assign) float amount;
 @property (nonatomic, strong) NSString *detail;
-@property (nonatomic, assign) enum TransactionType type;
 @property (nonatomic, strong) TransactionCategory *category;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) enum TransactionType type;
+@property (nonatomic, assign) int category;
 @property (nonatomic, strong) NSDate *transactionDate;
 
 @end

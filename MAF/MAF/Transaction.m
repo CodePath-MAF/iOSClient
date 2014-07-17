@@ -19,6 +19,7 @@
 @dynamic goal;
 @dynamic amount;
 @dynamic detail;
+@dynamic name;
 @dynamic type;
 @dynamic category;
 @dynamic transactionDate;

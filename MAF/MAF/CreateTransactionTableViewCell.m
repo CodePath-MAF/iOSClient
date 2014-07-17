@@ -22,4 +22,9 @@
     // Configure the view for the selected state
 }
 
+- (void)updateCell:(NSString *)mainLabel subLabel:(NSString *)subLabel {
+    self.mainLabel.text = mainLabel;
+    self.subLabel.text = subLabel;
+}
+
 @end

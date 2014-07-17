@@ -10,4 +10,9 @@
 
 @interface CreateTransactionTableViewCell : UITableViewCell
 
+- (void)updateCell:(NSString *)mainLabel subLabel:(NSString *)subLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *mainLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subLabel;
+
 @end
