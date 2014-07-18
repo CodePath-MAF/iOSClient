@@ -12,12 +12,17 @@
 #import "TransactionsSummaryTableViewCell.h"
 #import "TransactionManager.h"
 #import "TransactionsSet.h"
+#import "TransactionCategoryManager.h"
+#import "CreateTransactionViewController.h"
+
 #import "Utilities.h"
 
 @interface TransactionsTableViewController ()
 
 @property (nonatomic, strong) TransactionsSet *transactionsSet;
 @property (nonatomic, strong) TransactionTableViewCell *prototypeCell;
+
+@property (strong, nonatomic) NSMutableArray *categories;
 
 @end
 
@@ -28,6 +33,11 @@
     self.title = @"Transactions";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    // Create Add Transaction Button
+    UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createTransaction:)];
+    
+    self.navigationItem.rightBarButtonItem = addTransactionButton;
     
 
     UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
@@ -53,6 +63,29 @@
 
 - (BFTask *)fetchData {
     return [TransactionManager fetchTransactionsForUser:[PFUser currentUser]];
+}
+
+#pragma mark - NavBar Methods
+
+- (void)createTransaction:(id)sender {
+    if (!self.categories) {
+        [[TransactionCategoryManager fetchCategories] continueWithBlock:^id(BFTask *task) {
+            if (task.error) {
+                // TODO raise an error message with TSMessages
+                NSLog(@"Error fetchign categories: %@", task.error);
+            } else {
+                self.categories = task.result;
+                [self pushCreateTransactionViewController];
+            }
+            return task;
+        }];
+    } else {
+        [self pushCreateTransactionViewController];
+    }
+}
+
+- (void)pushCreateTransactionViewController {
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:self.categories] animated:YES];
 }
 
 #pragma mark - Table view data source

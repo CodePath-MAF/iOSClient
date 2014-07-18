@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
 @interface DashboardViewController : UIViewController

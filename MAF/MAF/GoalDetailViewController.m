@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+#define TIME_TIL_DUE_STRING @"DUE IN %d DAYS (%@)"
+#define DUE_TODAY_STRING @"DUE TODAY (%@)"
+#define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
 #define BUTTON_CORNER_RADIUS 18.0f
 
 #import "GoalDetailViewController.h"
 #import "Utilities.h"
 
 @interface GoalDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *previousPaymentsButton;
 @property (weak, nonatomic) IBOutlet UIButton *makePaymentButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *paymentAmountLabel;
@@ -29,20 +31,21 @@
 @implementation GoalDetailViewController
 
 - (void)setGoal:(Goal *)goal {
-  _goal = goal;
-  self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", [self.goal.paymentAmount floatValue]/CENTS_TO_DOLLARS_CONSTANT];
-  self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
-  
-  NSString *timeTilString;
-  if ([MHPrettyDate isToday:self.goal.targetDate]) {
+    _goal = goal;
+    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", [self.goal.paymentAmount floatValue]/CENTS_TO_DOLLARS_CONSTANT];
+    self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
+
+    NSString *timeTilString;
+    #warning Doesn't work TODO, get the formatting and countdown logic working
+    if ([MHPrettyDate isToday:self.goal.targetDate]) {
     timeTilString = [NSString stringWithFormat:DUE_TODAY_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-  }
-  else {
-    timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateShortRelativeTime], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-  }
-  
-  self.timeTilDueLabel.text = timeTilString;
-  // TODO do some other stuff perhaps
+    }
+#warning this somehow broke
+//    else {
+//    timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [Utilities daysBetweenDate:[NSDate date] andDate:self.goal.targetDate], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
+//    }
+//
+//self.timeTilDueLabel.text = timeTilString;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,11 +63,8 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   
+#warning TODO create progress update
   [self setupRoundedButton:self.makePaymentButton
-          withCornerRadius:BUTTON_CORNER_RADIUS
-               borderColor:[UIColor darkGrayColor]];
-  
-  [self setupRoundedButton:self.previousPaymentsButton
           withCornerRadius:BUTTON_CORNER_RADIUS
                borderColor:[UIColor darkGrayColor]];
 }
@@ -91,6 +91,12 @@
       self.tileNum = 0;
       break;
   }
+}
+
+- (void) updateMilestoneProgress {
+#warning TODO use the progress bar perhaps or create your own.
+  // Questions to answer:
+  // How many paymenst has the user made?
 }
 
 - (IBAction)makePayment:(id)sender {

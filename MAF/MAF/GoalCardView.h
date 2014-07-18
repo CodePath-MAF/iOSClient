@@ -1,16 +1,18 @@
 //
-//  GoalTableViewCell.h
+//  GoalCardView.h
 //  MAF
 //
-//  Created by mhahn on 7/7/14.
+//  Created by Eddie Freeman on 7/15/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
+#import <QuartzCore/QuartzCore.h>
 #import "Goal.h"
 
-@interface GoalTableViewCell : UITableViewCell
+@class GoalCard;
+
+@interface GoalCardView : UICollectionViewCell
 
 @property (nonatomic, strong) Goal *goal;
 

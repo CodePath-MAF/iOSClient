@@ -17,5 +17,6 @@
 @interface Utilities : NSObject
 
 + (NSDate *)dateWithoutTime:(NSDate *)date;
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 
 @end
