@@ -14,20 +14,21 @@
 
 @implementation GoalManager
 
-+ (BFTask *)createGoalForUser:(PFUser *)user name:(NSString *)name description:(NSString *)description type:(enum GoalType)type totalInCents:(NSInteger)totalInCents paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmountInCents:(NSInteger)paymentAmountInCents numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
++ (BFTask *)createGoalForUser:(PFUser *)user name:(NSString *)name detail:(NSString *)detail type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
     
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
     
     goal.user = user;
     goal.name = name;
-    goal.description = description;
+    goal.detail = detail;
     goal.type = type;
     goal.status = GoalStatusInProgress;
-    goal.totalInCents = [NSNumber numberWithInteger:totalInCents];
+    goal.total = [NSNumber numberWithFloat:total];
     goal.paymentInterval = paymentInterval;
-    goal.paymentAmountInCents = [NSNumber numberWithInteger:paymentAmountInCents];
-    goal.numPayments = [NSNumber numberWithInteger:numPayments];
+    goal.paymentAmount = [NSNumber numberWithFloat:paymentAmount];
+    goal.numPayments = numPayments;
+    goal.targetDate = goalDate;
     [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];

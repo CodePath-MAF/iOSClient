@@ -9,26 +9,33 @@
 #import "Bolts.h"
 #import "TransactionsTableViewController.h"
 #import "TransactionTableViewCell.h"
+#import "TransactionsSummaryTableViewCell.h"
 #import "TransactionManager.h"
+#import "TransactionsSet.h"
+#import "Utilities.h"
 
-@interface TransactionsTableViewController () {
-    NSArray *transactions;
-}
+@interface TransactionsTableViewController ()
+
+@property (nonatomic, strong) TransactionsSet *transactionsSet;
+@property (nonatomic, strong) TransactionTableViewCell *prototypeCell;
 
 @end
 
 @implementation TransactionsTableViewController
 
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-  
-  self.title = @"Transactions";
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"Transactions";
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
-  UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
-  [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];
+
+    UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
+    [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];
+    
+    UINib *transactionsSummaryCellNib = [UINib nibWithNibName:@"TransactionsSummaryTableViewCell" bundle:nil];
+    [self.tableView registerNib:transactionsSummaryCellNib forCellReuseIdentifier:@"TransactionSummary"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -37,32 +44,100 @@
       if (task.error) {
           NSLog(@"Error fetching transactions for user: %@", task.error);
       } else {
-          transactions = task.result;
+          self.transactionsSet = [[TransactionsSet alloc] initWithTransactions:task.result];
+          [self.tableView reloadData];
       }
       return task;
   }];
 }
 
 - (BFTask *)fetchData {
-  return [TransactionManager fetchTransactionsForUser:[PFUser currentUser]];
+    return [TransactionManager fetchTransactionsForUser:[PFUser currentUser]];
 }
 
 #pragma mark - Table view data source
 
+- (NSDate *)getDateForSection:(NSInteger)section {
+    NSSortDescriptor *descendingDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:NO];
+    NSArray *sortedKeys = [[[self.transactionsSet transactionsByDate] allKeys] sortedArrayUsingDescriptors:[[NSArray alloc] initWithObjects:descendingDateDescriptor, nil]];
+    return sortedKeys[section - 1];
+}
+
+- (NSArray *)getTransactionsForSection:(NSInteger)section {
+    if (self.transactionsSet) {
+        NSDate *sectionDate = [self getDateForSection:section];
+        NSArray *sectionTransactions = [[self.transactionsSet transactionsByDate] objectForKey:sectionDate] ?: [[NSArray alloc] init];
+        return sectionTransactions;
+    } else {
+        return [[NSArray alloc] init];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+    if (self.transactionsSet) {
+        return [[self.transactionsSet transactionsByDate] count] + 1;
+    } else {
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [transactions count];
+    if (section == 0) {
+        return 1;
+    } else {
+        NSArray *sectionTransactions = [self getTransactionsForSection:section];
+        return [sectionTransactions count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
-  cell.transaction = transactions[indexPath.row];
-  return cell;
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionSummary" forIndexPath:indexPath];
+        [(TransactionsSummaryTableViewCell *)cell setTransactionsSet:self.transactionsSet];
+    } else {
+        NSArray *sectionTransactions = [self getTransactionsForSection:indexPath.section];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
+        [(TransactionTableViewCell *)cell setTransaction:sectionTransactions[indexPath.row]];
+    }
+    return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 200.f;
+    } else {
+        return 80.f;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0.1f;
+    } else {
+        return 32.f;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1f;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section != 0 && self.transactionsSet) {
+        NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
+        NSDate *sectionDate = [self getDateForSection:section];
+        if ([today isEqualToDate:sectionDate]) {
+            return @"Today";
+        } else {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            return [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:sectionDate]];
+        }
+    } else {
+        return @"";
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

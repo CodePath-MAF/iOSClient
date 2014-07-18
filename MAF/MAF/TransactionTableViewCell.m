@@ -10,7 +10,9 @@
 
 @interface TransactionTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *transactionDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *transactionDetailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *transactionCategoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *transactionAmountLabel;
 
 @end
 
@@ -18,7 +20,9 @@
 
 - (void)setTransaction:(Transaction *)transaction {
     _transaction = transaction;
-    self.transactionDescriptionLabel.text = transaction.description;
+    self.transactionDetailLabel.text = transaction.detail;
+//    self.transactionCategoryLabel.text = transaction.category.name;
+    self.transactionAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", transaction.amount];
 }
 
 @end

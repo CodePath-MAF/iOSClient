@@ -14,7 +14,7 @@
 
 @interface TransactionManager : NSObject
 
-+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amountInCents:(NSInteger)amountInCents description:(NSString *)description type:(enum TransactionType)type;
++ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
 
 + (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
 

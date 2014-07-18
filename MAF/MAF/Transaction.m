@@ -17,9 +17,11 @@
 
 @dynamic user;
 @dynamic goal;
-@dynamic amountInCents;
-@dynamic description;
+@dynamic amount;
+@dynamic detail;
+@dynamic name;
 @dynamic type;
-//@dynamic categoryId;
+@dynamic category;
+@dynamic transactionDate;
 
 @end

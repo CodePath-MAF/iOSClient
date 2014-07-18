@@ -16,10 +16,10 @@
 #import "GoalsTableViewController.h"
 #import "TransactionsTableViewController.h"
 
-@interface MainViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, DashBoardViewControllerDelegate>
+@interface MainViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
-@property (nonatomic, strong) DashboardViewController *dashboardViewController;
-@property (nonatomic, strong) UIViewController *currentViewController;
+@property DashboardViewController *dashboardViewController;
+@property UIViewController *currentViewController;
 
 @end
 
@@ -34,13 +34,7 @@
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
+    [super viewDidLoad];
     if (![PFUser currentUser]) {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         [loginViewController setDelegate:self];
@@ -52,7 +46,7 @@
         
         [self presentViewController:loginViewController animated:NO completion:NULL];
     } else {
-      [self presentDashboardViewController];
+        [self presentDashboardViewController];
     }
 }
 
@@ -73,9 +67,9 @@
 
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     // TODO send a notification via NotificationCenter that the user was logged in
-  [logInController dismissViewControllerAnimated:YES completion:^{
-    [self presentDashboardViewController];
-  }];
+    [logInController dismissViewControllerAnimated:YES completion:^{
+        [self presentDashboardViewController];
+    }];
 }
 
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
@@ -89,7 +83,6 @@
         return YES;
     }
   
-  
     [[[UIAlertView alloc] initWithTitle:@"Signup Failed" message:@"Please fill in all of the required fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
     
     return NO;
@@ -102,9 +95,9 @@
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     // TODO send a notification via NotificationCenter that the user was signed up
-  [signUpController dismissViewControllerAnimated:YES completion:^{
-    [self presentDashboardViewController];
-  }];
+    [signUpController dismissViewControllerAnimated:YES completion:^{
+        [self presentDashboardViewController];
+    }];
 }
      
 - (void)presentDashboardViewController {
@@ -113,8 +106,6 @@
     self.dashboardViewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
     
     self.dashboardViewController.delegate = self;
-    
-    //  self.title = @"CONTAINER";
     
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
     
@@ -139,16 +130,16 @@
   self.currentViewController = content;
   [content didMoveToParentViewController:self];          // 3
 }
-
-- (void)hideContentController:(UIViewController*)content
-{
-#warning this doesn't work as expected yet
-  NSLog(@"Hiding Content");
-  [content willMoveToParentViewController:nil];  // 1
-  [content.view removeFromSuperview];            // 2
-  [content removeFromParentViewController];      // 3
-}
-
+//
+//- (void)hideContentController:(UIViewController*)content
+//{
+//#warning this doesn't work as expected yet
+//  NSLog(@"Hiding Content");
+//  [content willMoveToParentViewController:nil];  // 1
+//  [content.view removeFromSuperview];            // 2
+//  [content removeFromParentViewController];      // 3
+//}
+//
 - (CGRect)frameForContentController {
   CGRect contentFrame = self.view.bounds;
   CGFloat heightOffset = self.navigationController.navigationBar.frame.size.height;
@@ -181,6 +172,8 @@
 - (void)showProfile:(id)sender {
 #warning show profile view here
   NSLog(@"Show Profile");
+    DashboardViewController *vc = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
+    [self.navigationController setViewControllers:@[vc]];
 }
 
 @end

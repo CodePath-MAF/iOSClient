@@ -6,9 +6,6 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#define TIME_TIL_DUE_STRING @"DUE IN %@ DAYS (%@)"
-#define DUE_TODAY_STRING @"DUE TODAY (%@)"
-#define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
 #define BUTTON_CORNER_RADIUS 18.0f
 
 #import "GoalDetailViewController.h"
@@ -33,7 +30,7 @@
 
 - (void)setGoal:(Goal *)goal {
   _goal = goal;
-  self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", [self.goal.paymentAmountInCents floatValue]/CENTS_TO_DOLLARS_CONSTANT];
+  self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", [self.goal.paymentAmount floatValue]/CENTS_TO_DOLLARS_CONSTANT];
   self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
   
   NSString *timeTilString;
@@ -63,8 +60,6 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   
-  
-  
   [self setupRoundedButton:self.makePaymentButton
           withCornerRadius:BUTTON_CORNER_RADIUS
                borderColor:[UIColor darkGrayColor]];
@@ -72,9 +67,6 @@
   [self setupRoundedButton:self.previousPaymentsButton
           withCornerRadius:BUTTON_CORNER_RADIUS
                borderColor:[UIColor darkGrayColor]];
-  
-  
-//  self.timeTilDueLabel.text = [[NSString alloc] initWithFormat:@"%d", self.goal.goalDate];
 }
 
 - (void)didReceiveMemoryWarning

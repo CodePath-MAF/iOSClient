@@ -11,13 +11,12 @@
 #import "MAFActionFormButtonCell.h"
 
 NSString *const kGoalName = @"name";
-NSString *const kGoalDescription = @"description";
+NSString *const kGoalDetail = @"detail";
 NSString *const kGoalType = @"type";
 NSString *const kGoalPaymentInterval = @"paymentInterval";
 NSString *const kGoalTotal = @"total";
 NSString *const kGoalTargetDate = @"targetDate";
 NSString *const kGoalCreate = @"create";
-
 
 @implementation CreateGoalForm
 
@@ -33,7 +32,7 @@ NSString *const kGoalCreate = @"create";
     row.required = YES;
     [section addFormRow:row];
     
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalDescription rowType:XLFormRowDescriptorTypeText title:@"Description"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalDetail rowType:XLFormRowDescriptorTypeText title:@"Detail"];
     row.required = YES;
     [section addFormRow:row];
     
@@ -53,10 +52,7 @@ NSString *const kGoalCreate = @"create";
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalDaily) displayText:@"Daily"],
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalWeekly) displayText:@"Weekly"],
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiWeekly) displayText:@"Twice a week"],
-//        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiMonthly) displayText:@"Twice a month"],
         [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalMonthly) displayText:@"Monthly"],
-//        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiYearly) displayText:@"Twice a year"],
-//        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalYearly) displayText:@"Yearly"],
     ];
     [section addFormRow:row];
     

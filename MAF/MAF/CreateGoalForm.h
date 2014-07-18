@@ -8,6 +8,14 @@
 
 #import "XLForm.h"
 
+extern NSString *const kGoalName;
+extern NSString *const kGoalDetail;
+extern NSString *const kGoalType;
+extern NSString *const kGoalPaymentInterval;
+extern NSString *const kGoalTotal;
+extern NSString *const kGoalTargetDate;
+extern NSString *const kGoalCreate;
+
 @interface CreateGoalForm : XLFormDescriptor
 
 @end
