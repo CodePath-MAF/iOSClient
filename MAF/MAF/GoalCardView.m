@@ -8,29 +8,34 @@
 
 #import "GoalCardView.h"
 
+@interface GoalCardView ()
+
+@property (weak, nonatomic) IBOutlet UILabel *milestoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goalNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *paymentDueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *paymentAmountLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *dueImageView;
+
+@end
+
 @implementation GoalCardView
+
+- (void)setGoal:(Goal *)goal {
+    _goal = goal;
+    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", 0, 10];
+    self.goalNameLabel.text = self.goal.name;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // TODO Add Pinch Gesture Recognizer (for custom loading screen)
+        
         // Initialization code
     }
     return self;
 }
-
-- (void)viewDidLoad {
-    
-    // TODO animate in (scale bounce?)
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

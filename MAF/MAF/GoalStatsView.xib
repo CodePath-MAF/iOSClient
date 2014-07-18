@@ -4,13 +4,72 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalStatsView">
+            <connections>
+                <outlet property="monthlyGoalLabel" destination="OIn-GU-cXu" id="Vax-0j-r6q"/>
+                <outlet property="totalSpentLabel" destination="TQ9-VB-EjP" id="COI-gV-JO4"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yL7-jE-ZLb">
+                    <rect key="frame" x="160" y="13" width="1" height="30"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="W6m-cw-jrl"/>
+                        <constraint firstAttribute="height" constant="30" id="l9h-He-Nad"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly Goals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U96-Ch-WJc">
+                    <rect key="frame" x="42" y="8" width="87" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spent Today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-Hw-lT2">
+                    <rect key="frame" x="197" y="8" width="76" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$60.50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIn-GU-cXu">
+                    <rect key="frame" x="15" y="24" width="140" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="g28-2o-mCz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$14.25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ9-VB-EjP">
+                    <rect key="frame" x="165" y="24" width="140" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="jOJ-UM-XLF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="KjK-Hw-lT2" secondAttribute="centerX" constant="-75" id="1Qd-6f-GCp"/>
+                <constraint firstItem="OIn-GU-cXu" firstAttribute="centerX" secondItem="U96-Ch-WJc" secondAttribute="centerX" id="2EI-ai-O1B"/>
+                <constraint firstAttribute="centerX" secondItem="U96-Ch-WJc" secondAttribute="centerX" constant="75" id="8IQ-i3-45d"/>
+                <constraint firstItem="TQ9-VB-EjP" firstAttribute="top" secondItem="KjK-Hw-lT2" secondAttribute="bottom" id="EKE-Rw-bg5"/>
+                <constraint firstItem="U96-Ch-WJc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="PZu-m4-jg2"/>
+                <constraint firstAttribute="centerY" secondItem="yL7-jE-ZLb" secondAttribute="centerY" id="b39-Sb-uwX"/>
+                <constraint firstItem="TQ9-VB-EjP" firstAttribute="centerX" secondItem="KjK-Hw-lT2" secondAttribute="centerX" id="cui-IO-NL1"/>
+                <constraint firstItem="KjK-Hw-lT2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="gVQ-Zm-q0Q"/>
+                <constraint firstItem="OIn-GU-cXu" firstAttribute="top" secondItem="U96-Ch-WJc" secondAttribute="bottom" id="wzf-h1-PFj"/>
+                <constraint firstAttribute="centerX" secondItem="yL7-jE-ZLb" secondAttribute="centerX" id="x3I-d3-pHH"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

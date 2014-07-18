@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Goal.h"
 
 @class GoalCard;
 
 @interface GoalCardView : UICollectionViewCell
+
+@property (nonatomic, strong) Goal *goal;
 
 @end

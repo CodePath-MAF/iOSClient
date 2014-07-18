@@ -7,40 +7,41 @@
 //
 
 #import "CashOverView.h"
-#import <Parse/Parse.h>
 
 @interface CashOverView()
 
-@property (weak, nonatomic) IBOutlet UILabel *currentUserEmailLabel;
-- (IBAction)createGoal:(id)sender;
-- (IBAction)createTransaction:(id)sender;
-- (IBAction)viewGoals:(id)sender;
-- (IBAction)viewTransactions:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *totalCashLabel;
 
 @end
 
 @implementation CashOverView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
+        [self addGestureRecognizer:tapGestureRecognizer];
+        NSLog(@"Init with Coder CashOverView");
         // Initialization code
+        UINib *nib = [UINib nibWithNibName:@"CashOverView" bundle:nil];
+        NSArray *objects = [nib instantiateWithOwner:self options:nil];
+        UIView *view = objects[0];
+//        view.frame = self.bounds; // this needs to get set to the view.frame that instantiates it
+        
+        [self addSubview:view];
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    self.currentUserEmailLabel.text = [[PFUser currentUser] username];
+- (void)setTotalCash:(NSNumber *)totalCash {
+    _totalCash = totalCash;
+    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalCash floatValue]];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void)onTapView:(id)sender {
+    NSLog(@"Loading Transactions View");
+    [self.delegate viewTransactions:sender];
 }
-*/
 
 @end

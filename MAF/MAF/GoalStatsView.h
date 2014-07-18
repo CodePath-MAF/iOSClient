@@ -10,4 +10,7 @@
 
 @interface GoalStatsView : UIView
 
+@property (nonatomic, strong) NSNumber *totalSpentToday;
+@property (nonatomic, strong) NSNumber *totalMonthlyGoal;
+
 @end

@@ -8,24 +8,36 @@
 
 #import "GoalStatsView.h"
 
+@interface GoalStatsView ()
+
+@property (weak, nonatomic) IBOutlet UILabel *totalSpentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *monthlyGoalLabel;
+
+@end
+
 @implementation GoalStatsView
 
-- (id)initWithFrame:(CGRect)frame
+- (void)setTotalMonthlyGoal:(NSNumber *)totalMonthlyGoal {
+    _totalMonthlyGoal = totalMonthlyGoal;
+    self.monthlyGoalLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalMonthlyGoal floatValue]];
+}
+
+- (void)setTotalSpentToday:(NSNumber *)totalSpentToday {
+    _totalSpentToday = totalSpentToday;
+    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalSpentToday floatValue]];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
+        NSLog(@"Init with Coder GoalStatsView");
+        UINib *nib = [UINib nibWithNibName:@"GoalStatsView" bundle:nil];
+        NSArray *objects = [nib instantiateWithOwner:self options:nil];
+        [self addSubview:objects[0]];
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

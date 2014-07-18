@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CashOverViewDelegate <NSObject>
+
+@required
+- (void)viewTransactions:(id)sender;
+
+@end
+
 @interface CashOverView : UIView
+
+@property (nonatomic, weak) id <CashOverViewDelegate>delegate;
+@property (nonatomic, strong) NSNumber *totalCash;
 
 @end

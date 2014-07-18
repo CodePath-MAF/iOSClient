@@ -9,22 +9,6 @@
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
-@protocol DashBoardViewControllerDelegate <NSObject>
-
-@optional
-- (void)createTransaction:(id)sender;
-- (void)viewTransactions:(id)sender;
-
-@required
-- (void)createGoal:(id)sender;
-- (void)viewGoals:(id)sender;
-- (void)showProfile:(id)sender;
-
-@end
-
 @interface DashboardViewController : UIViewController
-
-@property (nonatomic, weak) id <DashBoardViewControllerDelegate> delegate;
-@property (nonatomic, strong) PFUser *user;
 
 @end
