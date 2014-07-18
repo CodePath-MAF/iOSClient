@@ -53,7 +53,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-      self.view.frame = [self frameForContentController];
+        self.view.frame = [self frameForContentController];
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
 }

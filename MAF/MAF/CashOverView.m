@@ -30,7 +30,6 @@
         
         view.frame = self.frame; // (3)
         view.autoresizingMask = self.autoresizingMask;
-//        view.frame = self.bounds; // this needs to get set to the view.frame that instantiates it
         
         [self addSubview:view];
     }

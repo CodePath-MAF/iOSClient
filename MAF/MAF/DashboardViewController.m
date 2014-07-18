@@ -60,6 +60,8 @@
     
     self.navigationItem.rightBarButtonItem = goalButton;
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     // Set Up Collection View delegate & data source
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;

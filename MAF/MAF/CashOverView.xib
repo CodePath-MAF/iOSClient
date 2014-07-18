@@ -11,18 +11,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="dae-m7-tCx">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$234.64" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPv-k2-0Gs">
-                    <rect key="frame" x="10" y="65" width="300" height="40"/>
+                    <rect key="frame" x="10" y="53" width="300" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                     <color key="textColor" red="0.95886901339999997" green="0.97652172469999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL CASH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qla-lB-9VA">
-                    <rect key="frame" x="123" y="101" width="75" height="15"/>
+                    <rect key="frame" x="123" y="89" width="75" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,6 +34,7 @@
                 <constraint firstItem="qla-lB-9VA" firstAttribute="top" secondItem="ZPv-k2-0Gs" secondAttribute="bottom" constant="-4" id="031-LW-QM6"/>
                 <constraint firstAttribute="centerX" secondItem="ZPv-k2-0Gs" secondAttribute="centerX" id="3Eb-gu-3xm"/>
                 <constraint firstAttribute="trailing" secondItem="ZPv-k2-0Gs" secondAttribute="trailing" constant="10" id="GaM-re-xWn"/>
+                <constraint firstItem="ZPv-k2-0Gs" firstAttribute="leading" secondItem="dae-m7-tCx" secondAttribute="leading" constant="10" id="aIQ-3d-sGX"/>
                 <constraint firstAttribute="centerY" secondItem="ZPv-k2-0Gs" secondAttribute="centerY" id="blw-ar-twO"/>
                 <constraint firstItem="ZPv-k2-0Gs" firstAttribute="centerX" secondItem="qla-lB-9VA" secondAttribute="centerX" id="dN8-BN-IQ0"/>
             </constraints>
