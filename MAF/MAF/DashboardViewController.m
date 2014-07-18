@@ -40,11 +40,17 @@
     self.collectionView.dataSource = self;
     
     // Stub Goals Cell
+    UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
+    
+//    self.stubCell = [cellNib instantiateWithOwner:nil options:nil][0];
+    
+//    [self.collectionView registerClass:[GoalCardView class] forCellWithReuseIdentifier:@"GoalCardView"];
     
     // Create Assets View (Collection Section Header)
     
-    //
-    
+    // Load initial data
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,43 +73,56 @@
 }
 
 #pragma mark - UICollectionView Datasource
-// 1
+
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return [self.goals count];
 }
-// 2
+
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
-// 3
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView " forIndexPath:indexPath];
+    GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     
     // TODO Check if Goal has been Achieved, display if not
     
-    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
-// 4
+
 /*- (UICollectionReusableView *)collectionView:
  (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
  {
  return [[UICollectionReusableView alloc] init];
  }*/
 
-#pragma mark - Collection View Delegates
+#pragma mark - UICollectionViewDelegate
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.view.bounds.size.width - 20, 44);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Selected %d Cell", indexPath.row);
+    // TODO: Select Item
     // TODO custom transition into a Goal Detail View Controller
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Deselected %d Cell", indexPath.row);
+    // TODO: Deselect item
 }
 
 //- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 //    return NO;
 //}
+
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.view.bounds.size.width, 80);
+}
+
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(20, 60, 20, 60);
+}
 
 #pragma mark - Collection View Layout Delegates
 

@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
+@class GoalCard;
 
 @interface GoalCardView : UICollectionViewCell
 

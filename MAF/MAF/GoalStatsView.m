@@ -1,14 +1,14 @@
 //
-//  GoalCardView.m
+//  GoalStatsView.m
 //  MAF
 //
-//  Created by Eddie Freeman on 7/15/14.
+//  Created by Eddie Freeman on 7/17/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#import "GoalCardView.h"
+#import "GoalStatsView.h"
 
-@implementation GoalCardView
+@implementation GoalStatsView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -17,11 +17,6 @@
         // Initialization code
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    
-    // TODO animate in (scale bounce?)
 }
 
 /*

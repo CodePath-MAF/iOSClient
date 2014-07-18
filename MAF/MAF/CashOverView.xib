@@ -50,6 +50,7 @@
                     </state>
                 </button>
             </subviews>
+            <color key="backgroundColor" red="0.50502245874149543" green="1" blue="0.54228486762321415" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="currentUserEmailLabel" destination="ZPv-k2-0Gs" id="Zrs-ED-2Zx"/>
             </connections>
