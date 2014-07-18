@@ -24,6 +24,6 @@
 @dynamic total;
 @dynamic paymentAmount;
 @dynamic numPayments;
-@dynamic goalDate;
+@dynamic targetDate;
 
 @end

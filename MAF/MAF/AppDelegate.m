@@ -9,63 +9,58 @@
 #import "AppDelegate.h"
 #import "Crittercism.h"
 #import <Parse/Parse.h>
+#import "DashboardViewController.h"
 
 #import "Goal.h"
 #import "Transaction.h"
 #import "TransactionCategory.h"
 
-#import "MainViewController.h"
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
     static NSString *CRITTERCISM_APP_ID;
     static NSString *PARSE_APP_ID;
     static NSString *PARSE_CLIENT_KEY;
-  
+
     /* read in api config from plist */
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSString *plistPath;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                              NSUserDomainMask, YES) objectAtIndex:0];
+                                                            NSUserDomainMask, YES) objectAtIndex:0];
     plistPath = [rootPath stringByAppendingPathComponent:@"ServicesConfig.plist"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"ServicesConfig" ofType:@"plist"];
+    plistPath = [[NSBundle mainBundle] pathForResource:@"ServicesConfig" ofType:@"plist"];
     }
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     NSDictionary *temp = (NSDictionary *)[NSPropertyListSerialization
-                                          propertyListFromData:plistXML
-                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                          format:&format
-                                          errorDescription:&errorDesc];
+                                        propertyListFromData:plistXML
+                                        mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                        format:&format
+                                        errorDescription:&errorDesc];
     if (!temp) {
-      NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
     }
-  
     CRITTERCISM_APP_ID = [temp objectForKey:@"CRITTERCISM_APP_ID"];
     PARSE_APP_ID = [temp objectForKey:@"PARSE_APP_ID"];
     PARSE_CLIENT_KEY = [temp objectForKey:@"PARSE_CLIENT_ID"];
+
+  // Uncomment when we're ready to capture services/crash reports
+//    [Crittercism enableWithAppID:CRITTERCISM_APP_ID];
   
-  
-//  Uncomment when we're ready to capture services/crash reports
-//  [Crittercism enableWithAppID:CRITTERCISM_APP_ID];
-  
+    // Register PFClasses
     [Goal registerSubclass];
     [Transaction registerSubclass];
-    [TransactionCategory registerSubclass];
-    
     [Parse setApplicationId:PARSE_APP_ID
               clientKey:PARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-  
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  
-    MainViewController *mvc = [[MainViewController alloc] init];
-  
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:mvc];
-    self.window.rootViewController = nc;
+    
+    DashboardViewController *dashboard = [[DashboardViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dashboard];
+    self.window.rootViewController = navController;
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

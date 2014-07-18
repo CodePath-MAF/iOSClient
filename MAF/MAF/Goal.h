@@ -24,6 +24,7 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
     GoalPaymentIntervalWeekly = 7,
     GoalPaymentIntervalBiWeekly = 14,
     GoalPaymentIntervalMonthly = 30,
+    GoalPaymentIntervalBiMonthly = 60,
 };
 
 @interface Goal : PFObject <PFSubclassing>
@@ -34,9 +35,9 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
 @property (nonatomic, assign) enum GoalType type;
 @property (nonatomic, assign) enum GoalStatus status;
 @property (nonatomic, assign) enum GoalPaymentInterval paymentInterval;
-@property (nonatomic, assign) float total;
-@property (nonatomic, assign) float paymentAmount;
+@property (nonatomic, assign) NSNumber *total;
+@property (nonatomic, assign) NSNumber *paymentAmount;
 @property (nonatomic, assign) NSInteger numPayments;
-@property (nonatomic, strong) NSDate *goalDate;
+@property (nonatomic, strong) NSDate *targetDate;
 
 @end

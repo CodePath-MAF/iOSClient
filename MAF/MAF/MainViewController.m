@@ -18,6 +18,9 @@
 
 @interface MainViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
+@property DashboardViewController *dashboardViewController;
+@property UIViewController *currentViewController;
+
 @end
 
 @implementation MainViewController
@@ -98,6 +101,77 @@
 }
      
 - (void)presentDashboardViewController {
+  NSLog(@"Presenting Dashboard");
+  if (!self.dashboardViewController) {
+    self.dashboardViewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
+    
+    self.dashboardViewController.delegate = self;
+    
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    
+    self.navigationItem.leftBarButtonItem = profileButton;
+    
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createGoal:)];
+    
+    self.navigationItem.rightBarButtonItem = goalButton;
+  }
+  [self displayContentController:self.dashboardViewController];
+}
+
+#pragma mark - Container View Methods
+
+- (void)displayContentController:(UIViewController*)content
+{
+  NSLog(@"Displaying Content");
+  [self addChildViewController:content];            // 1
+  
+  content.view.frame = [self frameForContentController];             // 2
+  [self.view addSubview:content.view];
+  self.currentViewController = content;
+  [content didMoveToParentViewController:self];          // 3
+}
+//
+//- (void)hideContentController:(UIViewController*)content
+//{
+//#warning this doesn't work as expected yet
+//  NSLog(@"Hiding Content");
+//  [content willMoveToParentViewController:nil];  // 1
+//  [content.view removeFromSuperview];            // 2
+//  [content removeFromParentViewController];      // 3
+//}
+//
+- (CGRect)frameForContentController {
+  CGRect contentFrame = self.view.bounds;
+  CGFloat heightOffset = self.navigationController.navigationBar.frame.size.height;
+  contentFrame.origin.y += heightOffset;
+  contentFrame.size.height -= heightOffset;
+  return contentFrame;
+}
+
+#pragma mark - DashBoard Delegate Methods
+- (void)createGoal:(id)sender {
+  NSLog(@"Loading Create Goal View");
+  [self.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
+}
+
+- (void)createTransaction:(id)sender {
+  NSLog(@"Loading Create Transaction View");
+  [self.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
+}
+
+- (void)viewGoals:(id)sender {
+  NSLog(@"Loading Goals View");
+  [self.navigationController pushViewController:[[GoalsTableViewController alloc] init] animated:YES];
+}
+
+- (void)viewTransactions:(id)sender {
+  NSLog(@"Load Transactions View");
+  [self.navigationController pushViewController:[[TransactionsTableViewController alloc] init] animated:YES];
+}
+
+- (void)showProfile:(id)sender {
+#warning show profile view here
+  NSLog(@"Show Profile");
     DashboardViewController *vc = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
     [self.navigationController setViewControllers:@[vc]];
 }

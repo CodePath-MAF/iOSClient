@@ -3,7 +3,8 @@ PODS:
   - CrittercismSDK (4.3.4)
   - Facebook-iOS-SDK (3.16):
     - Bolts
-  - Parse (1.2.19):
+  - MHPrettyDate (1.1.1)
+  - Parse (1.2.20):
     - Facebook-iOS-SDK (~> 3.11)
   - PNChart (0.3.3):
     - UICountingLabel (~> 1.0.0)
@@ -13,6 +14,7 @@ PODS:
 DEPENDENCIES:
   - Bolts (~> 1.1)
   - CrittercismSDK
+  - MHPrettyDate
   - Parse (~> 1.2)
   - PNChart (~> 0.3.3)
   - XLForm (~> 2.0)
@@ -21,7 +23,8 @@ SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
   Facebook-iOS-SDK: 82ad03cb9ce568855057e20a099054cf1e34ef12
-  Parse: ffebaecaddd32cb52671010f81567c298ff93d04
+  MHPrettyDate: d9f42f2ec3dfece6352f18ac77aa33312174e09e
+  Parse: 28c0dc54f30201a369d29a2f76c09fa43b2add16
   PNChart: c77c6880b03851f01d7b5523648e0b93cfe51978
   UICountingLabel: 0a0e9e34bf4690dbd127aaec552d19ed938087a9
   XLForm: e065ea92da75acb51a577c40f2bb540c814982a3

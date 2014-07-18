@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardViewController">
             <connections>
-                <outlet property="currentUserEmailLabel" destination="wPP-lV-qlX" id="bbX-Cm-Kk5"/>
+                <outlet property="cashOverView" destination="MRC-o0-z7K" id="LR2-xP-LEO"/>
+                <outlet property="collectionView" destination="kcR-jc-ADa" id="6tH-cX-R12"/>
+                <outlet property="goalStatsView" destination="ERW-2P-tNw" id="C4m-ii-ipH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,55 +17,46 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPP-lV-qlX">
-                    <rect key="frame" x="0.0" y="39" width="320" height="21"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kcR-jc-ADa">
+                    <rect key="frame" x="0.0" y="312" width="320" height="256"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="2" id="tPs-3W-eog">
+                        <size key="itemSize" width="300" height="110"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                </collectionView>
+                <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="MRC-o0-z7K" customClass="CashOverView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="256"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9i-fg-eFr">
-                    <rect key="frame" x="20" y="86" width="280" height="30"/>
+                    <color key="backgroundColor" red="0.81528108016304346" green="0.46467893381448355" blue="0.37995494819096559" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERW-2P-tNw" customClass="GoalStatsView">
+                    <rect key="frame" x="0.0" y="256" width="320" height="56"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="+ Goal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="createGoal:" destination="-1" eventType="touchUpInside" id="MOU-gH-sMe"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrj-Uj-Yfe">
-                    <rect key="frame" x="20" y="124" width="280" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="+ Transaction">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="createTransaction:" destination="-1" eventType="touchUpInside" id="2yN-c6-zOv"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXu-PV-akA">
-                    <rect key="frame" x="20" y="168" width="280" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="View Goals">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="viewGoals:" destination="-1" eventType="touchUpInside" id="ERR-Jh-MHX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPz-xj-iea">
-                    <rect key="frame" x="20" y="206" width="280" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="View Transactions">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="viewTransactions:" destination="-1" eventType="touchUpInside" id="nX4-hX-pPV"/>
-                    </connections>
-                </button>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="9iC-To-LL0"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.70730737570000002" green="0.89141614599999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="MRC-o0-z7K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="60h-2A-QF7"/>
+                <constraint firstAttribute="trailing" secondItem="ERW-2P-tNw" secondAttribute="trailing" id="KMy-np-SIr"/>
+                <constraint firstAttribute="centerY" secondItem="ERW-2P-tNw" secondAttribute="centerY" id="Mpg-kV-KfY"/>
+                <constraint firstItem="kcR-jc-ADa" firstAttribute="top" secondItem="ERW-2P-tNw" secondAttribute="bottom" id="N8y-Bw-gck"/>
+                <constraint firstItem="kcR-jc-ADa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nnb-JP-TLG"/>
+                <constraint firstItem="MRC-o0-z7K" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SwX-t1-M4a"/>
+                <constraint firstAttribute="trailing" secondItem="kcR-jc-ADa" secondAttribute="trailing" id="Wc6-z3-qBC"/>
+                <constraint firstAttribute="bottom" secondItem="kcR-jc-ADa" secondAttribute="bottom" id="YIm-0M-C4H"/>
+                <constraint firstAttribute="trailing" secondItem="MRC-o0-z7K" secondAttribute="trailing" id="aiB-7m-nUW"/>
+                <constraint firstItem="ERW-2P-tNw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="d1d-Zx-WDN"/>
+                <constraint firstItem="ERW-2P-tNw" firstAttribute="top" secondItem="MRC-o0-z7K" secondAttribute="bottom" id="rNO-d0-gAI"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

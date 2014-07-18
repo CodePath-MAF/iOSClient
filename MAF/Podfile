@@ -8,6 +8,7 @@ pod 'CrittercismSDK'
 pod 'Parse', '~> 1.2'
 pod 'PNChart', '~> 0.3.3'
 pod 'XLForm', '~> 2.0'
+pod 'MHPrettyDate'
 
 end
 
