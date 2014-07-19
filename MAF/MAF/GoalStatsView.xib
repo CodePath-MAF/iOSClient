@@ -18,7 +18,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yL7-jE-ZLb">
                     <rect key="frame" x="160" y="13" width="1" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.8022434302" green="0.80812669839999995" blue="0.80165661560000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="W6m-cw-jrl"/>
                         <constraint firstAttribute="height" constant="30" id="l9h-He-Nad"/>

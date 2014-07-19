@@ -30,5 +30,4 @@
 - (float)savedThisMonth;
 - (float)savedThisYear;
 
-
 @end
