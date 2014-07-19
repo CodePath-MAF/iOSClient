@@ -18,6 +18,7 @@
 #import "Utilities.h"
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
 // Lending Circle View Outlets
 @property (weak, nonatomic) IBOutlet UICollectionView *lendingPhotoCollectionView;
 @property (weak, nonatomic) IBOutlet UIPageControl *photoCollectionPageControl;
