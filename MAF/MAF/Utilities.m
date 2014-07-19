@@ -34,4 +34,30 @@
   return [difference day];
 }
 
++ (UIColor *)colorFromHexString:(NSString *)hexString {
+    if (hexString.length) {
+        unsigned rgbValue = 0;
+        NSScanner *scanner = [NSScanner scannerWithString:hexString];
+        [scanner setScanLocation:1]; // bypass '#' character
+        [scanner scanHexInt:&rgbValue];
+        return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+    } else {
+        return [UIColor blackColor];
+    }
+}
+
++ (NSArray *)getPreviousDates:(int)numPreviousDates fromDate:(NSDate *)fromDate {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:fromDate];
+    NSInteger currentDay = [components day];
+    
+    NSMutableArray *previousDates = [[NSMutableArray alloc] init];
+    for (int i=1; i < numPreviousDates; i++) {
+        [components setDay:currentDay - i];
+        NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:components];
+        [previousDates addObject:date];
+    }
+    
+    return [[NSArray alloc] initWithArray:previousDates];
+}
+
 @end

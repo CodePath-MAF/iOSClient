@@ -22,7 +22,7 @@
 @property (nonatomic, strong) TransactionsSet *transactionsSet;
 @property (nonatomic, strong) TransactionTableViewCell *prototypeCell;
 
-@property (strong, nonatomic) NSMutableArray *categories;
+- (void)reloadData;
 
 @end
 
@@ -49,16 +49,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [[self fetchData] continueWithBlock:^id(BFTask *task) {
-      if (task.error) {
-          NSLog(@"Error fetching transactions for user: %@", task.error);
-      } else {
-          self.transactionsSet = [[TransactionsSet alloc] initWithTransactions:task.result];
-          [self.tableView reloadData];
-      }
-      return task;
-  }];
+    [super viewWillAppear:animated];
+    [[self fetchData] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error fetching transactions for user: %@", task.error);
+        } else {
+            self.transactionsSet = [[TransactionsSet alloc] initWithTransactions:task.result];
+            [self reloadData];
+        }
+        return task;
+    }];
+}
+
+- (void)reloadData {
+    [self.tableView reloadData];
 }
 
 - (BFTask *)fetchData {
@@ -68,24 +72,7 @@
 #pragma mark - NavBar Methods
 
 - (void)createTransaction:(id)sender {
-    if (!self.categories) {
-        [[TransactionCategoryManager fetchCategories] continueWithBlock:^id(BFTask *task) {
-            if (task.error) {
-                // TODO raise an error message with TSMessages
-                NSLog(@"Error fetchign categories: %@", task.error);
-            } else {
-                self.categories = task.result;
-                [self pushCreateTransactionViewController];
-            }
-            return task;
-        }];
-    } else {
-        [self pushCreateTransactionViewController];
-    }
-}
-
-- (void)pushCreateTransactionViewController {
-    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:self.categories] animated:YES];
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:[[TransactionCategoryManager instance] categories]] animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -128,6 +115,8 @@
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionSummary" forIndexPath:indexPath];
         [(TransactionsSummaryTableViewCell *)cell setTransactionsSet:self.transactionsSet];
+#warning TODO clean this up, we don't want it to redraw everytime, only if it updates. also, it would be better if it didn't start from 0, so like it did an incremental update
+        [cell setNeedsDisplay];
     } else {
         NSArray *sectionTransactions = [self getTransactionsForSection:indexPath.section];
         cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];

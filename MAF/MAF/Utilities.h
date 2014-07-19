@@ -18,5 +18,7 @@
 
 + (NSDate *)dateWithoutTime:(NSDate *)date;
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
++ (NSArray *)getPreviousDates:(int)numPreviousDates fromDate:(NSDate *)fromDate;
++ (UIColor *)colorFromHexString:(NSString *)hexString;
 
 @end

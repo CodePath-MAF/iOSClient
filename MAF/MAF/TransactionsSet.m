@@ -12,8 +12,9 @@
 #import "Utilities.h"
 
 @interface TransactionsSet() {
-    NSDictionary *totalByDate;
-    NSDictionary *transactionsByDate;
+    NSDictionary *_totalByDate;
+    NSDictionary *_transactionsByDate;
+    NSDictionary *_transactionsByCategoryByDate;
 }
 
 @end
@@ -30,7 +31,7 @@
 
 - (NSDictionary *)transactionsTotalByDate {
     // Calculate the totals for the transactions, grouped by date.
-    if (!totalByDate) {
+    if (!_totalByDate) {
         NSMutableDictionary *transactionDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
             NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
@@ -38,9 +39,9 @@
             float newTotal = total + transaction.amount;
             [transactionDict setObject:@(newTotal) forKey:strippedDate];
         }
-        totalByDate = transactionDict;
+        _totalByDate = transactionDict;
     }
-    return totalByDate;
+    return _totalByDate;
 }
 
 - (NSDictionary *)transactionsTotalByCategoryForDate:(NSDate *)date {
@@ -50,15 +51,12 @@
 }
 
 - (float)transactionsTotalForCurrentWeek {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
-    NSInteger currentDay = [components day];
-    
+    NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
+    NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
     NSDictionary *totalsDict = [self transactionsTotalByDate];
-    float total = [(NSNumber *)[totalsDict objectForKey:[[NSCalendar currentCalendar] dateFromComponents:components]] ?: [[NSNumber alloc] initWithFloat:0.f] floatValue];
-    for (int i=1; i < 7; i++) {
-        [components setDay:currentDay - i];
-        NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:components];
-        float dateTotal = [(NSNumber *)[totalsDict objectForKey:date] ?: [[NSNumber alloc] initWithFloat:0.f] floatValue];
+    float total = [(NSNumber *)[totalsDict objectForKey:today] ?: [[NSNumber alloc] initWithFloat:0.f] floatValue];
+    for (NSDate *previousDate in previousDates) {
+        float dateTotal = [(NSNumber *)[totalsDict objectForKey:previousDate] ?: [[NSNumber alloc] initWithFloat:0.f] floatValue];
         total += dateTotal;
     }
 
@@ -66,12 +64,23 @@
 }
 
 - (NSDictionary *)transactionsTotalByCategoryByDate {
-    // loop over the array and compile transactionsTotalByCategoryByDate (this should be cached on the instance of the set)
-    return [[NSDictionary alloc] init];
+    if (!_transactionsByCategoryByDate) {
+        NSMutableDictionary *transactionsByCategoryByDateDict = [[NSMutableDictionary alloc] init];
+        for (Transaction *transaction in self.transactions) {
+            NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
+            NSMutableDictionary *categoriesForDate = [transactionsByCategoryByDateDict objectForKey:strippedDate] ?: [[NSMutableDictionary alloc] init];
+            NSInteger categoryTotal = [[categoriesForDate objectForKey:transaction.category.name] floatValue] ?: 0.0;
+            categoryTotal += transaction.amount;
+            categoriesForDate[transaction.category.name] = @(categoryTotal);
+            [transactionsByCategoryByDateDict setObject:categoriesForDate forKey:strippedDate];
+        }
+        _transactionsByCategoryByDate = transactionsByCategoryByDateDict;
+    }
+    return _transactionsByCategoryByDate;
 }
 
 - (NSDictionary *)transactionsByDate {
-    if (!transactionsByDate) {
+    if (!_transactionsByDate) {
         NSMutableDictionary *transactionsByDateDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
             NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
@@ -79,9 +88,9 @@
             [transactionsForDate addObject:transaction];
             [transactionsByDateDict setObject:transactionsForDate forKey:strippedDate];
         }
-        transactionsByDate = transactionsByDateDict;
+        _transactionsByDate = transactionsByDateDict;
     }
-    return transactionsByDate;
+    return _transactionsByDate;
 }
 
 @end

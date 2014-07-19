@@ -16,8 +16,12 @@ DEPENDENCIES:
   - CrittercismSDK
   - MHPrettyDate
   - Parse (~> 1.2)
-  - PNChart (~> 0.3.3)
+  - PNChart (from `https://github.com/mhahn/PNChart.git`)
   - XLForm (~> 2.0)
+
+EXTERNAL SOURCES:
+  PNChart:
+    :git: https://github.com/mhahn/PNChart.git
 
 SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
@@ -25,7 +29,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: 82ad03cb9ce568855057e20a099054cf1e34ef12
   MHPrettyDate: d9f42f2ec3dfece6352f18ac77aa33312174e09e
   Parse: 28c0dc54f30201a369d29a2f76c09fa43b2add16
-  PNChart: c77c6880b03851f01d7b5523648e0b93cfe51978
+  PNChart: 05cffd0b525db04421eae5bfa8f119bd9363e59e
   UICountingLabel: 0a0e9e34bf4690dbd127aaec552d19ed938087a9
   XLForm: e065ea92da75acb51a577c40f2bb540c814982a3
 

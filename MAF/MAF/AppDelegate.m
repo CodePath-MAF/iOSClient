@@ -14,6 +14,7 @@
 #import "Goal.h"
 #import "Transaction.h"
 #import "TransactionCategory.h"
+#import "TransactionCategoryManager.h"
 
 @implementation AppDelegate
 
@@ -58,6 +59,8 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // trigger fetching of categories
+    [[TransactionCategoryManager instance] fetchCategories];
     DashboardViewController *dashboard = [[DashboardViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dashboard];
     self.window.rootViewController = navController;

@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Bolts.h"
+#import "TransactionCategory.h"
 
 @interface TransactionCategoryManager : NSObject
 
-+ (BFTask *)fetchCategories;
+@property (nonatomic, strong) NSMutableArray *categories;
+- (void)fetchCategories;
+- (UIColor *)colorForCategory:(TransactionCategory *)category;
+
++ (TransactionCategoryManager *)instance;
+
 
 @end

@@ -6,7 +6,7 @@ target "MAF" do
 pod 'Bolts', '~> 1.1'
 pod 'CrittercismSDK'
 pod 'Parse', '~> 1.2'
-pod 'PNChart', '~> 0.3.3'
+pod 'PNChart', :git => 'https://github.com/mhahn/PNChart.git'
 pod 'XLForm', '~> 2.0'
 pod 'MHPrettyDate'
 

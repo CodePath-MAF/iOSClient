@@ -8,19 +8,46 @@
 
 #import "TransactionCategory.h"
 #import "TransactionCategoryManager.h"
+#import "Utilities.h"
+
+@interface TransactionCategoryManager()
+
+@property (nonatomic, strong) NSDictionary *categoryColors;
+
+@end
 
 @implementation TransactionCategoryManager
 
-+ (BFTask *)fetchCategories {
-    BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
+- (void)fetchCategories {
     [[TransactionCategory query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            [task setError:error];
+            NSLog(@"Error fetching categories: %@", error);
         } else {
-            [task setResult:objects];
+            self.categories = [[NSMutableArray alloc] initWithArray:objects];
         }
+ 
     }];
-    return task.task;
+}
+
+- (UIColor *)colorForCategory:(TransactionCategory *)category {
+    if (!self.categoryColors) {
+        NSMutableDictionary *categoryColorDict = [[NSMutableDictionary alloc] init];
+        for (TransactionCategory *category in self.categories) {
+            [categoryColorDict setObject:[Utilities colorFromHexString:category.color] forKey:category.name];
+        }
+        self.categoryColors = [[NSDictionary alloc] initWithDictionary:categoryColorDict];
+    }
+    return [self.categoryColors objectForKey:category.name];
+}
+
++ (TransactionCategoryManager *)instance {
+    static TransactionCategoryManager *instance = nil;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        instance = [[TransactionCategoryManager alloc] init];
+    });
+    return instance;
 }
 
 @end
