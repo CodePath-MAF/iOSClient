@@ -35,7 +35,7 @@
 - (IBAction)viewTransactions:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *goals;
-
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -94,8 +94,6 @@
     [self.collectionView reloadData];
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -144,7 +142,7 @@
     return 1;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     cell.goal = self.goals[indexPath.row];
     return cell;

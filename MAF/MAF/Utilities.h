@@ -20,5 +20,6 @@
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 + (NSArray *)getPreviousDates:(int)numPreviousDates fromDate:(NSDate *)fromDate;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
++ (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius borderColor:(UIColor *)borderColor;
 
 @end

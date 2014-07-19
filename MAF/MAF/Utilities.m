@@ -60,4 +60,13 @@
     return [[NSArray alloc] initWithArray:previousDates];
 }
 
++ (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius borderColor:(UIColor *)borderColor {
+    button.layer.cornerRadius = cornerRadius;
+    button.layer.masksToBounds = YES;
+    button.layer.borderColor = borderColor.CGColor;
+    button.layer.borderWidth = 2.0f;
+    
+    return button;
+}
+
 @end
