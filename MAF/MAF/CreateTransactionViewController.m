@@ -44,6 +44,7 @@
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
 @property (assign, nonatomic) int cellNumber;
 @property (strong, nonatomic) Transaction *transactionInProgress;
+@property (nonatomic, assign) int selectedCategory;
 
 @end
 
@@ -175,7 +176,7 @@
         subLabel = self.transactionInProgress.name;
     } else if (index == 2) {
         mainLabel = @"Category";
-        subLabel = self.sectionName[self.transactionInProgress.category];
+        subLabel = self.sectionName[self.selectedCategory];
     } else if (index == 3) {
         mainLabel = @"Date";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -207,16 +208,14 @@
     [self changeProgress:2];
 }
 - (IBAction)finished:(id)sender {
-    NSLog(@"You're Finished! %@", self.transactionInProgress);
     
-    TransactionCategory *category = self.sectionNamesWithId[self.transactionInProgress.category];
-    
-    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:@(TransactionTypeDebit) categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+    TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeDebit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
         } else {
-            NSLog(@"Successfully created transaction: %@", task.result);
+            [self.navigationController popViewControllerAnimated:YES];
         }
         return task;
     }];
@@ -236,7 +235,7 @@
 
 - (void)pickerView:(MyPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.transactionInProgress.category = row;
+    self.selectedCategory = row;
 }
 
 

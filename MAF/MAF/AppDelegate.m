@@ -51,6 +51,7 @@
     // Register PFClasses
     [Goal registerSubclass];
     [Transaction registerSubclass];
+    [TransactionCategory registerSubclass];
     [Parse setApplicationId:PARSE_APP_ID
               clientKey:PARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

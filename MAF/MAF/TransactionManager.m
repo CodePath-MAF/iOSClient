@@ -27,7 +27,9 @@
     transaction.detail = detail;
 //    transaction.name = name;
     transaction.type = type;
-    transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];
+    if (categoryId != nil) {
+        transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];
+    }
     transaction.transactionDate = transactionDate;
     [transaction saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
