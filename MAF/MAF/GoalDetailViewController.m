@@ -52,9 +52,9 @@
 
     NSString *timeTilString;
     #warning Doesn't work TODO, get the formatting and countdown logic working
-    if ([MHPrettyDate isToday:self.goal.targetDate]) {
-    timeTilString = [NSString stringWithFormat:DUE_TODAY_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-    }
+//    if ([MHPrettyDate isToday:self.goal.targetDate]) {
+//        timeTilString = [NSString stringWithFormat:DUE_TODAY_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
+//    }
 //    else {
 //    timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [Utilities daysBetweenDate:[NSDate date] andDate:self.goal.targetDate], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
 //    }
@@ -111,8 +111,7 @@
     // Set Up Make Payment Button
 #warning TODO create progress update
     [Utilities setupRoundedButton:self.makePaymentButton
-                 withCornerRadius:BUTTON_CORNER_RADIUS
-                      borderColor:self.makePaymentButton.tintColor];
+                 withCornerRadius:BUTTON_CORNER_RADIUS  ];
 }
 
 #pragma mark - UICollectionView Datasource
