@@ -34,7 +34,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.81528108016304346" green="0.46467893381448355" blue="0.37995494819096559" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERW-2P-tNw" customClass="GoalStatsView">
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERW-2P-tNw" customClass="GoalStatsView">
                     <rect key="frame" x="0.0" y="256" width="320" height="56"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,7 +43,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.70730737570000002" green="0.89141614599999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.23019607345779222" green="0.29033687135331904" blue="0.3267299107142857" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="MRC-o0-z7K" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="60h-2A-QF7"/>
                 <constraint firstAttribute="trailing" secondItem="ERW-2P-tNw" secondAttribute="trailing" id="KMy-np-SIr"/>

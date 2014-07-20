@@ -10,6 +10,15 @@
 
 @implementation User
 
+- (id)initWithName:(NSString *)name AndPhoto:(UIImage *)photo {
+    self = [super init];
+    if (self) {
+        _name = name;
+        _photo = photo;
+    }
+    return self;
+}
+
 @dynamic totalCash;
 
 @end
