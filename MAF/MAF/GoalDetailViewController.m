@@ -14,7 +14,7 @@
 
 #import "GoalDetailViewController.h"
 #import "LendingSocialCell.h"
-#import "User.h"
+#import "Friend.h"
 #import "Utilities.h"
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -71,8 +71,8 @@
         for (int userCount = 0; userCount < 12; userCount++) {
             NSString *name = [[NSString alloc] initWithFormat:@"Name %d", userCount+1];
             NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userCount+1];
-            User *user = [[User alloc] initWithName:name AndPhoto:[UIImage imageNamed:photoName]];
-            [_lendingFriends insertObject:user atIndex:userCount];
+            Friend *friend = [[Friend alloc] initWithName:name andPhoto:[UIImage imageNamed:photoName]];
+            [_lendingFriends insertObject:friend atIndex:userCount];
             
 //            NSLog(@"name: %@", name);
 //            NSLog(@"photoName: %@", photoName);
@@ -128,7 +128,7 @@
 
 - (LendingSocialCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LendingSocialCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"LendingSocialCell" forIndexPath:indexPath];
-    cell.user = self.lendingFriends[indexPath.row];
+    cell.friend = self.lendingFriends[indexPath.row];
     return cell;
 }
 

@@ -29,7 +29,6 @@
 		2CBA46B61965DE3A00C6BEDF /* MAFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA46B51965DE3A00C6BEDF /* MAFTests.m */; };
 		2CC35A15197B1D3100716B37 /* LendingSocialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC35A14197B1D3100716B37 /* LendingSocialCell.m */; };
 		2CC35A19197B1D9500716B37 /* LendingSocialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CC35A18197B1D9500716B37 /* LendingSocialCell.xib */; };
-		2CC35A1C197B20EE00716B37 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC35A1B197B20EE00716B37 /* User.m */; };
 		2CC35A23197B2CA700716B37 /* CollectionViewTwoCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC35A22197B2CA700716B37 /* CollectionViewTwoCardLayout.m */; };
 		2CD7C1EF1975FBA1007F6CB8 /* CashOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7C1EE1975FBA1007F6CB8 /* CashOverView.m */; };
 		2CD7C1F11975FBBA007F6CB8 /* CashOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CD7C1F01975FBBA007F6CB8 /* CashOverView.xib */; };
@@ -63,6 +62,7 @@
 		BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF277998196BBA11005D4838 /* CreateGoalForm.m */; };
 		BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF27799B196BC40B005D4838 /* MAFActionFormButtonCell.m */; };
 		BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */; };
+		BF865AFF197C593000A128AD /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865AFE197C593000A128AD /* Friend.m */; };
 		BFBDEED6197B459300FE4348 /* GoalSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED5197B459300FE4348 /* GoalSet.m */; };
 		BFBDEED9197B6B3700FE4348 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED8197B6B3700FE4348 /* User.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
@@ -110,8 +110,6 @@
 		2CC35A13197B1D3100716B37 /* LendingSocialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LendingSocialCell.h; sourceTree = "<group>"; };
 		2CC35A14197B1D3100716B37 /* LendingSocialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LendingSocialCell.m; sourceTree = "<group>"; };
 		2CC35A18197B1D9500716B37 /* LendingSocialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LendingSocialCell.xib; sourceTree = "<group>"; };
-		2CC35A1A197B20EE00716B37 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		2CC35A1B197B20EE00716B37 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		2CC35A21197B2CA700716B37 /* CollectionViewTwoCardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewTwoCardLayout.h; sourceTree = "<group>"; };
 		2CC35A22197B2CA700716B37 /* CollectionViewTwoCardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewTwoCardLayout.m; sourceTree = "<group>"; };
 		2CD7C1ED1975FBA1007F6CB8 /* CashOverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashOverView.h; sourceTree = "<group>"; };
@@ -173,6 +171,8 @@
 		BF32CC601974AFE80050E3D5 /* XLFormViewController_MAFActionFormButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLFormViewController_MAFActionFormButton.h; sourceTree = "<group>"; };
 		BF32CC611974B1B70050E3D5 /* CreateTransactionForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionForm.h; sourceTree = "<group>"; };
 		BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionForm.m; sourceTree = "<group>"; };
+		BF865AFD197C593000A128AD /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		BF865AFE197C593000A128AD /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		BFBDEED4197B459300FE4348 /* GoalSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalSet.h; sourceTree = "<group>"; };
 		BFBDEED5197B459300FE4348 /* GoalSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalSet.m; sourceTree = "<group>"; };
 		BFBDEED7197B6B3700FE4348 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -358,8 +358,8 @@
 				BFBDEED5197B459300FE4348 /* GoalSet.m */,
 				BFBDEED7197B6B3700FE4348 /* User.h */,
 				BFBDEED8197B6B3700FE4348 /* User.m */,
-				2CC35A1A197B20EE00716B37 /* User.h */,
-				2CC35A1B197B20EE00716B37 /* User.m */,
+				BF865AFD197C593000A128AD /* Friend.h */,
+				BF865AFE197C593000A128AD /* Friend.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -567,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,
+				BF865AFF197C593000A128AD /* Friend.m in Sources */,
 				BA77DF271977348F00FD0F8A /* WheelView.m in Sources */,
 				BA77DF261977348F00FD0F8A /* MyPickerView.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
@@ -584,7 +585,6 @@
 				2C84014819787FB4008D9D73 /* GoalStatsView.m in Sources */,
 				2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
-				2CC35A1C197B20EE00716B37 /* User.m in Sources */,
 				BAFB2C1C1975D39400A11C56 /* CreateTransactionViewController.m in Sources */,
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,

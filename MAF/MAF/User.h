@@ -14,8 +14,4 @@
 
 @property (nonatomic, assign) float totalCash;
 
-- (id)initWithName:(NSString *)name AndPhoto:(UIImage *)photo;
-@property NSString *name;
-@property UIImage *photo;
-
 @end

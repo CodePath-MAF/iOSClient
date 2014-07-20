@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "User.h"
+#import "Friend.h"
 
 @class LendingSocialCell;
 
 @interface LendingSocialCell : UICollectionViewCell
 
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) Friend *friend;
 
 @end

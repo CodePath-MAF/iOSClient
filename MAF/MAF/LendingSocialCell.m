@@ -26,11 +26,11 @@
     return self;
 }
 
-- (void)setUser:(User *)user {
-    _user = user;
+- (void)setFriend:(Friend *)friend {
+    _friend = friend;
     
-    self.nameLabel.text = self.user.name;
-    [self.photoImageView setImage:self.user.photo];
+    self.nameLabel.text = friend.name;
+    [self.photoImageView setImage:friend.photo];
 }
 
 @end
