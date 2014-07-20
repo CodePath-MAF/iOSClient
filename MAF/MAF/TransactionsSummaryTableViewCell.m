@@ -8,10 +8,13 @@
 
 #import "PNChart.h"
 
+#import "OpenSansSemiBoldLabel.h"
+
 #import "TransactionsSummaryTableViewCell.h"
 #import "TransactionCategoryManager.h"
 #import "Utilities.h"
 #import "PNStackedBarChartDataItem.h"
+#import "User.h"
 
 @interface TransactionsSummaryTableViewCell() {
     NSDictionary *_transactionsTotalByCategoryByDate;
@@ -19,7 +22,11 @@
     NSDateFormatter *_dateFormatter;
 }
 
-@property (weak, nonatomic) IBOutlet UILabel *transactionsWeeklyTotalLabel;
+@property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentThisWeekTotalLabel;
+
+@property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *totalCashLabel;
+@property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentTodayTotalLabel;
+
 @property (nonatomic, strong) PNStackedBarChart *transactionsCategoryChart;
 
 - (NSArray *)getDataItemsForDate:(NSDate *)date;
@@ -47,7 +54,7 @@
         [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
     }
     
-    self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125.0) itemArrays:chartDataItems];
+    self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
     [self.transactionsCategoryChart setXLabels:chartXLabels];
     [self.transactionsCategoryChart setYMaxValue:_maxValue];
     [self.transactionsCategoryChart strokeChart];
@@ -74,7 +81,9 @@
                                     
 - (void)setTransactionsSet:(TransactionsSet *)transactionsSet {
     _transactionsSet = transactionsSet;
-    self.transactionsWeeklyTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet transactionsTotalForCurrentWeek]];
+    self.spentThisWeekTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet transactionsTotalForCurrentWeek]];
+    self.spentTodayTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet transactionsTotalForToday]];
+    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [[User currentUser] totalCash ]];
 }
 
 @end
