@@ -63,6 +63,26 @@
 		BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF27799B196BC40B005D4838 /* MAFActionFormButtonCell.m */; };
 		BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */; };
 		BF865AFF197C593000A128AD /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865AFE197C593000A128AD /* Friend.m */; };
+		BF865B0A197C5CE500A128AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B00197C5CE500A128AD /* OpenSans-Bold.ttf */; };
+		BF865B0B197C5CE500A128AD /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B01197C5CE500A128AD /* OpenSans-BoldItalic.ttf */; };
+		BF865B0C197C5CE500A128AD /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B02197C5CE500A128AD /* OpenSans-ExtraBold.ttf */; };
+		BF865B0D197C5CE500A128AD /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B03197C5CE500A128AD /* OpenSans-ExtraBoldItalic.ttf */; };
+		BF865B0E197C5CE500A128AD /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B04197C5CE500A128AD /* OpenSans-Italic.ttf */; };
+		BF865B0F197C5CE500A128AD /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B05197C5CE500A128AD /* OpenSans-Light.ttf */; };
+		BF865B10197C5CE500A128AD /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B06197C5CE500A128AD /* OpenSans-LightItalic.ttf */; };
+		BF865B11197C5CE500A128AD /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B07197C5CE500A128AD /* OpenSans-Regular.ttf */; };
+		BF865B12197C5CE500A128AD /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B08197C5CE500A128AD /* OpenSans-Semibold.ttf */; };
+		BF865B13197C5CE500A128AD /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B09197C5CE500A128AD /* OpenSans-SemiboldItalic.ttf */; };
+		BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B17197C5F2100A128AD /* OpenSansRegularLabel.m */; };
+		BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B1A197C615D00A128AD /* OpenSansBoldLabel.m */; };
+		BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B1D197C619200A128AD /* OpenSansBoldItalicLabel.m */; };
+		BF865B21197C61C500A128AD /* OpenSansExtraBoldLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B20197C61C500A128AD /* OpenSansExtraBoldLabel.m */; };
+		BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B23197C61FF00A128AD /* OpenSansItalicLabel.m */; };
+		BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B26197C622100A128AD /* OpenSansExtraBoldItalicLabel.m */; };
+		BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B29197C624800A128AD /* OpenSansLightLabel.m */; };
+		BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B2C197C626800A128AD /* OpenSansLightItalicLabel.m */; };
+		BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B2F197C627B00A128AD /* OpenSansSemiBoldLabel.m */; };
+		BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B32197C629800A128AD /* OpenSansSemiBoldItalicLabel.m */; };
 		BFBDEED6197B459300FE4348 /* GoalSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED5197B459300FE4348 /* GoalSet.m */; };
 		BFBDEED9197B6B3700FE4348 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED8197B6B3700FE4348 /* User.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
@@ -173,6 +193,36 @@
 		BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionForm.m; sourceTree = "<group>"; };
 		BF865AFD197C593000A128AD /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		BF865AFE197C593000A128AD /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		BF865B00197C5CE500A128AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		BF865B01197C5CE500A128AD /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-BoldItalic.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		BF865B02197C5CE500A128AD /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBold.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		BF865B03197C5CE500A128AD /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		BF865B04197C5CE500A128AD /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Italic.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		BF865B05197C5CE500A128AD /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		BF865B06197C5CE500A128AD /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-LightItalic.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		BF865B07197C5CE500A128AD /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		BF865B08197C5CE500A128AD /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		BF865B09197C5CE500A128AD /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiboldItalic.ttf"; path = "../../../SharedAssets/iOS/_resources/OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		BF865B16197C5F2100A128AD /* OpenSansRegularLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansRegularLabel.h; sourceTree = "<group>"; };
+		BF865B17197C5F2100A128AD /* OpenSansRegularLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansRegularLabel.m; sourceTree = "<group>"; };
+		BF865B19197C615D00A128AD /* OpenSansBoldLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansBoldLabel.h; sourceTree = "<group>"; };
+		BF865B1A197C615D00A128AD /* OpenSansBoldLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansBoldLabel.m; sourceTree = "<group>"; };
+		BF865B1C197C619200A128AD /* OpenSansBoldItalicLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansBoldItalicLabel.h; sourceTree = "<group>"; };
+		BF865B1D197C619200A128AD /* OpenSansBoldItalicLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansBoldItalicLabel.m; sourceTree = "<group>"; };
+		BF865B1F197C61C500A128AD /* OpenSansExtraBoldLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansExtraBoldLabel.h; sourceTree = "<group>"; };
+		BF865B20197C61C500A128AD /* OpenSansExtraBoldLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansExtraBoldLabel.m; sourceTree = "<group>"; };
+		BF865B22197C61FF00A128AD /* OpenSansItalicLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansItalicLabel.h; sourceTree = "<group>"; };
+		BF865B23197C61FF00A128AD /* OpenSansItalicLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansItalicLabel.m; sourceTree = "<group>"; };
+		BF865B25197C622100A128AD /* OpenSansExtraBoldItalicLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansExtraBoldItalicLabel.h; sourceTree = "<group>"; };
+		BF865B26197C622100A128AD /* OpenSansExtraBoldItalicLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansExtraBoldItalicLabel.m; sourceTree = "<group>"; };
+		BF865B28197C624800A128AD /* OpenSansLightLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansLightLabel.h; sourceTree = "<group>"; };
+		BF865B29197C624800A128AD /* OpenSansLightLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansLightLabel.m; sourceTree = "<group>"; };
+		BF865B2B197C626800A128AD /* OpenSansLightItalicLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansLightItalicLabel.h; sourceTree = "<group>"; };
+		BF865B2C197C626800A128AD /* OpenSansLightItalicLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansLightItalicLabel.m; sourceTree = "<group>"; };
+		BF865B2E197C627B00A128AD /* OpenSansSemiBoldLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansSemiBoldLabel.h; sourceTree = "<group>"; };
+		BF865B2F197C627B00A128AD /* OpenSansSemiBoldLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansSemiBoldLabel.m; sourceTree = "<group>"; };
+		BF865B31197C629800A128AD /* OpenSansSemiBoldItalicLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansSemiBoldItalicLabel.h; sourceTree = "<group>"; };
+		BF865B32197C629800A128AD /* OpenSansSemiBoldItalicLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansSemiBoldItalicLabel.m; sourceTree = "<group>"; };
 		BFBDEED4197B459300FE4348 /* GoalSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalSet.h; sourceTree = "<group>"; };
 		BFBDEED5197B459300FE4348 /* GoalSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalSet.m; sourceTree = "<group>"; };
 		BFBDEED7197B6B3700FE4348 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -239,6 +289,7 @@
 		2CBA46961965DE3A00C6BEDF /* MAF */ = {
 			isa = PBXGroup;
 			children = (
+				BF865B34197C632200A128AD /* Labels */,
 				BF277996196BB9D7005D4838 /* Forms */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
 				2CBA46C21965DF6800C6BEDF /* APIs */,
@@ -248,6 +299,7 @@
 				2CBA469F1965DE3A00C6BEDF /* AppDelegate.h */,
 				2CBA46A01965DE3A00C6BEDF /* AppDelegate.m */,
 				2CBA46A21965DE3A00C6BEDF /* Images.xcassets */,
+				BF865B15197C5D0100A128AD /* Resources */,
 				2CBA46971965DE3A00C6BEDF /* Supporting Files */,
 			);
 			path = MAF;
@@ -422,6 +474,50 @@
 			name = Forms;
 			sourceTree = "<group>";
 		};
+		BF865B15197C5D0100A128AD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BF865B00197C5CE500A128AD /* OpenSans-Bold.ttf */,
+				BF865B01197C5CE500A128AD /* OpenSans-BoldItalic.ttf */,
+				BF865B02197C5CE500A128AD /* OpenSans-ExtraBold.ttf */,
+				BF865B03197C5CE500A128AD /* OpenSans-ExtraBoldItalic.ttf */,
+				BF865B04197C5CE500A128AD /* OpenSans-Italic.ttf */,
+				BF865B05197C5CE500A128AD /* OpenSans-Light.ttf */,
+				BF865B06197C5CE500A128AD /* OpenSans-LightItalic.ttf */,
+				BF865B07197C5CE500A128AD /* OpenSans-Regular.ttf */,
+				BF865B08197C5CE500A128AD /* OpenSans-Semibold.ttf */,
+				BF865B09197C5CE500A128AD /* OpenSans-SemiboldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BF865B34197C632200A128AD /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				BF865B16197C5F2100A128AD /* OpenSansRegularLabel.h */,
+				BF865B17197C5F2100A128AD /* OpenSansRegularLabel.m */,
+				BF865B19197C615D00A128AD /* OpenSansBoldLabel.h */,
+				BF865B1A197C615D00A128AD /* OpenSansBoldLabel.m */,
+				BF865B1C197C619200A128AD /* OpenSansBoldItalicLabel.h */,
+				BF865B1D197C619200A128AD /* OpenSansBoldItalicLabel.m */,
+				BF865B1F197C61C500A128AD /* OpenSansExtraBoldLabel.h */,
+				BF865B20197C61C500A128AD /* OpenSansExtraBoldLabel.m */,
+				BF865B25197C622100A128AD /* OpenSansExtraBoldItalicLabel.h */,
+				BF865B26197C622100A128AD /* OpenSansExtraBoldItalicLabel.m */,
+				BF865B22197C61FF00A128AD /* OpenSansItalicLabel.h */,
+				BF865B23197C61FF00A128AD /* OpenSansItalicLabel.m */,
+				BF865B28197C624800A128AD /* OpenSansLightLabel.h */,
+				BF865B29197C624800A128AD /* OpenSansLightLabel.m */,
+				BF865B2B197C626800A128AD /* OpenSansLightItalicLabel.h */,
+				BF865B2C197C626800A128AD /* OpenSansLightItalicLabel.m */,
+				BF865B2E197C627B00A128AD /* OpenSansSemiBoldLabel.h */,
+				BF865B2F197C627B00A128AD /* OpenSansSemiBoldLabel.m */,
+				BF865B31197C629800A128AD /* OpenSansSemiBoldItalicLabel.h */,
+				BF865B32197C629800A128AD /* OpenSansSemiBoldItalicLabel.m */,
+			);
+			name = Labels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -500,20 +596,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C00F0D11972038F007561D9 /* ServicesConfig.plist in Resources */,
+				BF865B10197C5CE500A128AD /* OpenSans-LightItalic.ttf in Resources */,
 				2CD7C1F91975FD1B007F6CB8 /* GoalCardView.xib in Resources */,
 				2CC35A19197B1D9500716B37 /* LendingSocialCell.xib in Resources */,
+				BF865B0A197C5CE500A128AD /* OpenSans-Bold.ttf in Resources */,
 				BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */,
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
+				BF865B0E197C5CE500A128AD /* OpenSans-Italic.ttf in Resources */,
+				BF865B0B197C5CE500A128AD /* OpenSans-BoldItalic.ttf in Resources */,
+				BF865B0D197C5CE500A128AD /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
 				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
 				2C667486197449B000434802 /* (null) in Resources */,
+				BF865B0C197C5CE500A128AD /* OpenSans-ExtraBold.ttf in Resources */,
+				BF865B13197C5CE500A128AD /* OpenSans-SemiboldItalic.ttf in Resources */,
 				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BAFB2C1D1975D39400A11C56 /* CreateTransactionViewController.xib in Resources */,
 				2CD7C1F11975FBBA007F6CB8 /* CashOverView.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
+				BF865B12197C5CE500A128AD /* OpenSans-Semibold.ttf in Resources */,
 				2C84014519787F69008D9D73 /* GoalStatsView.xib in Resources */,
 				BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */,
+				BF865B0F197C5CE500A128AD /* OpenSans-Light.ttf in Resources */,
+				BF865B11197C5CE500A128AD /* OpenSans-Regular.ttf in Resources */,
 				BF1B3000197757AB00F68B2E /* TransactionsSummaryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,11 +678,15 @@
 				BA77DF261977348F00FD0F8A /* MyPickerView.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BA77DF281977348F00FD0F8A /* MagnifierView.m in Sources */,
+				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
 				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
+				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
 				2CC35A23197B2CA700716B37 /* CollectionViewTwoCardLayout.m in Sources */,
 				BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */,
+				BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */,
+				BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */,
 				BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */,
 				2CC35A15197B1D3100716B37 /* LendingSocialCell.m in Sources */,
 				BF1B2FFB19770D4000F68B2E /* TransactionCategoryManager.m in Sources */,
@@ -584,10 +694,13 @@
 				2CD7C1F71975FD08007F6CB8 /* GoalCardView.m in Sources */,
 				2C84014819787FB4008D9D73 /* GoalStatsView.m in Sources */,
 				2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */,
+				BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
 				BAFB2C1C1975D39400A11C56 /* CreateTransactionViewController.m in Sources */,
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,
+				BF865B21197C61C500A128AD /* OpenSansExtraBoldLabel.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
+				BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */,
 				BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
 				BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */,
@@ -598,7 +711,10 @@
 				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
 				BFBDEED6197B459300FE4348 /* GoalSet.m in Sources */,
 				BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */,
+				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryTableViewCell.m in Sources */,
+				BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */,
+				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
 				2CD7C1EF1975FBA1007F6CB8 /* CashOverView.m in Sources */,
 			);
