@@ -179,7 +179,7 @@
 
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(-60, 10, 20, 10);
+    return UIEdgeInsetsMake(-40, 10, 20, 10);
 }
 
 #pragma mark - Collection View Layout Delegates

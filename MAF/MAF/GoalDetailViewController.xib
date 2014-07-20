@@ -6,9 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalDetailViewController">
             <connections>
+                <outlet property="lendingPhotoCollectionView" destination="A3Z-vg-QjE" id="f5a-Z3-Uo0"/>
+                <outlet property="lendingPhotoView" destination="458-Fn-Jqi" id="DUv-DH-cIr"/>
                 <outlet property="makePaymentButton" destination="XPi-TW-7kz" id="kao-pf-qbM"/>
+                <outlet property="milestoneProgressView" destination="auP-AN-zfz" id="MCa-37-Tsd"/>
                 <outlet property="paymentAmountLabel" destination="ftU-Nh-4d0" id="ELu-XW-MPg"/>
                 <outlet property="paymentsMadeLabel" destination="i8p-6y-WCB" id="IDl-8X-fHz"/>
+                <outlet property="photoCollectionPageControl" destination="g4d-hb-5E4" id="Jbk-FN-Wnw"/>
                 <outlet property="timeTilDueLabel" destination="2Ks-U2-Bck" id="DhP-W1-VCz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

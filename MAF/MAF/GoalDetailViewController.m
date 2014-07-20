@@ -15,11 +15,19 @@
 #import "Utilities.h"
 
 @interface GoalDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *makePaymentButton;
+// Lending Circle View Outlets
+@property (weak, nonatomic) IBOutlet UICollectionView *lendingPhotoCollectionView;
+@property (weak, nonatomic) IBOutlet UIPageControl *photoCollectionPageControl;
+@property (weak, nonatomic) IBOutlet UIView *lendingPhotoView;
 
+// Payment Reminder View Outlets
 @property (weak, nonatomic) IBOutlet UILabel *paymentAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeTilDueLabel;
+
+// Make Milestone Progress View Outlets
+@property (weak, nonatomic) IBOutlet UIButton *makePaymentButton;
 @property (weak, nonatomic) IBOutlet UILabel *paymentsMadeLabel;
+@property (weak, nonatomic) IBOutlet UIView *milestoneProgressView;
 
 - (IBAction)flipTileView:(id)sender;
 - (IBAction)makePayment:(id)sender;

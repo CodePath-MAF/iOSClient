@@ -28,7 +28,8 @@
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
         UIView *view = objects[0];
         
-        view.frame = self.frame; // (3)
+        // adjust frame and setting mask
+        view.frame = self.frame;
         view.autoresizingMask = self.autoresizingMask;
         
         [self addSubview:view];
