@@ -13,8 +13,10 @@
                 <outlet property="dateView" destination="Dcy-oV-ERM" id="L3L-Xv-cQV"/>
                 <outlet property="finishedView" destination="ajX-3s-g1H" id="JV8-yH-3mE"/>
                 <outlet property="formContainer" destination="0Mq-7K-cim" id="9W4-G1-wh7"/>
+                <outlet property="gainedButton" destination="BW4-fw-s3T" id="QeA-Ft-HLX"/>
                 <outlet property="nameText" destination="VtQ-or-azi" id="j6i-Fp-otC"/>
                 <outlet property="nameView" destination="Ti5-hY-pRo" id="Dz2-zW-3CS"/>
+                <outlet property="spentButton" destination="E0f-VT-Z6j" id="fmh-iY-AkX"/>
                 <outlet property="transactionProgress" destination="9wr-zM-1Pq" id="tMt-BK-21H"/>
                 <outlet property="transactionProgressHeight" destination="Pc8-JA-gww" id="JdH-Ga-MBW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -71,6 +73,26 @@
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-VT-Z6j">
+                    <rect key="frame" x="20" y="150" width="41" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Spent">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onSpent:" destination="-1" eventType="touchUpInside" id="bMG-Tv-gOq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BW4-fw-s3T">
+                    <rect key="frame" x="136" y="150" width="49" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Gained">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onGained:" destination="-1" eventType="touchUpInside" id="Zqp-dD-00V"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

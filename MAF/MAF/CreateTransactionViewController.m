@@ -19,6 +19,12 @@
 @property (weak, nonatomic) IBOutlet UIView *formContainer;
 @property (strong, nonatomic) IBOutlet UIView *amountView;
 @property (weak, nonatomic) IBOutlet UITextField *amountText;
+@property (nonatomic, assign) BOOL spent;
+@property (weak, nonatomic) IBOutlet UIButton *spentButton;
+@property (weak, nonatomic) IBOutlet UIButton *gainedButton;
+- (IBAction)onSpent:(id)sender;
+- (IBAction)onGained:(id)sender;
+
 - (IBAction)amountNext:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *nameView;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
@@ -81,6 +87,7 @@
     self.nameText.delegate = self;
     self.transactionProgress.rowHeight = 50;
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
+    
     UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
     self.formContainer.backgroundColor = lightGreen;
     self.amountView.backgroundColor = lightGreen;
@@ -89,6 +96,7 @@
     self.dateView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
     self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
+    
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
     self.cellNumber=2;
@@ -98,6 +106,10 @@
         self.typePicker.dataSource=self;
         self.typePicker.backgroundColor = lightGreen;
     }
+    
+    [self.spentButton setEnabled:NO];
+    self.spent = YES;
+    
     [self changeProgress:self.currentViewIndex];
     // Do any additional setup after loading the view from its nib.
 }
@@ -187,6 +199,31 @@
     return @[mainLabel, subLabel];
 }
 
+- (void)toggleSpent {
+    if (self.spent) {
+        self.spent = NO;
+    } else {
+        self.spent = YES;
+    }
+}
+
+- (IBAction)onSpent:(id)sender {
+    if (!self.spent){
+        [self toggleSpent];
+        [self.spentButton setEnabled:NO];
+        [self.gainedButton setEnabled:YES];
+    }
+}
+
+- (IBAction)onGained:(id)sender {
+    if (self.spent) {
+        [self toggleSpent];
+        [self.spentButton setEnabled:YES];
+        [self.gainedButton setEnabled:NO];
+    }
+}
+
+
 - (IBAction)amountNext:(id)sender {
     [self changeProgress:1];
 }
@@ -211,7 +248,12 @@
 - (IBAction)finished:(id)sender {
     
     TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
-    [[TransactionManager createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeDebit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+    enum TransactionType type = TransactionTypeDebit;
+    if (!self.spent){
+        type = TransactionTypeCredit;
+    }
+
+    [[TransactionManager createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
