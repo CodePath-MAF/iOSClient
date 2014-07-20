@@ -17,6 +17,8 @@
 
 #import "Utilities.h"
 
+#warning TODO make sure this is only showing TransactionTypeCredit
+
 @interface TransactionsTableViewController ()
 
 @property (nonatomic, strong) TransactionsSet *transactionsSet;

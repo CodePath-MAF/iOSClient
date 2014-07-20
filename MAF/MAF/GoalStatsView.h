@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TransactionsSet.h"
 
 @interface GoalStatsView : UIView
 
-@property (nonatomic, strong) NSNumber *totalSpentToday;
-@property (nonatomic, strong) NSNumber *totalMonthlyGoal;
+@property (nonatomic, strong) TransactionsSet *transactionSet;
 
 @end

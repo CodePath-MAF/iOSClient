@@ -7,25 +7,26 @@
 //
 
 #import "GoalStatsView.h"
+#import "TransactionsSet.h"
 
 @interface GoalStatsView ()
 
 @property (weak, nonatomic) IBOutlet UILabel *totalSpentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *monthlyGoalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalSavedLabel;
 
 @end
 
 @implementation GoalStatsView
 
-- (void)setTotalMonthlyGoal:(NSNumber *)totalMonthlyGoal {
-    _totalMonthlyGoal = totalMonthlyGoal;
-    self.monthlyGoalLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalMonthlyGoal floatValue]];
-}
-
-- (void)setTotalSpentToday:(NSNumber *)totalSpentToday {
-    _totalSpentToday = totalSpentToday;
-    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalSpentToday floatValue]];
-}
+//- (void)setTotalMonthlyGoal:(NSNumber *)totalMonthlyGoal {
+//    _totalMonthlyGoal = totalMonthlyGoal;
+//    self.monthlyGoalLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalMonthlyGoal floatValue]];
+//}
+//
+//- (void)setTotalSpentToday:(NSNumber *)totalSpentToday {
+//    _totalSpentToday = totalSpentToday;
+//    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalSpentToday floatValue]];
+//}
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -38,6 +39,12 @@
         [self addSubview:objects[0]];
     }
     return self;
+}
+
+- (void)setTransactionSet:(TransactionsSet *)transactionSet {
+    _transactionSet = transactionSet;
+    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [transactionSet spentToday]];
+    self.totalSavedLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [transactionSet savedToday]];
 }
 
 @end

@@ -15,6 +15,8 @@
 #import "SignupViewController.h"
 
 #import "TransactionsTableViewController.h"
+#import "TransactionManager.h"
+#import "TransactionsSet.h"
 
 #import "CreateGoalViewController.h"
 #import "GoalDetailViewController.h"
@@ -66,12 +68,17 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    // Set Up Goal Stats View
-    self.goalStatsView.totalMonthlyGoal = @(92.20); // TODO set this for realz
-    self.goalStatsView.totalSpentToday = @(16.23); // TODO set this for realz
-    
     // Set Up Cash OverView
     self.cashOverView.delegate = self;
+    
+    [[TransactionManager fetchTransactionsForUser:[PFUser currentUser]] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error fetching transactions for user");
+        } else {
+            self.goalStatsView.transactionSet = [[TransactionsSet alloc] initWithTransactions:task.result];
+        }
+        return task;
+    }];
     
     // Stub Goals Cell
     UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
