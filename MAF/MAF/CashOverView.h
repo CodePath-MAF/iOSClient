@@ -18,6 +18,6 @@
 @interface CashOverView : UIView
 
 @property (nonatomic, weak) id <CashOverViewDelegate>delegate;
-@property (nonatomic, strong) NSNumber *totalCash;
+@property (nonatomic, assign) float totalCash;
 
 @end

@@ -12,6 +12,7 @@
 #import "TransactionCategory.h"
 #import "TransactionManager.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface CreateTransactionViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
@@ -210,7 +211,7 @@
 - (IBAction)finished:(id)sender {
     
     TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
-    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeDebit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+    [[TransactionManager createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeDebit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);

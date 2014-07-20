@@ -24,6 +24,7 @@
 #import "GoalManager.h"
 #import "GoalStatsView.h"
 #import "CashOverView.h"
+#import "User.h"
 
 @interface DashboardViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CashOverViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -51,8 +52,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.parentViewController.title = @"Dashboard";
-    
     // Set up Nav Bar Buttons
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
     
@@ -69,9 +68,10 @@
     self.collectionView.dataSource = self;
     
     // Set Up Cash OverView
+    self.cashOverView.totalCash = [[User currentUser] totalCash];
     self.cashOverView.delegate = self;
     
-    [[TransactionManager fetchTransactionsForUser:[PFUser currentUser]] continueWithBlock:^id(BFTask *task) {
+    [[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error fetching transactions for user");
         } else {
@@ -99,7 +99,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (![PFUser currentUser]) {
+    if (![User currentUser]) {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         [loginViewController setDelegate:self];
         
@@ -131,7 +131,7 @@
 
 - (BFTask *)fetchData {
     NSLog(@"Fetching the Dataz");
-    return [GoalManager fetchGoalsForUser:[PFUser currentUser]];
+    return [GoalManager fetchGoalsForUser:[User currentUser]];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -250,7 +250,7 @@
     [[[UIAlertView alloc] initWithTitle:@"Login Failed" message:[NSString stringWithFormat:@"%@", error.userInfo[@"error"]] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
 }
 
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(User *)user {
     // TODO send a notification via NotificationCenter that the user was logged in
     
     [logInController dismissViewControllerAnimated:YES completion:^{
@@ -280,7 +280,7 @@
     [[[UIAlertView alloc] initWithTitle:@"Signup Failed" message:[NSString stringWithFormat:@"%@", error.userInfo[@"error"]] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
 }
 
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(User *)user {
     // TODO send a notification via NotificationCenter that the user was signed up
   
     [signUpController dismissViewControllerAnimated:YES completion:^{

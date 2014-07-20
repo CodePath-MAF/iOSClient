@@ -11,17 +11,18 @@
 #import <Foundation/Foundation.h>
 
 #import "Transaction.h"
+#import "User.h"
 
 @interface TransactionManager : NSObject
 
-+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
++ (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
 
 + (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
 
 + (BFTask *)deleteTransaction:(NSString *)transactionId;
 
-+ (BFTask *)fetchTransactionsForUser:(PFUser *)user;
++ (BFTask *)fetchTransactionsForUser:(User *)user;
 
-+ (BFTask *)fetchTransactionsForUser:(PFUser *)user ofType:(enum TransactionType)type;
++ (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type;
 
 @end

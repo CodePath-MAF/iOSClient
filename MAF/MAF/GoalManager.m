@@ -11,10 +11,11 @@
 
 #import "GoalManager.h"
 #import "Goal.h"
+#import "User.h"
 
 @implementation GoalManager
 
-+ (BFTask *)createGoalForUser:(PFUser *)user name:(NSString *)name detail:(NSString *)detail type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
++ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name detail:(NSString *)detail type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
     
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
@@ -84,7 +85,7 @@
     return task.task;
 }
 
-+ (BFTask *)fetchGoalsForUser:(PFUser *)user {
++ (BFTask *)fetchGoalsForUser:(User *)user {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Goal query];
     [query whereKey:@"user" equalTo:user];

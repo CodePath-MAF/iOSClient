@@ -14,6 +14,7 @@
 #import "TransactionsSet.h"
 #import "TransactionCategoryManager.h"
 #import "CreateTransactionViewController.h"
+#import "User.h"
 
 #import "Utilities.h"
 
@@ -68,7 +69,7 @@
 }
 
 - (BFTask *)fetchData {
-    return [TransactionManager fetchTransactionsForUser:[PFUser currentUser]];
+    return [TransactionManager fetchTransactionsForUser:[User currentUser]];
 }
 
 #pragma mark - NavBar Methods

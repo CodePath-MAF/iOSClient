@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "User.h"
 
 NS_ENUM(NSInteger, GoalType) {
     GoalTypeLoan = 1,
@@ -29,7 +30,7 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
 
 @interface Goal : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, assign) enum GoalType type;

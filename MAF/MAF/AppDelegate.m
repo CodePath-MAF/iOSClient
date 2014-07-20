@@ -15,6 +15,7 @@
 #import "Transaction.h"
 #import "TransactionCategory.h"
 #import "TransactionCategoryManager.h"
+#import "User.h"
 
 @implementation AppDelegate
 
@@ -53,6 +54,7 @@
     [Goal registerSubclass];
     [Transaction registerSubclass];
     [TransactionCategory registerSubclass];
+    [User registerSubclass];
     [Parse setApplicationId:PARSE_APP_ID
               clientKey:PARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

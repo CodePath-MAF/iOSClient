@@ -36,9 +36,10 @@
     return self;
 }
 
-- (void)setTotalCash:(NSNumber *)totalCash {
+- (void)setTotalCash:(float)totalCash {
     _totalCash = totalCash;
-    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalCash floatValue]];
+#warning TODO we should maybe make this font red
+    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", totalCash];
 }
 
 - (void)onTapView:(id)sender {

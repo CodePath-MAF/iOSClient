@@ -12,10 +12,11 @@
 #import "Transaction.h"
 #import "TransactionCategory.h"
 #import "TransactionManager.h"
+#import "User.h"
 
 @implementation TransactionManager
 
-+ (BFTask *)createTransactionForUser:(PFUser *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
++ (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
@@ -25,17 +26,29 @@
     }
     transaction.amount = amount;
     transaction.detail = detail;
-//    transaction.name = name;
     transaction.type = type;
     if (categoryId != nil) {
         transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];
     }
     transaction.transactionDate = transactionDate;
-    [transaction saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    
+    if (type == TransactionTypeDebit) {
+        user.totalCash -= amount;
+    } else {
+        user.totalCash += amount;
+    }
+
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];
         } else {
-            [task setResult:transaction];
+            [transaction saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    [task setError:error];
+                } else {
+                    [task setResult:transaction];
+                }
+            }];
         }
     }];
     return task.task;
@@ -79,7 +92,7 @@
     return task.task;
 }
 
-+ (BFTask *)fetchTransactionsForUser:(PFUser *)user {
++ (BFTask *)fetchTransactionsForUser:(User *)user {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
     [query whereKey:@"user" equalTo:user];
@@ -96,7 +109,7 @@
     return task.task;
 }
 
-+ (BFTask *)fetchTransactionsForUser:(PFUser *)user ofType:(enum TransactionType)type {
++ (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
     [query whereKey:@"user" equalTo:user];

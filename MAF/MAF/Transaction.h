@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "Goal.h"
 #import "TransactionCategory.h"
+#import "User.h"
 
 NS_ENUM(NSInteger, TransactionType) {
     TransactionTypeDebit = 1,
@@ -17,7 +18,7 @@ NS_ENUM(NSInteger, TransactionType) {
 
 @interface Transaction : PFObject <PFSubclassing>
 
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) User *user;
 @property (nonatomic, strong) Goal *goal;
 @property (nonatomic, assign) float amount;
 @property (nonatomic, strong) NSString *detail;
