@@ -65,6 +65,7 @@
     [[TransactionCategoryManager instance] fetchCategories];
     DashboardViewController *dashboard = [[DashboardViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dashboard];
+    navController.navigationBar.translucent = NO;
     self.window.rootViewController = navController;
 
     self.window.backgroundColor = [UIColor whiteColor];

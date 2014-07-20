@@ -33,7 +33,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
-        NSLog(@"Init with Coder GoalStatsView");
         UINib *nib = [UINib nibWithNibName:@"GoalStatsView" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
         [self addSubview:objects[0]];

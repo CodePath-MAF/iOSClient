@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CashOverView">
             <connections>
-                <outlet property="totalCashLabel" destination="ZPv-k2-0Gs" id="Xj4-Re-lA6"/>
+                <outlet property="totalCashLabel" destination="ZPv-k2-0Gs" id="t9m-Dm-9me"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
