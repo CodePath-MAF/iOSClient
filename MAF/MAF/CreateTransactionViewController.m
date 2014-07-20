@@ -210,7 +210,7 @@
 - (IBAction)finished:(id)sender {
     
     TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
-    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeCredit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+    [[TransactionManager createTransactionForUser:[PFUser currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeDebit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
