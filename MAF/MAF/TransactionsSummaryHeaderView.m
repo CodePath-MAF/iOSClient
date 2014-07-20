@@ -10,17 +10,18 @@
 
 #import "OpenSansSemiBoldLabel.h"
 
-#import "TransactionsSummaryTableViewCell.h"
+#import "TransactionsSummaryHeaderView.h"
 #import "TransactionCategoryManager.h"
 #import "Utilities.h"
 #import "PNStackedBarChartDataItem.h"
 #import "User.h"
 
-@interface TransactionsSummaryTableViewCell() {
+@interface TransactionsSummaryHeaderView() {
     NSDictionary *_transactionsTotalByCategoryByDate;
     float _maxValue;
     NSDateFormatter *_dateFormatter;
 }
+
 
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentThisWeekTotalLabel;
 
@@ -33,32 +34,41 @@
 
 @end
 
-@implementation TransactionsSummaryTableViewCell
+@implementation TransactionsSummaryHeaderView
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"TransactionsSummaryHeaderView" owner:self options:nil] lastObject];
+    }
+    return self;
+}
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
-    
-    _transactionsTotalByCategoryByDate = [self.transactionsSet transactionsTotalByCategoryByDate];
-    _maxValue = 0;
-    
-    NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
-    NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
-    _dateFormatter = [[NSDateFormatter alloc] init];
-#warning make sure the chart x labels support mutlilines
-    [_dateFormatter setDateFormat:@"EEE\r(M/d)"];
-    NSMutableArray *chartXLabels = [[NSMutableArray alloc] initWithObjects:[_dateFormatter stringFromDate:today], nil];
-    NSMutableArray *chartDataItems = [[NSMutableArray alloc] initWithObjects:[self getDataItemsForDate:today], nil];
-    
-    for (NSDate *previousDate in previousDates) {
-        [chartXLabels addObject:[_dateFormatter stringFromDate:previousDate]];
-        [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
+    if (self.transactionsSet) {
+        _transactionsTotalByCategoryByDate = [self.transactionsSet transactionsTotalByCategoryByDate];
+        _maxValue = 0;
+        
+        NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
+        NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
+        _dateFormatter = [[NSDateFormatter alloc] init];
+    #warning make sure the chart x labels support mutlilines
+        [_dateFormatter setDateFormat:@"EEE\r(M/d)"];
+        NSMutableArray *chartXLabels = [[NSMutableArray alloc] initWithObjects:[_dateFormatter stringFromDate:today], nil];
+        NSMutableArray *chartDataItems = [[NSMutableArray alloc] initWithObjects:[self getDataItemsForDate:today], nil];
+        
+        for (NSDate *previousDate in previousDates) {
+            [chartXLabels addObject:[_dateFormatter stringFromDate:previousDate]];
+            [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
+        }
+        
+        self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
+        [self.transactionsCategoryChart setXLabels:chartXLabels];
+        [self.transactionsCategoryChart setYMaxValue:_maxValue];
+        [self.transactionsCategoryChart strokeChart];
+        [self addSubview:self.transactionsCategoryChart];
     }
-    
-    self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
-    [self.transactionsCategoryChart setXLabels:chartXLabels];
-    [self.transactionsCategoryChart setYMaxValue:_maxValue];
-    [self.transactionsCategoryChart strokeChart];
-    [self addSubview:self.transactionsCategoryChart];
 }
 
 - (NSArray *)getDataItemsForDate:(NSDate *)date {

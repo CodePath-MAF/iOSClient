@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TransactionsSet.h"
 
-@interface TransactionsSummaryTableViewCell : UITableViewCell
+@interface TransactionsSummaryHeaderView : UIView
 
 @property (strong, nonatomic) TransactionsSet *transactionsSet;
 
