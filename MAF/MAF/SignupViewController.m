@@ -18,13 +18,13 @@
     self = [super init];
     if (self) {
         self.fields = PFSignUpFieldsUsernameAndPassword | PFSignUpFieldsAdditional | PFSignUpFieldsDismissButton;
+        self.emailAsUsername = YES;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.signUpView.usernameField setPlaceholder:@"Email"];
     [self.signUpView.additionalField setPlaceholder:@"Phone Number"];
 }
 
