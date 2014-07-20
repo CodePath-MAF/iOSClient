@@ -340,6 +340,7 @@
 		2CBA46BF1965DF4F00C6BEDF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CC35A1D197B2C5B00716B37 /* CollectionViewLayouts */,
 				BF144313196A231100C2BB38 /* LoginViewController.h */,
 				BF144314196A231100C2BB38 /* LoginViewController.m */,
 				BF14431E196A293600C2BB38 /* SignupViewController.h */,
@@ -365,7 +366,6 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2CC35A1D197B2C5B00716B37 /* CollectionView */,
 				BA77DF1F1977347800FD0F8A /* PickerView */,
 				BF14434E196A95D600C2BB38 /* TransactionTableViewCell.h */,
 				BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */,
@@ -442,13 +442,13 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		2CC35A1D197B2C5B00716B37 /* CollectionView */ = {
+		2CC35A1D197B2C5B00716B37 /* CollectionViewLayouts */ = {
 			isa = PBXGroup;
 			children = (
 				2CC35A21197B2CA700716B37 /* CollectionViewTwoCardLayout.h */,
 				2CC35A22197B2CA700716B37 /* CollectionViewTwoCardLayout.m */,
 			);
-			name = CollectionView;
+			name = CollectionViewLayouts;
 			sourceTree = "<group>";
 		};
 		BA77DF1F1977347800FD0F8A /* PickerView */ = {

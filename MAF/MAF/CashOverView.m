@@ -23,12 +23,13 @@
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
         [self addGestureRecognizer:tapGestureRecognizer];
         NSLog(@"Init with Coder CashOverView");
-        // Initialization code
+        
+        // Grab the view in the nib
         UINib *nib = [UINib nibWithNibName:@"CashOverView" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
         UIView *view = objects[0];
         
-        // adjust frame and setting mask
+        // adjust frame and set resizing mask
         view.frame = self.frame;
         view.autoresizingMask = self.autoresizingMask;
         

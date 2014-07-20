@@ -135,16 +135,18 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [self.goals count];
+    return 2;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 1;
+    NSInteger sections = [self.goals count]/2 + [self.goals count]%2;
+    return sections;
 }
 
 - (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
-    cell.goal = self.goals[indexPath.row];
+    // TODO adjust for the section
+    cell.goal = self.goals[indexPath.item];
     return cell;
 }
 
@@ -172,13 +174,6 @@
 //- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 //    return NO;
 //}
-
-#pragma mark – UICollectionViewDelegateFlowLayout
-
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(-40, 10, 20, 10);
-}
 
 #pragma mark - Collection View Layout Delegates
 
