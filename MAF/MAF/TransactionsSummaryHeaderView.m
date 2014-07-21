@@ -75,20 +75,22 @@
     NSDictionary *categoriesForDate = _transactionsTotalByCategoryByDate[date];
     NSArray *categories = [[TransactionCategoryManager instance] categories];
     NSMutableArray *dataItems = [[NSMutableArray alloc] init];
+    float dateTotal = 0;
     for (TransactionCategory *category in categories) {
         float categoryTotal = [(NSNumber *)[categoriesForDate objectForKey:category.name] floatValue] ?: 0;
         if (categoryTotal) {
-            if (categoryTotal > _maxValue) {
-                _maxValue = categoryTotal;
-            }
+            dateTotal += categoryTotal;
             PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:categoryTotal color:[[TransactionCategoryManager instance] colorForCategory:category]];
             [dataItems addObject:item];
         }
     }
+    if (dateTotal > _maxValue) {
+        _maxValue = dateTotal;
+    }
     return dataItems;
     
 }
-                                    
+
 - (void)setTransactionsSet:(TransactionsSet *)transactionsSet {
     _transactionsSet = transactionsSet;
     self.spentThisWeekTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet transactionsTotalForCurrentWeek]];
