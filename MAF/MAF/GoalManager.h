@@ -13,7 +13,7 @@
 
 @interface GoalManager : NSObject
 
-+ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name detail:(NSString *)detail type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate;
++ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval goalDate:(NSDate *)goalDate;
 
 + (BFTask *)completeGoal:(NSString *)goalId;
 

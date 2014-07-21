@@ -10,9 +10,8 @@
 #import "User.h"
 
 NS_ENUM(NSInteger, GoalType) {
-    GoalTypeLoan = 1,
-    GoalTypeDeposit = 2,
-    GoalTypeVacation = 3,
+    GoalTypeLendingCircle = 1,
+    GoalTypeGoal = 2,
 };
 
 NS_ENUM(NSInteger, GoalStatus) {
@@ -32,12 +31,11 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *detail;
 @property (nonatomic, assign) enum GoalType type;
 @property (nonatomic, assign) enum GoalStatus status;
 @property (nonatomic, assign) enum GoalPaymentInterval paymentInterval;
-@property (nonatomic, assign) NSNumber *total;
-@property (nonatomic, assign) NSNumber *paymentAmount;
+@property (nonatomic, assign) float total;
+@property (nonatomic, assign) float paymentAmount;
 @property (nonatomic, assign) NSInteger numPayments;
 @property (nonatomic, strong) NSDate *targetDate;
 

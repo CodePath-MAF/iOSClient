@@ -46,7 +46,6 @@
 		BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144322196A2A6600C2BB38 /* DashboardViewController.m */; };
 		BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144323196A2A6600C2BB38 /* DashboardViewController.xib */; };
 		BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144327196A3BB400C2BB38 /* GoalManager.m */; };
-		BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432A196A43BF00C2BB38 /* TransactionManager.m */; };
 		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
 		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
 		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
@@ -55,7 +54,6 @@
 		BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144354196A963000C2BB38 /* TransactionsTableViewController.m */; };
 		BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */; };
 		BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FF719770B1100F68B2E /* TransactionCategory.m */; };
-		BF1B2FFB19770D4000F68B2E /* TransactionCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FFA19770D4000F68B2E /* TransactionCategoryManager.m */; };
 		BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FFD197757AB00F68B2E /* TransactionsSummaryHeaderView.m */; };
 		BF1B3000197757AB00F68B2E /* TransactionsSummaryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1B2FFE197757AB00F68B2E /* TransactionsSummaryHeaderView.xib */; };
 		BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B300219775E6200F68B2E /* TransactionsSet.m */; };
@@ -85,6 +83,8 @@
 		BF865B48197C682A00A128AD /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF865B3E197C682A00A128AD /* OpenSans-SemiboldItalic.ttf */; };
 		BF865B4D197C90DC00A128AD /* TransactionsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B4C197C90DC00A128AD /* TransactionsHeaderView.m */; };
 		BF865B4F197C90F500A128AD /* TransactionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF865B4E197C90F500A128AD /* TransactionsHeaderView.xib */; };
+		BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B52197CD4D700A128AD /* TransactionManager.m */; };
+		BF865B56197CD4D700A128AD /* TransactionCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */; };
 		BFBDEED9197B6B3700FE4348 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED8197B6B3700FE4348 /* User.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
@@ -160,8 +160,6 @@
 		BF144323196A2A6600C2BB38 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		BF144326196A3BB400C2BB38 /* GoalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalManager.h; sourceTree = "<group>"; };
 		BF144327196A3BB400C2BB38 /* GoalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalManager.m; sourceTree = "<group>"; };
-		BF144329196A43BF00C2BB38 /* TransactionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionManager.h; sourceTree = "<group>"; };
-		BF14432A196A43BF00C2BB38 /* TransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
 		BF14432C196A471300C2BB38 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
 		BF14432D196A471300C2BB38 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		BF14432F196A4FAD00C2BB38 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
@@ -176,8 +174,6 @@
 		BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsTableViewController.xib; sourceTree = "<group>"; };
 		BF1B2FF619770B1100F68B2E /* TransactionCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCategory.h; sourceTree = "<group>"; };
 		BF1B2FF719770B1100F68B2E /* TransactionCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCategory.m; sourceTree = "<group>"; };
-		BF1B2FF919770D4000F68B2E /* TransactionCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCategoryManager.h; sourceTree = "<group>"; };
-		BF1B2FFA19770D4000F68B2E /* TransactionCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCategoryManager.m; sourceTree = "<group>"; };
 		BF1B2FFC197757AB00F68B2E /* TransactionsSummaryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsSummaryHeaderView.h; sourceTree = "<group>"; };
 		BF1B2FFD197757AB00F68B2E /* TransactionsSummaryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsSummaryHeaderView.m; sourceTree = "<group>"; };
 		BF1B2FFE197757AB00F68B2E /* TransactionsSummaryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsSummaryHeaderView.xib; sourceTree = "<group>"; };
@@ -226,6 +222,10 @@
 		BF865B4B197C90DC00A128AD /* TransactionsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsHeaderView.h; sourceTree = "<group>"; };
 		BF865B4C197C90DC00A128AD /* TransactionsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsHeaderView.m; sourceTree = "<group>"; };
 		BF865B4E197C90F500A128AD /* TransactionsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsHeaderView.xib; sourceTree = "<group>"; };
+		BF865B51197CD4D700A128AD /* TransactionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionManager.h; sourceTree = "<group>"; };
+		BF865B52197CD4D700A128AD /* TransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
+		BF865B53197CD4D700A128AD /* TransactionCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCategoryManager.h; sourceTree = "<group>"; };
+		BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCategoryManager.m; sourceTree = "<group>"; };
 		BFBDEED7197B6B3700FE4348 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		BFBDEED8197B6B3700FE4348 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -395,12 +395,8 @@
 				BF14432D196A471300C2BB38 /* Goal.m */,
 				BF14432F196A4FAD00C2BB38 /* Transaction.h */,
 				BF144330196A4FAD00C2BB38 /* Transaction.m */,
-				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
-				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 				BF1B2FF619770B1100F68B2E /* TransactionCategory.h */,
 				BF1B2FF719770B1100F68B2E /* TransactionCategory.m */,
-				BF1B2FF919770D4000F68B2E /* TransactionCategoryManager.h */,
-				BF1B2FFA19770D4000F68B2E /* TransactionCategoryManager.m */,
 				BF1B300119775E6200F68B2E /* TransactionsSet.h */,
 				BF1B300219775E6200F68B2E /* TransactionsSet.m */,
 				BFBDEED7197B6B3700FE4348 /* User.h */,
@@ -414,10 +410,12 @@
 		2CBA46C21965DF6800C6BEDF /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				BF865B51197CD4D700A128AD /* TransactionManager.h */,
+				BF865B52197CD4D700A128AD /* TransactionManager.m */,
+				BF865B53197CD4D700A128AD /* TransactionCategoryManager.h */,
+				BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */,
 				BF144326196A3BB400C2BB38 /* GoalManager.h */,
 				BF144327196A3BB400C2BB38 /* GoalManager.m */,
-				BF144329196A43BF00C2BB38 /* TransactionManager.h */,
-				BF14432A196A43BF00C2BB38 /* TransactionManager.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -682,7 +680,6 @@
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BA77DF281977348F00FD0F8A /* MagnifierView.m in Sources */,
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
-				BF14432B196A43BF00C2BB38 /* TransactionManager.m in Sources */,
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
@@ -691,10 +688,10 @@
 				BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */,
 				BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */,
 				2CC35A15197B1D3100716B37 /* LendingSocialCell.m in Sources */,
-				BF1B2FFB19770D4000F68B2E /* TransactionCategoryManager.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2CD7C1F71975FD08007F6CB8 /* GoalCardView.m in Sources */,
 				2C84014819787FB4008D9D73 /* GoalStatsView.m in Sources */,
+				BF865B56197CD4D700A128AD /* TransactionCategoryManager.m in Sources */,
 				2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */,
 				BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
@@ -715,6 +712,7 @@
 				BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */,
 				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */,
+				BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */,
 				BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */,
 				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,

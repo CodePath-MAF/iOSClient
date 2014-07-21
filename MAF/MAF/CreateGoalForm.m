@@ -28,43 +28,28 @@ NSString *const kGoalCreate = @"create";
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalTotal rowType:XLFormRowDescriptorTypeNumber title:@"Amount"];
+    row.required = YES;
+    [section addFormRow:row];
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalName rowType:XLFormRowDescriptorTypeText title:@"Name"];
     row.required = YES;
     [section addFormRow:row];
-    
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalDetail rowType:XLFormRowDescriptorTypeText title:@"Detail"];
-    row.required = YES;
-    [section addFormRow:row];
-    
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalType rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Goal Type"];
-    row.required = YES;
-    row.selectorOptions = @[
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalTypeLoan) displayText:@"Loan"],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalTypeDeposit) displayText:@"Deposit"],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalTypeVacation) displayText:@"Vacation"],
-    ];
-    row.value = row.selectorOptions[0];
+
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalTargetDate rowType:XLFormRowDescriptorTypeDateInline title:@"Due Date"];
+    row.value = [NSDate new];
     [section addFormRow:row];
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalPaymentInterval rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Payment Interval"];
     row.required = YES;
     row.selectorOptions = @[
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalDaily) displayText:@"Daily"],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalWeekly) displayText:@"Weekly"],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiWeekly) displayText:@"Twice a week"],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalMonthly) displayText:@"Monthly"],
-    ];
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalDaily) displayText:@"Daily"],
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalWeekly) displayText:@"Weekly"],
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalBiWeekly) displayText:@"Twice a week"],
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(GoalPaymentIntervalMonthly) displayText:@"Monthly"],
+                            ];
     [section addFormRow:row];
-    
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalTotal rowType:XLFormRowDescriptorTypeInteger title:@"Total"];
-    row.required = YES;
-    [section addFormRow:row];
-    
-    
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGoalTargetDate rowType:XLFormRowDescriptorTypeDateInline title:@"Target Date"];
-    row.value = [NSDate new];
-    [section addFormRow:row];
-    
     
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];

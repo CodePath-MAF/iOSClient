@@ -17,7 +17,6 @@
 
 @dynamic user;
 @dynamic name;
-@dynamic detail;
 @dynamic type;
 @dynamic status;
 @dynamic paymentInterval;

@@ -12,23 +12,27 @@
 #import "GoalManager.h"
 #import "Goal.h"
 #import "User.h"
+#import "Utilities.h"
 
 @implementation GoalManager
 
-+ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name detail:(NSString *)detail type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval paymentAmount:(float)paymentAmount numPayments:(NSInteger)numPayments goalDate:(NSDate *)goalDate {
++ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval goalDate:(NSDate *)goalDate {
     
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
     
+    NSInteger daysToGoal = [Utilities daysBetweenDate:[NSDate new] andDate:goalDate];
+    float numMilestones = daysToGoal/paymentInterval;
+    float paymentAmount = total/numMilestones;
+    
     goal.user = user;
     goal.name = name;
-    goal.detail = detail;
     goal.type = type;
     goal.status = GoalStatusInProgress;
-    goal.total = [NSNumber numberWithFloat:total];
+    goal.total = total;
     goal.paymentInterval = paymentInterval;
-    goal.paymentAmount = [NSNumber numberWithFloat:paymentAmount];
-    goal.numPayments = numPayments;
+    goal.paymentAmount = paymentAmount;
+    goal.numPayments = numMilestones;
     goal.targetDate = goalDate;
     [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {

@@ -47,7 +47,7 @@
 
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
-    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", [self.goal.paymentAmount floatValue]];
+    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", self.goal.paymentAmount];
     self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
 
     NSString *timeTilString;

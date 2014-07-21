@@ -16,8 +16,7 @@
     return strippedDate;
 }
 
-+ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-{
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
   NSDate *fromDate;
   NSDate *toDate;
   
