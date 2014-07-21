@@ -50,7 +50,7 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:fromDate];
     NSInteger currentDay = [components day];
     
-    NSMutableArray *previousDates = [[NSMutableArray alloc] init];
+    NSMutableArray *previousDates = [[NSMutableArray alloc] initWithObjects:fromDate, nil];
     for (int i=1; i < numPreviousDates; i++) {
         [components setDay:currentDay - i];
         NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:components];

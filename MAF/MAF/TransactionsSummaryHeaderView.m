@@ -62,8 +62,6 @@
             [chartXLabels addObject:[_dateFormatter stringFromDate:previousDate]];
             [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
         }
-        [chartXLabels addObject:[_dateFormatter stringFromDate:today]];
-        [chartDataItems addObject:[self getDataItemsForDate:today]];
         
         self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
         [self.transactionsCategoryChart setXLabels:chartXLabels];

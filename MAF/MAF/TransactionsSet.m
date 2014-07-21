@@ -57,7 +57,7 @@
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
     NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
     NSDictionary *totalsDict = [self transactionsTotalByDate];
-    float total = [(NSNumber *)[totalsDict objectForKey:today] ?: [[NSNumber alloc] initWithFloat:0.f] floatValue];
+    float total = 0.f;
     for (NSDate *previousDate in previousDates) {
         float dateTotal = [(NSNumber *)[totalsDict objectForKey:previousDate] ?: [[NSNumber alloc] initWithFloat:0.f] floatValue];
         total += dateTotal;
