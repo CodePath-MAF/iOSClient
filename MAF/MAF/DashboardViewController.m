@@ -104,12 +104,6 @@
     UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
     
-    //    self.stubCell = [cellNib instantiateWithOwner:nil options:nil][0];
-    
-    //    [self.collectionView registerClass:[GoalCardView class] forCellWithReuseIdentifier:@"GoalCardView"];
-    
-    // Create Assets View (Collection Section Header)
-    
     // Load initial data
     [self.collectionView reloadData];
 }
