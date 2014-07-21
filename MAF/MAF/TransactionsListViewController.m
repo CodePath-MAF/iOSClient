@@ -49,8 +49,9 @@
     
     // Create Add Transaction Button
     UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createTransaction:)];
-    
+    [addTransactionButton setImageInsets:UIEdgeInsetsMake(10.0f, 0, 0, 0)];
     self.navigationItem.rightBarButtonItem = addTransactionButton;
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];

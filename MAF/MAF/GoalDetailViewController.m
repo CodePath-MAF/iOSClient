@@ -50,6 +50,7 @@
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", self.goal.paymentAmount];
     self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
 
+    self.title = self.goal.name;
     NSString *timeTilString;
     #warning Doesn't work TODO, get the formatting and countdown logic working
 //    if ([MHPrettyDate isToday:self.goal.targetDate]) {
@@ -91,7 +92,7 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
-
+    
     // Check if Lending Circle Goal Type
     //    self.goal.type ==
     self.lendingPhotoView.hidden = NO;

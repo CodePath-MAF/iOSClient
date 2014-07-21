@@ -106,13 +106,17 @@
 
 - (void)configureNavigationBar {
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    [profileButton setImageInsets:UIEdgeInsetsMake(10.0f, 0, 0, 0)];
+    
     [profileButton setBackButtonBackgroundImage:[UIImage imageNamed:@"btn_profile_highlight"] forState:UIControlStateSelected | UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     self.navigationItem.leftBarButtonItem = profileButton;
     
     self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
+    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:3.5f forBarMetrics:UIBarMetricsDefault];
     
     UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
+    [goalButton setImageInsets:UIEdgeInsetsMake(10.0f, 0, 0, 0)];
     [goalButton setBackButtonBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateSelected | UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = goalButton;
     
@@ -150,9 +154,6 @@
             return task;
         }];
     }
-    
-   
-    // TODO calculate the total monthly goal and total spent today
 }
 
 #pragma mark - Data Loading Methods
