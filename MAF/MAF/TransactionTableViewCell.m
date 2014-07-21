@@ -20,6 +20,11 @@
 
 @implementation TransactionTableViewCell
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.backgroundColor = [Utilities colorFromHexString:@"#F3F3F3"];
+}
+
 - (void)setTransaction:(Transaction *)transaction {
     _transaction = transaction;
     self.transactionDetailLabel.text = transaction.detail;

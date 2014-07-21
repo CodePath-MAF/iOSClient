@@ -44,6 +44,10 @@
     self.navigationItem.rightBarButtonItem = addTransactionButton;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setSeparatorColor:[UIColor whiteColor]];
+    
     TransactionsSummaryHeaderView *transactionsHeaderView = [[TransactionsSummaryHeaderView alloc] init];
     self.tableView.tableHeaderView = transactionsHeaderView;
     
