@@ -127,7 +127,7 @@
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     label.text=[self setDataForRow:index inComponent:component];
     label.textColor = [UIColor whiteColor];
-    
+    label.font = [UIFont systemFontOfSize:28.0];
     label.backgroundColor=[UIColor clearColor];
     label.textAlignment=NSTextAlignmentCenter;
     return label;

@@ -16,7 +16,6 @@ static NSInteger const kDatePicker = 2;
 #import "TransactionManager.h"
 #import <Parse/Parse.h>
 #import "User.h"
-#import "NextButton.h"
 #import "Utilities.h"
 
 @interface CreateTransactionViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -85,17 +84,20 @@ static NSInteger const kDatePicker = 2;
     }
     NSDate *currentDay =[Utilities dateWithoutTime:[NSDate new]];
     self.dateObjectValues = [Utilities getPreviousDates:7 fromDate:currentDay];
+    self.dateStringValues = [[NSMutableArray alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
     for (NSDate *date in self.dateObjectValues) {
-//        self.dateStringValues addObject:<#(id)#>
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEEE"];
-        NSString *dayOfWeek = [dateFormatter stringFromDate:date];
+        NSString *dayOfWeek = [[NSString alloc] init];
         if (date == currentDay){
-            
+            dayOfWeek = @"Today";
+        } else {
+            dayOfWeek = [dateFormatter stringFromDate:date];
         }
+        [self.dateStringValues addObject:dayOfWeek];
         
     }
-    
+   
     return self;
 }
 
@@ -213,10 +215,12 @@ static NSInteger const kDatePicker = 2;
     } else {
         if (self.previousViewIndex > 0) {
             [self.transactionProgress beginUpdates];
+            NSMutableArray *paths = [[NSMutableArray alloc] init];
             for (int i = self.previousViewIndex; i > self.currentViewIndex; i--) {
                 NSIndexPath *path = [NSIndexPath indexPathForRow:i-1 inSection:0];
-                [self.transactionProgress deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
+                [paths addObject:path];
             }
+            [self.transactionProgress deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
             [self.transactionProgress endUpdates];
         }
     }
@@ -232,7 +236,7 @@ static NSInteger const kDatePicker = 2;
         self.transactionInProgress.name = self.nameText.text;
     } else if (self.currentViewIndex == 2) {
     } else if (self.currentViewIndex == 3) {
-//        self.transactionInProgress.transactionDate = self.datePicker.date;
+        self.transactionInProgress.transactionDate = self.dateObjectValues[self.selectedDate];
     }
 }
 
@@ -244,6 +248,9 @@ static NSInteger const kDatePicker = 2;
     } else if (self.currentViewIndex == 2) {
         [self.categoryView addSubview:self.categoryPicker];
         [self.categoryPicker update];
+    } else if (self.currentViewIndex == 3) {
+        [self.dateView addSubview:self.datePicker];
+        [self.datePicker update];
     }
 }
 
@@ -262,9 +269,7 @@ static NSInteger const kDatePicker = 2;
         subLabel = self.sectionName[self.selectedCategory];
     } else if (index == 3) {
         mainLabel = @"Date";
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        subLabel = [dateFormatter stringFromDate:self.transactionInProgress.transactionDate];
+        subLabel = self.dateStringValues[self.selectedDate];
     }
     return @[mainLabel, subLabel];
 }
@@ -352,7 +357,7 @@ static NSInteger const kDatePicker = 2;
     if (pickerView.tag == kCategoryPicker) {
         self.selectedCategory = row;
     } else {
-        
+        self.selectedDate = row;
     }
 
 }
@@ -368,7 +373,7 @@ static NSInteger const kDatePicker = 2;
     if (pickerView.tag == kCategoryPicker) {
         return [self.sectionName count];
     } else {
-        return 1;
+        return [self.dateStringValues count];
     }
 
 }
@@ -378,7 +383,7 @@ static NSInteger const kDatePicker = 2;
     if (pickerView.tag == kCategoryPicker) {
         return [self.sectionName objectAtIndex:row];
     } else {
-        return @"hi";
+        return [self.dateStringValues objectAtIndex:row];
     }
 
 }
