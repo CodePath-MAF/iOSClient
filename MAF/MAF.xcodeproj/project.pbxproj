@@ -85,6 +85,7 @@
 		BF865B4F197C90F500A128AD /* TransactionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF865B4E197C90F500A128AD /* TransactionsHeaderView.xib */; };
 		BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B52197CD4D700A128AD /* TransactionManager.m */; };
 		BF865B56197CD4D700A128AD /* TransactionCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */; };
+		BF865B59197D71D800A128AD /* OpenSansLightTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B58197D71D800A128AD /* OpenSansLightTextField.m */; };
 		BFBDEED9197B6B3700FE4348 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED8197B6B3700FE4348 /* User.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 /* End PBXBuildFile section */
@@ -226,6 +227,8 @@
 		BF865B52197CD4D700A128AD /* TransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionManager.m; sourceTree = "<group>"; };
 		BF865B53197CD4D700A128AD /* TransactionCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCategoryManager.h; sourceTree = "<group>"; };
 		BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCategoryManager.m; sourceTree = "<group>"; };
+		BF865B57197D71D800A128AD /* OpenSansLightTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansLightTextField.h; sourceTree = "<group>"; };
+		BF865B58197D71D800A128AD /* OpenSansLightTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansLightTextField.m; sourceTree = "<group>"; };
 		BFBDEED7197B6B3700FE4348 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		BFBDEED8197B6B3700FE4348 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -292,7 +295,7 @@
 		2CBA46961965DE3A00C6BEDF /* MAF */ = {
 			isa = PBXGroup;
 			children = (
-				BF865B34197C632200A128AD /* Labels */,
+				BF865B34197C632200A128AD /* Fonts */,
 				BF277996196BB9D7005D4838 /* Forms */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
 				2CBA46C21965DF6800C6BEDF /* APIs */,
@@ -458,7 +461,7 @@
 			name = Forms;
 			sourceTree = "<group>";
 		};
-		BF865B34197C632200A128AD /* Labels */ = {
+		BF865B34197C632200A128AD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				BF865B16197C5F2100A128AD /* OpenSansRegularLabel.h */,
@@ -481,8 +484,10 @@
 				BF865B2F197C627B00A128AD /* OpenSansSemiBoldLabel.m */,
 				BF865B31197C629800A128AD /* OpenSansSemiBoldItalicLabel.h */,
 				BF865B32197C629800A128AD /* OpenSansSemiBoldItalicLabel.m */,
+				BF865B57197D71D800A128AD /* OpenSansLightTextField.h */,
+				BF865B58197D71D800A128AD /* OpenSansLightTextField.m */,
 			);
-			name = Labels;
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		BF865B4A197C683600A128AD /* Resources */ = {
@@ -713,6 +718,7 @@
 				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */,
 				BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */,
+				BF865B59197D71D800A128AD /* OpenSansLightTextField.m in Sources */,
 				BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */,
 				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
