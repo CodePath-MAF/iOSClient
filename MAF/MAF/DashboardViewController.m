@@ -63,6 +63,8 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     
+    // No Goals Set Up
+    
     // Set Up Collection View delegate & data source
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -70,25 +72,37 @@
     CGFloat w = self.collectionView.frame.size.width;
     CGFloat h = self.collectionView.frame.size.height;
     
-    // Set up the page control
-    CGRect frame = CGRectMake(0, h - PAGE_CONTROL_HEIGHT, w, PAGE_CONTROL_HEIGHT);
-    self.pageControl = [[UIPageControl alloc]
-                        initWithFrame:frame];
-    
-    // Add a target that will be invoked when the page control is
-    // changed by tapping on it
-    [self.pageControl
-     addTarget:self.collectionView
-     action:@selector(pageControlChanged:)
-     forControlEvents:UIControlEventValueChanged
-     ];
-    
-    // Set the number of pages to the number of pages in the paged interface
-    // and let the height flex so that it sits nicely in its frame
-    self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.pageControl];
-    
+    if ([self.goals count] == 0) {
+        
+    }
+    else {
+        // Set up the page control
+        CGRect frame = CGRectMake(0, h - PAGE_CONTROL_HEIGHT, w, PAGE_CONTROL_HEIGHT);
+        self.pageControl = [[UIPageControl alloc]
+                            initWithFrame:frame];
+        
+        // Add a target that will be invoked when the page control is
+        // changed by tapping on it
+        [self.pageControl
+         addTarget:self.collectionView
+         action:@selector(pageControlChanged:)
+         forControlEvents:UIControlEventValueChanged
+         ];
+        
+        // Set the number of pages to the number of pages in the paged interface
+        // and let the height flex so that it sits nicely in its frame
+        self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+        self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:self.pageControl];
+        
+        // Stub Goals Cell
+        UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
+        [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
+        
+        // Load initial data
+        [self.collectionView reloadData];
+    }
+
     // Set Up Cash OverView
 //    self.cashOverView.totalCash = [[User currentUser] totalCash];
 //    self.cashOverView.delegate = self;
@@ -96,12 +110,7 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
     [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
     
-    // Stub Goals Cell
-    UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
     
-    // Load initial data
-    [self.collectionView reloadData];
 }
 
 - (void)configureNavigationBar {
