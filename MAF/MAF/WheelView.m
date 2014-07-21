@@ -190,6 +190,7 @@
         changeLayerLayout();
         
     }
+
 }
 
 
@@ -347,13 +348,6 @@
 
 - (void)dealloc{
     
-//    [_viewsAngles release];
-//    
-//    [_originalPositionedViews release];
-//    
-//    [_views release];
-//    
-//    [super dealloc];
 }
 
 @end

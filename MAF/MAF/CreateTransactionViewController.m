@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+static NSInteger const kCategoryPicker = 1;
+static NSInteger const kDatePicker = 2;
+
 #import "CreateTransactionViewController.h"
 #import "CreateTransactionTableViewCell.h"
 #import "Transaction.h"
@@ -13,12 +16,19 @@
 #import "TransactionManager.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "Utilities.h"
 
 @interface CreateTransactionViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
 @property (weak, nonatomic) IBOutlet UIView *formContainer;
 @property (strong, nonatomic) IBOutlet UIView *amountView;
 @property (weak, nonatomic) IBOutlet UITextField *amountText;
+@property (nonatomic, assign) BOOL spent;
+@property (weak, nonatomic) IBOutlet UIButton *spentButton;
+@property (weak, nonatomic) IBOutlet UIButton *gainedButton;
+- (IBAction)onSpent:(id)sender;
+- (IBAction)onGained:(id)sender;
+
 - (IBAction)amountNext:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *nameView;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
@@ -28,7 +38,6 @@
 - (IBAction)categoryNext:(id)sender;
 - (IBAction)categoryBack:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *dateView;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 - (IBAction)dateNext:(id)sender;
 - (IBAction)dateBack:(id)sender;
@@ -40,12 +49,18 @@
 @property (strong, nonatomic) NSArray *allSteps;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *transactionProgressHeight;
 
-@property (strong, nonatomic) MyPickerView *typePicker;
+@property (strong, nonatomic) MyPickerView *categoryPicker;
 @property (strong, nonatomic) NSMutableArray *sectionName;
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
-@property (assign, nonatomic) int cellNumber;
-@property (strong, nonatomic) Transaction *transactionInProgress;
 @property (nonatomic, assign) int selectedCategory;
+
+@property (strong, nonatomic) MyPickerView *datePicker;
+@property (strong, nonatomic) NSMutableArray *dateStringValues;
+@property (strong, nonatomic) NSArray *dateObjectValues;
+@property (nonatomic, assign) int selectedDate;
+
+@property (strong, nonatomic) Transaction *transactionInProgress;
+
 
 @end
 
@@ -67,6 +82,22 @@
     for (TransactionCategory *category in categories) {
         [self.sectionName addObject:category.name];
     }
+    NSDate *currentDay =[Utilities dateWithoutTime:[NSDate new]];
+    self.dateObjectValues = [Utilities getPreviousDates:7 fromDate:currentDay];
+    self.dateStringValues = [[NSMutableArray alloc] init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    for (NSDate *date in self.dateObjectValues) {
+        NSString *dayOfWeek = [[NSString alloc] init];
+        if (date == currentDay){
+            dayOfWeek = @"Today";
+        } else {
+            dayOfWeek = [dateFormatter stringFromDate:date];
+        }
+        [self.dateStringValues addObject:dayOfWeek];
+        
+    }
+   
     return self;
 }
 
@@ -81,7 +112,9 @@
     self.nameText.delegate = self;
     self.transactionProgress.rowHeight = 50;
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
+    
     UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
+    self.transactionProgress.backgroundColor = lightGreen;
     self.formContainer.backgroundColor = lightGreen;
     self.amountView.backgroundColor = lightGreen;
     self.nameView.backgroundColor = lightGreen;
@@ -89,15 +122,25 @@
     self.dateView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
     self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
+    
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
-    self.cellNumber=2;
-    if (self.typePicker == nil) {
-        self.typePicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-        self.typePicker.delegate = self;
-        self.typePicker.dataSource=self;
-        self.typePicker.backgroundColor = lightGreen;
-    }
+
+    self.categoryPicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.categoryPicker.tag = kCategoryPicker;
+    self.categoryPicker.delegate = self;
+    self.categoryPicker.dataSource=self;
+    self.categoryPicker.backgroundColor = lightGreen;
+    
+    self.datePicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.datePicker.tag = kDatePicker;
+    self.datePicker.delegate = self;
+    self.datePicker.dataSource = self;
+    self.datePicker.backgroundColor = lightGreen;
+    
+    [self.spentButton setEnabled:NO];
+    self.spent = YES;
+    
     [self changeProgress:self.currentViewIndex];
     // Do any additional setup after loading the view from its nib.
 }
@@ -112,8 +155,6 @@
     return self.currentViewIndex;
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CreateTransactionTableViewCell *transCell = [tableView dequeueReusableCellWithIdentifier:@"CreateTransactionCell" forIndexPath:indexPath];
@@ -127,6 +168,30 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    CATransform3D rotation;
+    rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, 0.7, 0.4);
+    rotation.m34 = 1.0/ -600;
+    
+    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+    cell.layer.shadowOffset = CGSizeMake(10, 10);
+    cell.alpha = 0;
+    
+    cell.layer.transform = rotation;
+    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+    
+    if(cell.layer.position.x != 0){
+        cell.layer.position = CGPointMake(0, cell.layer.position.y);
+    }
+    
+    [UIView beginAnimations:@"rotation" context:NULL];
+    [UIView setAnimationDuration:0.8];
+    cell.layer.transform = CATransform3DIdentity;
+    cell.alpha = 1;
+    cell.layer.shadowOffset = CGSizeMake(0, 0);
+    [UIView commitAnimations];
+}
+
 - (void)changeProgress:(int)index {
     [self saveState];
     [self.allSteps[self.currentViewIndex] removeFromSuperview];
@@ -134,9 +199,32 @@
     if (self.previousViewIndex != self.currentViewIndex){
         self.previousViewIndex = self.currentViewIndex;
     }
+    if (!index){
+        index = 0;
+    }
     self.currentViewIndex = index;
-    self.transactionProgressHeight.constant = 50.0 * self.currentViewIndex;
-    [self.transactionProgress reloadData];
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.transactionProgressHeight.constant = 50.0 * self.currentViewIndex;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+    }];
+    
+    if (self.currentViewIndex > self.previousViewIndex) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:self.previousViewIndex inSection:0];
+        [self.transactionProgress insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+    } else {
+        if (self.previousViewIndex > 0) {
+            [self.transactionProgress beginUpdates];
+            NSMutableArray *paths = [[NSMutableArray alloc] init];
+            for (int i = self.previousViewIndex; i > self.currentViewIndex; i--) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i-1 inSection:0];
+                [paths addObject:path];
+            }
+            [self.transactionProgress deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+            [self.transactionProgress endUpdates];
+        }
+    }
+
     [self.formContainer addSubview:self.allSteps[self.currentViewIndex]];
     [self handleView];
 }
@@ -148,7 +236,7 @@
         self.transactionInProgress.name = self.nameText.text;
     } else if (self.currentViewIndex == 2) {
     } else if (self.currentViewIndex == 3) {
-        self.transactionInProgress.transactionDate = self.datePicker.date;
+        self.transactionInProgress.transactionDate = self.dateObjectValues[self.selectedDate];
     }
 }
 
@@ -158,20 +246,21 @@
     } else if (self.currentViewIndex == 1) {
         [self.nameText becomeFirstResponder];
     } else if (self.currentViewIndex == 2) {
-        [self.categoryView addSubview:self.typePicker];
-        [self.typePicker update];
+        [self.categoryView addSubview:self.categoryPicker];
+        [self.categoryPicker update];
+    } else if (self.currentViewIndex == 3) {
+        [self.dateView addSubview:self.datePicker];
+        [self.datePicker update];
     }
 }
 
-// way to save the state of each
-// way to populate the table view
 
 - (NSArray *)getContent:(int)index {
     NSString *mainLabel;
     NSString *subLabel;
     if (index == 0) {
         mainLabel = @"Amount";
-        subLabel = [NSString stringWithFormat:@"%f", self.transactionInProgress.amount];
+        subLabel = [NSString stringWithFormat:@"%.02f", self.transactionInProgress.amount];
     } else if (index == 1) {
         mainLabel = @"Name";
         subLabel = self.transactionInProgress.name;
@@ -180,12 +269,36 @@
         subLabel = self.sectionName[self.selectedCategory];
     } else if (index == 3) {
         mainLabel = @"Date";
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        subLabel = [dateFormatter stringFromDate:self.transactionInProgress.transactionDate];
+        subLabel = self.dateStringValues[self.selectedDate];
     }
     return @[mainLabel, subLabel];
 }
+
+- (void)toggleSpent {
+    if (self.spent) {
+        self.spent = NO;
+    } else {
+        self.spent = YES;
+    }
+}
+
+- (IBAction)onSpent:(id)sender {
+    if (!self.spent){
+        [self toggleSpent];
+        [self.spentButton setEnabled:NO];
+        [self.gainedButton setEnabled:YES];
+    }
+}
+
+- (IBAction)onGained:(id)sender {
+    if (self.spent) {
+        [self toggleSpent];
+        [self.spentButton setEnabled:YES];
+        [self.gainedButton setEnabled:NO];
+    }
+}
+
+# pragma mark Actions
 
 - (IBAction)amountNext:(id)sender {
     [self changeProgress:1];
@@ -211,7 +324,12 @@
 - (IBAction)finished:(id)sender {
     
     TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
-    [[TransactionManager createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:TransactionTypeDebit categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+    enum TransactionType type = TransactionTypeDebit;
+    if (!self.spent){
+        type = TransactionTypeCredit;
+    }
+
+    [[TransactionManager createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
@@ -236,27 +354,38 @@
 
 - (void)pickerView:(MyPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.selectedCategory = row;
+    if (pickerView.tag == kCategoryPicker) {
+        self.selectedCategory = row;
+    } else {
+        self.selectedDate = row;
+    }
+
 }
 
 
 - (NSInteger)numberOfComponentsInPickerView:(MyPickerView *)pickerView
 {
-    
     return 1;
 }
 
 - (NSInteger) pickerView:(MyPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    
-    return [self.sectionName count];
-    
+    if (pickerView.tag == kCategoryPicker) {
+        return [self.sectionName count];
+    } else {
+        return [self.dateStringValues count];
+    }
+
 }
 
 - (NSString *)pickerView:(MyPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
-    return [self.sectionName objectAtIndex:row];
+    if (pickerView.tag == kCategoryPicker) {
+        return [self.sectionName objectAtIndex:row];
+    } else {
+        return [self.dateStringValues objectAtIndex:row];
+    }
+
 }
 
 @end

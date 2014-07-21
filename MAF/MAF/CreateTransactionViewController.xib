@@ -9,12 +9,13 @@
                 <outlet property="amountText" destination="ZfC-Uu-EIs" id="pZU-17-Twg"/>
                 <outlet property="amountView" destination="0St-n2-zvI" id="yOb-0N-sYg"/>
                 <outlet property="categoryView" destination="Yaj-kJ-bMG" id="JBx-V5-AVL"/>
-                <outlet property="datePicker" destination="EB1-Vc-xpP" id="I48-i6-ygW"/>
                 <outlet property="dateView" destination="Dcy-oV-ERM" id="L3L-Xv-cQV"/>
                 <outlet property="finishedView" destination="ajX-3s-g1H" id="JV8-yH-3mE"/>
                 <outlet property="formContainer" destination="0Mq-7K-cim" id="9W4-G1-wh7"/>
+                <outlet property="gainedButton" destination="BW4-fw-s3T" id="QeA-Ft-HLX"/>
                 <outlet property="nameText" destination="VtQ-or-azi" id="j6i-Fp-otC"/>
                 <outlet property="nameView" destination="Ti5-hY-pRo" id="Dz2-zW-3CS"/>
+                <outlet property="spentButton" destination="E0f-VT-Z6j" id="fmh-iY-AkX"/>
                 <outlet property="transactionProgress" destination="9wr-zM-1Pq" id="tMt-BK-21H"/>
                 <outlet property="transactionProgressHeight" destination="Pc8-JA-gww" id="JdH-Ga-MBW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -54,60 +55,133 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWp-ap-Pko">
-                    <rect key="frame" x="268" y="150" width="32" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWp-ap-Pko">
+                    <rect key="frame" x="257" y="143" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Next">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="6QD-Yt-qAQ"/>
+                        <constraint firstAttribute="width" constant="43" id="817-pW-OKn"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
                     <connections>
                         <action selector="amountNext:" destination="-1" eventType="touchUpInside" id="i0i-mp-G7L"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZfC-Uu-EIs">
-                    <rect key="frame" x="50" y="85" width="220" height="36"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZfC-Uu-EIs">
+                    <rect key="frame" x="50" y="61" width="220" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="7xF-5L-khP"/>
+                        <constraint firstAttribute="width" constant="220" id="xnV-B1-ErP"/>
+                    </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-VT-Z6j">
+                    <rect key="frame" x="20" y="143" width="99" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="99" id="ZCH-tg-yrk"/>
+                        <constraint firstAttribute="height" constant="43" id="tMn-A6-9uw"/>
+                    </constraints>
+                    <state key="normal" image="btn_spent_active">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled" image="btn_spent_inactive"/>
+                    <state key="highlighted" image="btn_spent_highlight"/>
+                    <connections>
+                        <action selector="onSpent:" destination="-1" eventType="touchUpInside" id="bMG-Tv-gOq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BW4-fw-s3T">
+                    <rect key="frame" x="121" y="143" width="104" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="104" id="bkS-37-58h"/>
+                        <constraint firstAttribute="height" constant="43" id="s9C-Ok-hif"/>
+                    </constraints>
+                    <state key="normal" image="btn_gained_active">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled" image="btn_gained_inactive"/>
+                    <state key="highlighted" image="btn_gained_highlight"/>
+                    <connections>
+                        <action selector="onGained:" destination="-1" eventType="touchUpInside" id="Zqp-dD-00V"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="DWp-ap-Pko" secondAttribute="trailing" constant="20" id="4IK-8O-aFl"/>
+                <constraint firstItem="E0f-VT-Z6j" firstAttribute="leading" secondItem="0St-n2-zvI" secondAttribute="leading" constant="20" id="Cxt-Cy-o42"/>
+                <constraint firstAttribute="centerX" secondItem="ZfC-Uu-EIs" secondAttribute="centerX" id="D0P-UW-TeH"/>
+                <constraint firstItem="BW4-fw-s3T" firstAttribute="leading" secondItem="E0f-VT-Z6j" secondAttribute="trailing" constant="2" id="Dm7-61-fCQ"/>
+                <constraint firstAttribute="bottom" secondItem="BW4-fw-s3T" secondAttribute="bottom" constant="14" id="Pjb-Qz-3SW"/>
+                <constraint firstItem="ZfC-Uu-EIs" firstAttribute="top" secondItem="0St-n2-zvI" secondAttribute="top" constant="61" id="fHT-bG-kuO"/>
+                <constraint firstAttribute="bottom" secondItem="DWp-ap-Pko" secondAttribute="bottom" constant="14" id="gmW-kH-RZu"/>
+                <constraint firstAttribute="bottom" secondItem="E0f-VT-Z6j" secondAttribute="bottom" constant="14" id="pqu-JX-cDP"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="Ti5-hY-pRo" userLabel="Name">
             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bA-fB-Yha">
-                    <rect key="frame" x="268" y="150" width="32" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bA-fB-Yha">
+                    <rect key="frame" x="257" y="137" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Next">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="E9q-0I-8Dl"/>
+                        <constraint firstAttribute="width" constant="43" id="ezj-AK-vpm"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
                     <connections>
                         <action selector="nameNext:" destination="-1" eventType="touchUpInside" id="hPL-3I-0sm"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A3-fk-3kM">
-                    <rect key="frame" x="20" y="150" width="35" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A3-fk-3kM">
+                    <rect key="frame" x="20" y="137" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Back">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="43" id="eH2-hB-nga"/>
+                        <constraint firstAttribute="height" constant="43" id="qlv-LC-F4C"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
                     <connections>
                         <action selector="nameBack:" destination="-1" eventType="touchUpInside" id="ucW-FG-6Fe"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of Transaction" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VtQ-or-azi">
-                    <rect key="frame" x="83" y="85" width="154" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VtQ-or-azi">
+                    <rect key="frame" x="0.0" y="61" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ahY-XT-AOQ"/>
+                    </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9bA-fB-Yha" secondAttribute="trailing" constant="20" id="1ax-fF-bK8"/>
+                <constraint firstItem="9A3-fk-3kM" firstAttribute="leading" secondItem="Ti5-hY-pRo" secondAttribute="leading" constant="20" id="GbD-3w-9oO"/>
+                <constraint firstAttribute="bottom" secondItem="9A3-fk-3kM" secondAttribute="bottom" constant="20" id="OIR-pb-Kdm"/>
+                <constraint firstItem="VtQ-or-azi" firstAttribute="leading" secondItem="Ti5-hY-pRo" secondAttribute="leading" id="VCu-iL-KuI"/>
+                <constraint firstItem="VtQ-or-azi" firstAttribute="top" secondItem="Ti5-hY-pRo" secondAttribute="top" constant="61" id="dFU-DK-Ga3"/>
+                <constraint firstAttribute="bottom" secondItem="9bA-fB-Yha" secondAttribute="bottom" constant="20" id="iL8-zj-ZfQ"/>
+                <constraint firstAttribute="trailing" secondItem="VtQ-or-azi" secondAttribute="trailing" id="nrm-Nu-fWW"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="Yaj-kJ-bMG" userLabel="Category">
@@ -120,113 +194,147 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAh-jk-qjS">
-                    <rect key="frame" x="268" y="230" width="32" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAh-jk-qjS">
+                    <rect key="frame" x="257" y="217" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Next">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="7Fk-bO-J83"/>
+                        <constraint firstAttribute="width" constant="43" id="Rd0-9M-QO4"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
                     <connections>
                         <action selector="categoryNext:" destination="-1" eventType="touchUpInside" id="5GR-Fp-tGm"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Pc-fH-7Oq">
-                    <rect key="frame" x="20" y="230" width="35" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Pc-fH-7Oq">
+                    <rect key="frame" x="20" y="217" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Back">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="4hi-oP-qvX"/>
+                        <constraint firstAttribute="width" constant="43" id="kVn-qY-NX6"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
                     <connections>
                         <action selector="categoryBack:" destination="-1" eventType="touchUpInside" id="ppB-PL-Vta"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="7Pc-fH-7Oq" secondAttribute="bottom" constant="20" id="Hfx-gM-dfW"/>
+                <constraint firstAttribute="bottom" secondItem="LAh-jk-qjS" secondAttribute="bottom" constant="20" id="L5G-Fi-sSl"/>
+                <constraint firstAttribute="trailing" secondItem="LAh-jk-qjS" secondAttribute="trailing" constant="20" id="Wup-Q5-j6O"/>
+                <constraint firstItem="7Pc-fH-7Oq" firstAttribute="leading" secondItem="Yaj-kJ-bMG" secondAttribute="leading" constant="20" id="zOa-uY-YGf"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="Dcy-oV-ERM" userLabel="Date">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-bf-RDj">
-                    <rect key="frame" x="268" y="202" width="32" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-bf-RDj">
+                    <rect key="frame" x="257" y="217" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Next">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="43" id="0x2-5g-Bmz"/>
+                        <constraint firstAttribute="height" constant="43" id="Psg-Jb-uiU"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
                     <connections>
                         <action selector="dateNext:" destination="-1" eventType="touchUpInside" id="mHi-Lz-pfp"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjI-ZT-luI">
-                    <rect key="frame" x="20" y="202" width="35" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjI-ZT-luI">
+                    <rect key="frame" x="20" y="217" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Back">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="c9Z-HK-DEC"/>
+                        <constraint firstAttribute="width" constant="43" id="oPo-82-FeF"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
                     <connections>
                         <action selector="dateBack:" destination="-1" eventType="touchUpInside" id="4Pj-gR-ua0"/>
                     </connections>
                 </button>
-                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EB1-Vc-xpP">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <date key="date" timeIntervalSinceReferenceDate="427162302.83324099">
-                        <!--2014-07-16 00:11:42 +0000-->
-                    </date>
-                    <timeZone key="timeZone" name="America/Los_Angeles">
-                        <data key="data">
-VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
-y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
-5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
-8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
-AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
-DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
-HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
-KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
-OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
-Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
-VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
-Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
-cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
-f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</data>
-                    </timeZone>
-                </datePicker>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hjI-ZT-luI" firstAttribute="leading" secondItem="Dcy-oV-ERM" secondAttribute="leading" constant="20" id="2Yg-Je-Mc3"/>
+                <constraint firstAttribute="trailing" secondItem="HLj-bf-RDj" secondAttribute="trailing" constant="20" id="9xT-i8-6e6"/>
+                <constraint firstAttribute="bottom" secondItem="HLj-bf-RDj" secondAttribute="bottom" constant="20" id="R1T-Eu-zIi"/>
+                <constraint firstAttribute="bottom" secondItem="hjI-ZT-luI" secondAttribute="bottom" constant="20" id="bH9-8x-X0G"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="ajX-3s-g1H" userLabel="Date">
             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-PO-e07">
-                    <rect key="frame" x="242" y="150" width="58" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-PO-e07">
+                    <rect key="frame" x="96" y="137" width="204" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Finished">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="204" id="iGx-sO-EQn"/>
+                        <constraint firstAttribute="height" constant="43" id="vOR-jc-JhG"/>
+                    </constraints>
+                    <state key="normal" image="btn_finished_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_finished_highlight"/>
                     <connections>
                         <action selector="finished:" destination="-1" eventType="touchUpInside" id="m6n-9f-d9a"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uP-oB-LLB">
-                    <rect key="frame" x="20" y="150" width="35" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uP-oB-LLB">
+                    <rect key="frame" x="20" y="137" width="43" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Back">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="5jC-og-0TR"/>
+                        <constraint firstAttribute="width" constant="43" id="gyb-vM-RN7"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
                     <connections>
                         <action selector="finishedBack:" destination="-1" eventType="touchUpInside" id="34u-IP-WDW"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="8uP-oB-LLB" secondAttribute="bottom" constant="20" id="L3q-mn-mXh"/>
+                <constraint firstAttribute="bottom" secondItem="lcr-PO-e07" secondAttribute="bottom" constant="20" id="N2X-ng-HQT"/>
+                <constraint firstAttribute="trailing" secondItem="lcr-PO-e07" secondAttribute="trailing" constant="20" id="TXF-Ld-vJu"/>
+                <constraint firstItem="8uP-oB-LLB" firstAttribute="leading" secondItem="ajX-3s-g1H" secondAttribute="leading" constant="20" id="ce1-km-iZR"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="btn_circle_check_white_highlight" width="43" height="43"/>
+        <image name="btn_circle_check_white_up" width="43" height="43"/>
+        <image name="btn_circle_leftarrow_white_highlight" width="43" height="43"/>
+        <image name="btn_circle_leftarrow_white_up" width="43" height="43"/>
+        <image name="btn_finished_highlight" width="202" height="44"/>
+        <image name="btn_finished_up" width="202" height="43"/>
+        <image name="btn_gained_active" width="98" height="43"/>
+        <image name="btn_gained_highlight" width="98" height="43"/>
+        <image name="btn_gained_inactive" width="98" height="43"/>
+        <image name="btn_spent_active" width="98" height="43"/>
+        <image name="btn_spent_highlight" width="98" height="43"/>
+        <image name="btn_spent_inactive" width="98" height="43"/>
+    </resources>
 </document>

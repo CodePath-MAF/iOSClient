@@ -28,7 +28,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor=[UIColor whiteColor];
-        
         if(loop == nil){
             loop = [[MagnifierView alloc] init];
             loop.viewToMagnify = self;
@@ -127,7 +126,8 @@
     
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     label.text=[self setDataForRow:index inComponent:component];
-    
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:28.0];
     label.backgroundColor=[UIColor clearColor];
     label.textAlignment=NSTextAlignmentCenter;
     return label;
