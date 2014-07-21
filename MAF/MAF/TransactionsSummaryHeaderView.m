@@ -55,13 +55,15 @@
         _dateFormatter = [[NSDateFormatter alloc] init];
     #warning make sure the chart x labels support mutlilines
         [_dateFormatter setDateFormat:@"EEE\r(M/d)"];
-        NSMutableArray *chartXLabels = [[NSMutableArray alloc] initWithObjects:[_dateFormatter stringFromDate:today], nil];
-        NSMutableArray *chartDataItems = [[NSMutableArray alloc] initWithObjects:[self getDataItemsForDate:today], nil];
+        NSMutableArray *chartXLabels = [[NSMutableArray alloc] init];
+        NSMutableArray *chartDataItems = [[NSMutableArray alloc] init];
         
-        for (NSDate *previousDate in previousDates) {
+        for (NSDate *previousDate in [previousDates reverseObjectEnumerator]) {
             [chartXLabels addObject:[_dateFormatter stringFromDate:previousDate]];
             [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
         }
+        [chartXLabels addObject:[_dateFormatter stringFromDate:today]];
+        [chartDataItems addObject:[self getDataItemsForDate:today]];
         
         self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
         [self.transactionsCategoryChart setXLabels:chartXLabels];
