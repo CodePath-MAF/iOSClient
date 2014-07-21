@@ -49,18 +49,22 @@ static NSInteger const kDatePicker = 2;
 @property (strong, nonatomic) NSArray *allSteps;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *transactionProgressHeight;
 
-@property (strong, nonatomic) MyPickerView *categoryPicker;
+@property (strong, nonatomic) UIPickerView *categoryPicker;
 @property (strong, nonatomic) NSMutableArray *sectionName;
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
 @property (nonatomic, assign) int selectedCategory;
 
-@property (strong, nonatomic) MyPickerView *datePicker;
+@property (strong, nonatomic) UIPickerView *datePicker;
 @property (strong, nonatomic) NSMutableArray *dateStringValues;
 @property (strong, nonatomic) NSArray *dateObjectValues;
 @property (nonatomic, assign) int selectedDate;
 
 @property (strong, nonatomic) Transaction *transactionInProgress;
 
+
+@end
+
+@interface CreateTransactionViewController() <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -87,17 +91,17 @@ static NSInteger const kDatePicker = 2;
     self.dateStringValues = [[NSMutableArray alloc] init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
-    for (NSDate *date in self.dateObjectValues) {
-        NSString *dayOfWeek = [[NSString alloc] init];
-        if (date == currentDay){
+    for (int i = 0; i < self.dateObjectValues.count; i++) {
+        NSString *dayOfWeek;
+        if (i == 0) {
             dayOfWeek = @"Today";
+        } else if (i == 1) {
+            dayOfWeek = @"Yesterday";
         } else {
-            dayOfWeek = [dateFormatter stringFromDate:date];
+            dayOfWeek = [dateFormatter stringFromDate:[self.dateObjectValues objectAtIndex:i]];
         }
         [self.dateStringValues addObject:dayOfWeek];
-        
     }
-   
     return self;
 }
 
@@ -127,13 +131,14 @@ static NSInteger const kDatePicker = 2;
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
 
-    self.categoryPicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.categoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
     self.categoryPicker.tag = kCategoryPicker;
     self.categoryPicker.delegate = self;
     self.categoryPicker.dataSource=self;
     self.categoryPicker.backgroundColor = lightGreen;
     
-    self.datePicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.datePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.datePicker.showsSelectionIndicator = NO;
     self.datePicker.tag = kDatePicker;
     self.datePicker.delegate = self;
     self.datePicker.dataSource = self;
@@ -248,10 +253,10 @@ static NSInteger const kDatePicker = 2;
         [self.nameText becomeFirstResponder];
     } else if (self.currentViewIndex == 2) {
         [self.categoryView addSubview:self.categoryPicker];
-        [self.categoryPicker update];
+//        [self.categoryPicker update];
     } else if (self.currentViewIndex == 3) {
         [self.dateView addSubview:self.datePicker];
-        [self.datePicker update];
+//        [self.datePicker update];
     }
 }
 
@@ -351,9 +356,9 @@ static NSInteger const kDatePicker = 2;
     return YES;
 }
 
-#pragma mark MyPickerViewDelegate
+#pragma mark UIPickerViewDelegate
 
-- (void)pickerView:(MyPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (pickerView.tag == kCategoryPicker) {
         self.selectedCategory = row;
@@ -363,13 +368,12 @@ static NSInteger const kDatePicker = 2;
 
 }
 
-
-- (NSInteger)numberOfComponentsInPickerView:(MyPickerView *)pickerView
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }
 
-- (NSInteger) pickerView:(MyPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (pickerView.tag == kCategoryPicker) {
         return [self.sectionName count];
@@ -379,14 +383,22 @@ static NSInteger const kDatePicker = 2;
 
 }
 
-- (NSString *)pickerView:(MyPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (pickerView.tag == kCategoryPicker) {
-        return [self.sectionName objectAtIndex:row];
-    } else {
-        return [self.dateStringValues objectAtIndex:row];
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *tView = (UILabel *)view;
+    if (!tView) {
+        tView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 60.f)];
+        [tView setFont:[UIFont fontWithName:@"OpenSans-Light" size:25.f]];
+        [tView setTextColor:[UIColor whiteColor]];
+        [tView setTextAlignment:NSTextAlignmentCenter];
     }
-
+    [[pickerView.subviews objectAtIndex:1] setHidden:YES];
+    [[pickerView.subviews objectAtIndex:2] setHidden:YES];
+    if (pickerView.tag == kCategoryPicker) {
+        tView.text = [self.sectionName objectAtIndex:row];
+    } else {
+        tView.text = [self.dateStringValues objectAtIndex:row];
+    }
+    return tView;
 }
 
 @end

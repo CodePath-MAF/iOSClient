@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyPickerView.h"
 
-@interface CreateTransactionViewController : UIViewController <MyPickerViewDataSource, MyPickerViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CreateTransactionViewController : UIViewController
+
 - (id)initWithCategories:(NSMutableArray *)categories;
+
 @end
