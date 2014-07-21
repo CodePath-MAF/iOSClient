@@ -36,6 +36,7 @@
 
 @property (weak, nonatomic) IBOutlet GoalStatsView *goalStatsView;
 @property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
+@property (weak, nonatomic) IBOutlet UILabel *totalCashLabel;
 
 - (IBAction)viewTransactions:(id)sender;
 
@@ -88,8 +89,9 @@
     [self.view addSubview:self.pageControl];
     
     // Set Up Cash OverView
-    self.cashOverView.totalCash = [[User currentUser] totalCash];
-    self.cashOverView.delegate = self;
+//    self.cashOverView.totalCash = [[User currentUser] totalCash];
+//    self.cashOverView.delegate = self;
+    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"%0.2f", 206.50];
     
     [[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
