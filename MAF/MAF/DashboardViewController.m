@@ -91,7 +91,7 @@
     // Set Up Cash OverView
 //    self.cashOverView.totalCash = [[User currentUser] totalCash];
 //    self.cashOverView.delegate = self;
-    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"%0.2f", 206.50];
+    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
     
     [[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
