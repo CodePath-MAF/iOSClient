@@ -26,7 +26,7 @@
         // Grab the view in the nib
         UINib *nib = [UINib nibWithNibName:@"CashOverView" bundle:nil];
         NSArray *objects = [nib instantiateWithOwner:self options:nil];
-        CashOverView *view = objects[0];
+        UIView *view = objects[0];
         
         // adjust frame and set resizing mask
         view.frame = self.frame;
