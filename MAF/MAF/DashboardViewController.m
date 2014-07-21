@@ -28,6 +28,7 @@
 #import "Utilities.h"
 
 #define PAGE_CONTROL_HEIGHT 40
+#define ITEMS_IN_SECTION 2
 
 @interface DashboardViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CashOverViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -84,7 +85,7 @@
     
     // Set the number of pages to the number of pages in the paged interface
     // and let the height flex so that it sits nicely in its frame
-    self.pageControl.numberOfPages = [self.goals count]/2 + [self.goals count]%2;
+    self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
     self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.pageControl];
     
@@ -92,6 +93,8 @@
 //    self.cashOverView.totalCash = [[User currentUser] totalCash];
 //    self.cashOverView.delegate = self;
     self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
+    [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
     
     [[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
@@ -171,22 +174,22 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    NSInteger totalSections = [self.goals count]/2 + [self.goals count]%2;
-    if ((section + 1) == totalSections && [self.goals count] % 2) {
+    NSInteger totalSections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+    if ((section + 1) == totalSections && [self.goals count] % ITEMS_IN_SECTION) {
         return 1;
     }
-    return ([self.goals count] <= 1)?[self.goals count]:2;
+    return ([self.goals count] <= 1)?[self.goals count]:ITEMS_IN_SECTION;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    NSInteger sections = [self.goals count]/2 + [self.goals count]%2;
+    NSInteger sections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
     return sections;
 }
 
 - (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
-    cell.goal = self.goals[(indexPath.section * 2) + indexPath.item];
+    cell.goal = self.goals[(indexPath.section * ITEMS_IN_SECTION) + indexPath.item];
     return cell;
 }
 
@@ -227,6 +230,12 @@
 // TODO for custom movements and fun stuff
 
 #pragma mark - CashOverView Delegate Methods
+
+// YES THIS IS DUPLICATE, I'M LAZY
+- (void)onTapView:(id)sender {
+    NSLog(@"Loading Transactions View");
+    [self viewTransactions:sender];
+}
 
 - (void)viewTransactions:(id)sender {
     NSLog(@"Load Transactions View");

@@ -73,23 +73,23 @@
                     <rect key="frame" x="0.0" y="128" width="320" height="312"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEXT PAYMENT OF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYl-CH-h69">
-                            <rect key="frame" x="92" y="121" width="137" height="18"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEXT PAYMENT OF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYl-CH-h69" customClass="OpenSansRegularLabel">
+                            <rect key="frame" x="104" y="122" width="112" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$35.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftU-Nh-4d0">
-                            <rect key="frame" x="122" y="141" width="76" height="30"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$35.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftU-Nh-4d0" customClass="OpenSansSemiBoldLabel">
+                            <rect key="frame" x="10" y="137" width="300" height="39"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME TIL DUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ks-U2-Bck">
-                            <rect key="frame" x="10" y="173" width="300" height="20"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME TIL DUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ks-U2-Bck" customClass="OpenSansRegularLabel">
+                            <rect key="frame" x="10" y="178" width="300" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.78969938858695654" green="0.13977225464306592" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -99,10 +99,12 @@
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="centerX" secondItem="eYl-CH-h69" secondAttribute="centerX" id="F5E-dm-VSX"/>
                         <constraint firstAttribute="centerY" secondItem="ftU-Nh-4d0" secondAttribute="centerY" id="Lim-V1-wCD"/>
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="top" secondItem="ftU-Nh-4d0" secondAttribute="bottom" constant="2" id="WO4-Rm-NJh"/>
+                        <constraint firstAttribute="trailing" secondItem="ftU-Nh-4d0" secondAttribute="trailing" constant="10" id="ajO-r0-MSg"/>
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="leading" secondItem="dvf-Or-XYx" secondAttribute="leading" constant="10" id="dKt-cc-x6X"/>
-                        <constraint firstItem="ftU-Nh-4d0" firstAttribute="top" secondItem="eYl-CH-h69" secondAttribute="bottom" constant="2" id="etu-I4-7mL"/>
+                        <constraint firstItem="ftU-Nh-4d0" firstAttribute="top" secondItem="eYl-CH-h69" secondAttribute="bottom" id="etu-I4-7mL"/>
                         <constraint firstAttribute="centerX" secondItem="ftU-Nh-4d0" secondAttribute="centerX" id="gwh-Xf-FbG"/>
                         <constraint firstAttribute="trailing" secondItem="2Ks-U2-Bck" secondAttribute="trailing" constant="10" id="lGj-6h-HXg"/>
+                        <constraint firstItem="ftU-Nh-4d0" firstAttribute="leading" secondItem="dvf-Or-XYx" secondAttribute="leading" constant="10" id="llC-y3-0wr"/>
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="centerX" secondItem="ftU-Nh-4d0" secondAttribute="centerX" id="uWk-dD-NH6"/>
                     </constraints>
                 </view>
@@ -110,10 +112,10 @@
                     <rect key="frame" x="0.0" y="440" width="320" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Payments Made" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8p-6y-WCB">
-                            <rect key="frame" x="10" y="64" width="300" height="24"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Payments Made" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8p-6y-WCB" customClass="OpenSansRegularLabel">
+                            <rect key="frame" x="10" y="68" width="300" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -132,12 +134,11 @@
                                 <constraint firstAttribute="height" constant="44" id="X0t-hy-hXW"/>
                                 <constraint firstAttribute="width" constant="260" id="oRr-so-iNF"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="tintColor" red="0.3683801042" green="0.73864215349999995" blue="0.60066864139999998" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                            <state key="normal" title="Make Payment">
+                            <state key="normal" title="MAKE PAYMENT">
                                 <color key="titleColor" red="0.3683801042" green="0.73864215349999995" blue="0.60066864139999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="makePayment:" destination="-1" eventType="touchUpInside" id="jKs-Ah-C2u"/>
@@ -156,7 +157,7 @@
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="XPi-TW-7kz" secondAttribute="centerX" id="2sf-Al-p74"/>
                         <constraint firstItem="x6e-au-B5u" firstAttribute="leading" secondItem="tV4-VK-HWI" secondAttribute="leading" id="73K-Aq-cSs"/>
-                        <constraint firstItem="auP-AN-zfz" firstAttribute="top" secondItem="i8p-6y-WCB" secondAttribute="bottom" constant="10" id="8mb-Uc-fXb"/>
+                        <constraint firstItem="auP-AN-zfz" firstAttribute="top" secondItem="i8p-6y-WCB" secondAttribute="bottom" constant="12" id="8mb-Uc-fXb"/>
                         <constraint firstItem="auP-AN-zfz" firstAttribute="leading" secondItem="tV4-VK-HWI" secondAttribute="leading" id="CVr-wp-y9q"/>
                         <constraint firstItem="x6e-au-B5u" firstAttribute="top" secondItem="tV4-VK-HWI" secondAttribute="top" id="ENT-B8-WUO"/>
                         <constraint firstAttribute="trailing" secondItem="auP-AN-zfz" secondAttribute="trailing" id="Ecg-hz-ZBr"/>
@@ -164,7 +165,7 @@
                         <constraint firstAttribute="centerX" secondItem="i8p-6y-WCB" secondAttribute="centerX" id="Srx-dq-kPJ"/>
                         <constraint firstAttribute="trailing" secondItem="x6e-au-B5u" secondAttribute="trailing" id="VAh-4p-Fbu"/>
                         <constraint firstAttribute="centerY" secondItem="XPi-TW-7kz" secondAttribute="centerY" constant="30" id="gd3-U3-qdn"/>
-                        <constraint firstItem="i8p-6y-WCB" firstAttribute="top" secondItem="XPi-TW-7kz" secondAttribute="bottom" constant="8" id="lk7-io-LnL"/>
+                        <constraint firstItem="i8p-6y-WCB" firstAttribute="top" secondItem="XPi-TW-7kz" secondAttribute="bottom" constant="12" id="lk7-io-LnL"/>
                         <constraint firstAttribute="trailing" secondItem="i8p-6y-WCB" secondAttribute="trailing" constant="10" id="ngM-RE-6Xv"/>
                         <constraint firstAttribute="bottom" secondItem="auP-AN-zfz" secondAttribute="bottom" id="p3e-9Y-bNN"/>
                     </constraints>
