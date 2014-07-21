@@ -13,6 +13,7 @@
 #import "TransactionManager.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "UILabel+WhiteUIDatePickerLabels.h"
 
 @interface CreateTransactionViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
@@ -89,6 +90,7 @@
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
     
     UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
+    self.transactionProgress.backgroundColor = lightGreen;
     self.formContainer.backgroundColor = lightGreen;
     self.amountView.backgroundColor = lightGreen;
     self.nameView.backgroundColor = lightGreen;
@@ -96,7 +98,7 @@
     self.dateView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
     self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
-    
+//    self.datePicker.
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
     self.cellNumber=2;
@@ -124,8 +126,6 @@
     return self.currentViewIndex;
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CreateTransactionTableViewCell *transCell = [tableView dequeueReusableCellWithIdentifier:@"CreateTransactionCell" forIndexPath:indexPath];
@@ -139,6 +139,30 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    CATransform3D rotation;
+    rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, 0.7, 0.4);
+    rotation.m34 = 1.0/ -600;
+    
+    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+    cell.layer.shadowOffset = CGSizeMake(10, 10);
+    cell.alpha = 0;
+    
+    cell.layer.transform = rotation;
+    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+    
+    if(cell.layer.position.x != 0){
+        cell.layer.position = CGPointMake(0, cell.layer.position.y);
+    }
+    
+    [UIView beginAnimations:@"rotation" context:NULL];
+    [UIView setAnimationDuration:0.8];
+    cell.layer.transform = CATransform3DIdentity;
+    cell.alpha = 1;
+    cell.layer.shadowOffset = CGSizeMake(0, 0);
+    [UIView commitAnimations];
+}
+
 - (void)changeProgress:(int)index {
     [self saveState];
     [self.allSteps[self.currentViewIndex] removeFromSuperview];
@@ -146,9 +170,30 @@
     if (self.previousViewIndex != self.currentViewIndex){
         self.previousViewIndex = self.currentViewIndex;
     }
+    if (!index){
+        index = 0;
+    }
     self.currentViewIndex = index;
-    self.transactionProgressHeight.constant = 50.0 * self.currentViewIndex;
-    [self.transactionProgress reloadData];
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.transactionProgressHeight.constant = 50.0 * self.currentViewIndex;
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+    }];
+    
+    if (self.currentViewIndex > self.previousViewIndex) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:self.previousViewIndex inSection:0];
+        [self.transactionProgress insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+    } else {
+        if (self.previousViewIndex > 0) {
+            [self.transactionProgress beginUpdates];
+            for (int i = self.previousViewIndex; i > self.currentViewIndex; i--) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i-1 inSection:0];
+                [self.transactionProgress deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            [self.transactionProgress endUpdates];
+        }
+    }
+
     [self.formContainer addSubview:self.allSteps[self.currentViewIndex]];
     [self handleView];
 }
@@ -175,15 +220,13 @@
     }
 }
 
-// way to save the state of each
-// way to populate the table view
 
 - (NSArray *)getContent:(int)index {
     NSString *mainLabel;
     NSString *subLabel;
     if (index == 0) {
         mainLabel = @"Amount";
-        subLabel = [NSString stringWithFormat:@"%f", self.transactionInProgress.amount];
+        subLabel = [NSString stringWithFormat:@"%.02f", self.transactionInProgress.amount];
     } else if (index == 1) {
         mainLabel = @"Name";
         subLabel = self.transactionInProgress.name;
@@ -223,6 +266,7 @@
     }
 }
 
+# pragma mark Actions
 
 - (IBAction)amountNext:(id)sender {
     [self changeProgress:1];

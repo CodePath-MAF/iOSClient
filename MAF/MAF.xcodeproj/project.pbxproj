@@ -36,6 +36,7 @@
 		BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */; };
 		BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */; };
 		BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */; };
+		BA349B0B197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = BA349B0A197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.m */; };
 		BA77DF261977348F00FD0F8A /* MyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA77DF211977348F00FD0F8A /* MyPickerView.m */; };
 		BA77DF271977348F00FD0F8A /* WheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA77DF231977348F00FD0F8A /* WheelView.m */; };
 		BA77DF281977348F00FD0F8A /* MagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA77DF251977348F00FD0F8A /* MagnifierView.m */; };
@@ -142,6 +143,8 @@
 		BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionTableViewCell.m; sourceTree = "<group>"; };
 		BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTransactionTableViewCell.xib; sourceTree = "<group>"; };
 		BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
+		BA349B09197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WhiteUIDatePickerLabels.h"; sourceTree = "<group>"; };
+		BA349B0A197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WhiteUIDatePickerLabels.m"; sourceTree = "<group>"; };
 		BA77DF201977348F00FD0F8A /* MyPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPickerView.h; sourceTree = "<group>"; };
 		BA77DF211977348F00FD0F8A /* MyPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPickerView.m; sourceTree = "<group>"; };
 		BA77DF221977348F00FD0F8A /* WheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelView.h; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 		2CBA46C31965EC1200C6BEDF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				BA349B09197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.h */,
+				BA349B0A197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.m */,
 				BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */,
 				2C66748C1974FDB600434802 /* Utilities.h */,
 				2C66748D1974FDB600434802 /* Utilities.m */,
@@ -696,6 +701,7 @@
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2CD7C1F71975FD08007F6CB8 /* GoalCardView.m in Sources */,
 				2C84014819787FB4008D9D73 /* GoalStatsView.m in Sources */,
+				BA349B0B197CBE5200A35BCD /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
 				2C00F0CA1971FDE8007561D9 /* LiquidAssetView.m in Sources */,
 				BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
