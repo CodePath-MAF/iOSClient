@@ -37,6 +37,7 @@
 
 @property (weak, nonatomic) IBOutlet GoalStatsView *goalStatsView;
 @property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
+@property (strong, nonatomic) UIView *firstGoalView;
 @property (weak, nonatomic) IBOutlet UILabel *totalCashLabel;
 
 - (IBAction)viewTransactions:(id)sender;
@@ -73,7 +74,9 @@
     CGFloat h = self.collectionView.frame.size.height;
     
     if ([self.goals count] == 0) {
-        
+        NSLog(@"Make some Goals!");
+        self.firstGoalView = [[UIView alloc] initWithFrame:self.collectionView.frame];
+        self.firstGoalView.autoresizingMask = self.collectionView.autoresizingMask;
     }
     else {
         // Set up the page control
@@ -93,15 +96,15 @@
         // and let the height flex so that it sits nicely in its frame
         self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
         self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        [self.view addSubview:self.pageControl];
-        
-        // Stub Goals Cell
-        UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
-        [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
+        [self.collectionView addSubview:self.pageControl];
         
         // Load initial data
         [self.collectionView reloadData];
     }
+    
+    // Stub Goals Cell
+    UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
 
     // Set Up Cash OverView
 //    self.cashOverView.totalCash = [[User currentUser] totalCash];
@@ -157,7 +160,14 @@
                 NSLog(@"Error fetching goals for user: %@", task.error);
             } else {
                 self.goals = [NSMutableArray arrayWithArray:task.result];
-                [self.collectionView reloadData];
+                
+                if([self.goals count] == 0) {
+                    // TODO add logic for loading transitioning the first goal view
+                }
+                else {
+                    [self.collectionView reloadData];
+                    // TODO load
+                }
             }
             // TODO warning end download spinner here
             return task;
