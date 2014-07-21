@@ -96,15 +96,6 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
     [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
     
-    [[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
-        if (task.error) {
-            NSLog(@"Error fetching transactions for user");
-        } else {
-            self.goalStatsView.transactionSet = [[TransactionsSet alloc] initWithTransactions:task.result];
-        }
-        return task;
-    }];
-    
     // Stub Goals Cell
     UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
@@ -167,8 +158,16 @@
 #pragma mark - Data Loading Methods
 
 - (BFTask *)fetchData {
-    NSLog(@"Fetching the Dataz");
-    return [GoalManager fetchGoalsForUser:[User currentUser]];
+    return [[[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error fetching transactions for user");
+        } else {
+            self.goalStatsView.transactionSet = [[TransactionsSet alloc] initWithTransactions:task.result];
+        }
+        return task;
+    }] continueWithBlock:^id(BFTask *task) {
+        return [GoalManager fetchGoalsForUser:[User currentUser]];
+    }];
 }
 
 #pragma mark - UICollectionView Datasource
