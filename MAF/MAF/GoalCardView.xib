@@ -20,7 +20,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Goal Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Uuz-fP-cX9">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="252" text="Goal Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Uuz-fP-cX9">
                         <rect key="frame" x="8" y="41" width="180" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -30,7 +30,7 @@
                         <rect key="frame" x="198" y="40" width="100" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="Ueo-ac-7hh"/>
+                            <constraint firstAttribute="width" constant="100" id="xDt-FP-HeE"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
@@ -41,19 +41,17 @@
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time_gray" highlightedImage="time_red" translatesAutoresizingMaskIntoConstraints="NO" id="3cj-MF-lnj">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time_gray" translatesAutoresizingMaskIntoConstraints="NO" id="3cj-MF-lnj">
                         <rect key="frame" x="8" y="61" width="12" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.90009341030000001" green="0.90009341030000001" blue="0.90009341030000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="12" id="CRz-mG-D7d"/>
                             <constraint firstAttribute="height" constant="12" id="CvB-nh-Pbq"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_rightarrow_gray_up" highlightedImage="btn_rightarrow_gray_highlight" translatesAutoresizingMaskIntoConstraints="NO" id="TTJ-ah-djW">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_rightarrow_gray_up" highlightedImage="btn_rightarrow_gray_highlight" translatesAutoresizingMaskIntoConstraints="NO" id="TTJ-ah-djW">
                         <rect key="frame" x="304" y="43" width="8" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.90009341030000001" green="0.90009341030000001" blue="0.90009341030000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="LUQ-un-uym"/>
                             <constraint firstAttribute="height" constant="14" id="upn-qr-l9B"/>
@@ -93,6 +91,5 @@
         <image name="btn_rightarrow_gray_highlight" width="8" height="13"/>
         <image name="btn_rightarrow_gray_up" width="8" height="13"/>
         <image name="time_gray" width="11" height="11"/>
-        <image name="time_red" width="11" height="11"/>
     </resources>
 </document>

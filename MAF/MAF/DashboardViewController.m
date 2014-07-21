@@ -25,10 +25,15 @@
 #import "GoalStatsView.h"
 #import "CashOverView.h"
 #import "User.h"
+#import "Utilities.h"
+
+#define PAGE_CONTROL_HEIGHT 40
 
 @interface DashboardViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CashOverViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) UIPageControl *pageControl;
+
 @property (weak, nonatomic) IBOutlet GoalStatsView *goalStatsView;
 @property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
 
@@ -36,6 +41,8 @@
 
 @property (nonatomic, strong) NSMutableArray *goals;
 @property (nonatomic, assign) NSInteger page;
+
+- (void)configureNavigationBar;
 
 @end
 
@@ -52,20 +59,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Set up Nav Bar Buttons
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
-    
-    self.navigationItem.leftBarButtonItem = profileButton;
-    
-    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createGoal:)];
-    
-    self.navigationItem.rightBarButtonItem = goalButton;
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self configureNavigationBar];
     
     // Set Up Collection View delegate & data source
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    
+    CGFloat w = self.collectionView.frame.size.width;
+    CGFloat h = self.collectionView.frame.size.height;
+    
+    // Set up the page control
+    CGRect frame = CGRectMake(0, h - PAGE_CONTROL_HEIGHT, w, PAGE_CONTROL_HEIGHT);
+    self.pageControl = [[UIPageControl alloc]
+                        initWithFrame:frame];
+    
+    // Add a target that will be invoked when the page control is
+    // changed by tapping on it
+    [self.pageControl
+     addTarget:self.collectionView
+     action:@selector(pageControlChanged:)
+     forControlEvents:UIControlEventValueChanged
+     ];
+    
+    // Set the number of pages to the number of pages in the paged interface
+    // and let the height flex so that it sits nicely in its frame
+    self.pageControl.numberOfPages = [self.goals count]/2 + [self.goals count]%2;
+    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.pageControl];
     
     // Set Up Cash OverView
     self.cashOverView.totalCash = [[User currentUser] totalCash];
@@ -92,6 +112,23 @@
     
     // Load initial data
     [self.collectionView reloadData];
+}
+
+- (void)configureNavigationBar {
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    self.navigationItem.leftBarButtonItem = profileButton;
+    self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
+    
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
+    self.navigationItem.rightBarButtonItem = goalButton;
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
+    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,16 +172,18 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [self.goals count];
+    return 2;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 1;
+    NSInteger sections = [self.goals count]/2 + [self.goals count]%2;
+    return sections;
 }
 
 - (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
-    cell.goal = self.goals[indexPath.row];
+    // TODO adjust for the section
+    cell.goal = self.goals[indexPath.item];
     return cell;
 }
 
@@ -189,6 +228,26 @@
 - (void)viewTransactions:(id)sender {
     NSLog(@"Load Transactions View");
     [self.navigationController pushViewController:[[TransactionsTableViewController alloc] init] animated:YES];
+}
+
+#pragma mark - Page Controller
+
+- (void)pageControlChanged:(id)sender
+{
+    NSLog(@"Page Control Changed");
+    UIPageControl *pageControl = sender;
+    // TODO bounce when move to new page
+    CGFloat pageWidth = self.collectionView.frame.size.width;
+    CGPoint scrollTo = CGPointMake(pageWidth * pageControl.currentPage, 0);
+    [self.collectionView setContentOffset:scrollTo animated:YES];
+}
+
+// Paging with scoll
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"Slowing Down the scroll");
+    CGFloat pageWidth = self.collectionView.frame.size.width;
+    self.pageControl.currentPage = self.collectionView.contentOffset.x / pageWidth;
 }
 
 #pragma mark - NavBar Methods

@@ -9,11 +9,12 @@
 #import "Bolts.h"
 #import "TransactionsTableViewController.h"
 #import "TransactionTableViewCell.h"
-#import "TransactionsSummaryTableViewCell.h"
+#import "TransactionsSummaryHeaderView.h"
 #import "TransactionManager.h"
 #import "TransactionsSet.h"
 #import "TransactionCategoryManager.h"
 #import "CreateTransactionViewController.h"
+#import "TransactionsHeaderView.h"
 #import "User.h"
 
 #import "Utilities.h"
@@ -38,17 +39,16 @@
     self.tableView.dataSource = self;
     
     // Create Add Transaction Button
-    UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createTransaction:)];
+    UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createTransaction:)];
     
     self.navigationItem.rightBarButtonItem = addTransactionButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-
+    TransactionsSummaryHeaderView *transactionsHeaderView = [[TransactionsSummaryHeaderView alloc] init];
+    self.tableView.tableHeaderView = transactionsHeaderView;
+    
     UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
-    [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];
-    
-    UINib *transactionsSummaryCellNib = [UINib nibWithNibName:@"TransactionsSummaryTableViewCell" bundle:nil];
-    [self.tableView registerNib:transactionsSummaryCellNib forCellReuseIdentifier:@"TransactionSummary"];
-    
+    [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,6 +65,8 @@
 }
 
 - (void)reloadData {
+    [(TransactionsSummaryHeaderView *)self.tableView.tableHeaderView setTransactionsSet:self.transactionsSet];
+    [self.tableView.tableHeaderView setNeedsDisplay];
     [self.tableView reloadData];
 }
 
@@ -83,7 +85,7 @@
 - (NSDate *)getDateForSection:(NSInteger)section {
     NSSortDescriptor *descendingDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:NO];
     NSArray *sortedKeys = [[[self.transactionsSet transactionsByDate] allKeys] sortedArrayUsingDescriptors:[[NSArray alloc] initWithObjects:descendingDateDescriptor, nil]];
-    return sortedKeys[section - 1];
+    return sortedKeys[section];
 }
 
 - (NSArray *)getTransactionsForSection:(NSInteger)section {
@@ -98,50 +100,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.transactionsSet) {
-        return [[self.transactionsSet transactionsByDate] count] + 1;
+        return [[self.transactionsSet transactionsByDate] count];
     } else {
         return 0;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else {
-        NSArray *sectionTransactions = [self getTransactionsForSection:section];
-        return [sectionTransactions count];
-    }
+    NSArray *sectionTransactions = [self getTransactionsForSection:section];
+    return [sectionTransactions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
-    if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionSummary" forIndexPath:indexPath];
-        [(TransactionsSummaryTableViewCell *)cell setTransactionsSet:self.transactionsSet];
-#warning TODO clean this up, we don't want it to redraw everytime, only if it updates. also, it would be better if it didn't start from 0, so like it did an incremental update
-        [cell setNeedsDisplay];
-    } else {
-        NSArray *sectionTransactions = [self getTransactionsForSection:indexPath.section];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
-        [(TransactionTableViewCell *)cell setTransaction:sectionTransactions[indexPath.row]];
-    }
+    NSArray *sectionTransactions = [self getTransactionsForSection:indexPath.section];
+    TransactionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
+    cell.transaction = sectionTransactions[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return 200.f;
-    } else {
-        return 80.f;
-    }
+    return 80.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0.1f;
-    } else {
-        return 32.f;
-    }
+    return 25.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -149,7 +131,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section != 0 && self.transactionsSet) {
+    if (self.transactionsSet) {
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
         NSDate *sectionDate = [self getDateForSection:section];
         if ([today isEqualToDate:sectionDate]) {
@@ -162,6 +144,25 @@
     } else {
         return @"";
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.transactionsSet) {
+        NSString *title;
+        NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
+        NSDate *sectionDate = [self getDateForSection:section];
+        if ([today isEqualToDate:sectionDate]) {
+            title = @"Today";
+        } else {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            title = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:sectionDate]];
+        }
+        TransactionsHeaderView *headerView = [[TransactionsHeaderView alloc] init];
+        [headerView setTitle:title];
+        return headerView;
+    }
+    return nil;
 }
 
 /*
