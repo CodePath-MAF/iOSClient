@@ -112,8 +112,9 @@ static NSInteger const kDatePicker = 2;
     self.nameText.delegate = self;
     self.transactionProgress.rowHeight = 50;
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
-    
     UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
+    [self.transactionProgress setSeparatorInset:UIEdgeInsetsZero];
+    [self.transactionProgress setSeparatorColor:lightGreen];
     self.transactionProgress.backgroundColor = lightGreen;
     self.formContainer.backgroundColor = lightGreen;
     self.amountView.backgroundColor = lightGreen;
