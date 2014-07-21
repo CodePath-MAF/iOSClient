@@ -145,6 +145,26 @@
     // TODO: Deselect item
 }
 
+#pragma mark - Page Controller
+
+- (void)pageControlChanged:(id)sender
+{
+    NSLog(@"Page Control Changed");
+    UIPageControl *pageControl = sender;
+    // TODO bounce when move to new page
+    CGFloat pageWidth = self.lendingPhotoCollectionView.frame.size.width;
+    CGPoint scrollTo = CGPointMake(pageWidth * pageControl.currentPage, 0);
+    [self.lendingPhotoCollectionView setContentOffset:scrollTo animated:YES];
+}
+
+// Paging with scoll
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"Slowing Down the scroll");
+    CGFloat pageWidth = self.lendingPhotoCollectionView.frame.size.width;
+    self.photoCollectionPageControl.currentPage = self.lendingPhotoCollectionView.contentOffset.x / pageWidth;
+}
+
 #pragma mark - interaction methods
 
 - (IBAction)flipTileView:(id)sender {
