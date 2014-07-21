@@ -116,6 +116,27 @@
 
 #pragma mark - UICollectionView Datasource
 
+//- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+//    NSInteger totalSections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+//    if ((section + 1) == totalSections && [self.goals count] % ITEMS_IN_SECTION) {
+//        return 1;
+//    }
+//    return ([self.goals count] <= 1)?[self.goals count]:ITEMS_IN_SECTION;
+//}
+//
+//- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+//    NSInteger sections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+//    return sections;
+//}
+//
+//- (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
+//    // TODO adjust for the section
+//    cell.goal = self.goals[(indexPath.section * ITEMS_IN_SECTION) + indexPath.item];
+//    return cell;
+//}
+
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     NSInteger pageCount = [self.lendingFriends count]/CIRCLE_FRIENDS_PER_PAGE;
     self.photoCollectionPageControl.numberOfPages = pageCount;
@@ -128,7 +149,7 @@
 
 - (LendingSocialCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LendingSocialCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"LendingSocialCell" forIndexPath:indexPath];
-    cell.friend = self.lendingFriends[indexPath.row];
+    cell.friend = self.lendingFriends[(indexPath.section * CIRCLE_FRIENDS_PER_PAGE) + indexPath.item];
     return cell;
 }
 
