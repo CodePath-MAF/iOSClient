@@ -115,12 +115,15 @@
 }
 
 - (void)configureNavigationBar {
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    [profileButton setBackButtonBackgroundImage:[UIImage imageNamed:@"btn_profile_highlight"] forState:UIControlStateSelected | UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     self.navigationItem.leftBarButtonItem = profileButton;
+    
     self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
     
     UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
+    [goalButton setBackButtonBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateSelected | UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = goalButton;
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -172,7 +175,11 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    NSInteger totalSections = [self.goals count]/2 + [self.goals count]%2;
+    if ((section + 1) == totalSections && [self.goals count] % 2) {
+        return 1;
+    }
+    return ([self.goals count] <= 1)?[self.goals count]:2;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -183,7 +190,7 @@
 - (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
-    cell.goal = self.goals[indexPath.item];
+    cell.goal = self.goals[(indexPath.section * 2) + indexPath.item];
     return cell;
 }
 
@@ -237,8 +244,8 @@
     NSLog(@"Page Control Changed");
     UIPageControl *pageControl = sender;
     // TODO bounce when move to new page
-    CGFloat pageWidth = self.collectionView.frame.size.width;
-    CGPoint scrollTo = CGPointMake(pageWidth * pageControl.currentPage, 0);
+    CGFloat pageHeight = self.collectionView.frame.size.height;
+    CGPoint scrollTo = CGPointMake(pageHeight * pageControl.currentPage, 0);
     [self.collectionView setContentOffset:scrollTo animated:YES];
 }
 
@@ -246,8 +253,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSLog(@"Slowing Down the scroll");
-    CGFloat pageWidth = self.collectionView.frame.size.width;
-    self.pageControl.currentPage = self.collectionView.contentOffset.x / pageWidth;
+    CGFloat pageHeight = self.collectionView.frame.size.height;
+    self.pageControl.currentPage = self.collectionView.contentOffset.y / pageHeight;
 }
 
 #pragma mark - NavBar Methods
