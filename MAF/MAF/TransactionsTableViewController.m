@@ -14,6 +14,7 @@
 #import "TransactionsSet.h"
 #import "TransactionCategoryManager.h"
 #import "CreateTransactionViewController.h"
+#import "TransactionsHeaderView.h"
 #import "User.h"
 
 #import "Utilities.h"
@@ -38,11 +39,12 @@
     self.tableView.dataSource = self;
     
     // Create Add Transaction Button
-    UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createTransaction:)];
+    UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createTransaction:)];
     
     self.navigationItem.rightBarButtonItem = addTransactionButton;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    TransactionsSummaryHeaderView *transactionsHeaderView = [[TransactionsSummaryHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320.0, 240.0)];
+    TransactionsSummaryHeaderView *transactionsHeaderView = [[TransactionsSummaryHeaderView alloc] init];
     self.tableView.tableHeaderView = transactionsHeaderView;
     
     UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
@@ -121,7 +123,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 32.f;
+    return 25.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -142,6 +144,25 @@
     } else {
         return @"";
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.transactionsSet) {
+        NSString *title;
+        NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
+        NSDate *sectionDate = [self getDateForSection:section];
+        if ([today isEqualToDate:sectionDate]) {
+            title = @"Today";
+        } else {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            title = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:sectionDate]];
+        }
+        TransactionsHeaderView *headerView = [[TransactionsHeaderView alloc] init];
+        [headerView setTitle:title];
+        return headerView;
+    }
+    return nil;
 }
 
 /*

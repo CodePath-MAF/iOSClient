@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.font = [UIFont fontWithName:@"OpenSans-Regular" size:self.font.pointSize];
+    self.font = [UIFont fontWithName:@"OpenSans" size:self.font.pointSize];
 }
 
 @end

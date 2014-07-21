@@ -67,6 +67,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dashboard];
     navController.navigationBar.translucent = NO;
     self.window.rootViewController = navController;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

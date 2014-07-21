@@ -25,6 +25,7 @@
 #import "GoalStatsView.h"
 #import "CashOverView.h"
 #import "User.h"
+#import "Utilities.h"
 
 #define PAGE_CONTROL_HEIGHT 40
 
@@ -41,6 +42,8 @@
 @property (nonatomic, strong) NSMutableArray *goals;
 @property (nonatomic, assign) NSInteger page;
 
+- (void)configureNavigationBar;
+
 @end
 
 @implementation DashboardViewController
@@ -56,16 +59,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Set up Nav Bar Buttons
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
-    
-    self.navigationItem.leftBarButtonItem = profileButton;
-    
-    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createGoal:)];
-    
-    self.navigationItem.rightBarButtonItem = goalButton;
-    
-//    self.navigationController.navigationBar.translucent = NO;
+    [self configureNavigationBar];
     
     // Set Up Collection View delegate & data source
     self.collectionView.delegate = self;
@@ -118,6 +112,23 @@
     
     // Load initial data
     [self.collectionView reloadData];
+}
+
+- (void)configureNavigationBar {
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    self.navigationItem.leftBarButtonItem = profileButton;
+    self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
+    
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
+    self.navigationItem.rightBarButtonItem = goalButton;
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
+    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
