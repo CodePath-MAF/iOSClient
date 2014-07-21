@@ -88,10 +88,10 @@
                         <constraint firstAttribute="width" constant="99" id="ZCH-tg-yrk"/>
                         <constraint firstAttribute="height" constant="43" id="tMn-A6-9uw"/>
                     </constraints>
-                    <state key="normal" image="btn_spent_active">
+                    <state key="normal" image="btn_spent_inactive">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="disabled" image="btn_spent_inactive"/>
+                    <state key="disabled" image="btn_spent_active"/>
                     <state key="highlighted" image="btn_spent_highlight"/>
                     <connections>
                         <action selector="onSpent:" destination="-1" eventType="touchUpInside" id="bMG-Tv-gOq"/>
@@ -104,10 +104,10 @@
                         <constraint firstAttribute="width" constant="104" id="bkS-37-58h"/>
                         <constraint firstAttribute="height" constant="43" id="s9C-Ok-hif"/>
                     </constraints>
-                    <state key="normal" image="btn_gained_active">
+                    <state key="normal" image="btn_gained_inactive">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="disabled" image="btn_gained_inactive"/>
+                    <state key="disabled" image="btn_gained_active"/>
                     <state key="highlighted" image="btn_gained_highlight"/>
                     <connections>
                         <action selector="onGained:" destination="-1" eventType="touchUpInside" id="Zqp-dD-00V"/>
