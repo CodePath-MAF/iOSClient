@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
+static NSInteger const kCategoryPicker = 1;
+static NSInteger const kDatePicker = 2;
+
 #import "CreateTransactionViewController.h"
 #import "CreateTransactionTableViewCell.h"
 #import "Transaction.h"
@@ -13,7 +16,8 @@
 #import "TransactionManager.h"
 #import <Parse/Parse.h>
 #import "User.h"
-#import "UILabel+WhiteUIDatePickerLabels.h"
+#import "NextButton.h"
+#import "Utilities.h"
 
 @interface CreateTransactionViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
@@ -35,7 +39,6 @@
 - (IBAction)categoryNext:(id)sender;
 - (IBAction)categoryBack:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *dateView;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 - (IBAction)dateNext:(id)sender;
 - (IBAction)dateBack:(id)sender;
@@ -47,12 +50,18 @@
 @property (strong, nonatomic) NSArray *allSteps;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *transactionProgressHeight;
 
-@property (strong, nonatomic) MyPickerView *typePicker;
+@property (strong, nonatomic) MyPickerView *categoryPicker;
 @property (strong, nonatomic) NSMutableArray *sectionName;
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
-@property (assign, nonatomic) int cellNumber;
-@property (strong, nonatomic) Transaction *transactionInProgress;
 @property (nonatomic, assign) int selectedCategory;
+
+@property (strong, nonatomic) MyPickerView *datePicker;
+@property (strong, nonatomic) NSMutableArray *dateStringValues;
+@property (strong, nonatomic) NSArray *dateObjectValues;
+@property (nonatomic, assign) int selectedDate;
+
+@property (strong, nonatomic) Transaction *transactionInProgress;
+
 
 @end
 
@@ -74,6 +83,19 @@
     for (TransactionCategory *category in categories) {
         [self.sectionName addObject:category.name];
     }
+    NSDate *currentDay =[Utilities dateWithoutTime:[NSDate new]];
+    self.dateObjectValues = [Utilities getPreviousDates:7 fromDate:currentDay];
+    for (NSDate *date in self.dateObjectValues) {
+//        self.dateStringValues addObject:<#(id)#>
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        NSString *dayOfWeek = [dateFormatter stringFromDate:date];
+        if (date == currentDay){
+            
+        }
+        
+    }
+    
     return self;
 }
 
@@ -98,16 +120,21 @@
     self.dateView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
     self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
-//    self.datePicker.
+    
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
-    self.cellNumber=2;
-    if (self.typePicker == nil) {
-        self.typePicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-        self.typePicker.delegate = self;
-        self.typePicker.dataSource=self;
-        self.typePicker.backgroundColor = lightGreen;
-    }
+
+    self.categoryPicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.categoryPicker.tag = kCategoryPicker;
+    self.categoryPicker.delegate = self;
+    self.categoryPicker.dataSource=self;
+    self.categoryPicker.backgroundColor = lightGreen;
+    
+    self.datePicker = [[MyPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    self.datePicker.tag = kDatePicker;
+    self.datePicker.delegate = self;
+    self.datePicker.dataSource = self;
+    self.datePicker.backgroundColor = lightGreen;
     
     [self.spentButton setEnabled:NO];
     self.spent = YES;
@@ -205,7 +232,7 @@
         self.transactionInProgress.name = self.nameText.text;
     } else if (self.currentViewIndex == 2) {
     } else if (self.currentViewIndex == 3) {
-        self.transactionInProgress.transactionDate = self.datePicker.date;
+//        self.transactionInProgress.transactionDate = self.datePicker.date;
     }
 }
 
@@ -215,8 +242,8 @@
     } else if (self.currentViewIndex == 1) {
         [self.nameText becomeFirstResponder];
     } else if (self.currentViewIndex == 2) {
-        [self.categoryView addSubview:self.typePicker];
-        [self.typePicker update];
+        [self.categoryView addSubview:self.categoryPicker];
+        [self.categoryPicker update];
     }
 }
 
@@ -322,27 +349,38 @@
 
 - (void)pickerView:(MyPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.selectedCategory = row;
+    if (pickerView.tag == kCategoryPicker) {
+        self.selectedCategory = row;
+    } else {
+        
+    }
+
 }
 
 
 - (NSInteger)numberOfComponentsInPickerView:(MyPickerView *)pickerView
 {
-    
     return 1;
 }
 
 - (NSInteger) pickerView:(MyPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    
-    return [self.sectionName count];
-    
+    if (pickerView.tag == kCategoryPicker) {
+        return [self.sectionName count];
+    } else {
+        return 1;
+    }
+
 }
 
 - (NSString *)pickerView:(MyPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
-    return [self.sectionName objectAtIndex:row];
+    if (pickerView.tag == kCategoryPicker) {
+        return [self.sectionName objectAtIndex:row];
+    } else {
+        return @"hi";
+    }
+
 }
 
 @end
