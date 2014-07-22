@@ -1,3 +1,4 @@
+
 //
 //  TransactionsTableViewController.m
 //  MAF
@@ -7,7 +8,7 @@
 //
 
 #import "Bolts.h"
-#import "TransactionsTableViewController.h"
+#import "TransactionsListViewController.h"
 #import "TransactionTableViewCell.h"
 #import "TransactionsSummaryHeaderView.h"
 #import "TransactionManager.h"
@@ -21,20 +22,28 @@
 
 #warning TODO make sure this is only showing TransactionTypeCredit
 
-@interface TransactionsTableViewController ()
+@interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) TransactionsSet *transactionsSet;
 @property (nonatomic, strong) TransactionTableViewCell *prototypeCell;
+
+
+@property (weak, nonatomic) IBOutlet TransactionsSummaryHeaderView *summaryView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)reloadData;
 
 @end
 
-@implementation TransactionsTableViewController
+@implementation TransactionsListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Transactions";
+    
+    self.summaryView = [[[NSBundle mainBundle] loadNibNamed:@"TransactionsSummaryHeaderView" owner:self options:nil] lastObject];
+    [self.view addSubview:self.summaryView];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -44,12 +53,8 @@
     self.navigationItem.rightBarButtonItem = addTransactionButton;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    [self.tableView setBackgroundColor:[UIColor whiteColor]];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setSeparatorColor:[UIColor whiteColor]];
-    
-    TransactionsSummaryHeaderView *transactionsHeaderView = [[TransactionsSummaryHeaderView alloc] init];
-    self.tableView.tableHeaderView = transactionsHeaderView;
     
     UINib *transactionCellNib = [UINib nibWithNibName:@"TransactionTableViewCell" bundle:nil];
     [self.tableView registerNib:transactionCellNib forCellReuseIdentifier:@"TransactionCell"];    
@@ -69,8 +74,8 @@
 }
 
 - (void)reloadData {
-    [(TransactionsSummaryHeaderView *)self.tableView.tableHeaderView setTransactionsSet:self.transactionsSet];
-    [self.tableView.tableHeaderView setNeedsDisplay];
+    [(TransactionsSummaryHeaderView *)self.summaryView setTransactionsSet:self.transactionsSet];
+    [self.summaryView setNeedsDisplay];
     [self.tableView reloadData];
 }
 

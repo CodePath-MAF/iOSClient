@@ -48,8 +48,8 @@
 		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
 		BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */; };
 		BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */; };
-		BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144354196A963000C2BB38 /* TransactionsTableViewController.m */; };
-		BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */; };
+		BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144354196A963000C2BB38 /* TransactionsListViewController.m */; };
+		BF144357196A963000C2BB38 /* TransactionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144355196A963000C2BB38 /* TransactionsListViewController.xib */; };
 		BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FF719770B1100F68B2E /* TransactionCategory.m */; };
 		BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FFD197757AB00F68B2E /* TransactionsSummaryHeaderView.m */; };
 		BF1B3000197757AB00F68B2E /* TransactionsSummaryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1B2FFE197757AB00F68B2E /* TransactionsSummaryHeaderView.xib */; };
@@ -161,9 +161,9 @@
 		BF14434E196A95D600C2BB38 /* TransactionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionTableViewCell.h; sourceTree = "<group>"; };
 		BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTableViewCell.m; sourceTree = "<group>"; };
 		BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
-		BF144353196A963000C2BB38 /* TransactionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsTableViewController.h; sourceTree = "<group>"; };
-		BF144354196A963000C2BB38 /* TransactionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsTableViewController.m; sourceTree = "<group>"; };
-		BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsTableViewController.xib; sourceTree = "<group>"; };
+		BF144353196A963000C2BB38 /* TransactionsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsListViewController.h; sourceTree = "<group>"; };
+		BF144354196A963000C2BB38 /* TransactionsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsListViewController.m; sourceTree = "<group>"; };
+		BF144355196A963000C2BB38 /* TransactionsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsListViewController.xib; sourceTree = "<group>"; };
 		BF1B2FF619770B1100F68B2E /* TransactionCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCategory.h; sourceTree = "<group>"; };
 		BF1B2FF719770B1100F68B2E /* TransactionCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCategory.m; sourceTree = "<group>"; };
 		BF1B2FFC197757AB00F68B2E /* TransactionsSummaryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsSummaryHeaderView.h; sourceTree = "<group>"; };
@@ -343,9 +343,9 @@
 				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
 				BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */,
 				BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */,
-				BF144353196A963000C2BB38 /* TransactionsTableViewController.h */,
-				BF144354196A963000C2BB38 /* TransactionsTableViewController.m */,
-				BF144355196A963000C2BB38 /* TransactionsTableViewController.xib */,
+				BF144353196A963000C2BB38 /* TransactionsListViewController.h */,
+				BF144354196A963000C2BB38 /* TransactionsListViewController.m */,
+				BF144355196A963000C2BB38 /* TransactionsListViewController.xib */,
 				2C6674871974923F00434802 /* GoalDetailViewController.h */,
 				2C6674881974923F00434802 /* GoalDetailViewController.m */,
 				2C6674891974923F00434802 /* GoalDetailViewController.xib */,
@@ -582,7 +582,7 @@
 				2CD7C1F91975FD1B007F6CB8 /* GoalCardView.xib in Resources */,
 				2CC35A19197B1D9500716B37 /* LendingSocialCell.xib in Resources */,
 				BF865B3F197C682A00A128AD /* OpenSans-Bold.ttf in Resources */,
-				BF144357196A963000C2BB38 /* TransactionsTableViewController.xib in Resources */,
+				BF144357196A963000C2BB38 /* TransactionsListViewController.xib in Resources */,
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
 				BF865B43197C682A00A128AD /* OpenSans-Italic.ttf in Resources */,
 				BF865B40197C682A00A128AD /* OpenSans-BoldItalic.ttf in Resources */,
@@ -660,7 +660,7 @@
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
-				BF144356196A963000C2BB38 /* TransactionsTableViewController.m in Sources */,
+				BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
 				BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */,
 				BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */,

@@ -14,7 +14,7 @@
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 
-#import "TransactionsTableViewController.h"
+#import "TransactionsListViewController.h"
 #import "TransactionManager.h"
 #import "TransactionsSet.h"
 
@@ -238,7 +238,7 @@
 
 - (void)viewTransactions:(id)sender {
     NSLog(@"Load Transactions View");
-    [self.navigationController pushViewController:[[TransactionsTableViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[TransactionsListViewController alloc] init] animated:YES];
 }
 
 #pragma mark - Page Controller

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TransactionsTableViewController : UITableViewController
+@interface TransactionsListViewController : UIViewController
 
 @end
