@@ -174,6 +174,11 @@
     return nil;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger firstVisibleSection = [[[self.tableView indexPathsForVisibleRows] firstObject] section];
+    [self.summaryView setActiveBar:(6 - firstVisibleSection) activeAlpha:1.0f inactiveAlpha:0.5f];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

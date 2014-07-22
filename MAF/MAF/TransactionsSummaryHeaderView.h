@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) TransactionsSet *transactionsSet;
 
+- (void)setActiveBar:(NSInteger)barIndex activeAlpha:(CGFloat)activeAlpha inactiveAlpha:(CGFloat)inactiveAlpha;
+
 @end

@@ -69,6 +69,7 @@
         [self.transactionsCategoryChart setXLabels:chartXLabels];
         [self.transactionsCategoryChart setYMaxValue:_maxValue];
         [self.transactionsCategoryChart strokeChart];
+        [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
         [self addSubview:self.transactionsCategoryChart];
     }
 }
@@ -98,6 +99,26 @@
     self.spentThisWeekTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet transactionsTotalForCurrentWeek]];
     self.spentTodayTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet transactionsTotalForToday]];
     self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [[User currentUser] totalCash ]];
+}
+
+- (void)setActiveBar:(NSInteger)barIndex activeAlpha:(CGFloat)activeAlpha inactiveAlpha:(CGFloat)inactiveAlpha {
+
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        for (int i = 0; i < self.transactionsCategoryChart.bars.count; i++) {
+            UILabel *label = self.transactionsCategoryChart.labels[i];
+            [label setTextColor:[Utilities colorFromHexString:@"#342F33"]];
+            UIView *bar = self.transactionsCategoryChart.bars[i];
+            if (i == barIndex) {
+                label.alpha = activeAlpha;
+                [label setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:10.f]];
+                bar.alpha = activeAlpha;
+            } else {
+                label.alpha = inactiveAlpha;
+                [label setFont:[UIFont fontWithName:@"OpenSans" size:10.f]];
+                bar.alpha = inactiveAlpha;
+            }
+        }
+    } completion:nil];
 }
 
 @end
