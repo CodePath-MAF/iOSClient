@@ -1,13 +1,13 @@
 //
-//  LiquidAssetView.h
+//  NoGoalView.h
 //  MAF
 //
-//  Created by Eddie Freeman on 7/12/14.
+//  Created by Eddie Freeman on 7/21/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface LiquidAssetView : UIView
+@interface NoGoalView : UIView
 
 @end

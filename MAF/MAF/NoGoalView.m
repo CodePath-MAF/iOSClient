@@ -1,14 +1,14 @@
 //
-//  LiquidAssetView.m
+//  NoGoalView.m
 //  MAF
 //
-//  Created by Eddie Freeman on 7/12/14.
+//  Created by Eddie Freeman on 7/21/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#import "LiquidAssetView.h"
+#import "NoGoalView.h"
 
-@implementation LiquidAssetView
+@implementation NoGoalView
 
 - (id)initWithFrame:(CGRect)frame
 {
