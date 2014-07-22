@@ -7,6 +7,12 @@
 //
 
 #import "NoGoalView.h"
+#import "Utilities.h"
+
+@interface NoGoalView ()
+@property (weak, nonatomic) IBOutlet UIButton *addGoalButton;
+
+@end
 
 @implementation NoGoalView
 
@@ -15,17 +21,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [Utilities setupRoundedButton:self.addGoalButton
+                     withCornerRadius:BUTTON_CORNER_RADIUS];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (IBAction)addGoal:(UIButton *)sender {
+    
 }
-*/
 
 @end

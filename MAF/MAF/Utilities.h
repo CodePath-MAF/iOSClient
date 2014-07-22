@@ -14,6 +14,7 @@
 #define TIME_TIL_DUE_STRING @"DUE IN %d DAYS (%@)"
 #define DUE_TODAY_STRING @"DUE TODAY (%@)"
 #define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
+#define BUTTON_CORNER_RADIUS 18.0f
 
 @interface Utilities : NSObject
 

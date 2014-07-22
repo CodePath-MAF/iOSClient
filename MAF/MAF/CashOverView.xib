@@ -28,17 +28,31 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_leftarrow_white_up-1" translatesAutoresizingMaskIntoConstraints="NO" id="Se7-4P-xff">
+                    <rect key="frame" x="302" y="66" width="8" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.070588238540000001" green="0.6549019814" blue="0.68235296010000002" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="C6V-o7-pXg"/>
+                        <constraint firstAttribute="height" constant="14" id="rwT-Ha-4lT"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.36838010419051681" green="0.73864215353260865" blue="0.60066864139704124" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.0039215688589999999" green="0.81176477670000002" blue="0.63921570780000003" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
                 <constraint firstItem="qla-lB-9VA" firstAttribute="top" secondItem="ZPv-k2-0Gs" secondAttribute="bottom" constant="-4" id="031-LW-QM6"/>
                 <constraint firstAttribute="centerX" secondItem="ZPv-k2-0Gs" secondAttribute="centerX" id="3Eb-gu-3xm"/>
+                <constraint firstItem="ZPv-k2-0Gs" firstAttribute="centerY" secondItem="Se7-4P-xff" secondAttribute="centerY" id="7cU-fZ-dwN"/>
                 <constraint firstAttribute="trailing" secondItem="ZPv-k2-0Gs" secondAttribute="trailing" constant="10" id="GaM-re-xWn"/>
                 <constraint firstItem="ZPv-k2-0Gs" firstAttribute="leading" secondItem="dae-m7-tCx" secondAttribute="leading" constant="10" id="aIQ-3d-sGX"/>
                 <constraint firstAttribute="centerY" secondItem="ZPv-k2-0Gs" secondAttribute="centerY" id="blw-ar-twO"/>
                 <constraint firstItem="ZPv-k2-0Gs" firstAttribute="centerX" secondItem="qla-lB-9VA" secondAttribute="centerX" id="dN8-BN-IQ0"/>
+                <constraint firstAttribute="trailing" secondItem="Se7-4P-xff" secondAttribute="trailing" constant="10" id="tUT-4c-NTR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="btn_leftarrow_white_up-1" width="9" height="13"/>
+    </resources>
 </document>

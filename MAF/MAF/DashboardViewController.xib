@@ -9,7 +9,6 @@
                 <outlet property="cashOverView" destination="MRC-o0-z7K" id="LR2-xP-LEO"/>
                 <outlet property="collectionView" destination="kcR-jc-ADa" id="6tH-cX-R12"/>
                 <outlet property="goalStatsView" destination="ERW-2P-tNw" id="C4m-ii-ipH"/>
-                <outlet property="totalCashLabel" destination="JWR-8a-LL3" id="jwv-Wc-7yQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,31 +20,7 @@
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="MRC-o0-z7K" customClass="CashOverView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="256"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$234.64" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWR-8a-LL3" customClass="OpenSansSemiBoldLabel">
-                            <rect key="frame" x="10" y="109" width="300" height="39"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                            <color key="textColor" red="0.95886901339999997" green="0.97652172469999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL CASH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ND3-5h-uQb" customClass="OpenSansRegularLabel">
-                            <rect key="frame" x="123" y="144" width="75" height="15"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.3683801042" green="0.73864215349999995" blue="0.60066864139999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="JWR-8a-LL3" firstAttribute="leading" secondItem="MRC-o0-z7K" secondAttribute="leading" constant="10" id="6Qv-Cu-8sk"/>
-                        <constraint firstAttribute="trailing" secondItem="JWR-8a-LL3" secondAttribute="trailing" constant="10" id="Fe1-bE-86p"/>
-                        <constraint firstItem="ND3-5h-uQb" firstAttribute="top" secondItem="JWR-8a-LL3" secondAttribute="bottom" constant="-4" id="Oal-wg-7Ic"/>
-                        <constraint firstItem="JWR-8a-LL3" firstAttribute="centerX" secondItem="ND3-5h-uQb" secondAttribute="centerX" id="Thg-IQ-4zG"/>
-                        <constraint firstAttribute="centerY" secondItem="JWR-8a-LL3" secondAttribute="centerY" id="eou-Ul-SGX"/>
-                        <constraint firstAttribute="centerX" secondItem="JWR-8a-LL3" secondAttribute="centerX" id="qJx-E3-YKQ"/>
-                    </constraints>
+                    <color key="backgroundColor" red="0.81528108020000001" green="0.46467893380000003" blue="0.37995494819999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERW-2P-tNw" customClass="GoalStatsView">
                     <rect key="frame" x="0.0" y="256" width="320" height="56"/>

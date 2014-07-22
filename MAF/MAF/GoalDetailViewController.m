@@ -8,7 +8,6 @@
 
 #define DUE_TODAY_STRING @"DUE TODAY (%@)"
 #define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
-#define BUTTON_CORNER_RADIUS 18.0f
 #define CIRCLE_FRIENDS_PER_PAGE 4
 
 #import "GoalDetailViewController.h"
@@ -36,7 +35,6 @@
 - (IBAction)makePayment:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *lendingFriends;
-@property (nonatomic, assign) NSInteger page;
 
 @property (assign, nonatomic) NSInteger tileNum; // Not Used right now
 
@@ -46,20 +44,18 @@
 
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
-    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.0f", self.goal.paymentAmount];
+    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
     self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
 
     self.title = self.goal.name;
     NSString *timeTilString;
-    #warning Doesn't work TODO, get the formatting and countdown logic working
-//    if ([MHPrettyDate isToday:self.goal.targetDate]) {
-//        timeTilString = [NSString stringWithFormat:DUE_TODAY_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-//    }
-//    else {
-//    timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [Utilities daysBetweenDate:[NSDate date] andDate:self.goal.targetDate], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-//    }
-//
-//self.timeTilDueLabel.text = timeTilString;
+    if ([MHPrettyDate isToday:self.goal.targetDate]) {
+        timeTilString = [NSString stringWithFormat:DUE_TODAY_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
+    }
+    else {
+    timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [Utilities daysBetweenDate:[NSDate date] andDate:self.goal.targetDate], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
+    }
+    self.timeTilDueLabel.text = timeTilString;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -68,7 +64,6 @@
     if (self) {
         // Init Users for Social
         _lendingFriends = [[NSMutableArray alloc] init];
-        NSLog(@"Loading Lending Friends");
         for (int userCount = 0; userCount < 12; userCount++) {
             NSString *name = [[NSString alloc] initWithFormat:@"Name %d", userCount+1];
             NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userCount+1];
@@ -104,38 +99,18 @@
     [self.lendingPhotoCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"LendingSocialCell"];
     
     // Set up Pagination
-    self.photoCollectionPageControl.currentPage = self.page;
+    self.photoCollectionPageControl.currentPage = 0;
+    [self.photoCollectionPageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
     
     // Set Up Goal Progress View
     
     // Set Up Make Payment Button
 #warning TODO create progress update
     [Utilities setupRoundedButton:self.makePaymentButton
-                 withCornerRadius:BUTTON_CORNER_RADIUS  ];
+                 withCornerRadius:BUTTON_CORNER_RADIUS];
 }
 
 #pragma mark - UICollectionView Datasource
-
-//- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-//    NSInteger totalSections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-//    if ((section + 1) == totalSections && [self.goals count] % ITEMS_IN_SECTION) {
-//        return 1;
-//    }
-//    return ([self.goals count] <= 1)?[self.goals count]:ITEMS_IN_SECTION;
-//}
-//
-//- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-//    NSInteger sections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-//    return sections;
-//}
-//
-//- (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
-//    // TODO adjust for the section
-//    cell.goal = self.goals[(indexPath.section * ITEMS_IN_SECTION) + indexPath.item];
-//    return cell;
-//}
-
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     NSInteger pageCount = [self.lendingFriends count]/CIRCLE_FRIENDS_PER_PAGE;
@@ -174,14 +149,15 @@
     UIPageControl *pageControl = sender;
     // TODO bounce when move to new page
     CGFloat pageWidth = self.lendingPhotoCollectionView.frame.size.width;
+    NSLog(@"widthFrame: %f", pageWidth);
     CGPoint scrollTo = CGPointMake(pageWidth * pageControl.currentPage, 0);
+    NSLog(@"scrollTo: %f", scrollTo.x);
     [self.lendingPhotoCollectionView setContentOffset:scrollTo animated:YES];
 }
 
 // Paging with scoll
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"Slowing Down the scroll");
     CGFloat pageWidth = self.lendingPhotoCollectionView.frame.size.width;
     self.photoCollectionPageControl.currentPage = self.lendingPhotoCollectionView.contentOffset.x / pageWidth;
 }
