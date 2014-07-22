@@ -77,6 +77,7 @@
     if (!_transactionsByGoal) {
         NSMutableDictionary *transactionsByGoalDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
+            NSLog(@"Goal Object ID: %@", [transaction.goal objectId]);
             NSMutableArray *transactionsByGoal = [transactionsByGoalDict objectForKey:[transaction.goal objectId]] ?: [[NSMutableArray alloc] init];
             [transactionsByGoal addObject:transaction];
             [transactionsByGoalDict setObject:transactionsByGoal forKey:[transaction.goal objectId]];
