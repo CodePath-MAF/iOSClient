@@ -8,6 +8,7 @@
 
 #import "Utilities.h"
 
+
 @implementation Utilities
 
 + (NSDate *)dateWithoutTime:(NSDate *)date {
@@ -66,6 +67,11 @@
     button.layer.borderWidth = 2.0f;
     
     return button;
+}
+
++ (NSInteger)numberOfMilestonesforGoal:(Goal *)goal {
+    NSInteger daysToGoal = [self daysBetweenDate:[NSDate new] andDate:goal.targetDate];
+    return floor(daysToGoal/goal.paymentInterval);
 }
 
 @end

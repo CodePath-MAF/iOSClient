@@ -33,7 +33,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="bH9-iq-Yyh"/>
                             </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="8" id="6Pb-9k-ghw">
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="6Pb-9k-ghw">
                                 <size key="itemSize" width="64" height="64"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -87,24 +87,28 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME TIL DUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ks-U2-Bck" customClass="OpenSansRegularLabel">
-                            <rect key="frame" x="10" y="178" width="300" height="15"/>
+                            <rect key="frame" x="121" y="178" width="79" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.78969938858695654" green="0.13977225464306592" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time_red" translatesAutoresizingMaskIntoConstraints="NO" id="zc0-BT-qOZ">
+                            <rect key="frame" x="108" y="180" width="11" height="11"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="centerX" secondItem="eYl-CH-h69" secondAttribute="centerX" id="F5E-dm-VSX"/>
                         <constraint firstAttribute="centerY" secondItem="ftU-Nh-4d0" secondAttribute="centerY" id="Lim-V1-wCD"/>
+                        <constraint firstItem="2Ks-U2-Bck" firstAttribute="leading" secondItem="zc0-BT-qOZ" secondAttribute="trailing" constant="2" id="Mzq-QB-ugH"/>
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="top" secondItem="ftU-Nh-4d0" secondAttribute="bottom" constant="2" id="WO4-Rm-NJh"/>
                         <constraint firstAttribute="trailing" secondItem="ftU-Nh-4d0" secondAttribute="trailing" constant="10" id="ajO-r0-MSg"/>
-                        <constraint firstItem="2Ks-U2-Bck" firstAttribute="leading" secondItem="dvf-Or-XYx" secondAttribute="leading" constant="10" id="dKt-cc-x6X"/>
                         <constraint firstItem="ftU-Nh-4d0" firstAttribute="top" secondItem="eYl-CH-h69" secondAttribute="bottom" id="etu-I4-7mL"/>
                         <constraint firstAttribute="centerX" secondItem="ftU-Nh-4d0" secondAttribute="centerX" id="gwh-Xf-FbG"/>
-                        <constraint firstAttribute="trailing" secondItem="2Ks-U2-Bck" secondAttribute="trailing" constant="10" id="lGj-6h-HXg"/>
                         <constraint firstItem="ftU-Nh-4d0" firstAttribute="leading" secondItem="dvf-Or-XYx" secondAttribute="leading" constant="10" id="llC-y3-0wr"/>
+                        <constraint firstItem="2Ks-U2-Bck" firstAttribute="centerY" secondItem="zc0-BT-qOZ" secondAttribute="centerY" id="meL-ag-THe"/>
                         <constraint firstItem="2Ks-U2-Bck" firstAttribute="centerX" secondItem="ftU-Nh-4d0" secondAttribute="centerX" id="uWk-dD-NH6"/>
                     </constraints>
                 </view>
@@ -135,10 +139,10 @@
                                 <constraint firstAttribute="width" constant="260" id="oRr-so-iNF"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="tintColor" red="0.3683801042" green="0.73864215349999995" blue="0.60066864139999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.0039215688589999999" green="0.81176477670000002" blue="0.63921570780000003" alpha="1" colorSpace="deviceRGB"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                             <state key="normal" title="MAKE PAYMENT">
-                                <color key="titleColor" red="0.3683801042" green="0.73864215349999995" blue="0.60066864139999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.0039215688589999999" green="0.81176477670000002" blue="0.63921570780000003" alpha="1" colorSpace="deviceRGB"/>
                             </state>
                             <connections>
                                 <action selector="makePayment:" destination="-1" eventType="touchUpInside" id="jKs-Ah-C2u"/>
@@ -189,4 +193,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="time_red" width="11" height="11"/>
+    </resources>
 </document>

@@ -30,7 +30,8 @@
         
         // adjust frame and set resizing mask
         view.frame = self.frame;
-        view.autoresizingMask = self.autoresizingMask;
+
+        view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 //        self.clipsToBounds = YES;
         
         [self addSubview:view];
