@@ -38,7 +38,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.0039215688589999999" green="0.81176477670000002" blue="0.63921570780000003" alpha="1" colorSpace="deviceRGB"/>
+            <color key="backgroundColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
                 <constraint firstItem="qla-lB-9VA" firstAttribute="top" secondItem="ZPv-k2-0Gs" secondAttribute="bottom" constant="-4" id="031-LW-QM6"/>
                 <constraint firstAttribute="centerX" secondItem="ZPv-k2-0Gs" secondAttribute="centerX" id="3Eb-gu-3xm"/>

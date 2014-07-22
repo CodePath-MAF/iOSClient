@@ -16,6 +16,7 @@
 		2C95F618197CC91400862497 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C95F617197CC91400862497 /* Reveal.framework */; };
 		2C95F61B197DDAE600862497 /* NoGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C95F61A197DDAE600862497 /* NoGoalView.m */; };
 		2C95F61D197DDAF700862497 /* NoGoalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C95F61C197DDAF700862497 /* NoGoalView.xib */; };
+		2C95F661197E5D5700862497 /* GoalSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C95F660197E5D5700862497 /* GoalSet.m */; };
 		2CBA46911965DE3A00C6BEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46901965DE3A00C6BEDF /* Foundation.framework */; };
 		2CBA46931965DE3A00C6BEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */; };
 		2CBA46951965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
@@ -112,6 +113,8 @@
 		2C95F619197DDAE600862497 /* NoGoalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoGoalView.h; sourceTree = "<group>"; };
 		2C95F61A197DDAE600862497 /* NoGoalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoGoalView.m; sourceTree = "<group>"; };
 		2C95F61C197DDAF700862497 /* NoGoalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoalView.xib; sourceTree = "<group>"; };
+		2C95F65F197E5D5700862497 /* GoalSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalSet.h; sourceTree = "<group>"; };
+		2C95F660197E5D5700862497 /* GoalSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalSet.m; sourceTree = "<group>"; };
 		2CBA468D1965DE3A00C6BEDF /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBA46901965DE3A00C6BEDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -389,6 +392,8 @@
 			children = (
 				BF14432C196A471300C2BB38 /* Goal.h */,
 				BF14432D196A471300C2BB38 /* Goal.m */,
+				2C95F65F197E5D5700862497 /* GoalSet.h */,
+				2C95F660197E5D5700862497 /* GoalSet.m */,
 				BF14432F196A4FAD00C2BB38 /* Transaction.h */,
 				BF144330196A4FAD00C2BB38 /* Transaction.m */,
 				BF1B2FF619770B1100F68B2E /* TransactionCategory.h */,
@@ -681,6 +686,7 @@
 				BAFB2C1C1975D39400A11C56 /* CreateTransactionViewController.m in Sources */,
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,
 				BF865B21197C61C500A128AD /* OpenSansExtraBoldLabel.m in Sources */,
+				2C95F661197E5D5700862497 /* GoalSet.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */,
 				BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */,

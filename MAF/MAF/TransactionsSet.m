@@ -15,10 +15,10 @@
     NSDictionary *_totalByDate;
     NSDictionary *_transactionsByDate;
     NSDictionary *_transactionsByCategoryByDate;
+    NSDictionary *_transactionsByGoal;
 }
 
 - (float)getTotalForTransactions:(float (^)(Transaction *transaction))shouldIncludeTransaction;
-- (NSDateComponents *)getDateComponents:(NSDate *)date;
 
 @end
 
@@ -45,6 +45,22 @@
         _totalByDate = transactionDict;
     }
     return _totalByDate;
+}
+
+- (NSDictionary *)transactionsByGoal {
+    if (!_transactionsByGoal) {
+        NSMutableDictionary *transactionsByGoalDict = [[NSMutableDictionary alloc] init];
+        for (Transaction *transaction in self.transactions) {
+            
+            NSLog(@"Goal Object ID: %@", [transaction.goal objectId]);
+            NSMutableArray *transactionsByGoal = [transactionsByGoalDict objectForKey:[transaction.goal objectId]] ?: [[NSMutableArray alloc] init];
+            NSLog(@"Goal Name: %@",transaction.goal.name);
+            [transactionsByGoal addObject:transaction];
+            [transactionsByGoalDict setObject:transactionsByGoal forKey:[transaction.goal objectId]];
+        }
+        _transactionsByGoal = transactionsByGoalDict;
+    }
+    return _transactionsByGoal;
 }
 
 - (NSDictionary *)transactionsTotalByCategoryForDate:(NSDate *)date {
@@ -112,9 +128,7 @@
     return total;
 }
 
-- (NSDateComponents *)getDateComponents:(NSDate *)date {
-    return [[NSCalendar currentCalendar] components:(NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit) fromDate:date];
-}
+
 
 - (float)spentToday {
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
@@ -124,10 +138,10 @@
 }
 
 - (float)spentThisWeek {
-    NSDateComponents *components = [self getDateComponents:[NSDate new]];
+    NSDateComponents *components = [Utilities getDateComponentsForDate:[NSDate new]];
     return [self getTotalForTransactions:^float(Transaction *transaction) {
         if (transaction.type == TransactionTypeDebit) {
-            NSDateComponents *transactionComponents = [self getDateComponents:transaction.transactionDate];
+            NSDateComponents *transactionComponents = [Utilities getDateComponentsForDate:transaction.transactionDate];
             return (components.week == transactionComponents.week && components.month == transactionComponents.month && components.year == transactionComponents.year);
         }
         return NO;
@@ -135,10 +149,10 @@
 }
 
 - (float)spentThisMonth {
-    NSDateComponents *components = [self getDateComponents:[NSDate new]];
+    NSDateComponents *components = [Utilities getDateComponentsForDate:[NSDate new]];
     return [self getTotalForTransactions:^float(Transaction *transaction) {
         if (transaction.type == TransactionTypeDebit) {
-            NSDateComponents *transactionComponents = [self getDateComponents:transaction.transactionDate];
+            NSDateComponents *transactionComponents = [Utilities getDateComponentsForDate:transaction.transactionDate];
             return (components.month == transactionComponents.month && components.year == transactionComponents.year);
         }
         return NO;
@@ -146,10 +160,10 @@
 }
 
 - (float)spentThisYear {
-    NSDateComponents *components = [self getDateComponents:[NSDate new]];
+    NSDateComponents *components = [Utilities getDateComponentsForDate:[NSDate new]];
     return [self getTotalForTransactions:^float(Transaction *transaction) {
         if (transaction.type == TransactionTypeDebit) {
-            NSDateComponents *transactionComponents = [self getDateComponents:transaction.transactionDate];
+            NSDateComponents *transactionComponents = [Utilities getDateComponentsForDate:transaction.transactionDate];
             return (components.year == transactionComponents.year);
         }
         return NO;
@@ -164,10 +178,10 @@
 }
 
 - (float)savedThisWeek {
-    NSDateComponents *components = [self getDateComponents:[NSDate new]];
+    NSDateComponents *components = [Utilities getDateComponentsForDate:[NSDate new]];
     return [self getTotalForTransactions:^float(Transaction *transaction) {
         if (transaction.type == TransactionTypeCredit) {
-            NSDateComponents *transactionComponents = [self getDateComponents:transaction.transactionDate];
+            NSDateComponents *transactionComponents = [Utilities getDateComponentsForDate:transaction.transactionDate];
             return (components.week == transactionComponents.week && components.month == transactionComponents.month && components.year == transactionComponents.year);
         }
         return NO;
@@ -175,10 +189,10 @@
 }
 
 - (float)savedThisMonth {
-    NSDateComponents *components = [self getDateComponents:[NSDate new]];
+    NSDateComponents *components = [Utilities getDateComponentsForDate:[NSDate new]];
     return [self getTotalForTransactions:^float(Transaction *transaction) {
         if (transaction.type == TransactionTypeCredit) {
-            NSDateComponents *transactionComponents = [self getDateComponents:transaction.transactionDate];
+            NSDateComponents *transactionComponents = [Utilities getDateComponentsForDate:transaction.transactionDate];
             return (components.month == transactionComponents.month && components.year == transactionComponents.year);
         }
         return NO;
@@ -186,10 +200,10 @@
 }
 
 - (float)savedThisYear {
-    NSDateComponents *components = [self getDateComponents:[NSDate new]];
+    NSDateComponents *components = [Utilities getDateComponentsForDate:[NSDate new]];
     return [self getTotalForTransactions:^float(Transaction *transaction) {
         if (transaction.type == TransactionTypeCredit) {
-            NSDateComponents *transactionComponents = [self getDateComponents:transaction.transactionDate];
+            NSDateComponents *transactionComponents = [Utilities getDateComponentsForDate:transaction.transactionDate];
             return (components.year == transactionComponents.year);
         }
         return NO;
