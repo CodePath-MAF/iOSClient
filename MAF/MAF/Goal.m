@@ -8,6 +8,7 @@
 
 #import <Parse/PFObject+Subclass.h>
 #import "Goal.h"
+#import "Utilities.h"
 
 @implementation Goal
 

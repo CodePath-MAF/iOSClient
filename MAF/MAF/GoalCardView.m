@@ -35,8 +35,10 @@
 
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
-    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", 0, 10];
+    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", 0, self.goal.numPayments];
     self.goalNameLabel.text = self.goal.name;
+    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.goal.paymentAmount];
+    
     // TODO
 //    self.paymentDueLabel.text = [[NSString alloc] initWithFormat:@"DUE %@", [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
 }

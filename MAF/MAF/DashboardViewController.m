@@ -64,80 +64,94 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     
-    // No Goals Set Up
-    
     // Set Up Collection View delegate & data source
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    
-    CGFloat w = self.collectionView.frame.size.width;
-    CGFloat h = self.collectionView.frame.size.height;
-    
-    if ([self.goals count] == 0) {
-        NSLog(@"Make some Goals!");
-        self.firstGoalView = [[UIView alloc] initWithFrame:self.collectionView.frame];
-        self.firstGoalView.autoresizingMask = self.collectionView.autoresizingMask;
-    }
-    else {
-        // Set up the page control
-        CGRect frame = CGRectMake(0, h - PAGE_CONTROL_HEIGHT, w, PAGE_CONTROL_HEIGHT);
-        self.pageControl = [[UIPageControl alloc]
-                            initWithFrame:frame];
-        
-        // Add a target that will be invoked when the page control is
-        // changed by tapping on it
-        [self.pageControl
-         addTarget:self.collectionView
-         action:@selector(pageControlChanged:)
-         forControlEvents:UIControlEventValueChanged
-         ];
-        
-        // Set the number of pages to the number of pages in the paged interface
-        // and let the height flex so that it sits nicely in its frame
-        self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-        self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        [self.collectionView addSubview:self.pageControl];
-        
-        // Load initial data
-        [self.collectionView reloadData];
-    }
+//    if ([self.goals count] == 0) {
+//        [self loadNoGoalView];
+//    }
+//    else {
+        [self loadGoalCollectionView];
+//    }
     
     // Stub Goals Cell
     UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
 
-    // Set Up Cash OverView
-//    self.cashOverView.totalCash = [[User currentUser] totalCash];
-//    self.cashOverView.delegate = self;
-    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
-    [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
-    
-    
+    // Set Up Cash OverView - NOT USING FOR NOW
+    self.cashOverView.totalCash = [[User currentUser] totalCash];
+    self.cashOverView.delegate = self;
+//    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
+//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
+//    [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)configureNavigationBar {
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
-    [profileButton setImageInsets:UIEdgeInsetsMake(10.0f, 0, 0, 0)];
-    
-    [profileButton setBackButtonBackgroundImage:[UIImage imageNamed:@"btn_profile_highlight"] forState:UIControlStateSelected | UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    self.navigationItem.leftBarButtonItem = profileButton;
-    
+    // Set Up Navigation Bar
     self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
     [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:3.5f forBarMetrics:UIBarMetricsDefault];
-    
-    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
-    [goalButton setImageInsets:UIEdgeInsetsMake(10.0f, 0, 0, 0)];
-    [goalButton setBackButtonBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateSelected | UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    self.navigationItem.rightBarButtonItem = goalButton;
-    
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
     [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
+    
+    // Set Up Profile Button
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    [profileButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
+    
+    [profileButton setBackgroundImage:[UIImage imageNamed:@"btn_profile_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+    self.navigationItem.leftBarButtonItem = profileButton;
+    
+    // Set Up Add Goal Button
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
+    [goalButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
+    [goalButton setBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+    self.navigationItem.rightBarButtonItem = goalButton;
+}
 
+- (void)loadGoalCollectionView {
+    // Set Delegates
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    CGFloat originY = 280; // Not sure why I can't get this programmatically but everything else seems to be wrong.
+    CGFloat height = self.view.frame.size.height - originY;
+    CGFloat width = self.collectionView.frame.size.width;
+    
+    // Set up the page control
+//    CGRect frame = CGRectMake(0,  height - PAGE_CONTROL_HEIGHT, width, PAGE_CONTROL_HEIGHT);
+//    self.pageControl = [[UIPageControl alloc]
+//                        initWithFrame:frame];
+    self.firstGoalView.hidden = YES;
+    self.collectionView.hidden = NO;
+    // Add a target that will be invoked when the page control is
+    // changed by tapping on it
+//    [self.pageControl
+//     addTarget:self.collectionView
+//     action:@selector(pageControlChanged:)
+//     forControlEvents:UIControlEventValueChanged
+//     ];
+    
+    // Set the number of pages to the number of pages in the paged interface
+    // and let the height flex so that it sits nicely in its frame
+//    self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+//    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+//    [self.collectionView addSubview:self.pageControl];
+    
+    // Load initial data
+    [self.collectionView reloadData];
+}
+
+- (void)loadNoGoalView {
+    CGFloat originY = 280; // Not sure why I can't get this programmatically but everything else seems to be wrong.
+    CGFloat height = self.view.frame.size.height - originY;
+    CGFloat width = self.collectionView.frame.size.width;
+    self.firstGoalView.hidden = NO;
+    self.firstGoalView = [[UIView alloc] initWithFrame:CGRectMake(0, originY, width, height)];
+    self.firstGoalView.autoresizingMask = self.collectionView.autoresizingMask;
+    self.firstGoalView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.firstGoalView];
+    self.collectionView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -160,7 +174,7 @@
                 NSLog(@"Error fetching goals for user: %@", task.error);
             } else {
                 self.goals = [NSMutableArray arrayWithArray:task.result];
-                
+                [self.collectionView reloadData];
                 if([self.goals count] == 0) {
                     // TODO add logic for loading transitioning the first goal view
                 }
@@ -193,22 +207,25 @@
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    NSInteger totalSections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-    if ((section + 1) == totalSections && [self.goals count] % ITEMS_IN_SECTION) {
-        return 1;
-    }
-    return ([self.goals count] <= 1)?[self.goals count]:ITEMS_IN_SECTION;
+//    NSInteger totalSections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+//    if ((section + 1) == totalSections && [self.goals count] % ITEMS_IN_SECTION) {
+//        return 1;
+//    }
+//    return ([self.goals count] <= 1)?[self.goals count]:ITEMS_IN_SECTION;
+    return [self.goals count];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    NSInteger sections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+//    NSInteger sections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
+    NSInteger sections = 1;
     return sections;
 }
 
 - (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
-    cell.goal = self.goals[(indexPath.section * ITEMS_IN_SECTION) + indexPath.item];
+    cell.goal = self.goals[indexPath.item];
+//    cell.goal = self.goals[(indexPath.section * ITEMS_IN_SECTION) + indexPath.item];
     return cell;
 }
 
@@ -263,22 +280,37 @@
 
 #pragma mark - Page Controller
 
-- (void)pageControlChanged:(id)sender
-{
-    NSLog(@"Page Control Changed");
-    UIPageControl *pageControl = sender;
-    // TODO bounce when move to new page
-    CGFloat pageHeight = self.collectionView.frame.size.height;
-    CGPoint scrollTo = CGPointMake(pageHeight * pageControl.currentPage, 0);
-    [self.collectionView setContentOffset:scrollTo animated:YES];
+//- (void)pageControlChanged:(id)sender
+//{
+//    NSLog(@"Page Control Changed");
+//    UIPageControl *pageControl = sender;
+//    // TODO bounce when move to new page
+//    CGFloat pageHeight = self.collectionView.frame.size.height * ITEMS_IN_SECTION;
+//    CGPoint scrollTo = CGPointMake(0, pageHeight * pageControl.currentPage);
+//    [self.collectionView setContentOffset:scrollTo animated:YES];
+//}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+    // TODO, do some cool stuff with the goals.
 }
 
-// Paging with scoll
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"Slowing Down the scroll");
-    CGFloat pageHeight = self.collectionView.frame.size.height;
-    self.pageControl.currentPage = self.collectionView.contentOffset.y / pageHeight;
+// Paging with scroll
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+    if(velocity.y > 0) { // scrolling up at a certain velocity
+//        if(self.pageControl.currentPage != 0) {
+//            self.pageControl.currentPage--;
+//        }
+//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:self.pageControl.currentPage*ITEMS_IN_SECTION] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    }
+    else if (velocity.y < 0) { // scrolling down at a certain velocity
+//        self.pageControl.currentPage++;
+//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:self.pageControl.currentPage*ITEMS_IN_SECTION] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    }
+    else { // lock the page back to original
+        
+    }
 }
 
 #pragma mark - NavBar Methods
