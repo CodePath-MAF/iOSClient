@@ -162,10 +162,10 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VtQ-or-azi" customClass="OpenSansLightTextField">
-                    <rect key="frame" x="0.0" y="61" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="61" width="320" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="ahY-XT-AOQ"/>
+                        <constraint firstAttribute="height" constant="70" id="ahY-XT-AOQ"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
