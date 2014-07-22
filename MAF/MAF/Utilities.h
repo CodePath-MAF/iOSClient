@@ -18,6 +18,7 @@
 
 @interface Utilities : NSObject
 
++ (NSDateComponents *)getDateComponentsForDate:(NSDate *)date;
 + (NSDate *)dateWithoutTime:(NSDate *)date;
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 + (NSArray *)getPreviousDates:(int)numPreviousDates fromDate:(NSDate *)fromDate;

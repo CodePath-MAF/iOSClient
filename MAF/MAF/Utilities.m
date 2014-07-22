@@ -60,6 +60,10 @@
     return [[NSArray alloc] initWithArray:previousDates];
 }
 
++ (NSDateComponents *)getDateComponentsForDate:(NSDate *)date {
+    return [[NSCalendar currentCalendar] components:(NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit) fromDate:date];
+}
+
 + (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius {
     button.layer.cornerRadius = cornerRadius;
     button.layer.masksToBounds = YES;

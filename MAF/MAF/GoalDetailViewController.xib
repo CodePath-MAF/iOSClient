@@ -44,13 +44,13 @@
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="g4d-hb-5E4">
                             <rect key="frame" x="141" y="86" width="39" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="pageIndicatorTintColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                             <color key="currentPageIndicatorTintColor" red="0.3683801042" green="0.73864215349999995" blue="0.60066864139999998" alpha="1" colorSpace="calibratedRGB"/>
                         </pageControl>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDw-la-a3U" userLabel="Separator">
                             <rect key="frame" x="0.0" y="127" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="WgI-eR-v7L"/>
                             </constraints>
@@ -77,20 +77,21 @@
                             <rect key="frame" x="104" y="122" width="112" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.20392156862745098" green="0.18431372549019609" blue="0.20000000000000001" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$35.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftU-Nh-4d0" customClass="OpenSansSemiBoldLabel">
                             <rect key="frame" x="10" y="137" width="300" height="39"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                            <color key="textColor" red="0.20392156859999999" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME TIL DUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ks-U2-Bck" customClass="OpenSansRegularLabel">
                             <rect key="frame" x="121" y="178" width="79" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.78969938858695654" green="0.13977225464306592" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.81568627450980391" green="0.0078431372549019607" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time_red" translatesAutoresizingMaskIntoConstraints="NO" id="zc0-BT-qOZ">
@@ -120,13 +121,13 @@
                             <rect key="frame" x="10" y="68" width="300" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auP-AN-zfz">
                             <rect key="frame" x="0.0" y="98" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.90009341030000001" green="0.90009341030000001" blue="0.90009341030000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Wqq-9G-lnl"/>
                             </constraints>
@@ -139,10 +140,10 @@
                                 <constraint firstAttribute="width" constant="260" id="oRr-so-iNF"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="tintColor" red="0.0039215688589999999" green="0.81176477670000002" blue="0.63921570780000003" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="tintColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                             <state key="normal" title="MAKE PAYMENT">
-                                <color key="titleColor" red="0.0039215688589999999" green="0.81176477670000002" blue="0.63921570780000003" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="titleColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                             </state>
                             <connections>
                                 <action selector="makePayment:" destination="-1" eventType="touchUpInside" id="jKs-Ah-C2u"/>
@@ -151,7 +152,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-au-B5u" userLabel="Separator">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="ISp-1r-AG9"/>
                             </constraints>
