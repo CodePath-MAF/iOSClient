@@ -11,7 +11,7 @@
 #import "Bolts.h"
 
 #import "DashboardViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "SignupViewController.h"
 
 #import "SimpleTransactionViewController.h"
@@ -149,15 +149,18 @@
     [self.cashOverView setTotalCash:[[User currentUser] totalCash]];
 
     if (![User currentUser]) {
-        LoginViewController *loginViewController = [[LoginViewController alloc] init];
-        [loginViewController setDelegate:self];
+//        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//        [loginViewController setDelegate:self];
         
         SignupViewController *signupViewController = [[SignupViewController alloc] init];
-        [signupViewController setDelegate:self];
+//        [signupViewController setDelegate:self];
         
-        [loginViewController setSignUpController:signupViewController];
-        
-        [self presentViewController:loginViewController animated:NO completion:NULL];
+//        [loginViewController setSignUpController:signupViewController];
+        self.title = @"Sign Up";
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = nil;
+        [self.navigationController setViewControllers:@[signupViewController]];
+//        [self presentViewController:loginViewController animated:NO completion:NULL];
     }
     else {
         [[self fetchData] continueWithBlock:^id(BFTask *task) {

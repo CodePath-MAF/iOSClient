@@ -43,8 +43,6 @@
 		BAE442EC197F557E00F2A027 /* SimpleTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE442EA197F557E00F2A027 /* SimpleTransactionViewController.xib */; };
 		BAFB2C1C1975D39400A11C56 /* MultiInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAFB2C1A1975D39400A11C56 /* MultiInputViewController.m */; };
 		BAFB2C1D1975D39400A11C56 /* MultiInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAFB2C1B1975D39400A11C56 /* MultiInputViewController.xib */; };
-		BF144316196A231100C2BB38 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144314196A231100C2BB38 /* LoginViewController.m */; };
-		BF144320196A293600C2BB38 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14431F196A293600C2BB38 /* SignupViewController.m */; };
 		BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144322196A2A6600C2BB38 /* DashboardViewController.m */; };
 		BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144323196A2A6600C2BB38 /* DashboardViewController.xib */; };
 		BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144327196A3BB400C2BB38 /* GoalManager.m */; };
@@ -66,6 +64,8 @@
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
 		BF4FC9E1197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */; };
+		BF4FC9E5197FE6DC00BDF982 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */; };
+		BF4FC9E6197FE6DC00BDF982 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */; };
 		BF865AFF197C593000A128AD /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865AFE197C593000A128AD /* Friend.m */; };
 		BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B17197C5F2100A128AD /* OpenSansRegularLabel.m */; };
 		BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B1A197C615D00A128AD /* OpenSansBoldLabel.m */; };
@@ -160,10 +160,6 @@
 		BAFB2C191975D39400A11C56 /* MultiInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiInputViewController.h; sourceTree = "<group>"; };
 		BAFB2C1A1975D39400A11C56 /* MultiInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiInputViewController.m; sourceTree = "<group>"; };
 		BAFB2C1B1975D39400A11C56 /* MultiInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiInputViewController.xib; sourceTree = "<group>"; };
-		BF144313196A231100C2BB38 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		BF144314196A231100C2BB38 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		BF14431E196A293600C2BB38 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
-		BF14431F196A293600C2BB38 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		BF144321196A2A6600C2BB38 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		BF144322196A2A6600C2BB38 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		BF144323196A2A6600C2BB38 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
@@ -203,6 +199,9 @@
 		BF4FC9DD197FC39C00BDF982 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 		BF4FC9DF197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionProgressIndicator.h"; sourceTree = "<group>"; };
 		BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionProgressIndicator.m"; sourceTree = "<group>"; };
+		BF4FC9E2197FE6DC00BDF982 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
 		BF865AFD197C593000A128AD /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		BF865AFE197C593000A128AD /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		BF865B16197C5F2100A128AD /* OpenSansRegularLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansRegularLabel.h; sourceTree = "<group>"; };
@@ -358,10 +357,6 @@
 		2CBA46BF1965DF4F00C6BEDF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				BF144313196A231100C2BB38 /* LoginViewController.h */,
-				BF144314196A231100C2BB38 /* LoginViewController.m */,
-				BF14431E196A293600C2BB38 /* SignupViewController.h */,
-				BF14431F196A293600C2BB38 /* SignupViewController.m */,
 				BF144321196A2A6600C2BB38 /* DashboardViewController.h */,
 				BF144322196A2A6600C2BB38 /* DashboardViewController.m */,
 				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
@@ -379,6 +374,9 @@
 				BAFB2C191975D39400A11C56 /* MultiInputViewController.h */,
 				BAFB2C1A1975D39400A11C56 /* MultiInputViewController.m */,
 				BAFB2C1B1975D39400A11C56 /* MultiInputViewController.xib */,
+				BF4FC9E2197FE6DC00BDF982 /* SignupViewController.h */,
+				BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */,
+				BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -629,6 +627,7 @@
 				BF865B43197C682A00A128AD /* OpenSans-Italic.ttf in Resources */,
 				2C95F61D197DDAF700862497 /* NoGoalView.xib in Resources */,
 				BF865B40197C682A00A128AD /* OpenSans-BoldItalic.ttf in Resources */,
+				BF4FC9E6197FE6DC00BDF982 /* SignupViewController.xib in Resources */,
 				BF865B42197C682A00A128AD /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
 				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
@@ -706,7 +705,6 @@
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */,
-				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
 				BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */,
 				BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */,
 				BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */,
@@ -746,7 +744,7 @@
 				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
 				BA20AD49197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
 				BF4FC9E1197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m in Sources */,
-				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
+				BF4FC9E5197FE6DC00BDF982 /* SignupViewController.m in Sources */,
 				2CD7C1EF1975FBA1007F6CB8 /* CashOverView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
