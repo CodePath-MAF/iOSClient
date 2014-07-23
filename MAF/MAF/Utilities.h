@@ -24,5 +24,8 @@
 + (NSArray *)getPreviousDates:(int)numPreviousDates fromDate:(NSDate *)fromDate;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 + (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius;
++ (NSString *)prettyMessageFromTargetDate:(NSDate *)targetDate withStartDate:(NSDate *)startDate withInterval:(NSInteger)interval;
++ (BOOL)isWithinWeekOfTargetDate:(NSDate *)targetDate withInterval:(NSInteger)interval;
++ (NSString *)getMonthSymbolForMonthNumber:(NSInteger)monthNumber;
 
 @end

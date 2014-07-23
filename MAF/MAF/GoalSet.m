@@ -30,7 +30,7 @@
     return self;
 }
 
-- (NSDictionary *)goalsTotalByDate {
+- (NSDictionary *)goalsTotalByDate { // Not Accurate
     if (!_totalByDate) {
         NSMutableDictionary *goalDict = [[NSMutableDictionary alloc] init];
         for (Goal *goal in self.goals) {
@@ -44,7 +44,7 @@
     return _totalByDate;
 }
 
-- (NSDictionary *)goalsByDate {
+- (NSDictionary *)goalsByDate { // Not Accurate
     if (!_goalsByDate) {
         NSMutableDictionary *goalsByDateDict = [[NSMutableDictionary alloc] init];
         for (Goal *goal in self.goals) {
@@ -58,17 +58,25 @@
     return _goalsByDate;
 }
 
-- (NSDictionary *)goalsByDescendingNextMilestone {
+- (NSDictionary *)goalsByDescendingNextMilestone { // TODO
+    NSMutableDictionary *goalsByMilestone = [[NSMutableDictionary alloc] init];
+    NSDate *today = [NSDate date];
+    for (Goal *goal in self.goals) {
+//        NSInteger daysFromStart = [Utilities daysBetweenDate:[goal createdAt] andDate:today];
+        NSInteger daysToTarget = [Utilities daysBetweenDate:today andDate:goal.targetDate];
+        if(daysToTarget%goal.paymentInterval) {
+            
+        }
+    }
+    return nil;
+}
+
+- (NSDictionary *)goalsByAscendingNextMilestone { // TODO
     
     return nil;
 }
 
-- (NSDictionary *)goalsByAscendingNextMilestone {
-    
-    return nil;
-}
-
-- (NSDictionary *)transactionsByGoal {
+- (NSDictionary *)transactionsByGoal { // Moved to TransactionSet
     if (!_transactionsByGoal) {
         NSMutableDictionary *goalsByDateDict = [[NSMutableDictionary alloc] init];
         for (Goal *goal in self.goals) {
@@ -82,13 +90,13 @@
     return _transactionsByGoal;
 }
 
-- (float)goalsTotalForToday {
+- (float)goalsTotalForToday { // Not Accurate
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
     NSDictionary *totalsDict = [self goalsTotalByDate];
     return [(NSNumber *)[totalsDict objectForKey:today] floatValue] ?: 0.0;
 }
 
-- (float)goalsTotalForCurrentWeek {
+- (float)goalsTotalForCurrentWeek { // Not Accurate
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
     NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
     NSDictionary *totalsDict = [self goalsTotalByDate];
@@ -99,6 +107,5 @@
     }
     return total;
 }
-
 
 @end

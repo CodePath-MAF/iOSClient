@@ -91,7 +91,6 @@
         _maxValue = dateTotal;
     }
     return dataItems;
-    
 }
 
 - (void)setTransactionsSet:(TransactionsSet *)transactionsSet {
