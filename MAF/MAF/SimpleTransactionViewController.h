@@ -14,7 +14,7 @@ NS_ENUM(NSInteger, SimpleTransactionType) {
     MakePayment = 2,
 };
 
-@interface SimpleTransactionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SimpleTransactionViewController : UIViewController
 
 - (void)setLabelsAndButtons:(enum SimpleTransactionType)type goal:(Goal *)goal amount:(float)amount;
 
