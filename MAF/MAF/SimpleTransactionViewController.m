@@ -14,7 +14,8 @@
 #import "TransactionCategoryManager.h"
 #import "UIViewController+ActionProgressIndicator.h"
 
-@interface SimpleTransactionViewController ()
+@interface SimpleTransactionViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
 @property (strong, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) int numRows;
@@ -74,6 +75,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.amountLabel.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 50;
@@ -86,7 +88,9 @@
     [self.tableView setSeparatorColor:lightGreen];
     [self.amountLabel setTintColor:[UIColor whiteColor]];
     if (self.amountValue){
-        self.amountLabel.text = [NSString stringWithFormat:@"%.02f", self.amountValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"$%.02f", self.amountValue];
+    } else {
+        self.amountLabel.text = @"$";
     }
 }
                                                                                                                                                               
@@ -131,11 +135,35 @@
     return transCell;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (range.location == 0){
+        return NO;
+    } else {
+        NSString *noPeriods = [textField.text stringByReplacingOccurrencesOfString:@"." withString:@""];
+        int difference = [textField.text length] - [noPeriods length];
+        if (difference == 1 && [string isEqualToString:@"."]) {
+            return NO;
+        } else {
+            NSArray *stringArray = [textField.text componentsSeparatedByString:@"."];
+            if ([stringArray count] > 1 && [stringArray[1] length] == 2 && [string length]){
+                return NO;
+            } else {
+                if (range.location == 1 && [string isEqualToString:@"0"]){
+                    return NO;
+                }
+            }
+        }
+    }
+    return YES;
+}
+
+
 - (IBAction)onNext:(UIButton *)sender {
     NSDate *now = [[NSDate alloc] init];
     [self startProgress:self.navigationController];
+    float amount = [[self.amountLabel.text substringFromIndex:1] floatValue];
     if (self.currentType == InitialCash) {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:[self.amountLabel.text floatValue] detail:@"Initial Cash" type:TransactionTypeCredit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Income"] transactionDate:now]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:amount detail:@"Initial Cash" type:TransactionTypeCredit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Income"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
@@ -146,7 +174,7 @@
          }];
 
     } else {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:[self.amountLabel.text floatValue] detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:amount detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);

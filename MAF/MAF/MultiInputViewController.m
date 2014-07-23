@@ -25,7 +25,7 @@ static NSInteger const kIntervalPicker = 3;
 #import "GoalManager.h"
 #import "MRProgress.h"
 
-@interface MultiInputViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MultiInputViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *transactionProgressHeight;
@@ -136,7 +136,7 @@ static NSInteger const kIntervalPicker = 3;
             }
         } else {
             self.intervalNames = @[@"Daily", @"Weekly", @"Bi-Weekly", @"Monthly", @"Bi-Monthly"];
-            self.intervalEnumNames = @[@1, @7, @14, @30, @60];
+            self.intervalEnumNames = @[@(GoalPaymentIntervalDaily), @(GoalPaymentIntervalWeekly), @(GoalPaymentIntervalBiWeekly), @(GoalPaymentIntervalMonthly), @(GoalPaymentIntervalBiMonthly)];
             self.selectedInterval = 3;
         }
         
@@ -153,7 +153,9 @@ static NSInteger const kIntervalPicker = 3;
     self.goalInProgress = [Goal object];
     self.transactionProgress.delegate = self;
     self.transactionProgress.dataSource = self;
-    self.nameText.delegate = self;
+    self.nameText.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.amountText.delegate = self;
+    self.amountText.text = @"$";
     self.transactionProgress.rowHeight = 50;
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
 
@@ -266,6 +268,28 @@ static NSInteger const kIntervalPicker = 3;
     [UIView commitAnimations];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (range.location == 0){
+        return NO;
+    } else {
+        NSString *noPeriods = [textField.text stringByReplacingOccurrencesOfString:@"." withString:@""];
+        int difference = [textField.text length] - [noPeriods length];
+        if (difference == 1 && [string isEqualToString:@"."]) {
+            return NO;
+        } else {
+            NSArray *stringArray = [textField.text componentsSeparatedByString:@"."];
+            if ([stringArray count] > 1 && [stringArray[1] length] == 2 && [string length]){
+                return NO;
+            } else {
+                if (range.location == 1 && [string isEqualToString:@"0"]){
+                    return NO;
+                }
+            }
+        }
+    }
+    return YES;
+}
+
 - (void)changeProgress:(int)index {
     [self saveState];
     [self.allSteps[self.currentViewIndex] removeFromSuperview];
@@ -306,7 +330,7 @@ static NSInteger const kIntervalPicker = 3;
 - (void)saveState {
     if (self.formType == Transaction_Creation) {
         if (self.currentViewIndex == 0) {
-            self.transactionInProgress.amount = [self.amountText.text floatValue];
+            self.transactionInProgress.amount = [[self.amountText.text  substringFromIndex:1] floatValue];
         } else if (self.currentViewIndex == 1) {
             self.transactionInProgress.name = self.nameText.text;
         } else if (self.currentViewIndex == 2) {
@@ -315,13 +339,13 @@ static NSInteger const kIntervalPicker = 3;
         }
     } else {
         if (self.currentViewIndex == 0) {
-            self.goalInProgress.total = [self.amountText.text floatValue];
+            self.goalInProgress.total = [[self.amountText.text  substringFromIndex:1] floatValue];
         } else if (self.currentViewIndex == 1) {
             self.goalInProgress.name = self.nameText.text;
         } else if (self.currentViewIndex == 2) {
             self.goalInProgress.targetDate = self.datePicker.date;
         } else if (self.currentViewIndex == 3) {
-            self.goalInProgress.paymentInterval = self.intervalEnumNames[self.selectedInterval];
+            self.goalInProgress.paymentInterval = [self.intervalEnumNames[self.selectedInterval] integerValue];
         }
     }
 }
