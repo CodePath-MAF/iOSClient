@@ -23,8 +23,6 @@
 
     NSInteger daysToGoal = [Utilities daysBetweenDate:[NSDate new] andDate:goalDate];
     
-#warning TODO we should be raising a validation error if they set a payment interval that is greater than the days till goal
-    
     float numMilestones;
     float paymentAmount;
     if (paymentInterval > daysToGoal) {

@@ -34,4 +34,7 @@
 - (void)addTransactionToSet:(Transaction *)transaction;
 - (void)addTransactionsToSet:(NSArray *)transactions;
 
+- (NSArray *)transactionsForGoalId:(NSString *)goalId;
+- (float)totalPaymentsForGoalId:(NSString *)goalId;
+
 @end

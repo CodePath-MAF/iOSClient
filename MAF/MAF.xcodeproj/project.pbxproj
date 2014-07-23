@@ -64,6 +64,7 @@
 		BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */; };
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
+		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
 		BF865AFF197C593000A128AD /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865AFE197C593000A128AD /* Friend.m */; };
 		BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B17197C5F2100A128AD /* OpenSansRegularLabel.m */; };
 		BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B1A197C615D00A128AD /* OpenSansBoldLabel.m */; };
@@ -197,6 +198,8 @@
 		BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTransactionsView.xib; sourceTree = "<group>"; };
 		BF4FC9D9197F3BE400BDF982 /* EmptyTransactionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTransactionsView.h; sourceTree = "<group>"; };
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
+		BF4FC9DC197FC39C00BDF982 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		BF4FC9DD197FC39C00BDF982 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 		BF865AFD197C593000A128AD /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		BF865AFE197C593000A128AD /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		BF865B16197C5F2100A128AD /* OpenSansRegularLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansRegularLabel.h; sourceTree = "<group>"; };
@@ -399,6 +402,8 @@
 				2C95F619197DDAE600862497 /* NoGoalView.h */,
 				2C95F61A197DDAE600862497 /* NoGoalView.m */,
 				2C95F61C197DDAF700862497 /* NoGoalView.xib */,
+				BF4FC9DC197FC39C00BDF982 /* ProgressView.h */,
+				BF4FC9DD197FC39C00BDF982 /* ProgressView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
 				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
 				BF865B4D197C90DC00A128AD /* TransactionsHeaderView.m in Sources */,
+				BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */,
 				BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */,
 				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */,

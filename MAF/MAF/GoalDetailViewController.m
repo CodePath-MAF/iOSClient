@@ -15,6 +15,9 @@
 #import "Friend.h"
 #import "Utilities.h"
 #import "SimpleTransactionViewController.h"
+#import "TransactionManager.h"
+#import "PNChart.h"
+#import "ProgressView.h"
 
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -40,15 +43,20 @@
 
 @property (assign, nonatomic) NSInteger tileNum; // Not Used right now
 
+@property (weak, nonatomic) IBOutlet ProgressView *progressView;
+
 @end
 
 @implementation GoalDetailViewController
 
+- (void)updateLabels {
+    NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
+    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
+    self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, payments.count, self.goal.paymentInterval];
+}
+
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
-    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
-    self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
-
     self.title = self.goal.name;
     NSString *timeTilString;
     if ([MHPrettyDate isToday:self.goal.targetDate]) {
@@ -110,6 +118,11 @@
 #warning TODO create progress update
     [Utilities setupRoundedButton:self.makePaymentButton
                  withCornerRadius:BUTTON_CORNER_RADIUS];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateLabels];
+    [self drawProgressBar];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -207,6 +220,13 @@
   
   NSLog(@"%f", heightOffset);
   return contentFrame;
+}
+
+- (void)drawProgressBar {
+    float goalProgress = [[[TransactionManager instance] transactionsSet] totalPaymentsForGoalId:self.goal.objectId];
+    self.progressView.total = self.goal.total;
+    self.progressView.progress = goalProgress;
+    [self.progressView setNeedsDisplay];
 }
 
 @end

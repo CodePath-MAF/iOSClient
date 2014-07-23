@@ -231,4 +231,20 @@
     }];
 }
 
+- (NSArray *)transactionsForGoalId:(NSString *)goalId {
+    NSPredicate *goalIdPredicate = [NSPredicate predicateWithBlock:^BOOL(Transaction *transaction, NSDictionary *bindings) {
+        return [[transaction.goal objectId] isEqualToString:goalId];
+    }];
+    return [self.transactions filteredArrayUsingPredicate:goalIdPredicate];
+}
+
+- (float)totalPaymentsForGoalId:(NSString *)goalId {
+    NSArray *transactions = [self transactionsForGoalId:goalId];
+    float total = 0;
+    for (Transaction *transaction in transactions) {
+        total += transaction.amount;
+    }
+    return total;
+}
+
 @end
