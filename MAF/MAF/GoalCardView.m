@@ -36,7 +36,8 @@
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
     
-     NSInteger newMilestoneCount = self.goal.currentProgress/self.goal.paymentAmount;
+#warning TODO add Milestone Update
+    NSInteger newMilestoneCount = 0;
     self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", newMilestoneCount, self.goal.numPayments];
     self.goalNameLabel.text = self.goal.name;
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.goal.paymentAmount];

@@ -65,7 +65,7 @@
 }
 
 + (NSDateComponents *)getDateComponentsForDate:(NSDate *)date {
-    return [[NSCalendar currentCalendar] components:(NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit) fromDate:date];
+    return [[NSCalendar currentCalendar] components:(NSWeekCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSDayCalendarUnit) fromDate:date];
 }
 
 + (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius {
@@ -101,10 +101,29 @@
     }
     else {
         NSDateComponents *compontents = [Utilities getDateComponentsForDate:newDate];
-        nextDue = [[NSString alloc] initWithFormat:@"DUE IN %@ (%@)", [[Utilities getMonthSymbolForMonthNumber:compontents.month] uppercaseString], [MHPrettyDate prettyDateFromDate:newDate withFormat:MHPrettyDateFormatNoTime]];
+        nextDue = [[NSString alloc] initWithFormat:@"DUE ON %@ %@", [[Utilities getMonthSymbolForMonthNumber:compontents.month] uppercaseString], [Utilities getPrettyDayOfMonth:compontents.day]];
     }
     
     return nextDue;
+}
+
++ (NSString *)getPrettyDayOfMonth:(NSInteger)dayOfMonth {
+    NSString *dateAppendix = @"";
+    switch (dayOfMonth % 10) {
+        case 1:
+            dateAppendix = @"ST";
+            break;
+        case 2:
+            dateAppendix = @"ND";
+            break;
+        case 3:
+            dateAppendix = @"RD";
+            break;
+        default:
+            dateAppendix = @"TH";
+            break;
+    }
+    return [[NSString alloc] initWithFormat:@"%d%@", dayOfMonth, dateAppendix];
 }
 
 + (NSString *)getMonthSymbolForMonthNumber:(NSInteger)monthNumber {
