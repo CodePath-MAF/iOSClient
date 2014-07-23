@@ -10,6 +10,8 @@
 #define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
 #define CIRCLE_FRIENDS_PER_PAGE 4
 
+#import "OpenSansBoldLabel.h"
+#import "OpenSansRegularLabel.h"
 #import "GoalDetailViewController.h"
 #import "LendingSocialCell.h"
 #import "Friend.h"
@@ -18,6 +20,7 @@
 #import "TransactionManager.h"
 #import "PNChart.h"
 #import "ProgressView.h"
+#import "Transaction.h"
 
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -44,6 +47,8 @@
 @property (assign, nonatomic) NSInteger tileNum; // Not Used right now
 
 @property (weak, nonatomic) IBOutlet ProgressView *progressView;
+@property (weak, nonatomic) IBOutlet OpenSansBoldLabel *goalTotal;
+@property (weak, nonatomic) IBOutlet OpenSansRegularLabel *saveToDate;
 
 @end
 
@@ -53,6 +58,12 @@
     NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
     self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, payments.count, self.goal.paymentInterval];
+    self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.total];
+    float amountPaid = 0;
+    for (Transaction *t in payments) {
+        amountPaid += t.amount;
+    }
+    self.saveToDate.text = [NSString stringWithFormat:@"$%.02f SAVED TO DATE", amountPaid];
 }
 
 - (void)setGoal:(Goal *)goal {
@@ -106,7 +117,6 @@
     // Set up Pagination
     self.photoCollectionPageControl.currentPage = 0;
     [self.photoCollectionPageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
-    
     // Set Up Goal Progress View
     
     // Set Up Make Payment Button

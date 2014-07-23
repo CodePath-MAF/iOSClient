@@ -168,6 +168,7 @@
 
 - (IBAction)onNext:(UIButton *)sender {
     NSDate *now = [[NSDate alloc] init];
+    [self.view endEditing:YES];
     [self startProgress:self.navigationController];
     float amount = [[self.amountLabel.text substringFromIndex:1] floatValue];
     if (self.currentType == InitialCash) {
