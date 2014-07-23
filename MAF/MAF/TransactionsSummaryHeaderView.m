@@ -19,8 +19,8 @@
 @interface TransactionsSummaryHeaderView() <PNChartDelegate> {
     NSDictionary *_transactionsTotalByCategoryByDate;
     float _maxValue;
-    CGRect _frameBeforeTransform;
-    CGAffineTransform _previousTransform;
+
+    float _alphaBeforeTransform;
     CGPoint _centerBeforeTransform;
     NSDateFormatter *_dateFormatter;
     NSArray *_previousDates;
@@ -34,6 +34,8 @@
 
 @property (nonatomic, strong) PNStackedBarChart *transactionsCategoryChart;
 @property (nonatomic, strong) PNHorizontalStackedBarChart *transactionsDetailChart;
+
+@property (nonatomic, strong) UITapGestureRecognizer *singleTap;
 
 - (NSArray *)getDataItemsForDate:(NSDate *)date;
 - (PNStackedBarChart *)buildStackedBarChart:(NSArray *)xLabels dataItems:(NSArray *)dataItems;
@@ -136,6 +138,7 @@
     
     NSLog(@"Click on bar %@", @(barIndex));
     UIView *bar = [self.transactionsCategoryChart.bars objectAtIndex:barIndex];
+    
     UILabel *label = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
     NSDate *previousDate = _previousDates[_previousDates.count - barIndex - 1];
     NSArray *items = [self getDataItemsForDate:previousDate];
@@ -143,25 +146,23 @@
     NSArray *labels = [self getXLabelsForHorizontalBar:items];
     
     NSLog(@"date: %@, items: %@, labels: %@", previousDate, items, labels);
+    [bar removeFromSuperview];
     [self addSubview:bar];
 //    [self addSubview:label];
 
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transactionsCategoryChart.alpha = 0;
-        NSLog(@"width: %f, height: %f, xScale: %f", bar.frame.size.width, bar.frame.size.height, 250.f/bar.frame.size.height);
         
-        _frameBeforeTransform = bar.frame;
+        _alphaBeforeTransform = bar.alpha;
         _centerBeforeTransform = bar.center;
         CGAffineTransform barTransform = CGAffineTransformMakeScale(250.f/bar.frame.size.height, 4);
-        _previousTransform = barTransform;
         bar.transform = CGAffineTransformRotate(barTransform, 90 * M_PI / 180);
         
         bar.alpha = 1.f;
         bar.center = CGPointMake(self.center.x, self.center.y - 30);
-        UITapGestureRecognizer *singleFingerTap =
-        [[UITapGestureRecognizer alloc] initWithTarget:self
+        self.singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(handleTouchInDetailBar:)];
-        [bar addGestureRecognizer:singleFingerTap];
+        [bar addGestureRecognizer:self.singleTap];
 //        label.alpha = 1.f;
 //        label.center = CGPointMake(self.center.x, self.center.y - 80);
 //        [label setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:label.font.pointSize]];
@@ -192,16 +193,16 @@
 - (void)handleTouchInDetailBar:(id)sender {
     NSLog(@"touched big bar");
     UIView *bar = [(UITapGestureRecognizer *)sender view];
+    [[(UITapGestureRecognizer *)sender view] removeGestureRecognizer:self.singleTap];
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         bar.center = _centerBeforeTransform;
-        bar.frame = _frameBeforeTransform;
-        bar.transform = CGAffineTransformMakeScale(bar.frame.size.width/_frameBeforeTransform.size.width, bar.frame.size.height/_frameBeforeTransform.size.height);
+        bar.transform = CGAffineTransformIdentity;
         self.transactionsCategoryChart.alpha = 1;
+        bar.alpha = _alphaBeforeTransform;
 
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-
-        } completion:nil];
+        [bar removeFromSuperview];
+        [self.transactionsCategoryChart addSubview:bar];
     }];
 }
 
