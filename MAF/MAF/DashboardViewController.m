@@ -167,7 +167,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self.cashOverView setTotalCash:[[User currentUser] totalCash]];
+
     if (![User currentUser]) {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         [loginViewController setDelegate:self];
