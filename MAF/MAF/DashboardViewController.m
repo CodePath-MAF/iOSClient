@@ -225,17 +225,17 @@
     
     [self configureCell:self.prototypeCell atIndexPath:indexPath];
     
-//    cell.alpha = 0.0f;
+//    self.prototypeCell.alpha = 0.0f;
 //    
 //    NSInteger direction = 1;
 //    if (indexPath.item % 2) {
 //        direction = -1;
 //    }
 //    
-//    CGRect frame = cell.frame;
+//    CGRect frame = self.prototypeCell.frame;
 //    CGRect originalFrame = frame;
 //    frame.origin.x = direction*frame.size.width;
-//    cell.frame = frame;
+//    self.prototypeCell.frame = frame;
 //    
 //    [UIView transitionWithView:cv
 //                      duration:.75
@@ -243,16 +243,15 @@
 //                    animations:^{
 //                        
 //                        //any animatable attribute here.
-//                        cell.alpha = 1.0f;
-//                        cell.frame = originalFrame;
+//                        self.prototypeCell.alpha = 1.0f;
+//                        self.prototypeCell.frame = originalFrame;
 //                        
 //                    } completion:^(BOOL finished) {
 //                        
 //                        //whatever you want to do upon completion
 //                        
 //                    }];
-//    
-//    [cell updateColors];
+    
     return self.prototypeCell;
 }
 
