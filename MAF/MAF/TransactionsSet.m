@@ -19,7 +19,6 @@
 }
 
 - (float)getTotalForTransactions:(float (^)(Transaction *transaction))shouldIncludeTransaction;
-- (void)clearCache;
 
 @end
 
@@ -46,6 +45,7 @@
     _transactionsByDate = nil;
     _transactionsByCategoryByDate = nil;
     _transactionsByGoal = nil;
+    _transactions = [[NSMutableArray alloc] init];
 }
 
 - (void)addTransactionToSet:(Transaction *)transaction {

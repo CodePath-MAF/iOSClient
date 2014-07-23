@@ -30,6 +30,8 @@
 
 - (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type;
 
+- (void)clearCache;
+
 + (TransactionManager *)instance;
 
 @end

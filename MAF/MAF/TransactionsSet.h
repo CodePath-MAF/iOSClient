@@ -37,4 +37,6 @@
 - (NSArray *)transactionsForGoalId:(NSString *)goalId;
 - (float)totalPaymentsForGoalId:(NSString *)goalId;
 
+- (void)clearCache;
+
 @end

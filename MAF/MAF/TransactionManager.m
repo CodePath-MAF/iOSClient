@@ -144,6 +144,10 @@
     return task.task;
 }
 
+- (void)clearCache {
+    [self.transactionsSet clearCache];
+}
+
 + (TransactionManager *)instance {
     static TransactionManager *instance = nil;
     static dispatch_once_t once;
