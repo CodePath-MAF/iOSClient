@@ -46,6 +46,7 @@
     self.amountValue = amount;
     if (self.currentType == InitialCash) {
         self.numRows = 0;
+        [self.navigationItem setHidesBackButton:YES];
         self.title = @"Current Cash";
         self.tableViewHeight.constant = 0;
     } else {

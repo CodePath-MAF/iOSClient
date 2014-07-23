@@ -15,6 +15,7 @@
 #import "SignupViewController.h"
 
 #import "SimpleTransactionViewController.h"
+#import "MultiInputViewController.h"
 
 #import "TransactionsListViewController.h"
 #import "TransactionManager.h"
@@ -319,7 +320,9 @@
 
 - (void)createGoal:(id)sender {
     NSLog(@"Loading Create Goal View");
-    [self.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
+//    [self.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[MultiInputViewController alloc] initWithMultiInputType:Goal_Creation] animated:YES];
+    
 }
 
 - (void)showProfile:(id)sender {
