@@ -18,6 +18,7 @@
 #import "TransactionsHeaderView.h"
 #import "EmptyTransactionsView.h"
 #import "User.h"
+#import "Transaction.h"
 
 #import "Utilities.h"
 
@@ -39,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Transactions";
+    self.title = @"Expenses";
     
     self.summaryView = [[[NSBundle mainBundle] loadNibNamed:@"TransactionsSummaryHeaderView" owner:self options:nil] lastObject];
     self.summaryView.alpha = 0.f;
@@ -70,7 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (![[TransactionManager instance] hasTransactions]) {
+    if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
         [[self fetchData] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error fetching transactions for user: %@", task.error);
@@ -88,7 +89,7 @@
 - (void)routeToView {
     [self.summaryView setTransactionsSet:[[TransactionManager instance] transactionsSet]];
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        if (![[TransactionManager instance] hasTransactions]) {
+        if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
             [self.emptyView updateTotalCash];
             self.emptyView.alpha = 1;
         } else {
@@ -101,7 +102,7 @@
 }
 
 - (BFTask *)fetchData {
-    return [[TransactionManager instance] fetchTransactionsForUser:[User currentUser]];
+    return [[TransactionManager instance] fetchTransactionsForUser:[User currentUser] ofType:TransactionTypeDebit];
 }
 
 #pragma mark - NavBar Methods
@@ -123,7 +124,7 @@
 }
 
 - (NSArray *)getTransactionsForSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactions]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
         NSDate *sectionDate = [self getDateForSection:section];
         NSArray *sectionTransactions = [[[[TransactionManager instance] transactionsSet] transactionsByDate] objectForKey:sectionDate] ?: [[NSArray alloc] init];
         return sectionTransactions;
@@ -133,7 +134,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([[TransactionManager instance] hasTransactions]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
         return [[[[TransactionManager instance] transactionsSet] transactionsByDate] count];
     } else {
         return 0;
@@ -165,7 +166,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactions]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
         NSDate *sectionDate = [self getDateForSection:section];
         if ([today isEqualToDate:sectionDate]) {
@@ -181,7 +182,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactions]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
         NSString *title;
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
         NSDate *sectionDate = [self getDateForSection:section];

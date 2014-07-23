@@ -28,6 +28,13 @@
     return (BOOL)self.transactionsSet.transactions.count;
 }
 
+- (BOOL)hasTransactionsOfType:(enum TransactionType)type {
+    NSPredicate *transactionsOfTypePredicate = [NSPredicate predicateWithBlock:^BOOL(Transaction *transaction, NSDictionary *bindings) {
+        return transaction.type == type;
+    }];
+    return (BOOL)[[self.transactionsSet.transactions filteredArrayUsingPredicate:transactionsOfTypePredicate] count];
+}
+
 - (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
@@ -131,21 +138,33 @@
 
 - (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
-    PFQuery *query = [Transaction query];
-    [query whereKey:@"user" equalTo:user];
-    [query whereKey:@"type" equalTo:@(type)];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            [task setError:error];
-        } else {
-            [task setResult:objects];
-        }
-    }];
+    NSArray *cachedTransactions;
+    if ([self hasTransactions]) {
+        NSPredicate *transactionTypePredicate = [NSPredicate predicateWithBlock:^BOOL(Transaction *transaction, NSDictionary *bindings) {
+            return transaction.type == type;
+        }];
+        cachedTransactions = [self.transactionsSet.transactions filteredArrayUsingPredicate:transactionTypePredicate];
+    }
+    
+    if (cachedTransactions.count) {
+        [task setResult:cachedTransactions];
+    } else {
+        PFQuery *query = [Transaction query];
+        [query whereKey:@"user" equalTo:user];
+        [query whereKey:@"type" equalTo:@(type)];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error) {
+                [task setError:error];
+            } else {
+                [task setResult:objects];
+            }
+        }];
+    }
     return task.task;
 }
 
-- (void)clearCache {
-    [self.transactionsSet clearCache];
+- (void)destroy {
+    [self.transactionsSet destroy];
 }
 
 + (TransactionManager *)instance {

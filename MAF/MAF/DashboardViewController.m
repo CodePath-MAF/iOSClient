@@ -335,7 +335,7 @@
 
 - (void)showProfile:(id)sender {
     [PFUser logOut];
-    [[TransactionManager instance] clearCache];
+    [[TransactionManager instance] destroy];
     [self.navigationController setViewControllers:@[[[MainViewController alloc] init]] animated:YES];
 }
 

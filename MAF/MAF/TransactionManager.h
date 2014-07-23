@@ -19,6 +19,7 @@
 @property (nonatomic, strong) TransactionsSet *transactionsSet;
 
 - (BOOL)hasTransactions;
+- (BOOL)hasTransactionsOfType:(enum TransactionType)type;
 
 - (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
 
@@ -30,7 +31,7 @@
 
 - (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type;
 
-- (void)clearCache;
+- (void)destroy;
 
 + (TransactionManager *)instance;
 

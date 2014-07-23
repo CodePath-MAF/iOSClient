@@ -16,9 +16,12 @@
     NSDictionary *_transactionsByDate;
     NSDictionary *_transactionsByCategoryByDate;
     NSDictionary *_transactionsByGoal;
+    NSMutableSet *_transactionIds;
 }
 
 - (float)getTotalForTransactions:(float (^)(Transaction *transaction))shouldIncludeTransaction;
+
+- (void)clearCache;
 
 @end
 
@@ -28,6 +31,7 @@
     self = [super init];
     if (self) {
         _transactions = [[NSMutableArray alloc] init];
+        _transactionIds = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -35,7 +39,9 @@
 - (id)initWithTransactions:(NSArray *)transactions {
     self = [super init];
     if (self) {
-        _transactions = [[NSMutableArray alloc] initWithArray:transactions];
+        _transactionIds = [[NSMutableSet alloc] init];
+        _transactions = [[NSMutableArray alloc] init];
+        [self addTransactionsToSet:transactions];
     }
     return self;
 }
@@ -45,17 +51,26 @@
     _transactionsByDate = nil;
     _transactionsByCategoryByDate = nil;
     _transactionsByGoal = nil;
+}
+
+- (void)destroy {
+    [self clearCache];
     _transactions = [[NSMutableArray alloc] init];
+    _transactionIds = [[NSMutableSet alloc] init];
 }
 
 - (void)addTransactionToSet:(Transaction *)transaction {
-    [self clearCache];
-    [self.transactions addObject:transaction];
+    if (![_transactionIds member:transaction.objectId]) {
+        [self clearCache];
+        [_transactionIds addObject:transaction.objectId];
+        [self.transactions addObject:transaction];
+    }
 }
 
 - (void)addTransactionsToSet:(NSArray *)transactions {
-    [self clearCache];
-    [self.transactions addObjectsFromArray:transactions];
+    for (Transaction *transaction in transactions) {
+        [self addTransactionToSet:transaction];
+    }
 }
 
 - (NSDictionary *)transactionsTotalByDate {
@@ -115,12 +130,14 @@
     if (!_transactionsByCategoryByDate) {
         NSMutableDictionary *transactionsByCategoryByDateDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
-            NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
-            NSMutableDictionary *categoriesForDate = [transactionsByCategoryByDateDict objectForKey:strippedDate] ?: [[NSMutableDictionary alloc] init];
-            NSInteger categoryTotal = [[categoriesForDate objectForKey:transaction.category.name] floatValue] ?: 0.0;
-            categoryTotal += transaction.amount;
-            categoriesForDate[transaction.category.name] = @(categoryTotal);
-            [transactionsByCategoryByDateDict setObject:categoriesForDate forKey:strippedDate];
+            if (transaction.type == TransactionTypeDebit) {
+                NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
+                NSMutableDictionary *categoriesForDate = [transactionsByCategoryByDateDict objectForKey:strippedDate] ?: [[NSMutableDictionary alloc] init];
+                NSInteger categoryTotal = [[categoriesForDate objectForKey:transaction.category.name] floatValue] ?: 0.0;
+                categoryTotal += transaction.amount;
+                categoriesForDate[transaction.category.name] = @(categoryTotal);
+                [transactionsByCategoryByDateDict setObject:categoriesForDate forKey:strippedDate];
+            }
         }
         _transactionsByCategoryByDate = transactionsByCategoryByDateDict;
     }
@@ -131,10 +148,12 @@
     if (!_transactionsByDate) {
         NSMutableDictionary *transactionsByDateDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
-            NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
-            NSMutableArray *transactionsForDate = [transactionsByDateDict objectForKey:strippedDate] ?: [[NSMutableArray alloc] init];
-            [transactionsForDate addObject:transaction];
-            [transactionsByDateDict setObject:transactionsForDate forKey:strippedDate];
+            if (transaction.type == TransactionTypeDebit) {
+                NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
+                NSMutableArray *transactionsForDate = [transactionsByDateDict objectForKey:strippedDate] ?: [[NSMutableArray alloc] init];
+                [transactionsForDate addObject:transaction];
+                [transactionsByDateDict setObject:transactionsForDate forKey:strippedDate];
+            }
         }
         _transactionsByDate = transactionsByDateDict;
     }
