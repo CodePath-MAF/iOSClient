@@ -46,7 +46,6 @@
 }
 
 - (void)onTapView:(id)sender {
-    NSLog(@"Loading Transactions View");
     [self.delegate viewTransactions:sender];
 }
 
