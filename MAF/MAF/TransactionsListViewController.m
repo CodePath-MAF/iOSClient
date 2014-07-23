@@ -105,6 +105,10 @@
     return [[TransactionManager instance] fetchTransactionsForUser:[User currentUser] ofType:TransactionTypeDebit];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.summaryView cleanUpCharts];
+}
+
 #pragma mark - NavBar Methods
 
 - (void)createTransaction:(id)sender {
