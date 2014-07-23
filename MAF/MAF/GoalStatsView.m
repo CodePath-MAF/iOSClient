@@ -18,16 +18,6 @@
 
 @implementation GoalStatsView
 
-//- (void)setTotalMonthlyGoal:(NSNumber *)totalMonthlyGoal {
-//    _totalMonthlyGoal = totalMonthlyGoal;
-//    self.monthlyGoalLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalMonthlyGoal floatValue]];
-//}
-//
-//- (void)setTotalSpentToday:(NSNumber *)totalSpentToday {
-//    _totalSpentToday = totalSpentToday;
-//    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.totalSpentToday floatValue]];
-//}
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];

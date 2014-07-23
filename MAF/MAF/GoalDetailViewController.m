@@ -59,12 +59,7 @@
     _goal = goal;
     self.title = self.goal.name;
     NSString *timeTilString;
-    if ([MHPrettyDate isToday:self.goal.targetDate]) {
-        timeTilString = [NSString stringWithFormat:DUE_TODAY_STRING, [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-    }
-    else {
-    timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [Utilities daysBetweenDate:[NSDate date] andDate:self.goal.targetDate], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
-    }
+    timeTilString = [Utilities prettyMessageFromTargetDate:self.goal.targetDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
     self.timeTilDueLabel.text = timeTilString;
 }
 

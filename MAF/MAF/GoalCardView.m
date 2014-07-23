@@ -45,7 +45,7 @@
 }
 
 - (void)updateColors {
-    if([Utilities isWithinWeekOfTargetDate:self.goal.targetDate withInterval:self.goal.paymentInterval]) {
+    if([Utilities isWithinWeekOfTargetDate:self.goal.targetDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval]) {
         [self.dueImageView setImage:[UIImage imageNamed:@"time_red"]];
         [self.paymentDueLabel setTextColor:[UIColor redColor]];
     }

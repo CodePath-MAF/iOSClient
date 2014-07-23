@@ -113,10 +113,10 @@
     return symbols[monthNumber - 1];
 }
 
-+ (BOOL)isWithinWeekOfTargetDate:(NSDate *)targetDate withInterval:(NSInteger)interval {
-    NSDate *strippedDateToday = [self dateWithoutTime:[NSDate date]];
-    NSInteger daysTil = [self daysBetweenDate:strippedDateToday andDate:targetDate]%interval;
-    NSDate *newDate = [NSDate dateWithTimeInterval:daysTil*24*60*60 sinceDate:strippedDateToday];
++ (BOOL)isWithinWeekOfTargetDate:(NSDate *)targetDate withStartDate:(NSDate *)startDate  withInterval:(NSInteger)interval {
+    NSDate *strippedDate = [self dateWithoutTime:startDate];
+    NSInteger daysTil = [self daysBetweenDate:strippedDate andDate:targetDate]%interval;
+    NSDate *newDate = [NSDate dateWithTimeInterval:daysTil*24*60*60 sinceDate:strippedDate];
     return [MHPrettyDate isWithinWeek:newDate];
 }
 
