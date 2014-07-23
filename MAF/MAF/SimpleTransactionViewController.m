@@ -52,7 +52,11 @@
     } else {
         self.numRows = 1;
         [self.navigationItem setHidesBackButton:YES];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancel:)];
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(onCancel:)];
+        
+        [cancelButton setBackgroundImage:[UIImage imageNamed:@"btn_close_white_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        self.navigationItem.rightBarButtonItem = cancelButton;
+        
         self.title = @"Make Payment";
         self.tableCellMainLabel = @"Amount Due";
         self.tableCellSubLabel = [NSString stringWithFormat:@"$%.02f", amount];
@@ -83,8 +87,6 @@
     if (self.amountValue){
         self.amountLabel.text = [NSString stringWithFormat:@"%.02f", self.amountValue];
     }
-    
-    // Do any additional setup after loading the view from its nib.
 }
                                                                                                                                                               
                                                                                                                                                               
@@ -92,7 +94,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,9 +124,6 @@
     return self.numRows;
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CreateTransactionTableViewCell *transCell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell" forIndexPath:indexPath];
     [transCell updateCell:self.tableCellMainLabel subLabel:self.tableCellSubLabel];
@@ -146,7 +144,7 @@
          }];
 
     } else {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:[self.amountLabel.text floatValue] detail:@"Goal Payment" type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:[self.amountLabel.text floatValue] detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);

@@ -15,6 +15,7 @@
                 <outlet property="finishedView" destination="ajX-3s-g1H" id="JV8-yH-3mE"/>
                 <outlet property="formContainer" destination="0Mq-7K-cim" id="9W4-G1-wh7"/>
                 <outlet property="gainedButton" destination="BW4-fw-s3T" id="QeA-Ft-HLX"/>
+                <outlet property="intervalView" destination="lHP-BF-0YW" id="PeC-Ww-io7"/>
                 <outlet property="nameText" destination="VtQ-or-azi" id="j6i-Fp-otC"/>
                 <outlet property="nameView" destination="Ti5-hY-pRo" id="Dz2-zW-3CS"/>
                 <outlet property="spentButton" destination="E0f-VT-Z6j" id="fmh-iY-AkX"/>
@@ -396,6 +397,50 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <constraint firstAttribute="trailing" secondItem="YuT-Bb-UIq" secondAttribute="trailing" id="WBI-ez-y88"/>
                 <constraint firstAttribute="bottom" secondItem="D9h-ba-UMX" secondAttribute="bottom" constant="20" id="tlc-cP-DYe"/>
                 <constraint firstAttribute="trailing" secondItem="D9h-ba-UMX" secondAttribute="trailing" constant="20" id="wYm-U7-xU2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view contentMode="scaleToFill" id="lHP-BF-0YW" userLabel="IntervalView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeA-5q-auc">
+                    <rect key="frame" x="257" y="217" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="XDq-dj-BYs"/>
+                        <constraint firstAttribute="width" constant="43" id="wNt-0A-UGe"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
+                    <connections>
+                        <action selector="intervalNext:" destination="-1" eventType="touchUpInside" id="aVB-np-pgF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR9-ZI-EhD">
+                    <rect key="frame" x="20" y="217" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="R6R-MQ-579"/>
+                        <constraint firstAttribute="width" constant="43" id="UiA-ZQ-liR"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
+                    <connections>
+                        <action selector="intervalBack:" destination="-1" eventType="touchUpInside" id="7qb-Xv-2vE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="QeA-5q-auc" secondAttribute="bottom" constant="20" id="18N-Uh-vlS"/>
+                <constraint firstItem="uR9-ZI-EhD" firstAttribute="leading" secondItem="lHP-BF-0YW" secondAttribute="leading" constant="20" id="DQ4-GZ-55F"/>
+                <constraint firstAttribute="trailing" secondItem="QeA-5q-auc" secondAttribute="trailing" constant="20" id="hCL-x6-BHd"/>
+                <constraint firstAttribute="bottom" secondItem="uR9-ZI-EhD" secondAttribute="bottom" constant="20" id="peh-Ii-64y"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

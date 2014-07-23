@@ -7,7 +7,8 @@
 //
 
 static NSInteger const kCategoryPicker = 1;
-static NSInteger const kDatePicker = 2;
+static NSInteger const kDayPicker = 2;
+static NSInteger const kIntervalPicker = 3;
 
 #import "UILabel+WhiteUIDatePickerLabels.h"
 
@@ -54,6 +55,10 @@ static NSInteger const kDatePicker = 2;
 - (IBAction)dateNext:(id)sender;
 - (IBAction)dateBack:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIView *intervalView;
+- (IBAction)intervalNext:(id)sender;
+- (IBAction)intervalBack:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIView *finishedView;
 - (IBAction)finished:(id)sender;
 - (IBAction)finishedBack:(id)sender;
@@ -67,12 +72,17 @@ static NSInteger const kDatePicker = 2;
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
 @property (nonatomic, assign) int selectedCategory;
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
-
 @property (strong, nonatomic) UIPickerView *dayPicker;
 @property (strong, nonatomic) NSMutableArray *dateStringValues;
 @property (strong, nonatomic) NSArray *dateObjectValues;
 @property (nonatomic, assign) int selectedDate;
+
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
+@property (strong, nonatomic) UIPickerView *intervalPicker;
+@property (strong, nonatomic) NSArray *intervalNames;
+@property (strong, nonatomic) NSArray *intervalEnumNames;
+@property (assign, nonatomic) int selectedInterval;
 
 @property (strong, nonatomic) Transaction *transactionInProgress;
 @property (strong, nonatomic) Goal *goalInProgress;
@@ -123,7 +133,9 @@ static NSInteger const kDatePicker = 2;
                 [self.dateStringValues addObject:dayOfWeek];
             }
         } else {
-            
+            self.intervalNames = @[@"Daily", @"Weekly", @"Bi-Weekly", @"Monthly", @"Bi-Monthly"];
+            self.intervalEnumNames = @[@1, @7, @14, @30, @60];
+            self.selectedInterval = 3;
         }
         
     }
@@ -153,6 +165,7 @@ static NSInteger const kDatePicker = 2;
     self.categoryView.backgroundColor = lightGreen;
     self.dayView.backgroundColor = lightGreen;
     self.dateView.backgroundColor = lightGreen;
+    self.intervalView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
     
     [self.amountText setTintColor:[UIColor whiteColor]];
@@ -162,6 +175,7 @@ static NSInteger const kDatePicker = 2;
         self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dayView, self.finishedView];
         
         self.categoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+        self.categoryPicker.showsSelectionIndicator = NO;
         self.categoryPicker.tag = kCategoryPicker;
         self.categoryPicker.delegate = self;
         self.categoryPicker.dataSource=self;
@@ -169,7 +183,7 @@ static NSInteger const kDatePicker = 2;
         
         self.dayPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
         self.dayPicker.showsSelectionIndicator = NO;
-        self.dayPicker.tag = kDatePicker;
+        self.dayPicker.tag = kDayPicker;
         self.dayPicker.delegate = self;
         self.dayPicker.dataSource = self;
         self.dayPicker.backgroundColor = lightGreen;
@@ -177,12 +191,23 @@ static NSInteger const kDatePicker = 2;
         [self.spentButton setEnabled:NO];
         self.spent = YES;
     } else {
-        self.allSteps = @[self.amountView, self.nameView, self.dateView, self.finishedView];
+        self.allSteps = @[self.amountView, self.nameView, self.dateView, self.intervalView, self.finishedView];
         [self.spentButton removeFromSuperview];
         [self.gainedButton removeFromSuperview];
         
         self.datePicker.backgroundColor = lightGreen;
-        self.datePicker.minimumDate = [NSDate date];
+        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+        [dateComponents setMonth:1];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
+        self.datePicker.minimumDate = newDate;
+        
+        self.intervalPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+        self.intervalPicker.showsSelectionIndicator = NO;
+        self.intervalPicker.tag = 3;
+        self.intervalPicker.delegate = self;
+        self.intervalPicker.dataSource = self;
+        self.intervalPicker.backgroundColor = lightGreen;
     }
 
     self.currentViewIndex = 0;
@@ -291,6 +316,8 @@ static NSInteger const kDatePicker = 2;
             self.goalInProgress.name = self.nameText.text;
         } else if (self.currentViewIndex == 2) {
             self.goalInProgress.targetDate = self.datePicker.date;
+        } else if (self.currentViewIndex == 3) {
+            self.goalInProgress.paymentInterval = self.intervalEnumNames[self.selectedInterval];
         }
     }
 }
@@ -322,7 +349,12 @@ static NSInteger const kDatePicker = 2;
         } else if (self.currentViewIndex == 2) {
             self.title = @"Due Date";
         } else if (self.currentViewIndex == 3) {
+            self.title = @"Payment Interval";
+            [self.intervalView addSubview:self.intervalPicker];
+            [self.intervalPicker selectRow:self.selectedInterval inComponent:0 animated:YES];
+        } else if (self.currentViewIndex == 4) {
             self.title = @"Add New Goal";
+
         }
     }
 }
@@ -358,6 +390,9 @@ static NSInteger const kDatePicker = 2;
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             mainLabel = @"Date";
             subLabel = [dateFormatter stringFromDate:self.datePicker.date];
+        } else if (index == 3) {
+            mainLabel = @"Payment Interval";
+            subLabel = self.intervalNames[self.selectedInterval];
         }
     }
     
@@ -405,16 +440,23 @@ static NSInteger const kDatePicker = 2;
 - (IBAction)categoryBack:(id)sender {
     [self changeProgress:1];
 }
+- (IBAction)dayNext:(id) sender {
+    [self changeProgress:4];
+}
+- (IBAction)dayBack:(id)sender {
+    [self changeProgress:2];
+}
 - (IBAction)dateNext:(id)sender {
     [self changeProgress:3];
 }
 - (IBAction)dateBack:(id)sender {
     [self changeProgress:1];
 }
-- (IBAction)dayNext:(id) sender {
+- (IBAction)intervalNext:(id)sender {
     [self changeProgress:4];
 }
-- (IBAction)dayBack:(id)sender {
+
+- (IBAction)intervalBack:(id)sender {
     [self changeProgress:2];
 }
 - (IBAction)finished:(id)sender {
@@ -450,11 +492,7 @@ static NSInteger const kDatePicker = 2;
 
 }
 - (IBAction)finishedBack:(id)sender {
-    if (self.formType == Transaction_Creation) {
-        [self changeProgress:3];
-    } else {
-        [self changeProgress:2];
-    }
+    [self changeProgress:3];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -470,8 +508,10 @@ static NSInteger const kDatePicker = 2;
 {
     if (pickerView.tag == kCategoryPicker) {
         self.selectedCategory = row;
-    } else {
+    } else if (pickerView.tag == kDayPicker){
         self.selectedDate = row;
+    } else {
+        self.selectedInterval = row;
     }
 
 }
@@ -485,8 +525,10 @@ static NSInteger const kDatePicker = 2;
 {
     if (pickerView.tag == kCategoryPicker) {
         return [self.sectionName count];
-    } else {
+    } else if (pickerView.tag == kDayPicker){
         return [self.dateStringValues count];
+    } else {
+        return [self.intervalNames count];
     }
 
 }
@@ -503,8 +545,10 @@ static NSInteger const kDatePicker = 2;
     [[pickerView.subviews objectAtIndex:2] setHidden:YES];
     if (pickerView.tag == kCategoryPicker) {
         tView.text = [self.sectionName objectAtIndex:row];
-    } else {
+    } else if (pickerView.tag == kDayPicker){
         tView.text = [self.dateStringValues objectAtIndex:row];
+    } else {
+        tView.text = [self.intervalNames objectAtIndex:row];
     }
     return tView;
 }
