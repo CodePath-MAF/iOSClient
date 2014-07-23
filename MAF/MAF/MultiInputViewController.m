@@ -201,6 +201,8 @@ static NSInteger const kIntervalPicker = 3;
         NSCalendar *calendar = [NSCalendar currentCalendar];
         NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
         self.datePicker.minimumDate = newDate;
+        [[[self.datePicker.subviews objectAtIndex:0] subviews][1] setHidden:YES];
+        [[[self.datePicker.subviews objectAtIndex:0] subviews][2] setHidden:YES];
         
         self.intervalPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
         self.intervalPicker.showsSelectionIndicator = NO;

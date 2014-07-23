@@ -16,6 +16,8 @@
     dispatch_once(&onceToken, ^{
         [self swizzleInstanceSelector:@selector(setTextColor:)
                       withNewSelector:@selector(swizzledSetTextColor:)];
+        [self swizzleInstanceSelector:@selector(setFont:)
+                      withNewSelector:@selector(swizzledSetFont:)];
         [self swizzleInstanceSelector:@selector(willMoveToSuperview::)
                       withNewSelector:@selector(swizzledWillMoveToSuperview:)];
     });
@@ -33,9 +35,21 @@
     }
 }
 
+-(void) swizzledSetFont:(UIFont *)uiFont {
+    if([self view:self hasSuperviewOfClass:[UIDatePicker class]] ||
+       [self view:self hasSuperviewOfClass:NSClassFromString(@"UIDatePickerWeekMonthDayView")] ||
+       [self view:self hasSuperviewOfClass:NSClassFromString(@"UIDatePickerContentView")]){
+        [self swizzledSetFont:[UIFont fontWithName:@"OpenSans-Light" size:24.f]];
+    } else {
+        //Carry on with the default
+        [self swizzledSetFont:uiFont];
+    }
+}
+
 // Some of the UILabels haven't been added to a superview yet so listen for when they do.
 - (void) swizzledWillMoveToSuperview:(UIView *)newSuperview {
     [self swizzledSetTextColor:self.textColor];
+    [self swizzledSetFont:self.font];
     [self swizzledWillMoveToSuperview:newSuperview];
 }
 
