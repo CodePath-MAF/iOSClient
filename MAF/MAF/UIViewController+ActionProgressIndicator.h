@@ -12,5 +12,6 @@
 
 - (void)startProgress:(UINavigationController *)navigationController;
 - (void)finishProgress:(UINavigationController *)navigationController;
+- (void)finishProgress:(UINavigationController *)navigationController setViewControllers:(NSArray *)viewControllers;
 
 @end

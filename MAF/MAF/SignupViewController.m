@@ -12,6 +12,7 @@
 #import "OpenSansLightTextField.h"
 #import "Utilities.h"
 #import "User.h"
+#import "SimpleTransactionViewController.h"
 
 @interface SignupViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet OpenSansLightTextField *nameTextField;
@@ -64,9 +65,11 @@
     user[@"name"] = name;
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
-            NSLog(@"failed to login user: %@", [error userInfo][@"error"]);
-        } else {
-            [self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]] animated:YES];
+            NSLog(@"failed to signup user: %@", [error userInfo][@"error"]);
+        } else {            
+            SimpleTransactionViewController *vc = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
+            [vc setLabelsAndButtons:InitialCash goal:nil amount:0.00];
+            [self.navigationController setViewControllers:@[vc] animated:YES];
         }
     }];
 }

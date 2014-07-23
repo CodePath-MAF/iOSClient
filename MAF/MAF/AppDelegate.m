@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "Crittercism.h"
 #import <Parse/Parse.h>
-#import "DashboardViewController.h"
+#import "MainViewController.h"
 
 #import "Goal.h"
 #import "Transaction.h"
@@ -63,8 +63,8 @@
     
     // trigger fetching of categories
     [[TransactionCategoryManager instance] fetchCategories];
-    DashboardViewController *dashboard = [[DashboardViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dashboard];
+    MainViewController *vc = [[MainViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
     navController.navigationBar.translucent = NO;
     self.window.rootViewController = navController;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];

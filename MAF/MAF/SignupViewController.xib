@@ -92,7 +92,7 @@
                                 <color key="titleColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                             </state>
                             <connections>
-                                <action selector="signupButtonTouched:" destination="-1" eventType="touchUpInside" id="0r0-cc-B7j"/>
+                                <action selector="signUpButtonTouched:" destination="-1" eventType="touchUpInside" id="nZd-Dk-GZv"/>
                             </connections>
                         </button>
                     </subviews>

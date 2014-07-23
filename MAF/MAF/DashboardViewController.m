@@ -11,10 +11,9 @@
 #import "Bolts.h"
 
 #import "DashboardViewController.h"
-//#import "LoginViewController.h"
+#import "LoginViewController.h"
 #import "SignupViewController.h"
 
-#import "SimpleTransactionViewController.h"
 #import "MultiInputViewController.h"
 
 #import "TransactionsListViewController.h"
@@ -96,15 +95,6 @@
 }
 
 - (void)configureNavigationBar {
-    // Set Up Navigation Bar
-    self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
-    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:3.5f forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
-    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.backBarButtonItem = backButton;
     
     // Set Up Profile Button
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
@@ -149,17 +139,17 @@
     [self.cashOverView setTotalCash:[[User currentUser] totalCash]];
 
     if (![User currentUser]) {
-//        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
 //        [loginViewController setDelegate:self];
         
-        SignupViewController *signupViewController = [[SignupViewController alloc] init];
+//        SignupViewController *signupViewController = [[SignupViewController alloc] init];
 //        [signupViewController setDelegate:self];
         
 //        [loginViewController setSignUpController:signupViewController];
         self.title = @"Sign Up";
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.rightBarButtonItem = nil;
-        [self.navigationController setViewControllers:@[signupViewController]];
+        [self.navigationController setViewControllers:@[loginViewController]];
 //        [self presentViewController:loginViewController animated:NO completion:NULL];
     }
     else {
@@ -377,65 +367,6 @@
     contentFrame.origin.y += heightOffset;
     contentFrame.size.height -= heightOffset;
     return contentFrame;
-}
-
-#pragma mark - Login/Sign Up Set Up Methods
-
-- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
-    if (username && password && username.length != 0 && password.length != 0) {
-        return YES;
-    }
-    
-    [[[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please fill in all of the required fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-    
-    return NO;
-}
-
-- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
-    // TODO switch to TSMessages
-    [[[UIAlertView alloc] initWithTitle:@"Login Failed" message:[NSString stringWithFormat:@"%@", error.userInfo[@"error"]] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-}
-
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(User *)user {
-    // TODO send a notification via NotificationCenter that the user was logged in
-    
-    [logInController dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"Login Complete");
-    }];
-    
-}
-
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
-    if (
-        info[@"username"] && ((NSString *)info[@"username"]).length &&
-        // TODO specify a min length for the password
-        info[@"password"] && ((NSString *)info[@"password"]).length &&
-        // TODO add validation around the phone number
-        info[@"additional"]
-        ) {
-        return YES;
-    }
-    
-    [[[UIAlertView alloc] initWithTitle:@"Signup Failed" message:@"Please fill in all of the required fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-    
-    return NO;
-}
-
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
-    // TODO switch to TSMessages
-    [[[UIAlertView alloc] initWithTitle:@"Signup Failed" message:[NSString stringWithFormat:@"%@", error.userInfo[@"error"]] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-}
-
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(User *)user {
-    // TODO send a notification via NotificationCenter that the user was signed up
-  
-    [signUpController dismissViewControllerAnimated:YES completion:^{
-        SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
-        [simpleTransVC setLabelsAndButtons:InitialCash goal:nil amount:0.00];
-        [self.navigationController pushViewController:simpleTransVC animated:YES];
-
-        NSLog(@"Sign Up Complete");
-    }];
 }
 
 @end

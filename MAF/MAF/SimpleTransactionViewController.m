@@ -12,6 +12,7 @@
 #import "User.h"
 #import "TransactionManager.h"
 #import "TransactionCategoryManager.h"
+#import "DashboardViewController.h"
 #import "UIViewController+ActionProgressIndicator.h"
 
 @interface SimpleTransactionViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
@@ -93,6 +94,11 @@
         self.amountLabel.text = @"$";
     }
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"simple transaction view");
+}
                                                                                                                                                               
                                                                                                                                                               
 
@@ -168,7 +174,7 @@
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
              } else {
-                 [self finishProgress:self.navigationController];
+                 [self finishProgress:self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]]];
              }
              return task;
          }];

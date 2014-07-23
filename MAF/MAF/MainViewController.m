@@ -2,30 +2,29 @@
 //  MainViewController.m
 //  MAF
 //
-//  Created by mhahn on 7/6/14.
+//  Created by mhahn on 7/23/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
 #import "MainViewController.h"
-#import <Parse/Parse.h>
+#import "User.h"
 #import "DashboardViewController.h"
-#import "LoginViewController.h"
 #import "SignupViewController.h"
-#import "CreateGoalViewController.h"
-#import "CreateTransactionViewController.h"
-#import "GoalsTableViewController.h"
-#import "TransactionsTableViewController.h"
+#import "LoginViewController.h"
+#import "Utilities.h"
 
-@interface MainViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
-
-@property DashboardViewController *dashboardViewController;
-@property UIViewController *currentViewController;
+@interface MainViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *signupButton;
+- (IBAction)loginButtonTouched:(id)sender;
+- (IBAction)signupButtonTouched:(id)sender;
 
 @end
 
 @implementation MainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -33,147 +32,53 @@
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    if (![PFUser currentUser]) {
-        LoginViewController *loginViewController = [[LoginViewController alloc] init];
-        [loginViewController setDelegate:self];
-        
-        SignupViewController *signupViewController = [[SignupViewController alloc] init];
-        [signupViewController setDelegate:self];
-        
-        [loginViewController setSignUpController:signupViewController];
-        
-        [self presentViewController:loginViewController animated:NO completion:NULL];
-    } else {
-        [self presentDashboardViewController];
-    }
-}
-
-- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
-    if (username && password && username.length != 0 && password.length != 0) {
-        return YES;
-    }
-    
-    [[[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please fill in all of the required fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-    
-    return NO;
-}
-
-- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
-    // TODO switch to TSMessages
-    [[[UIAlertView alloc] initWithTitle:@"Login Failed" message:[NSString stringWithFormat:@"%@", error.userInfo[@"error"]] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-}
-
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    // TODO send a notification via NotificationCenter that the user was logged in
-    [logInController dismissViewControllerAnimated:YES completion:^{
-        [self presentDashboardViewController];
-    }];
-}
-
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
-    if (
-        info[@"username"] && ((NSString *)info[@"username"]).length &&
-        // TODO specify a min length for the password
-        info[@"password"] && ((NSString *)info[@"password"]).length &&
-        // TODO add validation around the phone number
-        info[@"additional"]
-    ) {
-        return YES;
-    }
-  
-    [[[UIAlertView alloc] initWithTitle:@"Signup Failed" message:@"Please fill in all of the required fields" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-    
-    return NO;
-}
-
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
-    // TODO switch to TSMessages
-    [[[UIAlertView alloc] initWithTitle:@"Signup Failed" message:[NSString stringWithFormat:@"%@", error.userInfo[@"error"]] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-}
-
-- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    // TODO send a notification via NotificationCenter that the user was signed up
-    [signUpController dismissViewControllerAnimated:YES completion:^{
-        [self presentDashboardViewController];
-    }];
-}
-     
-- (void)presentDashboardViewController {
-  NSLog(@"Presenting Dashboard");
-  if (!self.dashboardViewController) {
-    self.dashboardViewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
-    
-    self.dashboardViewController.delegate = self;
-    
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
-    
-    self.navigationItem.leftBarButtonItem = profileButton;
-    
-    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createGoal:)];
-    
-    self.navigationItem.rightBarButtonItem = goalButton;
-  }
-  [self displayContentController:self.dashboardViewController];
-}
-
-#pragma mark - Container View Methods
-
-- (void)displayContentController:(UIViewController*)content
+- (void)viewDidLoad
 {
-  NSLog(@"Displaying Content");
-  [self addChildViewController:content];            // 1
-  
-  content.view.frame = [self frameForContentController];             // 2
-  [self.view addSubview:content.view];
-  self.currentViewController = content;
-  [content didMoveToParentViewController:self];          // 3
-}
-//
-//- (void)hideContentController:(UIViewController*)content
-//{
-//#warning this doesn't work as expected yet
-//  NSLog(@"Hiding Content");
-//  [content willMoveToParentViewController:nil];  // 1
-//  [content.view removeFromSuperview];            // 2
-//  [content removeFromParentViewController];      // 3
-//}
-//
-- (CGRect)frameForContentController {
-  CGRect contentFrame = self.view.bounds;
-  CGFloat heightOffset = self.navigationController.navigationBar.frame.size.height;
-  contentFrame.origin.y += heightOffset;
-  contentFrame.size.height -= heightOffset;
-  return contentFrame;
+    [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    // Set Up Navigation Bar
+    self.navigationController.navigationBar.barTintColor = [Utilities colorFromHexString:@"#342F33"];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:18]};
+    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:3.5f forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
+    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"btn_leftarrow_white_up"]];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+    
+    [[self.signupButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:self.signupButton.titleLabel.font.pointSize]];
+    [[self.loginButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:self.loginButton.titleLabel.font.pointSize]];
+    [Utilities setupRoundedButton:self.signupButton
+                 withCornerRadius:BUTTON_CORNER_RADIUS];
+    [Utilities setupRoundedButton:self.loginButton
+                 withCornerRadius:BUTTON_CORNER_RADIUS];
+
 }
 
-#pragma mark - DashBoard Delegate Methods
-- (void)createGoal:(id)sender {
-  NSLog(@"Loading Create Goal View");
-  [self.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([User currentUser]) {
+        [self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]]];
+    } else {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
-- (void)createTransaction:(id)sender {
-  NSLog(@"Loading Create Transaction View");
-  [self.navigationController pushViewController:[[CreateTransactionViewController alloc] init] animated:YES];
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewGoals:(id)sender {
-  NSLog(@"Loading Goals View");
-  [self.navigationController pushViewController:[[GoalsTableViewController alloc] init] animated:YES];
+- (IBAction)loginButtonTouched:(id)sender {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
 }
 
-- (void)viewTransactions:(id)sender {
-  NSLog(@"Load Transactions View");
-  [self.navigationController pushViewController:[[TransactionsTableViewController alloc] init] animated:YES];
-}
-
-- (void)showProfile:(id)sender {
-#warning show profile view here
-  NSLog(@"Show Profile");
-    DashboardViewController *vc = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
-    [self.navigationController setViewControllers:@[vc]];
+- (IBAction)signupButtonTouched:(id)sender {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController pushViewController:[[SignupViewController alloc] init] animated:YES];
 }
 
 @end

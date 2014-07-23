@@ -17,14 +17,25 @@
 }
 
 - (void)finishProgress:(UINavigationController *)navigationController {
+
+    MRProgressOverlayView *progressView = [MRProgressOverlayView showOverlayAddedTo:navigationController.view title:@"" mode:MRProgressOverlayViewModeCheckmark animated:YES];
+    [progressView setTintColor:[[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f]];
     [self performBlock:^{
-        MRProgressOverlayView *progressView = [MRProgressOverlayView showOverlayAddedTo:navigationController.view title:@"" mode:MRProgressOverlayViewModeCheckmark animated:YES];
-        [progressView setTintColor:[[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f]];
-        [self performBlock:^{
-            [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
-            [navigationController popViewControllerAnimated:YES];
-        } afterDelay:0.5];
-    } afterDelay:0.3];
+        [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
+        [navigationController popViewControllerAnimated:YES];
+    } afterDelay:0.5];
+
+}
+
+- (void)finishProgress:(UINavigationController *)navigationController setViewControllers:(NSArray *)viewControllers {
+    
+    MRProgressOverlayView *progressView = [MRProgressOverlayView showOverlayAddedTo:navigationController.view title:@"" mode:MRProgressOverlayViewModeCheckmark animated:YES];
+    [progressView setTintColor:[[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f]];
+    [self performBlock:^{
+        [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
+        [navigationController setViewControllers:viewControllers animated:YES];
+    } afterDelay:0.5];
+    
 }
 
 - (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {

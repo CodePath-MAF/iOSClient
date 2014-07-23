@@ -1,5 +1,5 @@
 //
-//  LoginViewController.h
+//  MainViewController.h
 //  MAF
 //
 //  Created by mhahn on 7/23/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface MainViewController : UIViewController
 
 @end
