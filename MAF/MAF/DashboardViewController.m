@@ -66,6 +66,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureNavigationBar];
+    [self toggleAlphaForViews:0];
     
     // Set Up Collection View delegate & data source
 //    if ([self.goals count] == 0) {
@@ -85,6 +86,12 @@
 //    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
 //    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
 //    [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
+}
+
+- (void)toggleAlphaForViews:(float)alpha {
+    self.collectionView.alpha = alpha;
+    self.goalStatsView.alpha = alpha;
+    self.cashOverView.alpha = alpha;
 }
 
 - (void)configureNavigationBar {
@@ -185,6 +192,9 @@
                     [self.collectionView reloadData];
                     // TODO load
                 }
+                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    [self toggleAlphaForViews:1];
+                } completion:nil];
             }
             // TODO warning end download spinner here
             return task;
