@@ -8,6 +8,10 @@
 
 #import "Utilities.h"
 
+@interface Utilities ()
+
+@end
+
 
 @implementation Utilities
 
@@ -76,6 +80,44 @@
 + (NSInteger)numberOfMilestonesforGoal:(Goal *)goal {
     NSInteger daysToGoal = [self daysBetweenDate:[NSDate new] andDate:goal.targetDate];
     return floor(daysToGoal/goal.paymentInterval);
+}
+
++ (NSString *)prettyMessageFromTargetDate:(NSDate *)targetDate withStartDate:(NSDate *)startDate withInterval:(NSInteger)interval {
+    NSDate *strippedDateToday = [Utilities dateWithoutTime:[NSDate date]];
+    NSInteger daysTil = [Utilities daysBetweenDate:startDate andDate:targetDate]%interval;
+    
+    NSLog(@"Days Til: %d", daysTil);
+    
+    NSDate *newDate = [NSDate dateWithTimeInterval:daysTil*24*60*60 sinceDate:strippedDateToday];
+    NSString *nextDue = @"";
+    if ([MHPrettyDate isToday:newDate]) {
+        nextDue = [[NSString alloc] initWithFormat:@"DUE TODAY!"];
+    }
+    else if ([MHPrettyDate isTomorrow:newDate]) {
+        nextDue = [[NSString alloc] initWithFormat:@"DUE TOMORROW"];
+    }
+    else if ([MHPrettyDate isWithinWeek:newDate]) {
+        nextDue = [[NSString alloc] initWithFormat:@"DUE IN %d DAYS", daysTil];
+    }
+    else {
+        NSDateComponents *compontents = [Utilities getDateComponentsForDate:newDate];
+        nextDue = [[NSString alloc] initWithFormat:@"DUE IN %@ (%@)", [[Utilities getMonthSymbolForMonthNumber:compontents.month] uppercaseString], [MHPrettyDate prettyDateFromDate:newDate withFormat:MHPrettyDateFormatNoTime]];
+    }
+    
+    return nextDue;
+}
+
++ (NSString *)getMonthSymbolForMonthNumber:(NSInteger)monthNumber {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSArray *symbols = [formatter monthSymbols];
+    return symbols[monthNumber - 1];
+}
+
++ (BOOL)isWithinWeekOfTargetDate:(NSDate *)targetDate withInterval:(NSInteger)interval {
+    NSDate *strippedDateToday = [self dateWithoutTime:[NSDate date]];
+    NSInteger daysTil = [self daysBetweenDate:strippedDateToday andDate:targetDate]%interval;
+    NSDate *newDate = [NSDate dateWithTimeInterval:daysTil*24*60*60 sinceDate:strippedDateToday];
+    return [MHPrettyDate isWithinWeek:newDate];
 }
 
 @end

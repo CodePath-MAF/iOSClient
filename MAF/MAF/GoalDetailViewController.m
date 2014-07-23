@@ -197,12 +197,6 @@
   }
 }
 
-- (void) updateMilestoneProgress {
-#warning TODO use the progress bar perhaps or create your own.
-  // Questions to answer:
-  // How many paymenst has the user made?
-}
-
 - (IBAction)makePayment:(id)sender {
     SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
     [simpleTransVC setLabelsAndButtons:MakePayment goal:self.goal amount:self.goal.paymentAmount];

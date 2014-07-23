@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) Goal *goal;
 
+- (void)updateColors;
+
 @end

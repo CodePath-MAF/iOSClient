@@ -59,7 +59,6 @@
 }
 
 - (NSDictionary *)goalsByDescendingNextMilestone {
-    
     return nil;
 }
 

@@ -35,12 +35,20 @@
 
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
-    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", 0, self.goal.numPayments];
+    
+     NSInteger newMilestoneCount = self.goal.currentProgress/self.goal.paymentAmount;
+    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", newMilestoneCount, self.goal.numPayments];
     self.goalNameLabel.text = self.goal.name;
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.goal.paymentAmount];
-    
-    // TODO calculate time til next milestone interval
-    self.paymentDueLabel.text = [[NSString alloc] initWithFormat:@"DUE %@", [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
+   
+    self.paymentDueLabel.text = [Utilities prettyMessageFromTargetDate:self.goal.targetDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
+}
+
+- (void)updateColors {
+    if([Utilities isWithinWeekOfTargetDate:self.goal.targetDate withInterval:self.goal.paymentInterval]) {
+        [self.dueImageView setImage:[UIImage imageNamed:@"time_red"]];
+        [self.paymentDueLabel setTextColor:[UIColor redColor]];
+    }
 }
 
 @end

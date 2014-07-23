@@ -125,29 +125,8 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    CGFloat originY = 280; // Not sure why I can't get this programmatically but everything else seems to be wrong.
-    CGFloat height = self.view.frame.size.height - originY;
-    CGFloat width = self.collectionView.frame.size.width;
-    
-    // Set up the page control
-//    CGRect frame = CGRectMake(0,  height - PAGE_CONTROL_HEIGHT, width, PAGE_CONTROL_HEIGHT);
-//    self.pageControl = [[UIPageControl alloc]
-//                        initWithFrame:frame];
     self.firstGoalView.hidden = YES;
     self.collectionView.hidden = NO;
-    // Add a target that will be invoked when the page control is
-    // changed by tapping on it
-//    [self.pageControl
-//     addTarget:self.collectionView
-//     action:@selector(pageControlChanged:)
-//     forControlEvents:UIControlEventValueChanged
-//     ];
-    
-    // Set the number of pages to the number of pages in the paged interface
-    // and let the height flex so that it sits nicely in its frame
-//    self.pageControl.numberOfPages = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-//    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    [self.collectionView addSubview:self.pageControl];
     
     // Load initial data
     [self.collectionView reloadData];
@@ -240,7 +219,7 @@
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
     cell.goal = self.goals[indexPath.item];
-//    cell.goal = self.goals[(indexPath.section * ITEMS_IN_SECTION) + indexPath.item];
+    [cell updateColors];
     return cell;
 }
 
