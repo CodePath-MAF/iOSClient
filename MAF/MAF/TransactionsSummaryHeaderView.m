@@ -16,10 +16,14 @@
 #import "PNStackedBarChartDataItem.h"
 #import "User.h"
 
-@interface TransactionsSummaryHeaderView() {
+@interface TransactionsSummaryHeaderView() <PNChartDelegate> {
     NSDictionary *_transactionsTotalByCategoryByDate;
     float _maxValue;
+    CGRect _frameBeforeTransform;
+    CGAffineTransform _previousTransform;
+    CGPoint _centerBeforeTransform;
     NSDateFormatter *_dateFormatter;
+    NSArray *_previousDates;
 }
 
 
@@ -29,8 +33,13 @@
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentTodayTotalLabel;
 
 @property (nonatomic, strong) PNStackedBarChart *transactionsCategoryChart;
+@property (nonatomic, strong) PNHorizontalStackedBarChart *transactionsDetailChart;
 
 - (NSArray *)getDataItemsForDate:(NSDate *)date;
+- (PNStackedBarChart *)buildStackedBarChart:(NSArray *)xLabels dataItems:(NSArray *)dataItems;
+- (float)getMaxValueFromItems:(NSArray *)dataItems;
+- (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems;
+- (void)handleTouchInDetailBar:(id)sender;
 
 @end
 
@@ -52,14 +61,14 @@
         _maxValue = 0;
         
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
-        NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
+        _previousDates = [Utilities getPreviousDates:7 fromDate:today];
         _dateFormatter = [[NSDateFormatter alloc] init];
     #warning make sure the chart x labels support mutlilines
         [_dateFormatter setDateFormat:@"EEE\r(M/d)"];
         NSMutableArray *chartXLabels = [[NSMutableArray alloc] init];
         NSMutableArray *chartDataItems = [[NSMutableArray alloc] init];
         
-        for (NSDate *previousDate in [previousDates reverseObjectEnumerator]) {
+        for (NSDate *previousDate in [_previousDates reverseObjectEnumerator]) {
             [chartXLabels addObject:[_dateFormatter stringFromDate:previousDate]];
             [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
         }
@@ -68,6 +77,7 @@
         [self.transactionsCategoryChart setXLabels:chartXLabels];
         [self.transactionsCategoryChart setYMaxValue:_maxValue];
         [self.transactionsCategoryChart strokeChart];
+        self.transactionsCategoryChart.delegate = self;
         [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
         [self addSubview:self.transactionsCategoryChart];
         
@@ -119,6 +129,80 @@
             }
         }
     } completion:nil];
+}
+
+
+- (void)userClickedOnBarCharIndex:(NSInteger)barIndex {
+    
+    NSLog(@"Click on bar %@", @(barIndex));
+    UIView *bar = [self.transactionsCategoryChart.bars objectAtIndex:barIndex];
+    UILabel *label = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
+    NSDate *previousDate = _previousDates[_previousDates.count - barIndex - 1];
+    NSArray *items = [self getDataItemsForDate:previousDate];
+    float total = [self getMaxValueFromItems:items];
+    NSArray *labels = [self getXLabelsForHorizontalBar:items];
+    
+    NSLog(@"date: %@, items: %@, labels: %@", previousDate, items, labels);
+    [self addSubview:bar];
+//    [self addSubview:label];
+
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.transactionsCategoryChart.alpha = 0;
+        NSLog(@"width: %f, height: %f, xScale: %f", bar.frame.size.width, bar.frame.size.height, 250.f/bar.frame.size.height);
+        
+        _frameBeforeTransform = bar.frame;
+        _centerBeforeTransform = bar.center;
+        CGAffineTransform barTransform = CGAffineTransformMakeScale(250.f/bar.frame.size.height, 4);
+        _previousTransform = barTransform;
+        bar.transform = CGAffineTransformRotate(barTransform, 90 * M_PI / 180);
+        
+        bar.alpha = 1.f;
+        bar.center = CGPointMake(self.center.x, self.center.y - 30);
+        UITapGestureRecognizer *singleFingerTap =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(handleTouchInDetailBar:)];
+        [bar addGestureRecognizer:singleFingerTap];
+//        label.alpha = 1.f;
+//        label.center = CGPointMake(self.center.x, self.center.y - 80);
+//        [label setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:label.font.pointSize]];
+#warning TODO need to transform the size after we move its position
+
+    } completion:nil];
+}
+
+- (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems {
+    float total = [self getMaxValueFromItems:dataItems];
+    NSMutableArray *labels = [[NSMutableArray alloc] init];
+#warning TODO add like a 'referenceLabel' to PNStackedBarChartDataItem so we can pull the category from it
+#warning TODO potentially add like a primary and secondary label so we can support multiline values
+    for (PNStackedBarChartDataItem *item in dataItems) {
+        [labels addObject:[NSString stringWithFormat:@"%.02f%%", (item.value/total*100)]];
+    }
+    return labels;
+}
+
+- (float)getMaxValueFromItems:(NSArray *)dataItems {
+    float total = 0.0;
+    for (PNStackedBarChartDataItem *item in dataItems) {
+        total += item.value;
+    }
+    return total;
+}
+
+- (void)handleTouchInDetailBar:(id)sender {
+    NSLog(@"touched big bar");
+    UIView *bar = [(UITapGestureRecognizer *)sender view];
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        bar.center = _centerBeforeTransform;
+        bar.frame = _frameBeforeTransform;
+        bar.transform = CGAffineTransformMakeScale(bar.frame.size.width/_frameBeforeTransform.size.width, bar.frame.size.height/_frameBeforeTransform.size.height);
+        self.transactionsCategoryChart.alpha = 1;
+
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+
+        } completion:nil];
+    }];
 }
 
 @end
