@@ -42,9 +42,8 @@
 @property (weak, nonatomic) IBOutlet GoalStatsView *goalStatsView;
 @property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
 @property (strong, nonatomic) UIView *firstGoalView;
-@property (weak, nonatomic) IBOutlet UILabel *totalCashLabel;
 
-- (IBAction)viewTransactions:(id)sender;
+- (void)viewTransactions:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *goals;
 @property (nonatomic, assign) NSInteger page;
@@ -157,7 +156,6 @@
 //        [self presentViewController:loginViewController animated:NO completion:NULL];
     }
     else {
-#warning TODO don't fetch every time
         [[self fetchData] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error fetching goals for user: %@", task.error);
@@ -217,32 +215,32 @@
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
     cell.goal = self.goals[indexPath.item];
+    cell.alpha = 0.0f;
     
-//    cell.alpha = 0.0f;
-//    NSInteger direction = 1;
-//    if (indexPath.item % 2) {
-//        direction = -1;
-//    }
-//    
-//    CGRect frame = cell.frame;
-//    CGRect originalFrame = frame;
-//    frame.origin.x = direction*frame.size.width;
-//    cell.frame = frame;
-//    
-//    [UIView transitionWithView:cv
-//                      duration:1
-//                       options:UIViewAnimationOptionCurveEaseInOut
-//                    animations:^{
-//                        
-//                        //any animatable attribute here.
-//                        cell.alpha = 1.0f;
-//                        cell.frame = originalFrame;
-//                        
-//                    } completion:^(BOOL finished) {
-//                        
-//                        //whatever you want to do upon completion
-//                        
-//                    }];
+    NSInteger direction = 1;
+    if (indexPath.item % 2) {
+        direction = -1;
+    }
+    
+    CGRect frame = cell.frame;
+    CGRect originalFrame = frame;
+    frame.origin.x = direction*frame.size.width;
+    cell.frame = frame;
+    
+    [UIView transitionWithView:cv
+                      duration:.75
+                       options:UIViewAnimationOptionCurveEaseInOut
+                    animations:^{
+                        
+                        //any animatable attribute here.
+                        cell.alpha = 1.0f;
+                        cell.frame = originalFrame;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        //whatever you want to do upon completion
+                        
+                    }];
     
     [cell updateColors];
     return cell;
@@ -336,7 +334,6 @@
 }
 
 - (void)showProfile:(id)sender {
-#warning show profile view here
     [PFUser logOut];
     [self.navigationController setViewControllers:@[[[MainViewController alloc] init]] animated:YES];
 }
