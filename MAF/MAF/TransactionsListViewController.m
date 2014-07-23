@@ -16,22 +16,23 @@
 #import "TransactionCategoryManager.h"
 #import "CreateTransactionViewController.h"
 #import "TransactionsHeaderView.h"
+#import "EmptyTransactionsView.h"
 #import "User.h"
 
 #import "Utilities.h"
 
 #warning TODO make sure this is only showing TransactionTypeCredit
 
-@interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate, EmptyTransactionsViewDelegate>
 
 @property (nonatomic, strong) TransactionsSet *transactionsSet;
 @property (nonatomic, strong) TransactionTableViewCell *prototypeCell;
+@property (nonatomic, strong) EmptyTransactionsView *emptyView;
 
 
 @property (weak, nonatomic) IBOutlet TransactionsSummaryHeaderView *summaryView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-- (void)reloadData;
+@property (nonatomic, strong) UIView *placeHolderView;
 
 @end
 
@@ -42,10 +43,17 @@
     self.title = @"Transactions";
     
     self.summaryView = [[[NSBundle mainBundle] loadNibNamed:@"TransactionsSummaryHeaderView" owner:self options:nil] lastObject];
+    self.summaryView.alpha = 0.f;
     [self.view addSubview:self.summaryView];
+    
+    self.emptyView = [[[NSBundle mainBundle] loadNibNamed:@"EmptyTransactionsView" owner:self options:nil] firstObject];
+    self.emptyView.delegate = self;
+    self.emptyView.alpha = 0.f;
+    [self.view addSubview:self.emptyView];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.alpha = 0;
     
     // Create Add Transaction Button
     UIBarButtonItem *addTransactionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createTransaction:)];
@@ -63,21 +71,32 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self routeToView];
     [[self fetchData] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error fetching transactions for user: %@", task.error);
         } else {
             self.transactionsSet = [[TransactionsSet alloc] initWithTransactions:task.result];
-            [self reloadData];
+            [self routeToView];
         }
         return task;
     }];
 }
 
-- (void)reloadData {
-    [(TransactionsSummaryHeaderView *)self.summaryView setTransactionsSet:self.transactionsSet];
-    [self.summaryView setNeedsDisplay];
-    [self.tableView reloadData];
+- (void)routeToView {
+    [self.summaryView setTransactionsSet:self.transactionsSet];
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        if (!self.transactionsSet.transactions.count) {
+            [self.emptyView updateTotalCash];
+            self.emptyView.alpha = 1;
+        } else {
+            self.emptyView.alpha = 0;
+            [self.summaryView setNeedsDisplay];
+            self.summaryView.alpha = 1;
+            self.tableView.alpha = 1;
+            [self.tableView reloadData];
+        }
+    } completion:nil];
 }
 
 - (BFTask *)fetchData {
@@ -87,6 +106,10 @@
 #pragma mark - NavBar Methods
 
 - (void)createTransaction:(id)sender {
+    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:[[TransactionCategoryManager instance] categories]] animated:YES];
+}
+
+- (void)addTransactionButtonTriggered:(id)sender {
     [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:[[TransactionCategoryManager instance] categories]] animated:YES];
 }
 
@@ -179,4 +202,5 @@
     NSInteger firstVisibleSection = [[[self.tableView indexPathsForVisibleRows] firstObject] section];
     [self.summaryView setActiveBar:(6 - firstVisibleSection) activeAlpha:1.0f inactiveAlpha:0.5f];
 }
+
 @end

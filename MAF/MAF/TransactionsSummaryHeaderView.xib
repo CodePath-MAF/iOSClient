@@ -13,21 +13,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btw-kg-825">
                     <rect key="frame" x="0.0" y="178" width="320" height="1"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.86937415081521741" green="0.86937415081521741" blue="0.86937415081521741" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="RFk-k4-Tdw"/>
                         <constraint firstAttribute="width" constant="320" id="rAG-1i-wQa"/>
                     </constraints>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SPENT THIS WEEK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ptv-8Z-IDA" customClass="OpenSansLightLabel">
-                    <rect key="frame" x="114" y="197" width="93" height="12"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPENT THIS WEEK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ptv-8Z-IDA" customClass="OpenSansLightLabel">
+                    <rect key="frame" x="114" y="191" width="93" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL CASH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etS-Vn-SvL" customClass="OpenSansLightLabel">
-                    <rect key="frame" x="0.0" y="196" width="104" height="12"/>
+                    <rect key="frame" x="0.0" y="191" width="104" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="104" id="KxU-Fd-VUM"/>
@@ -37,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPENT TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z96-cJ-Bl7" customClass="OpenSansLightLabel">
-                    <rect key="frame" x="216" y="196" width="104" height="12"/>
+                    <rect key="frame" x="216" y="191" width="104" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="104" id="Eso-Lo-rTH"/>
@@ -65,7 +65,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AM7-3R-vFr">
                     <rect key="frame" x="105" y="197" width="1" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.86937415080000002" green="0.86937415080000002" blue="0.86937415080000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="RJi-6G-RkQ"/>
                         <constraint firstAttribute="height" constant="26" id="l8K-kw-bOc"/>
@@ -74,7 +74,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fA-O1-FHs">
                     <rect key="frame" x="215" y="197" width="1" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.86937415080000002" green="0.86937415080000002" blue="0.86937415080000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="4Bm-76-XFI"/>
                         <constraint firstAttribute="width" constant="1" id="Dll-dM-tXb"/>
@@ -91,7 +91,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Btw-kg-825" secondAttribute="trailing" id="DKz-ns-p6V"/>
                 <constraint firstAttribute="trailing" secondItem="5fA-O1-FHs" secondAttribute="trailing" constant="104" id="ErH-9k-wxZ"/>
-                <constraint firstItem="Ptv-8Z-IDA" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="17" id="FAM-dC-otP"/>
+                <constraint firstItem="Ptv-8Z-IDA" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="12" id="FAM-dC-otP"/>
                 <constraint firstItem="AM7-3R-vFr" firstAttribute="leading" secondItem="uDR-4M-2OS" secondAttribute="leading" constant="105" id="GgP-Mw-ZQg"/>
                 <constraint firstAttribute="bottom" secondItem="5fA-O1-FHs" secondAttribute="bottom" constant="17" id="HQH-ZS-ctG"/>
                 <constraint firstAttribute="bottom" secondItem="bp1-bL-XtE" secondAttribute="bottom" constant="12" id="JQe-d0-GIP"/>
@@ -103,8 +103,8 @@
                 <constraint firstAttribute="bottom" secondItem="AM7-3R-vFr" secondAttribute="bottom" constant="17" id="miH-70-mlM"/>
                 <constraint firstItem="5fA-O1-FHs" firstAttribute="leading" secondItem="Ptv-8Z-IDA" secondAttribute="trailing" constant="8" id="piX-q6-Xex"/>
                 <constraint firstItem="Btw-kg-825" firstAttribute="top" secondItem="uDR-4M-2OS" secondAttribute="top" constant="178" id="rkD-hU-kOj"/>
-                <constraint firstItem="etS-Vn-SvL" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="17" id="tf9-4C-mDF"/>
-                <constraint firstItem="z96-cJ-Bl7" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="17" id="wmC-Xg-a3B"/>
+                <constraint firstItem="etS-Vn-SvL" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="12" id="tf9-4C-mDF"/>
+                <constraint firstItem="z96-cJ-Bl7" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="12" id="wmC-Xg-a3B"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

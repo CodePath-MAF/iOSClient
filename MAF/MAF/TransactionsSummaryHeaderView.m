@@ -47,7 +47,6 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     if (self.transactionsSet) {
-        [self.transactionsCategoryChart removeFromSuperview];
         
         _transactionsTotalByCategoryByDate = [self.transactionsSet transactionsTotalByCategoryByDate];
         _maxValue = 0;
@@ -71,6 +70,7 @@
         [self.transactionsCategoryChart strokeChart];
         [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
         [self addSubview:self.transactionsCategoryChart];
+        
     }
 }
 
