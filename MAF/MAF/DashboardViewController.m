@@ -14,6 +14,8 @@
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 
+#import "SimpleTransactionViewController.h"
+
 #import "TransactionsListViewController.h"
 #import "TransactionManager.h"
 #import "TransactionsSet.h"
@@ -404,6 +406,10 @@
     // TODO send a notification via NotificationCenter that the user was signed up
   
     [signUpController dismissViewControllerAnimated:YES completion:^{
+        SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
+        [simpleTransVC setLabelsAndButtons:InitialCash goal:nil amount:0.00];
+        [self.navigationController pushViewController:simpleTransVC animated:YES];
+
         NSLog(@"Sign Up Complete");
     }];
 }

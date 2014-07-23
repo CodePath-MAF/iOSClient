@@ -9,7 +9,7 @@
 static NSInteger const kCategoryPicker = 1;
 static NSInteger const kDatePicker = 2;
 
-#import "CreateTransactionViewController.h"
+#import "MultiInputViewController.h"
 #import "CreateTransactionTableViewCell.h"
 #import "Transaction.h"
 #import "TransactionCategory.h"
@@ -18,7 +18,7 @@ static NSInteger const kDatePicker = 2;
 #import "User.h"
 #import "Utilities.h"
 
-@interface CreateTransactionViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MultiInputViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
 @property (weak, nonatomic) IBOutlet UIView *formContainer;
 @property (strong, nonatomic) IBOutlet UIView *amountView;
@@ -64,11 +64,11 @@ static NSInteger const kDatePicker = 2;
 
 @end
 
-@interface CreateTransactionViewController() <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MultiInputViewController() <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
 
-@implementation CreateTransactionViewController
+@implementation MultiInputViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -80,7 +80,7 @@ static NSInteger const kDatePicker = 2;
 }
 
 - (id)initWithCategories:(NSMutableArray *)categories {
-    self = [super initWithNibName:@"CreateTransactionViewController" bundle:nil];
+    self = [super initWithNibName:@"MultiInputViewController" bundle:nil];
     self.sectionName = [[NSMutableArray alloc] init];
     self.sectionNamesWithId = [[NSMutableArray alloc] initWithArray:categories];
     for (TransactionCategory *category in categories) {
@@ -116,6 +116,7 @@ static NSInteger const kDatePicker = 2;
     self.nameText.delegate = self;
     self.transactionProgress.rowHeight = 50;
     [self.transactionProgress registerNib:[UINib nibWithNibName:@"CreateTransactionTableViewCell" bundle:nil] forCellReuseIdentifier:@"CreateTransactionCell"];
+
     UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
     [self.transactionProgress setSeparatorInset:UIEdgeInsetsZero];
     [self.transactionProgress setSeparatorColor:lightGreen];
@@ -126,8 +127,11 @@ static NSInteger const kDatePicker = 2;
     self.categoryView.backgroundColor = lightGreen;
     self.dateView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
-    self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
     
+    [self.amountText setTintColor:[UIColor whiteColor]];
+    [self.nameText setTintColor:[UIColor whiteColor]];
+    
+    self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
 
