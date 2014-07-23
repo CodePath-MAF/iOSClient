@@ -43,6 +43,8 @@
 @property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
 @property (strong, nonatomic) UIView *firstGoalView;
 
+@property (strong, nonatomic) GoalCardView *prototypeCell;
+
 - (void)viewTransactions:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *goals;
@@ -80,11 +82,12 @@
     // Stub Goals Cell
     UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
-
+    
+    self.prototypeCell = [cellNib instantiateWithOwner:nil options:nil][0];
+    
     // Set Up Cash OverView - NOT USING FOR NOW
     self.cashOverView.totalCash = [[User currentUser] totalCash];
     self.cashOverView.delegate = self;
-//    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
 }
 
 - (void)toggleAlphaForViews:(float)alpha {
@@ -211,10 +214,17 @@
     return sections;
 }
 
-- (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
-    // TODO adjust for the section
+- (void)configureCell:(GoalCardView *)cell atIndexPath:(NSIndexPath *)indexPath
+{
     cell.goal = self.goals[indexPath.item];
+    [cell updateColors];
+}
+
+- (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.prototypeCell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
+    
+    [self configureCell:self.prototypeCell atIndexPath:indexPath];
+    
 //    cell.alpha = 0.0f;
 //    
 //    NSInteger direction = 1;
@@ -243,7 +253,7 @@
 //                    }];
 //    
 //    [cell updateColors];
-    return cell;
+    return self.prototypeCell;
 }
 
 #pragma mark - UICollectionViewDelegate
