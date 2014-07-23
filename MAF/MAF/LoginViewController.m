@@ -9,7 +9,6 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "OpenSansLightTextField.h"
-#import "DashboardViewController.h"
 #import "Utilities.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
@@ -88,7 +87,7 @@
         if (error) {
             NSLog(@"failed to login user: %@", [error userInfo][@"error"]);
         } else {
-            [self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]] animated:YES];
+            [self.delegate successfulLogin];
         }
     }];
     

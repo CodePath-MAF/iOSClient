@@ -66,10 +66,8 @@
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"failed to signup user: %@", [error userInfo][@"error"]);
-        } else {            
-            SimpleTransactionViewController *vc = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
-            [vc setLabelsAndButtons:InitialCash goal:nil amount:0.00];
-            [self.navigationController setViewControllers:@[vc] animated:YES];
+        } else {
+            [self.delegate successfulSignup];
         }
     }];
 }

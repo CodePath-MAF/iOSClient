@@ -29,6 +29,8 @@
 #import "User.h"
 #import "Utilities.h"
 
+#import "MainViewController.h"
+
 #define PAGE_CONTROL_HEIGHT 40
 #define ITEMS_IN_SECTION 2
 
@@ -97,17 +99,19 @@
 - (void)configureNavigationBar {
     
     // Set Up Profile Button
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile:)];
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(@"showProfile:")];
     [profileButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
     
     [profileButton setBackgroundImage:[UIImage imageNamed:@"btn_profile_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
     self.navigationItem.leftBarButtonItem = profileButton;
     
     // Set Up Add Goal Button
-    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:@selector(createGoal:)];
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(@"createGoal:")];
     [goalButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
     [goalButton setBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = goalButton;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
 
 - (void)loadGoalCollectionView {
@@ -338,7 +342,8 @@
 
 - (void)showProfile:(id)sender {
 #warning show profile view here
-    NSLog(@"Show Profile");
+    [PFUser logOut];
+    [self.navigationController setViewControllers:@[[[MainViewController alloc] init]] animated:YES];
 }
 
 #pragma mark - Custom Loading View Methods

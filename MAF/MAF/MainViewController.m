@@ -12,8 +12,10 @@
 #import "SignupViewController.h"
 #import "LoginViewController.h"
 #import "Utilities.h"
+#import "SimpleTransactionViewController.h"
 
-@interface MainViewController ()
+@interface MainViewController () <LoginViewControllerDelegate, SignupViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 - (IBAction)loginButtonTouched:(id)sender;
@@ -56,10 +58,15 @@
 
 }
 
+- (void)routeToDashboard {
+    [self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]]];
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if ([User currentUser]) {
-        [self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]]];
+        [self routeToDashboard];
     } else {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
@@ -72,13 +79,27 @@
 }
 
 - (IBAction)loginButtonTouched:(id)sender {
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    vc.delegate = self;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)signupButtonTouched:(id)sender {
+    SignupViewController *vc = [[SignupViewController alloc] init];
+    vc.delegate = self;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController pushViewController:[[SignupViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)successfulSignup {
+    SimpleTransactionViewController *vc = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
+    [vc setLabelsAndButtons:InitialCash goal:nil amount:0.00];
+    [self.navigationController setViewControllers:@[vc] animated:YES];
+}
+
+- (void)successfulLogin {
+    [self routeToDashboard];
 }
 
 @end
