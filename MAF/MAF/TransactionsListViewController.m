@@ -111,7 +111,7 @@
 }
 
 - (void)addTransactionButtonTriggered:(id)sender {
-    [self.navigationController pushViewController:[[CreateTransactionViewController alloc] initWithCategories:[[TransactionCategoryManager instance] categories]] animated:YES];
+    [self.navigationController pushViewController:[[MultiInputViewController alloc] initWithCategories:[[TransactionCategoryManager instance] categories]] animated:YES];
 }
 
 #pragma mark - Table view data source
