@@ -10,7 +10,9 @@
 #import "TransactionCategoryManager.h"
 #import "Utilities.h"
 
-@interface TransactionCategoryManager()
+@interface TransactionCategoryManager() {
+    NSMutableDictionary *_categoryNameToObjectId;
+}
 
 @property (nonatomic, strong) NSDictionary *categoryColors;
 
@@ -38,6 +40,16 @@
         self.categoryColors = [[NSDictionary alloc] initWithDictionary:categoryColorDict];
     }
     return [self.categoryColors objectForKey:category.name];
+}
+
+- (NSString *)categoryObjectIdForName:(NSString *)name {
+    if (!_categoryNameToObjectId) {
+        _categoryNameToObjectId = [[NSMutableDictionary alloc] init];
+        for (TransactionCategory *category in self.categories) {
+            [_categoryNameToObjectId setObject:category.objectId forKey:category.name];
+        }
+    }
+    return [_categoryNameToObjectId objectForKey:name];
 }
 
 + (TransactionCategoryManager *)instance {

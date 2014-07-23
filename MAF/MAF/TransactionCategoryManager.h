@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *categories;
 - (void)fetchCategories;
 - (UIColor *)colorForCategory:(TransactionCategory *)category;
+- (NSString *)categoryObjectIdForName:(NSString *)name;
 
 + (TransactionCategoryManager *)instance;
 
