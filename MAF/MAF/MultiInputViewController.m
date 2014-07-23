@@ -307,22 +307,21 @@ static NSInteger const kIntervalPicker = 3;
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
     }];
-    
+    [self.transactionProgress beginUpdates];
     if (self.currentViewIndex > self.previousViewIndex) {
         NSIndexPath *path = [NSIndexPath indexPathForRow:self.previousViewIndex inSection:0];
         [self.transactionProgress insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         if (self.previousViewIndex > 0) {
-            [self.transactionProgress beginUpdates];
             NSMutableArray *paths = [[NSMutableArray alloc] init];
             for (int i = self.previousViewIndex; i > self.currentViewIndex; i--) {
                 NSIndexPath *path = [NSIndexPath indexPathForRow:i-1 inSection:0];
                 [paths addObject:path];
             }
             [self.transactionProgress deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
-            [self.transactionProgress endUpdates];
         }
     }
+    [self.transactionProgress endUpdates];
 
     [self.formContainer addSubview:self.allSteps[self.currentViewIndex]];
     [self handleView];
