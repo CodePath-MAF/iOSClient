@@ -110,6 +110,8 @@
     [goalButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
     [goalButton setBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = goalButton;
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
 }

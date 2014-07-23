@@ -65,7 +65,6 @@
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
-		BF4FC9E1197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */; };
 		BF4FC9E5197FE6DC00BDF982 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */; };
 		BF4FC9E6197FE6DC00BDF982 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */; };
 		BF865AFF197C593000A128AD /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865AFE197C593000A128AD /* Friend.m */; };
@@ -204,8 +203,6 @@
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
 		BF4FC9DC197FC39C00BDF982 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		BF4FC9DD197FC39C00BDF982 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
-		BF4FC9DF197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionProgressIndicator.h"; sourceTree = "<group>"; };
-		BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionProgressIndicator.m"; sourceTree = "<group>"; };
 		BF4FC9E2197FE6DC00BDF982 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
@@ -467,8 +464,6 @@
 				BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */,
 				2C66748C1974FDB600434802 /* Utilities.h */,
 				2C66748D1974FDB600434802 /* Utilities.m */,
-				BF4FC9DF197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.h */,
-				BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -763,7 +758,6 @@
 				BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */,
 				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
 				BA20AD49197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
-				BF4FC9E1197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m in Sources */,
 				BF4FC9E5197FE6DC00BDF982 /* SignupViewController.m in Sources */,
 				2CD7C1EF1975FBA1007F6CB8 /* CashOverView.m in Sources */,
 			);

@@ -13,7 +13,7 @@
 #import "TransactionManager.h"
 #import "TransactionCategoryManager.h"
 #import "DashboardViewController.h"
-#import "UIViewController+ActionProgressIndicator.h"
+#import "MRProgress.h"
 
 @interface SimpleTransactionViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -28,6 +28,8 @@
 @property (assign, nonatomic) enum SimpleTransactionType currentType;
 @property (strong, nonatomic) Goal *goal;
 - (IBAction)onNext:(UIButton *)sender;
+
+@property (strong, nonatomic) MRProgressOverlayView *progressView;
 
 @end
 
@@ -191,4 +193,36 @@
          }];
     }
 }
+
+- (void)startProgress:(UINavigationController *)navigationController {
+    
+    self.progressView = [MRProgressOverlayView showOverlayAddedTo:navigationController.view title:@"" mode:MRProgressOverlayViewModeIndeterminate animated:YES];
+    [self.progressView setTintColor:[[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f]];
+}
+
+- (void)finishProgress:(UINavigationController *)navigationController {
+    
+    [self.progressView setMode:MRProgressOverlayViewModeCheckmark];
+    [self performBlock:^{
+        [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
+        [navigationController popViewControllerAnimated:YES];
+    } afterDelay:0.5];
+    
+}
+
+- (void)finishProgress:(UINavigationController *)navigationController setViewControllers:(NSArray *)viewControllers {
+    
+    [self.progressView setMode:MRProgressOverlayViewModeCheckmark];
+    [self performBlock:^{
+        [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
+        [navigationController setViewControllers:viewControllers animated:YES];
+    } afterDelay:0.5];
+    
+}
+
+- (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), block);
+}
+
 @end

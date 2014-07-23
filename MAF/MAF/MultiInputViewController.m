@@ -11,7 +11,6 @@ static NSInteger const kDayPicker = 2;
 static NSInteger const kIntervalPicker = 3;
 
 #import "UILabel+WhiteUIDatePickerLabels.h"
-#import "UIViewController+ActionProgressIndicator.h"
 
 #import "MultiInputViewController.h"
 #import "CreateTransactionTableViewCell.h"
@@ -90,6 +89,8 @@ static NSInteger const kIntervalPicker = 3;
 @property (strong, nonatomic) Goal *goalInProgress;
 
 @property (assign, nonatomic) enum MultiInputType formType;
+
+@property (nonatomic, strong) MRProgressOverlayView *progressView;
 
 @end
 
@@ -581,6 +582,37 @@ static NSInteger const kIntervalPicker = 3;
         tView.text = [self.intervalNames objectAtIndex:row];
     }
     return tView;
+}
+
+- (void)startProgress:(UINavigationController *)navigationController {
+    
+    self.progressView = [MRProgressOverlayView showOverlayAddedTo:navigationController.view title:@"" mode:MRProgressOverlayViewModeIndeterminate animated:YES];
+    [self.progressView setTintColor:[[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f]];
+}
+
+- (void)finishProgress:(UINavigationController *)navigationController {
+    
+    [self.progressView setMode:MRProgressOverlayViewModeCheckmark];
+    [self performBlock:^{
+        [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
+        [navigationController popViewControllerAnimated:YES];
+    } afterDelay:0.5];
+    
+}
+
+- (void)finishProgress:(UINavigationController *)navigationController setViewControllers:(NSArray *)viewControllers {
+    
+    [self.progressView setMode:MRProgressOverlayViewModeCheckmark];
+    [self performBlock:^{
+        [MRProgressOverlayView dismissAllOverlaysForView:navigationController.view animated:YES];
+        [navigationController setViewControllers:viewControllers animated:YES];
+    } afterDelay:0.5];
+    
+}
+
+- (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), block);
 }
 
 @end
