@@ -219,6 +219,33 @@
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
     cell.goal = self.goals[indexPath.item];
+    cell.alpha = 0.0f;
+    
+    NSInteger direction = 1;
+    if (indexPath.item % 2) {
+        direction = -1;
+    }
+    
+    CGRect frame = cell.frame;
+    CGRect originalFrame = frame;
+    frame.origin.x = direction*frame.size.width;
+    cell.frame = frame;
+    
+    [UIView transitionWithView:cv
+                      duration:1
+                       options:UIViewAnimationOptionCurveEaseInOut
+                    animations:^{
+                        
+                        //any animatable attribute here.
+                        cell.alpha = 1.0f;
+                        cell.frame = originalFrame;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        //whatever you want to do upon completion
+                        
+                    }];
+    
     [cell updateColors];
     return cell;
 }
