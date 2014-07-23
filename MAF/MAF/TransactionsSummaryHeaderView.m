@@ -58,6 +58,7 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     if (self.transactionsSet) {
+        [self.transactionsCategoryChart removeFromSuperview];
         
         _transactionsTotalByCategoryByDate = [self.transactionsSet transactionsTotalByCategoryByDate];
         _maxValue = 0;
@@ -145,13 +146,14 @@
     float total = [self getMaxValueFromItems:items];
     NSArray *labels = [self getXLabelsForHorizontalBar:items];
     
+    
     NSLog(@"date: %@, items: %@, labels: %@", previousDate, items, labels);
     [bar removeFromSuperview];
     [self addSubview:bar];
 //    [self addSubview:label];
 
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.transactionsCategoryChart.alpha = 0;
+        self.transactionsCategoryChart.alpha = 0.f;
         
         _alphaBeforeTransform = bar.alpha;
         _centerBeforeTransform = bar.center;
