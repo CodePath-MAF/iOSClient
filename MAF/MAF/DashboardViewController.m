@@ -42,9 +42,8 @@
 @property (weak, nonatomic) IBOutlet GoalStatsView *goalStatsView;
 @property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
 @property (strong, nonatomic) UIView *firstGoalView;
-@property (weak, nonatomic) IBOutlet UILabel *totalCashLabel;
 
-- (IBAction)viewTransactions:(id)sender;
+- (void)viewTransactions:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *goals;
 @property (nonatomic, assign) NSInteger page;
@@ -86,8 +85,6 @@
     self.cashOverView.totalCash = [[User currentUser] totalCash];
     self.cashOverView.delegate = self;
 //    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
-//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
-//    [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)toggleAlphaForViews:(float)alpha {
@@ -218,34 +215,34 @@
     GoalCardView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
     // TODO adjust for the section
     cell.goal = self.goals[indexPath.item];
-    cell.alpha = 0.0f;
-    
-    NSInteger direction = 1;
-    if (indexPath.item % 2) {
-        direction = -1;
-    }
-    
-    CGRect frame = cell.frame;
-    CGRect originalFrame = frame;
-    frame.origin.x = direction*frame.size.width;
-    cell.frame = frame;
-    
-    [UIView transitionWithView:cv
-                      duration:.75
-                       options:UIViewAnimationOptionCurveEaseInOut
-                    animations:^{
-                        
-                        //any animatable attribute here.
-                        cell.alpha = 1.0f;
-                        cell.frame = originalFrame;
-                        
-                    } completion:^(BOOL finished) {
-                        
-                        //whatever you want to do upon completion
-                        
-                    }];
-    
-    [cell updateColors];
+//    cell.alpha = 0.0f;
+//    
+//    NSInteger direction = 1;
+//    if (indexPath.item % 2) {
+//        direction = -1;
+//    }
+//    
+//    CGRect frame = cell.frame;
+//    CGRect originalFrame = frame;
+//    frame.origin.x = direction*frame.size.width;
+//    cell.frame = frame;
+//    
+//    [UIView transitionWithView:cv
+//                      duration:.75
+//                       options:UIViewAnimationOptionCurveEaseInOut
+//                    animations:^{
+//                        
+//                        //any animatable attribute here.
+//                        cell.alpha = 1.0f;
+//                        cell.frame = originalFrame;
+//                        
+//                    } completion:^(BOOL finished) {
+//                        
+//                        //whatever you want to do upon completion
+//                        
+//                    }];
+//    
+//    [cell updateColors];
     return cell;
 }
 
@@ -286,12 +283,6 @@
 // TODO for custom movements and fun stuff
 
 #pragma mark - CashOverView Delegate Methods
-
-// YES THIS IS DUPLICATE, I'M LAZY
-- (void)onTapView:(id)sender {
-    NSLog(@"Loading Transactions View");
-    [self viewTransactions:sender];
-}
 
 - (void)viewTransactions:(id)sender {
     NSLog(@"Load Transactions View");
@@ -343,7 +334,6 @@
 }
 
 - (void)showProfile:(id)sender {
-#warning show profile view here
     [PFUser logOut];
     [self.navigationController setViewControllers:@[[[MainViewController alloc] init]] animated:YES];
 }
