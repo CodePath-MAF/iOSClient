@@ -59,7 +59,15 @@
 }
 
 - (NSDictionary *)goalsByDescendingNextMilestone { // TODO
-    
+    NSMutableDictionary *goalsByMilestone = [[NSMutableDictionary alloc] init];
+    NSDate *today = [NSDate date];
+    for (Goal *goal in self.goals) {
+//        NSInteger daysFromStart = [Utilities daysBetweenDate:[goal createdAt] andDate:today];
+        NSInteger daysToTarget = [Utilities daysBetweenDate:today andDate:goal.targetDate];
+        if(daysToTarget%goal.paymentInterval) {
+            
+        }
+    }
     return nil;
 }
 

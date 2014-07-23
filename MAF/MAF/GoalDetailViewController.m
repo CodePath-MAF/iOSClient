@@ -259,7 +259,7 @@
             NSLog(@"GOAL ACHIEVED!");
             self.makePaymentButton.enabled = NO;
             [self disableMakePaymentButton];
-//            [GoalManager completeGoal:self.goal.objectId];
+            [GoalManager completeGoal:self.goal.objectId];
         }
     }
     
