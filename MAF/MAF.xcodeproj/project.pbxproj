@@ -17,6 +17,9 @@
 		2C95F61B197DDAE600862497 /* NoGoalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C95F61A197DDAE600862497 /* NoGoalView.m */; };
 		2C95F61D197DDAF700862497 /* NoGoalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C95F61C197DDAF700862497 /* NoGoalView.xib */; };
 		2C95F661197E5D5700862497 /* GoalSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C95F660197E5D5700862497 /* GoalSet.m */; };
+		2CB5A498197F798E004E42D8 /* SliceProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5A497197F798E004E42D8 /* SliceProgressBar.m */; };
+		2CB5A49B197F9770004E42D8 /* ProgressDataSlice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5A49A197F9770004E42D8 /* ProgressDataSlice.m */; };
+		2CB5A4A1197F9DE8004E42D8 /* SliceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5A4A0197F9DE8004E42D8 /* SliceView.m */; };
 		2CBA46911965DE3A00C6BEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46901965DE3A00C6BEDF /* Foundation.framework */; };
 		2CBA46931965DE3A00C6BEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */; };
 		2CBA46951965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
@@ -121,6 +124,12 @@
 		2C95F61C197DDAF700862497 /* NoGoalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoGoalView.xib; sourceTree = "<group>"; };
 		2C95F65F197E5D5700862497 /* GoalSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalSet.h; sourceTree = "<group>"; };
 		2C95F660197E5D5700862497 /* GoalSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalSet.m; sourceTree = "<group>"; };
+		2CB5A496197F798E004E42D8 /* SliceProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceProgressBar.h; sourceTree = "<group>"; };
+		2CB5A497197F798E004E42D8 /* SliceProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceProgressBar.m; sourceTree = "<group>"; };
+		2CB5A499197F9770004E42D8 /* ProgressDataSlice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressDataSlice.h; sourceTree = "<group>"; };
+		2CB5A49A197F9770004E42D8 /* ProgressDataSlice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressDataSlice.m; sourceTree = "<group>"; };
+		2CB5A49F197F9DE8004E42D8 /* SliceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceView.h; sourceTree = "<group>"; };
+		2CB5A4A0197F9DE8004E42D8 /* SliceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceView.m; sourceTree = "<group>"; };
 		2CBA468D1965DE3A00C6BEDF /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBA46901965DE3A00C6BEDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -271,6 +280,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CB5A492197F4B62004E42D8 /* SliceProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				2CB5A496197F798E004E42D8 /* SliceProgressBar.h */,
+				2CB5A497197F798E004E42D8 /* SliceProgressBar.m */,
+				2CB5A49F197F9DE8004E42D8 /* SliceView.h */,
+				2CB5A4A0197F9DE8004E42D8 /* SliceView.m */,
+				2CB5A499197F9770004E42D8 /* ProgressDataSlice.h */,
+				2CB5A49A197F9770004E42D8 /* ProgressDataSlice.m */,
+			);
+			name = SliceProgressBar;
+			sourceTree = "<group>";
+		};
 		2CBA46841965DE3A00C6BEDF = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +405,7 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2CB5A492197F4B62004E42D8 /* SliceProgressBar */,
 				BF865B50197C9A2900A128AD /* TransactionsTableView */,
 				BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */,
 				BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */,
@@ -695,6 +718,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB5A49B197F9770004E42D8 /* ProgressDataSlice.m in Sources */,
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,
 				BF865AFF197C593000A128AD /* Friend.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
@@ -702,6 +726,7 @@
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */,
 				BF144320196A293600C2BB38 /* SignupViewController.m in Sources */,
+				2CB5A498197F798E004E42D8 /* SliceProgressBar.m in Sources */,
 				BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */,
 				BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */,
 				BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */,
@@ -711,6 +736,7 @@
 				BAE442EB197F557E00F2A027 /* SimpleTransactionViewController.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
 				2CD7C1F71975FD08007F6CB8 /* GoalCardView.m in Sources */,
+				2CB5A4A1197F9DE8004E42D8 /* SliceView.m in Sources */,
 				2C84014819787FB4008D9D73 /* GoalStatsView.m in Sources */,
 				BF865B56197CD4D700A128AD /* TransactionCategoryManager.m in Sources */,
 				BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */,
