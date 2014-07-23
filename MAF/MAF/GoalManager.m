@@ -44,6 +44,7 @@
     goal.paymentAmount = paymentAmount;
     goal.numPayments = numMilestones;
     goal.targetDate = goalDate;
+    goal.currentProgress = 0.0f;
     [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];

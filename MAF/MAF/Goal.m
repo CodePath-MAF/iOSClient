@@ -25,5 +25,6 @@
 @dynamic paymentAmount;
 @dynamic numPayments;
 @dynamic targetDate;
+@dynamic currentProgress;
 
 @end
