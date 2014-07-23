@@ -9,7 +9,8 @@
                 <outlet property="lendingPhotoCollectionView" destination="A3Z-vg-QjE" id="f5a-Z3-Uo0"/>
                 <outlet property="lendingPhotoView" destination="458-Fn-Jqi" id="DUv-DH-cIr"/>
                 <outlet property="makePaymentButton" destination="XPi-TW-7kz" id="kao-pf-qbM"/>
-                <outlet property="milestoneProgressView" destination="auP-AN-zfz" id="MCa-37-Tsd"/>
+                <outlet property="milestoneProgressContainer" destination="auP-AN-zfz" id="mVI-Ce-EI0"/>
+                <outlet property="nextPaymentView" destination="dvf-Or-XYx" id="oKr-0d-wEe"/>
                 <outlet property="paymentAmountLabel" destination="ftU-Nh-4d0" id="ELu-XW-MPg"/>
                 <outlet property="paymentsMadeLabel" destination="i8p-6y-WCB" id="IDl-8X-fHz"/>
                 <outlet property="photoCollectionPageControl" destination="g4d-hb-5E4" id="Jbk-FN-Wnw"/>
@@ -121,7 +122,7 @@
                             <rect key="frame" x="10" y="68" width="300" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auP-AN-zfz">
@@ -132,14 +133,13 @@
                                 <constraint firstAttribute="height" constant="30" id="Wqq-9G-lnl"/>
                             </constraints>
                         </view>
-                        <button autoresizesSubviews="NO" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="XPi-TW-7kz">
+                        <button autoresizesSubviews="NO" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="XPi-TW-7kz">
                             <rect key="frame" x="30" y="12" width="260" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="X0t-hy-hXW"/>
                                 <constraint firstAttribute="width" constant="260" id="oRr-so-iNF"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="tintColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                             <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                             <state key="normal" title="MAKE PAYMENT">

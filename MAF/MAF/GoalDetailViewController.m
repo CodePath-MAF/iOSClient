@@ -10,9 +10,14 @@
 #define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
 #define CIRCLE_FRIENDS_PER_PAGE 4
 
+#import "GoalManager.h"
+#import "TransactionManager.h"
+#import "SliceProgressBar.h"
 #import "GoalDetailViewController.h"
 #import "LendingSocialCell.h"
 #import "Friend.h"
+
+#import "PNStackedBarChartDataItem.h"
 #import "Utilities.h"
 #import "SimpleTransactionViewController.h"
 
@@ -31,14 +36,20 @@
 // Make Milestone Progress View Outlets
 @property (weak, nonatomic) IBOutlet UIButton *makePaymentButton;
 @property (weak, nonatomic) IBOutlet UILabel *paymentsMadeLabel;
-@property (weak, nonatomic) IBOutlet UIView *milestoneProgressView;
+@property (weak, nonatomic) IBOutlet UIView *nextPaymentView;
+@property (weak, nonatomic) IBOutlet UIView *milestoneProgressContainer;
+@property (strong, nonatomic) SliceProgressBar *milestoneProgressBar;
 
-- (IBAction)flipTileView:(id)sender; // Not Used right now
+//- (IBAction)flipTileView:(id)sender; // Not Used right now
 - (IBAction)makePayment:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *lendingFriends;
+@property (nonatomic, strong) NSMutableArray *paymentsMade;
+@property (nonatomic, assign) CGFloat totalGoalProgress;
+@property (nonatomic, assign) NSInteger milestonesHit;
+@property (nonatomic, strong) NSTimer *progressTimer;
 
-@property (assign, nonatomic) NSInteger tileNum; // Not Used right now
+//@property (assign, nonatomic) NSInteger tileNum; // Not Used right now
 
 @end
 
@@ -46,8 +57,15 @@
 
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
+    
+    if(self.goal.status == GoalStatusAcheived) {
+        // Set Disabled State for Button
+        [self disableMakePaymentButton];
+        self.milestonesHit = self.goal.numPayments;
+    }
+    
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
-    self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, 0, self.goal.paymentInterval];
+    self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, self.milestonesHit, self.goal.numPayments];
 
     self.title = self.goal.name;
     NSString *timeTilString;
@@ -57,6 +75,15 @@
     else {
     timeTilString = [NSString stringWithFormat:TIME_TIL_DUE_STRING, [Utilities daysBetweenDate:[NSDate date] andDate:self.goal.targetDate], [MHPrettyDate prettyDateFromDate:self.goal.targetDate withFormat:MHPrettyDateFormatNoTime]];
     }
+
+    NSLog(@"goal total: %f", self.goal.total);
+    
+    // Don't do this, LETS BE SOCIAL
+//    if(self.goal.type != GoalTypeLendingCircle) {
+//        [self.lendingPhotoView removeFromSuperview];
+//#warning TODO figure out how to adjust the other next payment view to move up
+//    }
+    
     self.timeTilDueLabel.text = timeTilString;
 }
 
@@ -67,15 +94,15 @@
         // Init Users for Social
         _lendingFriends = [[NSMutableArray alloc] init];
         for (int userCount = 0; userCount < 12; userCount++) {
+#warning TODO Add Demo Names
             NSString *name = [[NSString alloc] initWithFormat:@"Name %d", userCount+1];
             NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userCount+1];
             Friend *friend = [[Friend alloc] initWithName:name andPhoto:[UIImage imageNamed:photoName]];
             [_lendingFriends insertObject:friend atIndex:userCount];
             
-//            NSLog(@"name: %@", name);
-//            NSLog(@"photoName: %@", photoName);
+            // Grab from transactionSet
+            self.paymentsMade = [[NSMutableArray alloc] initWithArray:@[@(12.5), @(62.24), @(25.61), @(29.5)]];
         }
-//        NSLog(@"lending user Count: %d", [self.lendingFriends count]);
         
         // Custom initialization
         self.view.frame = [self frameForContentController];
@@ -90,8 +117,9 @@
   // Do any additional setup after loading the view from its nib.
     
     // Check if Lending Circle Goal Type
-    //    self.goal.type ==
-    self.lendingPhotoView.hidden = NO;
+    if(self.goal.type == GoalTypeLendingCircle) {
+        // adjust view
+    }
     
     // Set Up Social Collection View
     self.lendingPhotoCollectionView.delegate = self;
@@ -100,16 +128,33 @@
     UINib *cellNib = [UINib nibWithNibName:@"LendingSocialCell" bundle:nil];
     [self.lendingPhotoCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"LendingSocialCell"];
     
-    // Set up Pagination
+    // Set Up Pagination
     self.photoCollectionPageControl.currentPage = 0;
-    [self.photoCollectionPageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.photoCollectionPageControl addTarget:self
+                                        action:@selector(pageControlChanged:)
+                              forControlEvents:UIControlEventValueChanged];
     
     // Set Up Goal Progress View
+    [self loadMilestoneProgress];
     
     // Set Up Make Payment Button
 #warning TODO create progress update
     [Utilities setupRoundedButton:self.makePaymentButton
                  withCornerRadius:BUTTON_CORNER_RADIUS];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    CGRect frame = self.milestoneProgressContainer.frame;
+    frame.origin.y = 0;
+    frame.size.height = frame.size.height*2; // adjust for Retina
+    self.milestoneProgressBar = [[SliceProgressBar alloc] initWithFrame:frame
+                                                                  items:[self getDataItems]
+                                                           withMaxValue:self.goal.total
+                                                    withCurrentProgress:self.totalGoalProgress];
+    
+    [self.milestoneProgressBar setNeedsDisplay];
+    [self.milestoneProgressContainer addSubview:self.milestoneProgressBar];
+    NSLog(@"goal total: %f", self.goal.total);
 }
 
 #pragma mark - UICollectionView Datasource
@@ -164,48 +209,124 @@
     self.photoCollectionPageControl.currentPage = self.lendingPhotoCollectionView.contentOffset.x / pageWidth;
 }
 
-#pragma mark - interaction methods
+#pragma mark - Update Goal Progress Methods
 
-- (IBAction)flipTileView:(id)sender {
-  self.tileNum++; // increment the tile to load
-  switch (self.tileNum) {
-    case 0:
-      NSLog(@"Load Previous Payments View");
-      break;
-    case 1:
-      NSLog(@"Load Social Sharing View");
-      break;
-    case 2:
-      NSLog(@"Load Goals Breakdown Chart View");
-      break;
-    default: // reset tileNum if there isn't a case
-      self.tileNum = 0;
-      break;
-  }
+// Not Used Anymore
+//- (IBAction)flipTileView:(id)sender {
+//  self.tileNum++; // increment the tile to load
+//  switch (self.tileNum) {
+//    case 0:
+//      NSLog(@"Load Previous Payments View");
+//      break;
+//    case 1:
+//      NSLog(@"Load Social Sharing View");
+//      break;
+//    case 2:
+//      NSLog(@"Load Goals Breakdown Chart View");
+//      break;
+//    default: // reset tileNum if there isn't a case
+//      self.tileNum = 0;
+//      break;
+//  }
+//}
+
+- (NSArray *)getDataItems {
+//    NSArray *transactions = [[TransactionManager instance] transactions];
+    NSMutableArray *dataItems = [[NSMutableArray alloc] init];
+//    for (Transaction *transaction in categories) {
+//        float categoryTotal = [(NSNumber *)[categoriesForDate objectForKey:category.name] floatValue] ?: 0;
+//        if (categoryTotal) {
+//            dateTotal += categoryTotal;
+//            PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:categoryTotal color:[[TransactionCategoryManager instance] colorForCategory:category]];
+//            [dataItems addObject:item];
+//        }
+//    }
+    NSLog(@"Getting Data Items For Progress");
+    for (NSNumber *number in self.paymentsMade) {
+        
+        UIColor *lightGreen = [[UIColor alloc] initWithRed:40.0f/255.0f green:199.0f/255.0f blue:157.0f/255.0 alpha:1.0f/1.0f];
+        PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:[number floatValue] color:lightGreen];
+        [dataItems addObject:item];
+    }
+    
+//    if (dateTotal > _maxValue) {
+//        _maxValue = dateTotal;
+//    }
+    return dataItems;
 }
 
-- (void) updateMilestoneProgress {
+- (void)updateMilestoneProgress {
+    NSLog(@"SUM: %0.2f", self.totalGoalProgress);
+    NSInteger currentMilestoneCount = self.milestonesHit;
+    NSInteger newMilestoneCount = self.totalGoalProgress/self.goal.paymentAmount;
+    
+    if(currentMilestoneCount < newMilestoneCount) {
+        NSLog(@"Milestone Hit!");
+        self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, ++self.milestonesHit, self.goal.numPayments];
+        if (self.milestonesHit == self.goal.numPayments) {
+            // SUCCESS!
+            NSLog(@"GOAL ACHIEVED!");
+            self.makePaymentButton.enabled = NO;
+            [self disableMakePaymentButton];
+//            [GoalManager completeGoal:self.goal.objectId];
+        }
+    }
+    
+    self.milestoneProgressBar.currentProgress = self.totalGoalProgress;
+    // TODO progress bar with chunk
 #warning TODO use the progress bar perhaps or create your own.
   // Questions to answer:
-  // How many paymenst has the user made?
+  // How many payments has the user made?
+    
+    
 }
 
 - (IBAction)makePayment:(id)sender {
-    SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
-    [simpleTransVC setLabelsAndButtons:MakePayment goal:self.goal amount:self.goal.paymentAmount];
-    [self.navigationController pushViewController:simpleTransVC animated:YES];  
-    NSLog(@"Make a Payment");
+//    SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
+//    [simpleTransVC setLabelsAndButtons:MakePayment goal:self.goal amount:self.goal.paymentAmount];
+//    [self.navigationController pushViewController:simpleTransVC animated:YES];
+    CGFloat payment = arc4random_uniform(60) + .25;
+    NSLog(@"payment: %f", payment);
+    [self.paymentsMade addObject:@(payment)];
+    self.totalGoalProgress += payment;
+//    [GoalManager updateGoal:self.goal.objectId keyName:@"currentProgress" value:@(self.totalGoalProgress)];
+    
+    NSLog(@"%@", self.paymentsMade);
+    // TODO Load Make Payment View
+    UIColor *green = [[UIColor alloc] initWithRed:40.0f/255.0f green:240.0f/255.0f blue:200.0f/255.0 alpha:1.0f/1.0f];
+    
+    PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:payment color:green];
+    [self.milestoneProgressBar updateProgressWithItem:item];
+    
+    [self.milestoneProgressBar removeFromSuperview];
+    [self.milestoneProgressBar setNeedsDisplay];
+    [self.milestoneProgressContainer addSubview:self.milestoneProgressBar];
+    [self updateMilestoneProgress];
+}
+
+- (void)loadMilestoneProgress {
+    for (NSNumber *payment in self.paymentsMade) {
+        self.totalGoalProgress += [payment floatValue];
+    }
+    
+    [self updateMilestoneProgress];
 }
 
 #pragma mark Helper Functions
+
+- (void)disableMakePaymentButton {
+    // Set Disabled State for Button
+    [self.makePaymentButton setTitle:@"  GOAL ACHIEVED!" forState:UIControlStateDisabled];
+    [self.makePaymentButton setImage:[UIImage imageNamed:@"btn_check_white_highlight"] forState:UIControlStateDisabled];
+    self.makePaymentButton.enabled = NO;
+    
+}
 
 - (CGRect)frameForContentController {
   CGRect contentFrame = self.view.bounds;
   CGFloat heightOffset = self.navigationController.navigationBar.bounds.size.height;
   contentFrame.origin.y += heightOffset;
   contentFrame.size.height -= heightOffset;
-  
-  NSLog(@"%f", heightOffset);
   return contentFrame;
 }
 

@@ -265,6 +265,34 @@
 
 #pragma mark - Collection View Layout Delegates
 
+// Insert items
+
+- (void)insertItemsAtIndexPaths:(NSArray *)indexPaths {
+    // Animate new items
+}
+
+// Remove items
+
+- (void)deleteItemsAtIndexPaths:(NSArray *)indexPaths {
+    // Remove completed goals
+}
+
+// Move item
+
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath {
+    // Sort by week, day, month upcoming milestones
+}
+
+// Reload items
+
+- (void)reloadItemsAtIndexPaths:(NSArray *)indexPaths {
+    // Updating goals independently versus all of them for changes from goal details
+}
+
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion {
+    
+}
+
 // TODO for custom movements and fun stuff
 
 #pragma mark - CashOverView Delegate Methods
