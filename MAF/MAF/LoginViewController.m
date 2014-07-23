@@ -18,13 +18,13 @@
     self = [super init];
     if (self) {
         self.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton;
+        self.emailAsUsername = YES;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.logInView.usernameField setPlaceholder:@"Email"];
 }
 
 @end

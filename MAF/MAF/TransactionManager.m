@@ -16,7 +16,19 @@
 
 @implementation TransactionManager
 
-+ (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
+- (id)init {
+    self = [super init];
+    if (self) {
+        _transactionsSet = [[TransactionsSet alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)hasTransactions {
+    return (BOOL)self.transactionsSet.transactions.count;
+}
+
+- (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
@@ -46,6 +58,8 @@
                 if (error) {
                     [task setError:error];
                 } else {
+                    [transaction.category fetchIfNeeded];
+                    [self.transactionsSet addTransactionToSet:transaction];
                     [task setResult:transaction];
                 }
             }];
@@ -54,7 +68,7 @@
     return task.task;
 }
 
-+ (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value {
+- (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     [[Transaction query] getObjectInBackgroundWithId:transactionId block:^(PFObject *transaction, NSError *error) {
 
@@ -74,7 +88,7 @@
     return task.task;
 }
 
-+ (BFTask *)deleteTransaction:(NSString *)transactionId {
+- (BFTask *)deleteTransaction:(NSString *)transactionId {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     [[Transaction query] getObjectInBackgroundWithId:transactionId block:^(PFObject *transaction, NSError *error) {
         if (error) {
@@ -92,24 +106,29 @@
     return task.task;
 }
 
-+ (BFTask *)fetchTransactionsForUser:(User *)user {
+- (BFTask *)fetchTransactionsForUser:(User *)user {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
-    PFQuery *query = [Transaction query];
-    [query whereKey:@"user" equalTo:user];
-    [query includeKey:@"category"];
-    [query orderByDescending:@"transactionDate"];
-    // TODO should be limiting these so we're returning paginated results
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            [task setError:error];
-        } else {
-            [task setResult:objects];
-        }
-    }];
+    if (self.transactionsSet.transactions.count) {
+        [task setResult:self.transactionsSet.transactions];
+    } else {
+        PFQuery *query = [Transaction query];
+        [query whereKey:@"user" equalTo:user];
+        [query includeKey:@"category"];
+        [query orderByDescending:@"transactionDate"];
+        // TODO should be limiting these so we're returning paginated results
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error) {
+                [task setError:error];
+            } else {
+                [self setTransactionsSet:[[TransactionsSet alloc] initWithTransactions:objects]];
+                [task setResult:objects];
+            }
+        }];
+    }
     return task.task;
 }
 
-+ (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type {
+- (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     PFQuery *query = [Transaction query];
     [query whereKey:@"user" equalTo:user];
@@ -122,6 +141,16 @@
         }
     }];
     return task.task;
+}
+
++ (TransactionManager *)instance {
+    static TransactionManager *instance = nil;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        instance = [[TransactionManager alloc] init];
+    });
+    return instance;
 }
 
 @end

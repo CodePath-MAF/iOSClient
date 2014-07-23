@@ -11,18 +11,25 @@
 #import <Foundation/Foundation.h>
 
 #import "Transaction.h"
+#import "TransactionsSet.h"
 #import "User.h"
 
 @interface TransactionManager : NSObject
 
-+ (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
+@property (nonatomic, strong) TransactionsSet *transactionsSet;
 
-+ (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
+- (BOOL)hasTransactions;
 
-+ (BFTask *)deleteTransaction:(NSString *)transactionId;
+- (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
 
-+ (BFTask *)fetchTransactionsForUser:(User *)user;
+- (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
 
-+ (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type;
+- (BFTask *)deleteTransaction:(NSString *)transactionId;
+
+- (BFTask *)fetchTransactionsForUser:(User *)user;
+
+- (BFTask *)fetchTransactionsForUser:(User *)user ofType:(enum TransactionType)type;
+
++ (TransactionManager *)instance;
 
 @end

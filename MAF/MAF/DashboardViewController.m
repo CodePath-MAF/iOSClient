@@ -192,7 +192,7 @@
 #pragma mark - Data Loading Methods
 
 - (BFTask *)fetchData {
-    return [[[TransactionManager fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
+    return [[[[TransactionManager instance] fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error fetching transactions for user");
         } else {

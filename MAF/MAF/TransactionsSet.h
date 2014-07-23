@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Transaction.h"
 
 @interface TransactionsSet : NSObject
 
@@ -29,5 +30,8 @@
 - (float)savedThisWeek;
 - (float)savedThisMonth;
 - (float)savedThisYear;
+
+- (void)addTransactionToSet:(Transaction *)transaction;
+- (void)addTransactionsToSet:(NSArray *)transactions;
 
 @end

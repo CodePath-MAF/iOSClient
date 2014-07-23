@@ -19,10 +19,19 @@
 }
 
 - (float)getTotalForTransactions:(float (^)(Transaction *transaction))shouldIncludeTransaction;
+- (void)clearCache;
 
 @end
 
 @implementation TransactionsSet
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        _transactions = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (id)initWithTransactions:(NSArray *)transactions {
     self = [super init];
@@ -30,6 +39,23 @@
         _transactions = [[NSMutableArray alloc] initWithArray:transactions];
     }
     return self;
+}
+
+- (void)clearCache {
+    _totalByDate = nil;
+    _transactionsByDate = nil;
+    _transactionsByCategoryByDate = nil;
+    _transactionsByGoal = nil;
+}
+
+- (void)addTransactionToSet:(Transaction *)transaction {
+    [self clearCache];
+    [self.transactions addObject:transaction];
+}
+
+- (void)addTransactionsToSet:(NSArray *)transactions {
+    [self clearCache];
+    [self.transactions addObjectsFromArray:transactions];
 }
 
 - (NSDictionary *)transactionsTotalByDate {
@@ -51,10 +77,7 @@
     if (!_transactionsByGoal) {
         NSMutableDictionary *transactionsByGoalDict = [[NSMutableDictionary alloc] init];
         for (Transaction *transaction in self.transactions) {
-            
-            NSLog(@"Goal Object ID: %@", [transaction.goal objectId]);
             NSMutableArray *transactionsByGoal = [transactionsByGoalDict objectForKey:[transaction.goal objectId]] ?: [[NSMutableArray alloc] init];
-            NSLog(@"Goal Name: %@",transaction.goal.name);
             [transactionsByGoal addObject:transaction];
             [transactionsByGoalDict setObject:transactionsByGoal forKey:[transaction.goal objectId]];
         }
@@ -127,8 +150,6 @@
     }
     return total;
 }
-
-
 
 - (float)spentToday {
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];

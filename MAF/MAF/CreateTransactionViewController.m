@@ -335,7 +335,7 @@ static NSInteger const kDatePicker = 2;
         type = TransactionTypeCredit;
     }
 
-    [[TransactionManager createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+    [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
      continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error creating transaction: %@", task.error);
