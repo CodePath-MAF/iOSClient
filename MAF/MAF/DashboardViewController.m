@@ -67,6 +67,7 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     [self toggleAlphaForViews:0];
+    self.title = @"Dashboard";
     
     // Set Up Collection View delegate & data source
 //    if ([self.goals count] == 0) {
