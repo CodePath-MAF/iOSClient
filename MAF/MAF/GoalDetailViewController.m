@@ -66,10 +66,10 @@
     if (self) {
         // Init Users for Social
         _lendingFriends = [[NSMutableArray alloc] init];
+        NSArray *names = @[@"Sofia.R", @"Mark.S", @"Alyssa.T", @"Rob.C", @"Tom.G", @"Jairo.A", @"Eddie.F", @"Guy.M", @"Mike.H", @"Jose.M", @"Felipe.D", @"Amit.B"];
         for (int userCount = 0; userCount < 12; userCount++) {
-            NSString *name = [[NSString alloc] initWithFormat:@"Name %d", userCount+1];
             NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userCount+1];
-            Friend *friend = [[Friend alloc] initWithName:name andPhoto:[UIImage imageNamed:photoName]];
+            Friend *friend = [[Friend alloc] initWithName:names[userCount] andPhoto:[UIImage imageNamed:photoName]];
             [_lendingFriends insertObject:friend atIndex:userCount];
             
 //            NSLog(@"name: %@", name);

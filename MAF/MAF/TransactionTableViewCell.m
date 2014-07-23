@@ -34,6 +34,7 @@
     self.categoryColorView.backgroundColor = [Utilities colorFromHexString:transaction.category.color];
     self.transactionAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", transaction.amount];
     self.transactionAmountLabel.textColor = [Utilities colorFromHexString:@"#4A4A4A"];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 @end

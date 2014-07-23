@@ -480,7 +480,7 @@ static NSInteger const kIntervalPicker = 3;
              return task;
          }];
     } else {
-        [[GoalManager createGoalForUser:[User currentUser] name:self.goalInProgress.name type:GoalTypeGoal total:self.goalInProgress.total paymentInterval:GoalPaymentIntervalMonthly goalDate:self.datePicker.date] continueWithBlock:^id(BFTask *task) {
+        [[GoalManager createGoalForUser:[User currentUser] name:self.goalInProgress.name type:GoalTypeGoal total:self.goalInProgress.total paymentInterval:self.goalInProgress.paymentInterval goalDate:self.datePicker.date] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error creating goal: %@", task.error);
             } else {
