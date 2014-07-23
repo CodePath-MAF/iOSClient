@@ -38,6 +38,8 @@
 		BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */; };
 		BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */; };
 		BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */; };
+		BAE442E1197F337000F2A027 /* SimpleTransactionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE442E0197F337000F2A027 /* SimpleTransactionView.m */; };
+		BAE442E3197F33C900F2A027 /* SimpleTransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE442E2197F33C900F2A027 /* SimpleTransactionView.xib */; };
 		BAFB2C1C1975D39400A11C56 /* CreateTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAFB2C1A1975D39400A11C56 /* CreateTransactionViewController.m */; };
 		BAFB2C1D1975D39400A11C56 /* CreateTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAFB2C1B1975D39400A11C56 /* CreateTransactionViewController.xib */; };
 		BF144316196A231100C2BB38 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144314196A231100C2BB38 /* LoginViewController.m */; };
@@ -147,6 +149,9 @@
 		BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionTableViewCell.m; sourceTree = "<group>"; };
 		BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTransactionTableViewCell.xib; sourceTree = "<group>"; };
 		BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
+		BAE442DF197F337000F2A027 /* SimpleTransactionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTransactionView.h; sourceTree = "<group>"; };
+		BAE442E0197F337000F2A027 /* SimpleTransactionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTransactionView.m; sourceTree = "<group>"; };
+		BAE442E2197F33C900F2A027 /* SimpleTransactionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTransactionView.xib; sourceTree = "<group>"; };
 		BAFB2C191975D39400A11C56 /* CreateTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionViewController.h; sourceTree = "<group>"; };
 		BAFB2C1A1975D39400A11C56 /* CreateTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionViewController.m; sourceTree = "<group>"; };
 		BAFB2C1B1975D39400A11C56 /* CreateTransactionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTransactionViewController.xib; sourceTree = "<group>"; };
@@ -384,6 +389,9 @@
 				2C84014419787F69008D9D73 /* GoalStatsView.xib */,
 				2CC35A13197B1D3100716B37 /* LendingSocialCell.h */,
 				2CC35A14197B1D3100716B37 /* LendingSocialCell.m */,
+				BAE442DF197F337000F2A027 /* SimpleTransactionView.h */,
+				BAE442E0197F337000F2A027 /* SimpleTransactionView.m */,
+				BAE442E2197F33C900F2A027 /* SimpleTransactionView.xib */,
 				2CC35A18197B1D9500716B37 /* LendingSocialCell.xib */,
 				2C95F619197DDAE600862497 /* NoGoalView.h */,
 				2C95F61A197DDAE600862497 /* NoGoalView.m */,
@@ -621,6 +629,7 @@
 				BF144325196A2A6600C2BB38 /* DashboardViewController.xib in Resources */,
 				BF865B44197C682A00A128AD /* OpenSans-Light.ttf in Resources */,
 				BF865B46197C682A00A128AD /* OpenSans-Regular.ttf in Resources */,
+				BAE442E3197F33C900F2A027 /* SimpleTransactionView.xib in Resources */,
 				BF1B3000197757AB00F68B2E /* TransactionsSummaryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,6 +713,7 @@
 				BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */,
 				BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
+				BAE442E1197F337000F2A027 /* SimpleTransactionView.m in Sources */,
 				BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
 				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
