@@ -86,8 +86,6 @@
     self.cashOverView.totalCash = [[User currentUser] totalCash];
     self.cashOverView.delegate = self;
 //    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", 206.50];
-//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapView:)];
-//    [self.cashOverView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)toggleAlphaForViews:(float)alpha {
@@ -286,12 +284,6 @@
 // TODO for custom movements and fun stuff
 
 #pragma mark - CashOverView Delegate Methods
-
-// YES THIS IS DUPLICATE, I'M LAZY
-- (void)onTapView:(id)sender {
-    NSLog(@"Loading Transactions View");
-    [self viewTransactions:sender];
-}
 
 - (void)viewTransactions:(id)sender {
     NSLog(@"Load Transactions View");
