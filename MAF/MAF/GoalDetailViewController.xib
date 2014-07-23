@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalDetailViewController">
             <connections>
+                <outlet property="goalTotal" destination="2u2-s6-5ej" id="cPI-AV-Fug"/>
                 <outlet property="lendingPhotoCollectionView" destination="A3Z-vg-QjE" id="f5a-Z3-Uo0"/>
                 <outlet property="lendingPhotoView" destination="458-Fn-Jqi" id="DUv-DH-cIr"/>
                 <outlet property="makePaymentButton" destination="XPi-TW-7kz" id="kao-pf-qbM"/>
@@ -15,6 +16,7 @@
                 <outlet property="paymentsMadeLabel" destination="i8p-6y-WCB" id="IDl-8X-fHz"/>
                 <outlet property="photoCollectionPageControl" destination="g4d-hb-5E4" id="Jbk-FN-Wnw"/>
                 <outlet property="progressView" destination="auP-AN-zfz" id="0v5-S9-75f"/>
+                <outlet property="saveToDate" destination="ZM2-jY-rYg" id="Co4-3C-lqw"/>
                 <outlet property="timeTilDueLabel" destination="2Ks-U2-Bck" id="DhP-W1-VCz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -203,8 +205,8 @@
                             <color key="textColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved To Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZM2-jY-rYg" customClass="OpenSansRegularLabel">
-                            <rect key="frame" x="10" y="94" width="300" height="17"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Saved To Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZM2-jY-rYg" customClass="OpenSansRegularLabel">
+                            <rect key="frame" x="10" y="96" width="300" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
