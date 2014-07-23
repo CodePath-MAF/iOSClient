@@ -11,6 +11,7 @@ static NSInteger const kDayPicker = 2;
 static NSInteger const kIntervalPicker = 3;
 
 #import "UILabel+WhiteUIDatePickerLabels.h"
+#import "UIViewController+ActionProgressIndicator.h"
 
 #import "MultiInputViewController.h"
 #import "CreateTransactionTableViewCell.h"
@@ -22,6 +23,7 @@ static NSInteger const kIntervalPicker = 3;
 #import "User.h"
 #import "Utilities.h"
 #import "GoalManager.h"
+#import "MRProgress.h"
 
 @interface MultiInputViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -469,22 +471,24 @@ static NSInteger const kIntervalPicker = 3;
         if (!self.spent){
             type = TransactionTypeCredit;
         }
-        
+
+        [self startProgress:self.navigationController];
         [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
              } else {
-                 [self.navigationController popViewControllerAnimated:YES];
+                 [self finishProgress:self.navigationController];
              }
              return task;
          }];
     } else {
+        [self startProgress:self.navigationController];
         [[GoalManager createGoalForUser:[User currentUser] name:self.goalInProgress.name type:GoalTypeGoal total:self.goalInProgress.total paymentInterval:self.goalInProgress.paymentInterval goalDate:self.datePicker.date] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error creating goal: %@", task.error);
             } else {
-                [self.navigationController popViewControllerAnimated:YES];
+                [self finishProgress:self.navigationController];
             }
             return task;
         }];

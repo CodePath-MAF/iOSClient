@@ -58,9 +58,10 @@
                 if (error) {
                     [task setError:error];
                 } else {
-                    [transaction.category fetchIfNeeded];
-                    [self.transactionsSet addTransactionToSet:transaction];
-                    [task setResult:transaction];
+                    [transaction.category fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                        [self.transactionsSet addTransactionToSet:transaction];
+                        [task setResult:transaction];
+                    }];
                 }
             }];
         }

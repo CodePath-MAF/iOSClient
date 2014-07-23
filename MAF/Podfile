@@ -11,6 +11,7 @@ pod 'Parse', '~> 1.2'
 pod 'PNChart', :git => 'https://github.com/mhahn/PNChart.git'
 pod 'XLForm', '~> 2.0'
 pod 'MHPrettyDate'
+pod 'MRProgress', '~> 0.6'
 
 end
 

@@ -12,6 +12,7 @@
 #import "User.h"
 #import "TransactionManager.h"
 #import "TransactionCategoryManager.h"
+#import "UIViewController+ActionProgressIndicator.h"
 
 @interface SimpleTransactionViewController ()
 @property (strong, nonatomic) IBOutlet UIView *mainView;
@@ -132,13 +133,14 @@
 
 - (IBAction)onNext:(UIButton *)sender {
     NSDate *now = [[NSDate alloc] init];
+    [self startProgress:self.navigationController];
     if (self.currentType == InitialCash) {
         [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:[self.amountLabel.text floatValue] detail:@"Initial Cash" type:TransactionTypeCredit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Income"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
              } else {
-                 [self.navigationController popViewControllerAnimated:YES];
+                 [self finishProgress:self.navigationController];
              }
              return task;
          }];
@@ -149,7 +151,7 @@
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
              } else {
-                 [self.navigationController popViewControllerAnimated:YES];
+                 [self finishProgress:self.navigationController];
              }
              return task;
          }];

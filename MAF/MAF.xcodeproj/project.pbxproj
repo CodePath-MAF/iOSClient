@@ -65,6 +65,7 @@
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
+		BF4FC9E1197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */; };
 		BF865AFF197C593000A128AD /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865AFE197C593000A128AD /* Friend.m */; };
 		BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B17197C5F2100A128AD /* OpenSansRegularLabel.m */; };
 		BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B1A197C615D00A128AD /* OpenSansBoldLabel.m */; };
@@ -200,6 +201,8 @@
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
 		BF4FC9DC197FC39C00BDF982 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		BF4FC9DD197FC39C00BDF982 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
+		BF4FC9DF197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionProgressIndicator.h"; sourceTree = "<group>"; };
+		BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionProgressIndicator.m"; sourceTree = "<group>"; };
 		BF865AFD197C593000A128AD /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		BF865AFE197C593000A128AD /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		BF865B16197C5F2100A128AD /* OpenSansRegularLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansRegularLabel.h; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 				BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */,
 				2C66748C1974FDB600434802 /* Utilities.h */,
 				2C66748D1974FDB600434802 /* Utilities.m */,
+				BF4FC9DF197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.h */,
+				BF4FC9E0197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -740,6 +745,7 @@
 				BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */,
 				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
 				BA20AD49197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
+				BF4FC9E1197FD2AF00BDF982 /* UIViewController+ActionProgressIndicator.m in Sources */,
 				BF144316196A231100C2BB38 /* LoginViewController.m in Sources */,
 				2CD7C1EF1975FBA1007F6CB8 /* CashOverView.m in Sources */,
 			);
