@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ENUM(NSInteger, MultiInputType) {
+    Goal_Creation = 1,
+    Transaction_Creation = 2
+};
+
 @interface MultiInputViewController : UIViewController
 
-- (id)initWithCategories:(NSMutableArray *)categories;
+- (id)initWithMultiInputType:(enum MultiInputType)multiInputType;
 
 @end

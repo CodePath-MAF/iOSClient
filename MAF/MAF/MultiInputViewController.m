@@ -7,20 +7,28 @@
 //
 
 static NSInteger const kCategoryPicker = 1;
-static NSInteger const kDatePicker = 2;
+static NSInteger const kDayPicker = 2;
+static NSInteger const kIntervalPicker = 3;
+
+#import "UILabel+WhiteUIDatePickerLabels.h"
 
 #import "MultiInputViewController.h"
 #import "CreateTransactionTableViewCell.h"
 #import "Transaction.h"
 #import "TransactionCategory.h"
 #import "TransactionManager.h"
+#import "TransactionCategoryManager.h"
 #import <Parse/Parse.h>
 #import "User.h"
 #import "Utilities.h"
+#import "GoalManager.h"
 
 @interface MultiInputViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *transactionProgress;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *transactionProgressHeight;
 @property (weak, nonatomic) IBOutlet UIView *formContainer;
+
 @property (strong, nonatomic) IBOutlet UIView *amountView;
 @property (weak, nonatomic) IBOutlet UITextField *amountText;
 @property (nonatomic, assign) BOOL spent;
@@ -28,39 +36,58 @@ static NSInteger const kDatePicker = 2;
 @property (weak, nonatomic) IBOutlet UIButton *gainedButton;
 - (IBAction)onSpent:(id)sender;
 - (IBAction)onGained:(id)sender;
-
 - (IBAction)amountNext:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIView *nameView;
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 - (IBAction)nameNext:(id)sender;
 - (IBAction)nameBack:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIView *categoryView;
 - (IBAction)categoryNext:(id)sender;
 - (IBAction)categoryBack:(id)sender;
-@property (strong, nonatomic) IBOutlet UIView *dateView;
 
+@property (strong, nonatomic) IBOutlet UIView *dayView;
+- (IBAction)dayBack:(id)sender;
+- (IBAction)dayNext:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIView *dateView;
 - (IBAction)dateNext:(id)sender;
 - (IBAction)dateBack:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIView *intervalView;
+- (IBAction)intervalNext:(id)sender;
+- (IBAction)intervalBack:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIView *finishedView;
 - (IBAction)finished:(id)sender;
 - (IBAction)finishedBack:(id)sender;
+
+@property (strong, nonatomic) NSArray *allSteps;
 @property (assign, nonatomic) int currentViewIndex;
 @property (assign, nonatomic) int previousViewIndex;
-@property (strong, nonatomic) NSArray *allSteps;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *transactionProgressHeight;
 
 @property (strong, nonatomic) UIPickerView *categoryPicker;
 @property (strong, nonatomic) NSMutableArray *sectionName;
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
 @property (nonatomic, assign) int selectedCategory;
 
-@property (strong, nonatomic) UIPickerView *datePicker;
+@property (strong, nonatomic) UIPickerView *dayPicker;
 @property (strong, nonatomic) NSMutableArray *dateStringValues;
 @property (strong, nonatomic) NSArray *dateObjectValues;
 @property (nonatomic, assign) int selectedDate;
 
-@property (strong, nonatomic) Transaction *transactionInProgress;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
+@property (strong, nonatomic) UIPickerView *intervalPicker;
+@property (strong, nonatomic) NSArray *intervalNames;
+@property (strong, nonatomic) NSArray *intervalEnumNames;
+@property (assign, nonatomic) int selectedInterval;
+
+@property (strong, nonatomic) Transaction *transactionInProgress;
+@property (strong, nonatomic) Goal *goalInProgress;
+
+@property (assign, nonatomic) enum MultiInputType formType;
 
 @end
 
@@ -72,35 +99,45 @@ static NSInteger const kDatePicker = 2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"MultiInputViewController" bundle:nil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
-- (id)initWithCategories:(NSMutableArray *)categories {
+- (id)initWithMultiInputType:(enum MultiInputType)multiInputType {
     self = [super initWithNibName:@"MultiInputViewController" bundle:nil];
-    self.sectionName = [[NSMutableArray alloc] init];
-    self.sectionNamesWithId = [[NSMutableArray alloc] initWithArray:categories];
-    for (TransactionCategory *category in categories) {
-        [self.sectionName addObject:category.name];
-    }
-    NSDate *currentDay =[Utilities dateWithoutTime:[NSDate new]];
-    self.dateObjectValues = [Utilities getPreviousDates:7 fromDate:currentDay];
-    self.dateStringValues = [[NSMutableArray alloc] init];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE"];
-    for (int i = 0; i < self.dateObjectValues.count; i++) {
-        NSString *dayOfWeek;
-        if (i == 0) {
-            dayOfWeek = @"Today";
-        } else if (i == 1) {
-            dayOfWeek = @"Yesterday";
+    if (self) {
+        self.formType = multiInputType;
+        if (self.formType == Transaction_Creation){
+            self.sectionName = [[NSMutableArray alloc] init];
+            NSArray *categories = [[TransactionCategoryManager instance] categories];
+            self.sectionNamesWithId = [[NSMutableArray alloc] initWithArray:categories];
+            for (TransactionCategory *category in categories) {
+                [self.sectionName addObject:category.name];
+            }
+            NSDate *currentDay =[Utilities dateWithoutTime:[NSDate new]];
+            self.dateObjectValues = [Utilities getPreviousDates:7 fromDate:currentDay];
+            self.dateStringValues = [[NSMutableArray alloc] init];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            for (int i = 0; i < self.dateObjectValues.count; i++) {
+                NSString *dayOfWeek;
+                if (i == 0) {
+                    dayOfWeek = @"Today";
+                } else if (i == 1) {
+                    dayOfWeek = @"Yesterday";
+                } else {
+                    dayOfWeek = [dateFormatter stringFromDate:[self.dateObjectValues objectAtIndex:i]];
+                }
+                [self.dateStringValues addObject:dayOfWeek];
+            }
         } else {
-            dayOfWeek = [dateFormatter stringFromDate:[self.dateObjectValues objectAtIndex:i]];
+            self.intervalNames = @[@"Daily", @"Weekly", @"Bi-Weekly", @"Monthly", @"Bi-Monthly"];
+            self.intervalEnumNames = @[@1, @7, @14, @30, @60];
+            self.selectedInterval = 3;
         }
-        [self.dateStringValues addObject:dayOfWeek];
+        
     }
     return self;
 }
@@ -111,6 +148,7 @@ static NSInteger const kDatePicker = 2;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.transactionInProgress = [Transaction object];
+    self.goalInProgress = [Goal object];
     self.transactionProgress.delegate = self;
     self.transactionProgress.dataSource = self;
     self.nameText.delegate = self;
@@ -125,46 +163,68 @@ static NSInteger const kDatePicker = 2;
     self.amountView.backgroundColor = lightGreen;
     self.nameView.backgroundColor = lightGreen;
     self.categoryView.backgroundColor = lightGreen;
+    self.dayView.backgroundColor = lightGreen;
     self.dateView.backgroundColor = lightGreen;
+    self.intervalView.backgroundColor = lightGreen;
     self.finishedView.backgroundColor = lightGreen;
     
     [self.amountText setTintColor:[UIColor whiteColor]];
     [self.nameText setTintColor:[UIColor whiteColor]];
     
-    self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dateView, self.finishedView];
+    if (self.formType == Transaction_Creation) {
+        self.allSteps = @[self.amountView, self.nameView, self.categoryView, self.dayView, self.finishedView];
+        
+        self.categoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+        self.categoryPicker.showsSelectionIndicator = NO;
+        self.categoryPicker.tag = kCategoryPicker;
+        self.categoryPicker.delegate = self;
+        self.categoryPicker.dataSource=self;
+        self.categoryPicker.backgroundColor = lightGreen;
+        
+        self.dayPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+        self.dayPicker.showsSelectionIndicator = NO;
+        self.dayPicker.tag = kDayPicker;
+        self.dayPicker.delegate = self;
+        self.dayPicker.dataSource = self;
+        self.dayPicker.backgroundColor = lightGreen;
+        
+        [self.spentButton setEnabled:NO];
+        self.spent = YES;
+    } else {
+        self.allSteps = @[self.amountView, self.nameView, self.dateView, self.intervalView, self.finishedView];
+        [self.spentButton removeFromSuperview];
+        [self.gainedButton removeFromSuperview];
+        
+        self.datePicker.backgroundColor = lightGreen;
+        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+        [dateComponents setMonth:1];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
+        self.datePicker.minimumDate = newDate;
+        
+        self.intervalPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+        self.intervalPicker.showsSelectionIndicator = NO;
+        self.intervalPicker.tag = 3;
+        self.intervalPicker.delegate = self;
+        self.intervalPicker.dataSource = self;
+        self.intervalPicker.backgroundColor = lightGreen;
+    }
+
     self.currentViewIndex = 0;
     self.previousViewIndex = 0;
-
-    self.categoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-    self.categoryPicker.tag = kCategoryPicker;
-    self.categoryPicker.delegate = self;
-    self.categoryPicker.dataSource=self;
-    self.categoryPicker.backgroundColor = lightGreen;
-    
-    self.datePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-    self.datePicker.showsSelectionIndicator = NO;
-    self.datePicker.tag = kDatePicker;
-    self.datePicker.delegate = self;
-    self.datePicker.dataSource = self;
-    self.datePicker.backgroundColor = lightGreen;
-    
-    [self.spentButton setEnabled:NO];
-    self.spent = YES;
     
     [self changeProgress:self.currentViewIndex];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.currentViewIndex;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CreateTransactionTableViewCell *transCell = [tableView dequeueReusableCellWithIdentifier:@"CreateTransactionCell" forIndexPath:indexPath];
@@ -240,27 +300,62 @@ static NSInteger const kDatePicker = 2;
 }
 
 - (void)saveState {
-    if (self.currentViewIndex == 0) {
-        self.transactionInProgress.amount = [self.amountText.text integerValue];
-    } else if (self.currentViewIndex == 1) {
-        self.transactionInProgress.name = self.nameText.text;
-    } else if (self.currentViewIndex == 2) {
-    } else if (self.currentViewIndex == 3) {
-        self.transactionInProgress.transactionDate = self.dateObjectValues[self.selectedDate];
+    if (self.formType == Transaction_Creation) {
+        if (self.currentViewIndex == 0) {
+            self.transactionInProgress.amount = [self.amountText.text floatValue];
+        } else if (self.currentViewIndex == 1) {
+            self.transactionInProgress.name = self.nameText.text;
+        } else if (self.currentViewIndex == 2) {
+        } else if (self.currentViewIndex == 3) {
+            self.transactionInProgress.transactionDate = self.dateObjectValues[self.selectedDate];
+        }
+    } else {
+        if (self.currentViewIndex == 0) {
+            self.goalInProgress.total = [self.amountText.text floatValue];
+        } else if (self.currentViewIndex == 1) {
+            self.goalInProgress.name = self.nameText.text;
+        } else if (self.currentViewIndex == 2) {
+            self.goalInProgress.targetDate = self.datePicker.date;
+        } else if (self.currentViewIndex == 3) {
+            self.goalInProgress.paymentInterval = self.intervalEnumNames[self.selectedInterval];
+        }
     }
 }
 
 - (void)handleView {
-    if (self.currentViewIndex == 0) {
-        [self.amountText becomeFirstResponder];
-    } else if (self.currentViewIndex == 1) {
-        [self.nameText becomeFirstResponder];
-    } else if (self.currentViewIndex == 2) {
-        [self.categoryView addSubview:self.categoryPicker];
-//        [self.categoryPicker update];
-    } else if (self.currentViewIndex == 3) {
-        [self.dateView addSubview:self.datePicker];
-//        [self.datePicker update];
+    if (self.formType == Transaction_Creation) {
+        if (self.currentViewIndex == 0) {
+            self.title = @"Amount";
+            [self.amountText becomeFirstResponder];
+        } else if (self.currentViewIndex == 1) {
+            self.title = @"Name";
+            [self.nameText becomeFirstResponder];
+        } else if (self.currentViewIndex == 2) {
+            self.title = @"Category";
+            [self.categoryView addSubview:self.categoryPicker];
+        } else if (self.currentViewIndex == 3) {
+            self.title = @"Date";
+            [self.dayView addSubview:self.dayPicker];
+        } else {
+            self.title = @"Add Transaction";
+        }
+    } else {
+        if (self.currentViewIndex == 0) {
+            self.title = @"Goal Amount";
+            [self.amountText becomeFirstResponder];
+        } else if (self.currentViewIndex == 1) {
+            self.title = @"Name";
+            [self.nameText becomeFirstResponder];
+        } else if (self.currentViewIndex == 2) {
+            self.title = @"Due Date";
+        } else if (self.currentViewIndex == 3) {
+            self.title = @"Payment Interval";
+            [self.intervalView addSubview:self.intervalPicker];
+            [self.intervalPicker selectRow:self.selectedInterval inComponent:0 animated:YES];
+        } else if (self.currentViewIndex == 4) {
+            self.title = @"Add New Goal";
+
+        }
     }
 }
 
@@ -268,19 +363,39 @@ static NSInteger const kDatePicker = 2;
 - (NSArray *)getContent:(int)index {
     NSString *mainLabel;
     NSString *subLabel;
-    if (index == 0) {
-        mainLabel = @"Amount";
-        subLabel = [NSString stringWithFormat:@"%.02f", self.transactionInProgress.amount];
-    } else if (index == 1) {
-        mainLabel = @"Name";
-        subLabel = self.transactionInProgress.name;
-    } else if (index == 2) {
-        mainLabel = @"Category";
-        subLabel = self.sectionName[self.selectedCategory];
-    } else if (index == 3) {
-        mainLabel = @"Date";
-        subLabel = self.dateStringValues[self.selectedDate];
+    if (self.formType == Transaction_Creation){
+        if (index == 0) {
+            mainLabel = @"Amount";
+            subLabel = [NSString stringWithFormat:@"%.02f", self.transactionInProgress.amount];
+        } else if (index == 1) {
+            mainLabel = @"Name";
+            subLabel = self.transactionInProgress.name;
+        } else if (index == 2) {
+            mainLabel = @"Category";
+            subLabel = self.sectionName[self.selectedCategory];
+        } else if (index == 3) {
+            mainLabel = @"Date";
+            subLabel = self.dateStringValues[self.selectedDate];
+        }
+
+    } else {
+        if (index == 0) {
+            mainLabel = @"Amount";
+            subLabel = [NSString stringWithFormat:@"%.02f", self.goalInProgress.total];
+        } else if (index == 1) {
+            mainLabel = @"Name";
+            subLabel = self.goalInProgress.name;
+        } else if (index == 2) {
+            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            mainLabel = @"Date";
+            subLabel = [dateFormatter stringFromDate:self.datePicker.date];
+        } else if (index == 3) {
+            mainLabel = @"Payment Interval";
+            subLabel = self.intervalNames[self.selectedInterval];
+        }
     }
+    
     return @[mainLabel, subLabel];
 }
 
@@ -325,29 +440,56 @@ static NSInteger const kDatePicker = 2;
 - (IBAction)categoryBack:(id)sender {
     [self changeProgress:1];
 }
-- (IBAction)dateNext:(id) sender {
+- (IBAction)dayNext:(id) sender {
     [self changeProgress:4];
 }
+- (IBAction)dayBack:(id)sender {
+    [self changeProgress:2];
+}
+- (IBAction)dateNext:(id)sender {
+    [self changeProgress:3];
+}
 - (IBAction)dateBack:(id)sender {
+    [self changeProgress:1];
+}
+- (IBAction)intervalNext:(id)sender {
+    [self changeProgress:4];
+}
+
+- (IBAction)intervalBack:(id)sender {
     [self changeProgress:2];
 }
 - (IBAction)finished:(id)sender {
     
-    TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
-    enum TransactionType type = TransactionTypeDebit;
-    if (!self.spent){
-        type = TransactionTypeCredit;
-    }
-
-    [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
-     continueWithBlock:^id(BFTask *task) {
-        if (task.error) {
-            NSLog(@"Error creating transaction: %@", task.error);
-        } else {
-            [self.navigationController popViewControllerAnimated:YES];
+    if (self.formType == Transaction_Creation){
+        TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
+        enum TransactionType type = TransactionTypeDebit;
+        if (!self.spent){
+            type = TransactionTypeCredit;
         }
-        return task;
-    }];
+        
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+         continueWithBlock:^id(BFTask *task) {
+             if (task.error) {
+                 NSLog(@"Error creating transaction: %@", task.error);
+             } else {
+                 [self.navigationController popViewControllerAnimated:YES];
+             }
+             return task;
+         }];
+    } else {
+        [[GoalManager createGoalForUser:[User currentUser] name:self.goalInProgress.name type:GoalTypeGoal total:self.goalInProgress.total paymentInterval:GoalPaymentIntervalMonthly goalDate:self.datePicker.date] continueWithBlock:^id(BFTask *task) {
+            if (task.error) {
+                NSLog(@"Error creating goal: %@", task.error);
+            } else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            return task;
+        }];
+
+    }
+    
+
 }
 - (IBAction)finishedBack:(id)sender {
     [self changeProgress:3];
@@ -366,8 +508,10 @@ static NSInteger const kDatePicker = 2;
 {
     if (pickerView.tag == kCategoryPicker) {
         self.selectedCategory = row;
-    } else {
+    } else if (pickerView.tag == kDayPicker){
         self.selectedDate = row;
+    } else {
+        self.selectedInterval = row;
     }
 
 }
@@ -381,8 +525,10 @@ static NSInteger const kDatePicker = 2;
 {
     if (pickerView.tag == kCategoryPicker) {
         return [self.sectionName count];
-    } else {
+    } else if (pickerView.tag == kDayPicker){
         return [self.dateStringValues count];
+    } else {
+        return [self.intervalNames count];
     }
 
 }
@@ -399,8 +545,10 @@ static NSInteger const kDatePicker = 2;
     [[pickerView.subviews objectAtIndex:2] setHidden:YES];
     if (pickerView.tag == kCategoryPicker) {
         tView.text = [self.sectionName objectAtIndex:row];
-    } else {
+    } else if (pickerView.tag == kDayPicker){
         tView.text = [self.dateStringValues objectAtIndex:row];
+    } else {
+        tView.text = [self.intervalNames objectAtIndex:row];
     }
     return tView;
 }

@@ -9,10 +9,13 @@
                 <outlet property="amountText" destination="ZfC-Uu-EIs" id="pZU-17-Twg"/>
                 <outlet property="amountView" destination="0St-n2-zvI" id="yOb-0N-sYg"/>
                 <outlet property="categoryView" destination="Yaj-kJ-bMG" id="JBx-V5-AVL"/>
-                <outlet property="dateView" destination="Dcy-oV-ERM" id="L3L-Xv-cQV"/>
+                <outlet property="datePicker" destination="YuT-Bb-UIq" id="UtO-jJ-Xnh"/>
+                <outlet property="dateView" destination="gxw-Dw-u1d" id="SfI-6g-ZGY"/>
+                <outlet property="dayView" destination="Dcy-oV-ERM" id="2zd-Uk-sXq"/>
                 <outlet property="finishedView" destination="ajX-3s-g1H" id="JV8-yH-3mE"/>
                 <outlet property="formContainer" destination="0Mq-7K-cim" id="9W4-G1-wh7"/>
                 <outlet property="gainedButton" destination="BW4-fw-s3T" id="QeA-Ft-HLX"/>
+                <outlet property="intervalView" destination="lHP-BF-0YW" id="PeC-Ww-io7"/>
                 <outlet property="nameText" destination="VtQ-or-azi" id="j6i-Fp-otC"/>
                 <outlet property="nameView" destination="Ti5-hY-pRo" id="Dz2-zW-3CS"/>
                 <outlet property="spentButton" destination="E0f-VT-Z6j" id="fmh-iY-AkX"/>
@@ -169,7 +172,7 @@
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -184,7 +187,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
-        <view contentMode="scaleToFill" id="Yaj-kJ-bMG" userLabel="Category">
+        <view contentMode="scaleToFill" id="Yaj-kJ-bMG" userLabel="CategoryView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -234,7 +237,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
-        <view contentMode="scaleToFill" id="Dcy-oV-ERM" userLabel="Date">
+        <view contentMode="scaleToFill" id="Dcy-oV-ERM" userLabel="DayView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -250,7 +253,7 @@
                     </state>
                     <state key="highlighted" image="btn_circle_check_white_highlight"/>
                     <connections>
-                        <action selector="dateNext:" destination="-1" eventType="touchUpInside" id="mHi-Lz-pfp"/>
+                        <action selector="dayNext:" destination="-1" eventType="touchUpInside" id="mRe-HL-fpR"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjI-ZT-luI">
@@ -265,7 +268,7 @@
                     </state>
                     <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
                     <connections>
-                        <action selector="dateBack:" destination="-1" eventType="touchUpInside" id="4Pj-gR-ua0"/>
+                        <action selector="dayBack:" destination="-1" eventType="touchUpInside" id="KuS-qZ-4re"/>
                     </connections>
                 </button>
             </subviews>
@@ -278,7 +281,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
-        <view contentMode="scaleToFill" id="ajX-3s-g1H" userLabel="Date">
+        <view contentMode="scaleToFill" id="ajX-3s-g1H" userLabel="FinishedView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -319,6 +322,125 @@
                 <constraint firstAttribute="bottom" secondItem="lcr-PO-e07" secondAttribute="bottom" constant="20" id="N2X-ng-HQT"/>
                 <constraint firstAttribute="trailing" secondItem="lcr-PO-e07" secondAttribute="trailing" constant="20" id="TXF-Ld-vJu"/>
                 <constraint firstItem="8uP-oB-LLB" firstAttribute="leading" secondItem="ajX-3s-g1H" secondAttribute="leading" constant="20" id="ce1-km-iZR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view contentMode="scaleToFill" id="gxw-Dw-u1d" userLabel="DateView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9h-ba-UMX">
+                    <rect key="frame" x="257" y="217" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="43" id="CXP-ps-iMw"/>
+                        <constraint firstAttribute="height" constant="43" id="lfZ-S0-cw6"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
+                    <connections>
+                        <action selector="dateNext:" destination="-1" eventType="touchUpInside" id="MLS-ER-ed6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uW2-1e-fd6">
+                    <rect key="frame" x="20" y="217" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="43" id="3dZ-io-I36"/>
+                        <constraint firstAttribute="height" constant="43" id="9oR-1e-PUx"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
+                    <connections>
+                        <action selector="dateBack:" destination="-1" eventType="touchUpInside" id="vvD-iJ-g34"/>
+                    </connections>
+                </button>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YuT-Bb-UIq">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <date key="date" timeIntervalSinceReferenceDate="427788655.04987001">
+                        <!--2014-07-23 06:10:55 +0000-->
+                    </date>
+                    <timeZone key="timeZone" name="America/Los_Angeles">
+                        <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                    </timeZone>
+                </datePicker>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="YuT-Bb-UIq" firstAttribute="top" secondItem="gxw-Dw-u1d" secondAttribute="top" id="EWT-Pj-JBQ"/>
+                <constraint firstAttribute="bottom" secondItem="uW2-1e-fd6" secondAttribute="bottom" constant="20" id="LL1-DO-BIk"/>
+                <constraint firstItem="uW2-1e-fd6" firstAttribute="leading" secondItem="gxw-Dw-u1d" secondAttribute="leading" constant="20" id="S2l-wq-dhJ"/>
+                <constraint firstItem="YuT-Bb-UIq" firstAttribute="leading" secondItem="gxw-Dw-u1d" secondAttribute="leading" id="V3l-eD-MgJ"/>
+                <constraint firstAttribute="trailing" secondItem="YuT-Bb-UIq" secondAttribute="trailing" id="WBI-ez-y88"/>
+                <constraint firstAttribute="bottom" secondItem="D9h-ba-UMX" secondAttribute="bottom" constant="20" id="tlc-cP-DYe"/>
+                <constraint firstAttribute="trailing" secondItem="D9h-ba-UMX" secondAttribute="trailing" constant="20" id="wYm-U7-xU2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view contentMode="scaleToFill" id="lHP-BF-0YW" userLabel="IntervalView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeA-5q-auc">
+                    <rect key="frame" x="257" y="217" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="XDq-dj-BYs"/>
+                        <constraint firstAttribute="width" constant="43" id="wNt-0A-UGe"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
+                    <connections>
+                        <action selector="intervalNext:" destination="-1" eventType="touchUpInside" id="aVB-np-pgF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR9-ZI-EhD">
+                    <rect key="frame" x="20" y="217" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="R6R-MQ-579"/>
+                        <constraint firstAttribute="width" constant="43" id="UiA-ZQ-liR"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_leftarrow_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_leftarrow_white_highlight"/>
+                    <connections>
+                        <action selector="intervalBack:" destination="-1" eventType="touchUpInside" id="7qb-Xv-2vE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="QeA-5q-auc" secondAttribute="bottom" constant="20" id="18N-Uh-vlS"/>
+                <constraint firstItem="uR9-ZI-EhD" firstAttribute="leading" secondItem="lHP-BF-0YW" secondAttribute="leading" constant="20" id="DQ4-GZ-55F"/>
+                <constraint firstAttribute="trailing" secondItem="QeA-5q-auc" secondAttribute="trailing" constant="20" id="hCL-x6-BHd"/>
+                <constraint firstAttribute="bottom" secondItem="uR9-ZI-EhD" secondAttribute="bottom" constant="20" id="peh-Ii-64y"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
