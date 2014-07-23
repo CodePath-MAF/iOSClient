@@ -232,7 +232,7 @@
     cell.frame = frame;
     
     [UIView transitionWithView:cv
-                      duration:1
+                      duration:.75
                        options:UIViewAnimationOptionCurveEaseInOut
                     animations:^{
                         
