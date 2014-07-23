@@ -14,6 +14,8 @@
 #import "LendingSocialCell.h"
 #import "Friend.h"
 #import "Utilities.h"
+#import "SimpleTransactionViewController.h"
+
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -189,7 +191,10 @@
 }
 
 - (IBAction)makePayment:(id)sender {
-  NSLog(@"Make a Payment");
+    SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
+    [simpleTransVC setLabelsAndButtons:MakePayment goal:self.goal amount:self.goal.paymentAmount];
+    [self.navigationController pushViewController:simpleTransVC animated:YES];  
+    NSLog(@"Make a Payment");
 }
 
 #pragma mark Helper Functions

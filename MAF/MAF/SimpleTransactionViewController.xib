@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleTransactionViewController">
+            <connections>
+                <outlet property="amountLabel" destination="ilr-cz-HfM" id="NC0-RU-dOo"/>
+                <outlet property="mainView" destination="i5M-Pr-FkT" id="Jlf-Ve-Cwp"/>
+                <outlet property="tableView" destination="dim-7g-9B6" id="ndS-Ym-Yf7"/>
+                <outlet property="tableViewHeight" destination="jC6-f8-2sB" id="bZe-vA-sFr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="QWe-oH-l48"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ilr-cz-HfM" customClass="OpenSansLightTextField">
+                    <rect key="frame" x="50" y="106" width="220" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="220" id="2Sn-rT-597"/>
+                        <constraint firstAttribute="height" constant="50" id="BSk-G0-prL"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAX-SU-9DO">
+                    <rect key="frame" x="139" y="215" width="43" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="43" id="Agd-Mc-usk"/>
+                        <constraint firstAttribute="height" constant="43" id="Zgx-Vy-cAT"/>
+                    </constraints>
+                    <state key="normal" image="btn_circle_check_white_up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" image="btn_circle_check_white_highlight"/>
+                    <connections>
+                        <action selector="onNext:" destination="-1" eventType="touchUpInside" id="pnF-r5-CDM"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dim-7g-9B6">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="jC6-f8-2sB"/>
+                    </constraints>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="dim-7g-9B6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="57J-dW-UwG"/>
+                <constraint firstItem="dim-7g-9B6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7m8-xN-FY3"/>
+                <constraint firstAttribute="trailing" secondItem="dim-7g-9B6" secondAttribute="trailing" id="OKF-Rx-L3z"/>
+                <constraint firstAttribute="centerX" secondItem="ilr-cz-HfM" secondAttribute="centerX" id="Szv-C0-m0J"/>
+                <constraint firstAttribute="centerX" secondItem="JAX-SU-9DO" secondAttribute="centerX" id="Zvb-t4-yCu"/>
+                <constraint firstItem="JAX-SU-9DO" firstAttribute="top" secondItem="ilr-cz-HfM" secondAttribute="bottom" constant="59" id="sTK-Ke-JdM"/>
+                <constraint firstItem="ilr-cz-HfM" firstAttribute="top" secondItem="dim-7g-9B6" secondAttribute="bottom" constant="56" id="tgG-CT-9I5"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFy-YW-7bQ">
+            <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="43" id="T3B-N6-v8p"/>
+                <constraint firstAttribute="height" constant="43" id="UAP-Ag-nST"/>
+            </constraints>
+            <state key="normal" image="btn_circle_check_white_up">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <state key="highlighted" image="btn_circle_check_white_highlight"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="btn_circle_check_white_highlight" width="43" height="43"/>
+        <image name="btn_circle_check_white_up" width="43" height="43"/>
+    </resources>
+</document>

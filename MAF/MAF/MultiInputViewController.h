@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateTransactionViewController : UIViewController
+@interface MultiInputViewController : UIViewController
 
 - (id)initWithCategories:(NSMutableArray *)categories;
 

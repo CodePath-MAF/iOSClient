@@ -10,7 +10,7 @@
 #import "EmptyTransactionsView.h"
 #import "OpenSansSemiBoldLabel.h"
 #import "Utilities.h"
-#import "CreateTransactionViewController.h"
+#import "MultiInputViewController.h"
 #import "TransactionCategoryManager.h"
 
 @interface EmptyTransactionsView()
