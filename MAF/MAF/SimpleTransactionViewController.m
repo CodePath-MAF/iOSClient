@@ -11,6 +11,7 @@
 #import "CreateTransactionTableViewCell.h"
 #import "User.h"
 #import "TransactionManager.h"
+#import "TransactionCategoryManager.h"
 
 @interface SimpleTransactionViewController ()
 @property (strong, nonatomic) IBOutlet UIView *mainView;
@@ -133,7 +134,7 @@
 - (IBAction)onNext:(UIButton *)sender {
     NSDate *now = [[NSDate alloc] init];
     if (self.currentType == InitialCash) {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:[self.amountLabel.text floatValue] detail:@"Initial Cash" type:TransactionTypeCredit categoryId:@"Income" transactionDate:now]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:[self.amountLabel.text floatValue] detail:@"Initial Cash" type:TransactionTypeCredit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Income"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
@@ -144,7 +145,7 @@
          }];
 
     } else {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:[self.amountLabel.text floatValue] detail:@"Goal Payment" type:TransactionTypeDebit categoryId:@"Bills" transactionDate:now]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:[self.amountLabel.text floatValue] detail:@"Goal Payment" type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
