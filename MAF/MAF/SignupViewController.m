@@ -31,6 +31,7 @@
     self.nameTextField.delegate = self;
     self.nameTextField.tag = 1;
     self.nameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.nameTextField becomeFirstResponder];
     self.emailTextField.delegate = self;
     self.emailTextField.tag = 2;
     self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
