@@ -203,7 +203,7 @@
 #warning TODO need to transform the size after we move its position
 
     } completion:^(BOOL finished) {
-        self.detailLabelsChart = [[PNTextChart alloc] initWithFrame:CGRectMake(self.selectedBar.frame.origin.x - 40, self.selectedBar.frame.origin.y + 80, self.selectedBar.frame.size.width + 50, self.selectedBar.frame.size.height)];
+        self.detailLabelsChart = [[PNTextChart alloc] initWithFrame:CGRectMake(self.selectedBar.frame.origin.x - 30, self.selectedBar.frame.origin.y + 80, self.selectedBar.frame.size.width + 50, self.selectedBar.frame.size.height)];
         [self.detailLabelsChart setTopLabels:topLabels];
         [self.detailLabelsChart setBottomLabels:bottomLabels];
         [self.detailLabelsChart setTopLabelWidth:100.f];
