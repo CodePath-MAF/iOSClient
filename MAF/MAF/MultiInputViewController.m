@@ -361,6 +361,9 @@ static NSInteger const kIntervalPicker = 3;
         } else if (self.currentViewIndex == 2) {
             self.title = @"Category";
             [self.categoryView addSubview:self.categoryPicker];
+            if (self.spent == NO){
+                [self.categoryPicker selectRow:2 inComponent:0 animated:YES];
+            }
         } else if (self.currentViewIndex == 3) {
             self.title = @"Date";
             [self.dayView addSubview:self.dayPicker];
