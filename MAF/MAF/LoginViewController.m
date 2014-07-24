@@ -36,8 +36,10 @@
     [super viewDidLoad];
     self.emailTextField.delegate = self;
     self.emailTextField.tag = 1;
+    self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.passwordTextField.delegate = self;
     self.passwordTextField.tag = 2;
+    self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.activeLoginButton.alpha = 0;
     [[self.activeLoginButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:self.activeLoginButton.titleLabel.font.pointSize]];
     [[self.inactiveLoginButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:self.inactiveLoginButton.titleLabel.font.pointSize]];
