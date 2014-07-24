@@ -34,8 +34,11 @@
     }];
     return (BOOL)[[self.transactionsSet.transactions filteredArrayUsingPredicate:transactionsOfTypePredicate] count];
 }
-
 - (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate {
+    return [self createTransactionForUser:user goalId:goalId amount:amount detail:detail type:type categoryId:categoryId transactionDate:transactionDate countAgainstTotalCash:NO];
+}
+
+- (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate countAgainstTotalCash:(BOOL)countAgainstTotalCash {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     
     Transaction *transaction = [Transaction object];
@@ -51,7 +54,7 @@
     }
     transaction.transactionDate = transactionDate;
     
-    if (type == TransactionTypeDebit) {
+    if (type == TransactionTypeDebit || countAgainstTotalCash) {
         user.totalCash -= amount;
     } else {
         user.totalCash += amount;

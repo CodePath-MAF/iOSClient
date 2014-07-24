@@ -183,7 +183,7 @@
          }];
 
     } else {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:amount detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:amount detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeCredit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now countAgainstTotalCash:YES]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
