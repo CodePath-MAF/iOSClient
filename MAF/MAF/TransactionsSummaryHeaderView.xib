@@ -46,10 +46,13 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls3-Ah-vbR" customClass="OpenSansSemiBoldLabel">
-                    <rect key="frame" x="105" y="207" width="111" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls3-Ah-vbR" customClass="OpenSansSemiBoldLabel">
+                    <rect key="frame" x="104" y="207" width="111" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="111" id="GmW-Nl-iMe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp1-bL-XtE" customClass="OpenSansSemiBoldLabel">
@@ -80,7 +83,7 @@
                         <constraint firstAttribute="width" constant="1" id="Dll-dM-tXb"/>
                     </constraints>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5V-7F-DXJ" customClass="OpenSansSemiBoldLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5V-7F-DXJ" customClass="OpenSansSemiBoldLabel">
                     <rect key="frame" x="215" y="207" width="104" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -89,6 +92,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="b5V-7F-DXJ" secondAttribute="trailing" constant="1" id="3EC-Td-pxP"/>
                 <constraint firstAttribute="trailing" secondItem="Btw-kg-825" secondAttribute="trailing" id="DKz-ns-p6V"/>
                 <constraint firstAttribute="trailing" secondItem="5fA-O1-FHs" secondAttribute="trailing" constant="104" id="ErH-9k-wxZ"/>
                 <constraint firstItem="Ptv-8Z-IDA" firstAttribute="top" secondItem="Btw-kg-825" secondAttribute="bottom" constant="12" id="FAM-dC-otP"/>
@@ -96,9 +100,13 @@
                 <constraint firstAttribute="bottom" secondItem="5fA-O1-FHs" secondAttribute="bottom" constant="17" id="HQH-ZS-ctG"/>
                 <constraint firstAttribute="bottom" secondItem="bp1-bL-XtE" secondAttribute="bottom" constant="12" id="JQe-d0-GIP"/>
                 <constraint firstItem="Btw-kg-825" firstAttribute="leading" secondItem="uDR-4M-2OS" secondAttribute="leading" id="Kam-hL-Bhx"/>
+                <constraint firstItem="Ls3-Ah-vbR" firstAttribute="leading" secondItem="bp1-bL-XtE" secondAttribute="trailing" id="QMy-Jr-Wdf"/>
+                <constraint firstItem="b5V-7F-DXJ" firstAttribute="leading" secondItem="Ls3-Ah-vbR" secondAttribute="trailing" id="QRr-iN-d91"/>
+                <constraint firstAttribute="bottom" secondItem="b5V-7F-DXJ" secondAttribute="bottom" constant="12" id="cQP-Xa-QK1"/>
                 <constraint firstItem="Ptv-8Z-IDA" firstAttribute="leading" secondItem="AM7-3R-vFr" secondAttribute="trailing" constant="8" id="dA9-10-Ua2"/>
                 <constraint firstItem="etS-Vn-SvL" firstAttribute="leading" secondItem="uDR-4M-2OS" secondAttribute="leading" id="e2E-sH-SS1"/>
                 <constraint firstAttribute="trailing" secondItem="z96-cJ-Bl7" secondAttribute="trailing" id="eGj-rd-x1T"/>
+                <constraint firstAttribute="bottom" secondItem="Ls3-Ah-vbR" secondAttribute="bottom" constant="12" id="f8Y-nl-T0n"/>
                 <constraint firstItem="bp1-bL-XtE" firstAttribute="leading" secondItem="uDR-4M-2OS" secondAttribute="leading" id="gfa-i2-FK2"/>
                 <constraint firstAttribute="bottom" secondItem="AM7-3R-vFr" secondAttribute="bottom" constant="17" id="miH-70-mlM"/>
                 <constraint firstItem="5fA-O1-FHs" firstAttribute="leading" secondItem="Ptv-8Z-IDA" secondAttribute="trailing" constant="8" id="piX-q6-Xex"/>
