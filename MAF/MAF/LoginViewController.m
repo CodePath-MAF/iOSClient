@@ -37,6 +37,7 @@
     self.emailTextField.delegate = self;
     self.emailTextField.tag = 1;
     self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.emailTextField becomeFirstResponder];
     self.passwordTextField.delegate = self;
     self.passwordTextField.tag = 2;
     self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
