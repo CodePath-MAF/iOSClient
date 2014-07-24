@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalDetailViewController">
             <connections>
+                <outlet property="goalAchievedButton" destination="Rq7-rS-eUd" id="ILa-z6-TmP"/>
                 <outlet property="goalTotal" destination="2u2-s6-5ej" id="cPI-AV-Fug"/>
                 <outlet property="lendingPhotoCollectionView" destination="A3Z-vg-QjE" id="f5a-Z3-Uo0"/>
                 <outlet property="lendingPhotoView" destination="458-Fn-Jqi" id="DUv-DH-cIr"/>
@@ -98,7 +99,7 @@
                             <color key="textColor" red="0.81568627450980391" green="0.0078431372549019607" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="time_red" translatesAutoresizingMaskIntoConstraints="NO" id="zc0-BT-qOZ">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time_red" translatesAutoresizingMaskIntoConstraints="NO" id="zc0-BT-qOZ">
                             <rect key="frame" x="108" y="100" width="11" height="11"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -153,6 +154,21 @@
                                 <action selector="makePayment:" destination="-1" eventType="touchUpInside" id="jKs-Ah-C2u"/>
                             </connections>
                         </button>
+                        <button autoresizesSubviews="NO" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Rq7-rS-eUd">
+                            <rect key="frame" x="30" y="14" width="260" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="260" id="brc-eA-VbL"/>
+                                <constraint firstAttribute="height" constant="44" id="s12-CP-vtf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="tintColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
+                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" title="GOAL ACHIEVED!">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-au-B5u" userLabel="Separator">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -170,13 +186,17 @@
                         <constraint firstItem="auP-AN-zfz" firstAttribute="leading" secondItem="tV4-VK-HWI" secondAttribute="leading" id="CVr-wp-y9q"/>
                         <constraint firstItem="x6e-au-B5u" firstAttribute="top" secondItem="tV4-VK-HWI" secondAttribute="top" id="ENT-B8-WUO"/>
                         <constraint firstAttribute="trailing" secondItem="auP-AN-zfz" secondAttribute="trailing" id="Ecg-hz-ZBr"/>
+                        <constraint firstItem="Rq7-rS-eUd" firstAttribute="top" secondItem="x6e-au-B5u" secondAttribute="bottom" constant="13" id="HjG-Vy-k03"/>
                         <constraint firstItem="i8p-6y-WCB" firstAttribute="leading" secondItem="tV4-VK-HWI" secondAttribute="leading" constant="10" id="O3H-Tg-jHl"/>
+                        <constraint firstAttribute="trailing" secondItem="Rq7-rS-eUd" secondAttribute="trailing" constant="30" id="ONP-fP-Le7"/>
                         <constraint firstAttribute="centerX" secondItem="i8p-6y-WCB" secondAttribute="centerX" id="Srx-dq-kPJ"/>
                         <constraint firstAttribute="trailing" secondItem="x6e-au-B5u" secondAttribute="trailing" id="VAh-4p-Fbu"/>
                         <constraint firstAttribute="centerY" secondItem="XPi-TW-7kz" secondAttribute="centerY" constant="30" id="gd3-U3-qdn"/>
                         <constraint firstItem="i8p-6y-WCB" firstAttribute="top" secondItem="XPi-TW-7kz" secondAttribute="bottom" constant="12" id="lk7-io-LnL"/>
                         <constraint firstAttribute="trailing" secondItem="i8p-6y-WCB" secondAttribute="trailing" constant="10" id="ngM-RE-6Xv"/>
                         <constraint firstAttribute="bottom" secondItem="auP-AN-zfz" secondAttribute="bottom" id="p3e-9Y-bNN"/>
+                        <constraint firstItem="Rq7-rS-eUd" firstAttribute="leading" secondItem="tV4-VK-HWI" secondAttribute="leading" constant="30" id="qb9-rP-Bfz"/>
+                        <constraint firstItem="i8p-6y-WCB" firstAttribute="top" secondItem="Rq7-rS-eUd" secondAttribute="bottom" constant="12" id="s2s-Pr-X85"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQz-O8-wdf">

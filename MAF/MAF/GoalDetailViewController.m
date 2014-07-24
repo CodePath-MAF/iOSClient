@@ -37,6 +37,7 @@
 
 // Make Milestone Progress View Outlets
 @property (weak, nonatomic) IBOutlet UIButton *makePaymentButton;
+@property (weak, nonatomic) IBOutlet UIButton *goalAchievedButton;
 @property (weak, nonatomic) IBOutlet UILabel *paymentsMadeLabel;
 @property (weak, nonatomic) IBOutlet UIView *milestoneProgressView;
 
@@ -58,13 +59,28 @@
 - (void)updateLabels {
     NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
-    self.paymentsMadeLabel.text = [[NSString stringWithFormat:NUM_PAYMENTS_MADE, payments.count, self.goal.paymentInterval] uppercaseString];
-    self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.total];
+
+    int goalLifetime = [Utilities daysBetweenDate:self.goal.createdAt andDate:self.goal.targetDate];
+    float numPayments = roundf((float)goalLifetime/(float)self.goal.paymentInterval);
+
     float amountPaid = 0;
     for (Transaction *t in payments) {
         amountPaid += t.amount;
     }
+    amountPaid = roundf(amountPaid);
+    
+    float milestonesCount = (float)amountPaid/(float)self.goal.paymentAmount;
+    self.paymentsMadeLabel.text = [[NSString stringWithFormat:NUM_PAYMENTS_MADE, (int)milestonesCount, (int)numPayments] uppercaseString];
+    self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.total];
     self.saveToDate.text = [NSString stringWithFormat:@"$%.02f SAVED TO DATE", amountPaid];
+    
+    if (self.goal.total == amountPaid) {
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.goalAchievedButton.alpha = 1;
+            self.makePaymentButton.alpha = 0;
+            [self.makePaymentButton removeFromSuperview];
+        } completion:nil];
+    }
 }
 
 - (void)setGoal:(Goal *)goal {
@@ -111,6 +127,7 @@
     // Set Up Social Collection View
     self.lendingPhotoCollectionView.delegate = self;
     self.lendingPhotoCollectionView.dataSource = self;
+    self.goalAchievedButton.alpha = 0;
     
     UINib *cellNib = [UINib nibWithNibName:@"LendingSocialCell" bundle:nil];
     [self.lendingPhotoCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"LendingSocialCell"];
@@ -126,6 +143,7 @@
 
     [Utilities setupRoundedButton:self.makePaymentButton
                  withCornerRadius:BUTTON_CORNER_RADIUS];
+    [Utilities setupRoundedButton:self.goalAchievedButton withCornerRadius:BUTTON_CORNER_RADIUS];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
