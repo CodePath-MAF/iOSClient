@@ -183,7 +183,7 @@
     [self addSubview:self.selectedBar];
 //    [self addSubview:label];
 
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.transactionsCategoryChart.alpha = 0.f;
         self.detailLabelsChart.alpha = 1.f;
         
@@ -211,7 +211,7 @@
         [self.detailLabelsChart strokeChart];
         self.detailLabelsChart.alpha = 0.f;
         [self addSubview:self.detailLabelsChart];
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.detailLabelsChart.alpha = 1.f;
         } completion:nil];
     }];
@@ -240,18 +240,24 @@
     NSLog(@"touched big bar");
     UIView *bar = [(UITapGestureRecognizer *)sender view];
     [[(UITapGestureRecognizer *)sender view] removeGestureRecognizer:self.singleTap];
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        bar.center = _centerBeforeTransform;
-        bar.transform = CGAffineTransformIdentity;
-        self.transactionsCategoryChart.alpha = 1;
+    
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.detailLabelsChart.alpha = 0;
-        bar.alpha = _alphaBeforeTransform;
-
     } completion:^(BOOL finished) {
-        [bar removeFromSuperview];
         [self.detailLabelsChart removeFromSuperview];
-        [self.transactionsCategoryChart addSubview:bar];
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            bar.center = _centerBeforeTransform;
+            bar.transform = CGAffineTransformIdentity;
+            self.transactionsCategoryChart.alpha = 1;
+            bar.alpha = _alphaBeforeTransform;
+            
+        }
+                         completion:^(BOOL finished) {
+                             [bar removeFromSuperview];
+                             [self.transactionsCategoryChart addSubview:bar];
+                         }];
     }];
+   
 }
 
 - (void)cleanUpCharts {
