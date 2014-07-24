@@ -12,6 +12,7 @@
 
 #import "OpenSansBoldLabel.h"
 #import "OpenSansRegularLabel.h"
+#import "OpenSansSemiBoldLabel.h"
 #import "GoalDetailViewController.h"
 #import "LendingSocialCell.h"
 #import "Friend.h"
@@ -121,6 +122,8 @@
     
     // Set Up Make Payment Button
 #warning TODO create progress update
+    [[self.makePaymentButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:14.f]];
+
     [Utilities setupRoundedButton:self.makePaymentButton
                  withCornerRadius:BUTTON_CORNER_RADIUS];
 }

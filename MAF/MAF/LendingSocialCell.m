@@ -7,6 +7,8 @@
 //
 
 #import "LendingSocialCell.h"
+#import "OpenSansRegularLabel.h"
+#import "Utilities.h"
 
 @interface LendingSocialCell ()
 
@@ -30,6 +32,9 @@
     _friend = friend;
     
     self.nameLabel.text = friend.name;
+    [self.nameLabel setFont:[UIFont fontWithName:@"OpenSans" size:11.f]];
+    [self.nameLabel setTextColor:[Utilities colorFromHexString:@"#979797"]];
+
     [self.photoImageView setImage:friend.photo];
 }
 
