@@ -57,7 +57,7 @@
 - (void)updateLabels {
     NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
-    self.paymentsMadeLabel.text = [NSString stringWithFormat:NUM_PAYMENTS_MADE, payments.count, self.goal.paymentInterval];
+    self.paymentsMadeLabel.text = [[NSString stringWithFormat:NUM_PAYMENTS_MADE, payments.count, self.goal.paymentInterval] uppercaseString];
     self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.total];
     float amountPaid = 0;
     for (Transaction *t in payments) {
