@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -24,37 +24,43 @@
                         <constraint firstAttribute="height" constant="30" id="l9h-He-Nad"/>
                     </constraints>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved Today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U96-Ch-WJc" customClass="OpenSansRegularLabel">
-                    <rect key="frame" x="52" y="8" width="67" height="14"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVED TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U96-Ch-WJc" customClass="OpenSansLightLabel">
+                    <rect key="frame" x="0.0" y="12" width="161" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="161" id="9he-Ge-pBF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spent Today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-Hw-lT2" customClass="OpenSansRegularLabel">
-                    <rect key="frame" x="206" y="8" width="59" height="12"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPENT TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-Hw-lT2" customClass="OpenSansLightLabel">
+                    <rect key="frame" x="160" y="12" width="160" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="aji-tF-Nsl"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIn-GU-cXu" customClass="OpenSansSemiBoldLabel">
-                    <rect key="frame" x="15" y="18" width="140" height="22"/>
+                    <rect key="frame" x="0.0" y="26" width="161" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="140" id="g28-2o-mCz"/>
+                        <constraint firstAttribute="width" constant="161" id="6bG-24-OGo"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.20392156859999999" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ9-VB-EjP" customClass="OpenSansSemiBoldLabel">
-                    <rect key="frame" x="165" y="16" width="140" height="22"/>
+                    <rect key="frame" x="160" y="26" width="160" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="140" id="jOJ-UM-XLF"/>
+                        <constraint firstAttribute="width" constant="160" id="Mr4-Kj-ysT"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.20392156859999999" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -69,18 +75,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="KjK-Hw-lT2" secondAttribute="centerX" constant="-75" id="1Qd-6f-GCp"/>
-                <constraint firstItem="OIn-GU-cXu" firstAttribute="centerX" secondItem="U96-Ch-WJc" secondAttribute="centerX" id="2EI-ai-O1B"/>
-                <constraint firstAttribute="centerX" secondItem="U96-Ch-WJc" secondAttribute="centerX" constant="75" id="8IQ-i3-45d"/>
                 <constraint firstAttribute="trailing" secondItem="mpF-F2-DCp" secondAttribute="trailing" id="Adu-P0-iAI"/>
+                <constraint firstItem="U96-Ch-WJc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CCn-dl-dpQ"/>
                 <constraint firstAttribute="bottom" secondItem="mpF-F2-DCp" secondAttribute="bottom" id="DCJ-VP-xkb"/>
-                <constraint firstItem="TQ9-VB-EjP" firstAttribute="top" secondItem="KjK-Hw-lT2" secondAttribute="bottom" constant="-4" id="EKE-Rw-bg5"/>
-                <constraint firstItem="U96-Ch-WJc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="PZu-m4-jg2"/>
+                <constraint firstItem="OIn-GU-cXu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KiX-Jk-GpZ"/>
+                <constraint firstItem="U96-Ch-WJc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="PZu-m4-jg2"/>
                 <constraint firstAttribute="centerY" secondItem="yL7-jE-ZLb" secondAttribute="centerY" id="b39-Sb-uwX"/>
-                <constraint firstItem="TQ9-VB-EjP" firstAttribute="centerX" secondItem="KjK-Hw-lT2" secondAttribute="centerX" id="cui-IO-NL1"/>
-                <constraint firstItem="KjK-Hw-lT2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="gVQ-Zm-q0Q"/>
+                <constraint firstAttribute="trailing" secondItem="TQ9-VB-EjP" secondAttribute="trailing" id="bMu-sX-E9e"/>
+                <constraint firstItem="mpF-F2-DCp" firstAttribute="top" secondItem="TQ9-VB-EjP" secondAttribute="bottom" constant="12" id="cMg-ds-5aR"/>
+                <constraint firstItem="KjK-Hw-lT2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="gVQ-Zm-q0Q"/>
+                <constraint firstAttribute="trailing" secondItem="KjK-Hw-lT2" secondAttribute="trailing" id="kBF-Ux-8dP"/>
+                <constraint firstItem="mpF-F2-DCp" firstAttribute="top" secondItem="OIn-GU-cXu" secondAttribute="bottom" constant="12" id="sRK-ow-Gv0"/>
                 <constraint firstItem="mpF-F2-DCp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sbN-jy-NJg"/>
-                <constraint firstItem="OIn-GU-cXu" firstAttribute="top" secondItem="U96-Ch-WJc" secondAttribute="bottom" constant="-4" id="wzf-h1-PFj"/>
                 <constraint firstAttribute="centerX" secondItem="yL7-jE-ZLb" secondAttribute="centerX" id="x3I-d3-pHH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
