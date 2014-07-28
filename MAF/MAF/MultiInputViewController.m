@@ -494,9 +494,9 @@ static NSInteger const kIntervalPicker = 3;
     
     if (self.formType == Transaction_Creation){
         TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
-        enum TransactionType type = TransactionTypeDebit;
+        enum TransactionType type = TransactionTypeCredit;
         if (!self.spent){
-            type = TransactionTypeCredit;
+            type = TransactionTypeDebit;
         }
 
         [self startProgress:self.navigationController];

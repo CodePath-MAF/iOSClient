@@ -172,6 +172,7 @@
     float amount = [[self.amountLabel.text substringFromIndex:1] floatValue];
     if (self.currentType == InitialCash) {
         [[User currentUser] setSetup:YES];
+        [[User currentUser] saveInBackground];
         [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:amount detail:@"Initial Cash" type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Income"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
@@ -183,7 +184,7 @@
          }];
 
     } else {
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:amount detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now countAgainstTotalCash:YES]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:self.goal.objectId amount:amount detail:[NSString stringWithFormat:@"Goal Payment for %@", self.goal.name] type:TransactionTypeDebit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Bills"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);

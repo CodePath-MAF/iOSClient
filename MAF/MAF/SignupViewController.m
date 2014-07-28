@@ -68,6 +68,7 @@
     user.password = password;
     user[@"name"] = name;
     user.setup = NO;
+    user.totalCash = 0;
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"failed to signup user: %@", [error userInfo][@"error"]);

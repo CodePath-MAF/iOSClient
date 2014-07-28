@@ -23,8 +23,6 @@
 
 - (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate;
 
-- (BFTask *)createTransactionForUser:(User *)user goalId:(NSString *)goalId amount:(float)amount detail:(NSString *)detail type:(enum TransactionType)type categoryId:(NSString *)categoryId transactionDate:(NSDate *)transactionDate countAgainstTotalCash:(BOOL)countAgainstTotalCash;
-
 - (BFTask *)updateTransaction:(NSString *)transactionId keyName:(NSString *)keyName value:(id)value;
 
 - (BFTask *)deleteTransaction:(NSString *)transactionId;
