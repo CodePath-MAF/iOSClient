@@ -48,7 +48,6 @@
 		BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144327196A3BB400C2BB38 /* GoalManager.m */; };
 		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
 		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
-		BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */; };
 		BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */; };
 		BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */; };
 		BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144354196A963000C2BB38 /* TransactionsListViewController.m */; };
@@ -59,9 +58,6 @@
 		BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B300219775E6200F68B2E /* TransactionsSet.m */; };
 		BF26D579198003E70085202E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF26D577198003E70085202E /* MainViewController.m */; };
 		BF26D57A198003E70085202E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF26D578198003E70085202E /* MainViewController.xib */; };
-		BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF277998196BBA11005D4838 /* CreateGoalForm.m */; };
-		BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF27799B196BC40B005D4838 /* MAFActionFormButtonCell.m */; };
-		BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */; };
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
@@ -174,8 +170,6 @@
 		BF14432D196A471300C2BB38 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		BF14432F196A4FAD00C2BB38 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		BF144330196A4FAD00C2BB38 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
-		BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalViewController.h; sourceTree = "<group>"; };
-		BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalViewController.m; sourceTree = "<group>"; };
 		BF14434E196A95D600C2BB38 /* TransactionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionTableViewCell.h; sourceTree = "<group>"; };
 		BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTableViewCell.m; sourceTree = "<group>"; };
 		BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
@@ -192,14 +186,6 @@
 		BF26D576198003E70085202E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		BF26D577198003E70085202E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		BF26D578198003E70085202E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		BF277997196BBA11005D4838 /* CreateGoalForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGoalForm.h; sourceTree = "<group>"; };
-		BF277998196BBA11005D4838 /* CreateGoalForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGoalForm.m; sourceTree = "<group>"; };
-		BF27799A196BC40B005D4838 /* MAFActionFormButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFActionFormButtonCell.h; sourceTree = "<group>"; };
-		BF27799B196BC40B005D4838 /* MAFActionFormButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFActionFormButtonCell.m; sourceTree = "<group>"; };
-		BF32CC5F1974AB7E0050E3D5 /* MAFActionFormButtonDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAFActionFormButtonDelegate.h; sourceTree = "<group>"; };
-		BF32CC601974AFE80050E3D5 /* XLFormViewController_MAFActionFormButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLFormViewController_MAFActionFormButton.h; sourceTree = "<group>"; };
-		BF32CC611974B1B70050E3D5 /* CreateTransactionForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionForm.h; sourceTree = "<group>"; };
-		BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionForm.m; sourceTree = "<group>"; };
 		BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTransactionsView.xib; sourceTree = "<group>"; };
 		BF4FC9D9197F3BE400BDF982 /* EmptyTransactionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTransactionsView.h; sourceTree = "<group>"; };
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
@@ -323,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				BF865B34197C632200A128AD /* Fonts */,
-				BF277996196BB9D7005D4838 /* Forms */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
 				2CBA46C21965DF6800C6BEDF /* APIs */,
 				2CBA46C11965DF5900C6BEDF /* Models */,
@@ -373,8 +358,6 @@
 				BF144321196A2A6600C2BB38 /* DashboardViewController.h */,
 				BF144322196A2A6600C2BB38 /* DashboardViewController.m */,
 				BF144323196A2A6600C2BB38 /* DashboardViewController.xib */,
-				BF14433B196A7CB900C2BB38 /* CreateGoalViewController.h */,
-				BF14433C196A7CB900C2BB38 /* CreateGoalViewController.m */,
 				BF144353196A963000C2BB38 /* TransactionsListViewController.h */,
 				BF144354196A963000C2BB38 /* TransactionsListViewController.m */,
 				BF144355196A963000C2BB38 /* TransactionsListViewController.xib */,
@@ -463,21 +446,6 @@
 				2C66748D1974FDB600434802 /* Utilities.m */,
 			);
 			name = Utilities;
-			sourceTree = "<group>";
-		};
-		BF277996196BB9D7005D4838 /* Forms */ = {
-			isa = PBXGroup;
-			children = (
-				BF32CC5F1974AB7E0050E3D5 /* MAFActionFormButtonDelegate.h */,
-				BF32CC601974AFE80050E3D5 /* XLFormViewController_MAFActionFormButton.h */,
-				BF27799A196BC40B005D4838 /* MAFActionFormButtonCell.h */,
-				BF27799B196BC40B005D4838 /* MAFActionFormButtonCell.m */,
-				BF277997196BBA11005D4838 /* CreateGoalForm.h */,
-				BF277998196BBA11005D4838 /* CreateGoalForm.m */,
-				BF32CC611974B1B70050E3D5 /* CreateTransactionForm.h */,
-				BF32CC621974B1B70050E3D5 /* CreateTransactionForm.m */,
-			);
-			name = Forms;
 			sourceTree = "<group>";
 		};
 		BF865B34197C632200A128AD /* Fonts */ = {
@@ -753,12 +721,10 @@
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */,
-				BF277999196BBA11005D4838 /* CreateGoalForm.m in Sources */,
 				BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */,
 				BFB57ECE198000B1004A0D7B /* LoginViewController.m in Sources */,
 				BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */,
 				2C95F61B197DDAE600862497 /* NoGoalView.m in Sources */,
-				BF14433D196A7CB900C2BB38 /* CreateGoalViewController.m in Sources */,
 				2CC35A15197B1D3100716B37 /* LendingSocialCell.m in Sources */,
 				BAE442EB197F557E00F2A027 /* SimpleTransactionViewController.m in Sources */,
 				BF144324196A2A6600C2BB38 /* DashboardViewController.m in Sources */,
@@ -781,12 +747,10 @@
 				BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */,
 				BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
-				BF32CC631974B1B70050E3D5 /* CreateTransactionForm.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
 				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
 				BF865B4D197C90DC00A128AD /* TransactionsHeaderView.m in Sources */,
 				BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */,
-				BF27799C196BC40B005D4838 /* MAFActionFormButtonCell.m in Sources */,
 				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */,
 				BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */,

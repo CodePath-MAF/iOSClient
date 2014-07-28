@@ -20,7 +20,6 @@
 #import "TransactionManager.h"
 #import "TransactionsSet.h"
 
-#import "CreateGoalViewController.h"
 #import "GoalDetailViewController.h"
 #import "GoalCardView.h"
 #import "GoalManager.h"
