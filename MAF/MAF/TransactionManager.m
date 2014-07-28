@@ -54,7 +54,7 @@
     }
     transaction.transactionDate = transactionDate;
     
-    if (type == TransactionTypeDebit || countAgainstTotalCash) {
+    if (type == TransactionTypeCredit || countAgainstTotalCash) {
         user.totalCash -= amount;
     } else {
         user.totalCash += amount;

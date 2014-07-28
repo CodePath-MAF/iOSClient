@@ -71,7 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
+    if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
         [[self fetchData] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error fetching transactions for user: %@", task.error);
@@ -89,7 +89,7 @@
 - (void)routeToView {
     [self.summaryView setTransactionsSet:[[TransactionManager instance] transactionsSet]];
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
+        if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
             [self.emptyView updateTotalCash];
             self.emptyView.alpha = 1;
         } else {
@@ -102,7 +102,7 @@
 }
 
 - (BFTask *)fetchData {
-    return [[TransactionManager instance] fetchTransactionsForUser:[User currentUser] ofType:TransactionTypeDebit];
+    return [[TransactionManager instance] fetchTransactionsForUser:[User currentUser] ofType:TransactionTypeCredit];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -128,7 +128,7 @@
 }
 
 - (NSArray *)getTransactionsForSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
         NSDate *sectionDate = [self getDateForSection:section];
         NSArray *sectionTransactions = [[[[TransactionManager instance] transactionsSet] transactionsByDate] objectForKey:sectionDate] ?: [[NSArray alloc] init];
         return sectionTransactions;
@@ -138,7 +138,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
         return [[[[TransactionManager instance] transactionsSet] transactionsByDate] count];
     } else {
         return 0;
@@ -170,7 +170,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
         NSDate *sectionDate = [self getDateForSection:section];
         if ([today isEqualToDate:sectionDate]) {
@@ -186,7 +186,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeDebit]) {
+    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
         NSString *title;
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
         NSDate *sectionDate = [self getDateForSection:section];
