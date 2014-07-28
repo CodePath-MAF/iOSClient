@@ -1,7 +1,7 @@
 PODS:
   - Bolts (1.1.0)
   - CrittercismSDK (4.3.4)
-  - Facebook-iOS-SDK (3.16.1):
+  - Facebook-iOS-SDK (3.16.2):
     - Bolts
   - MHPrettyDate (1.1.1)
   - MRProgress (0.6.0):
@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
-  Facebook-iOS-SDK: 594f0e2398fe62b0a44b6f7ae113c7795cfabfa4
+  Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
   MHPrettyDate: d9f42f2ec3dfece6352f18ac77aa33312174e09e
   MRProgress: bacc0f2f6c547e4ab21fd48ed14e19cbd70de3e4
   Parse: 28c0dc54f30201a369d29a2f76c09fa43b2add16

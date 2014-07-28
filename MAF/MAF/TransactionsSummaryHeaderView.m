@@ -20,7 +20,7 @@
 @interface TransactionsSummaryHeaderView() <PNChartDelegate> {
     float _alphaBeforeTransform;
     CGPoint _barCenterBeforeTransform;
-    CGPoint _labelCenterBeforeTransform;
+    CGRect _labelFrameBeforeTransform;
     UIFont *_labelFontBeforeTransform;
     float _labelAlphaBeforeTransform;
     UILabel *_activeLabel;
@@ -133,9 +133,8 @@
     [self addSubview:self.selectedBar];
  
     // bring current label into focus
-    _labelCenterBeforeTransform = _activeLabel.center;
+    _labelFrameBeforeTransform = _activeLabel.frame;
     _labelFontBeforeTransform = _activeLabel.font;
-    _activeLabel.frame = CGRectMake(_activeLabel.center.x, _activeLabel.center.y, _activeLabel.frame.size.width + 10, _activeLabel.frame.size.height);
     [_activeLabel removeFromSuperview];
     [self addSubview:_activeLabel];
 
@@ -148,11 +147,11 @@
                             self.singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                     action:@selector(handleTouchInDetailBar:)];
                             [self.selectedBar addGestureRecognizer:self.singleTap];
-                            _activeLabel.center = CGPointMake(self.center.x, self.center.y - 90);
+#warning TODO we should have a "verbose" value for the day so we can substitute that here ie. Sun -> Sunday (July 27th)
+                            _activeLabel.frame = CGRectMake(self.center.x - 10, self.center.y - 95, _activeLabel.frame.size.width + 10, _activeLabel.frame.size.height);
                             [_activeLabel setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:15]];
                             _labelAlphaBeforeTransform = _activeLabel.alpha;
                             _activeLabel.alpha = 1.f;
-
                         }
                         completion:nil];
     
@@ -191,7 +190,7 @@
                             bar.transform = CGAffineTransformIdentity;
                             self.transactionsCategoryChart.alpha = 1;
                             bar.alpha = _alphaBeforeTransform;
-                            _activeLabel.center = _labelCenterBeforeTransform;
+                            _activeLabel.frame = _labelFrameBeforeTransform;
                             _activeLabel.font = _labelFontBeforeTransform;
                             _activeLabel.alpha = _labelAlphaBeforeTransform;
                         }
