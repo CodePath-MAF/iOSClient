@@ -10,20 +10,25 @@
 
 #import "OpenSansSemiBoldLabel.h"
 
+#import "StackedBarChart.h"
 #import "TransactionsSummaryHeaderView.h"
 #import "TransactionCategoryManager.h"
 #import "Utilities.h"
-#import "PNStackedBarChartDataItem.h"
 #import "User.h"
+#import "TextDetailChart.h"
 
 @interface TransactionsSummaryHeaderView() <PNChartDelegate> {
     float _alphaBeforeTransform;
-    CGPoint _centerBeforeTransform;
+    CGPoint _barCenterBeforeTransform;
+    CGPoint _labelCenterBeforeTransform;
+    UIFont *_labelFontBeforeTransform;
+    float _labelAlphaBeforeTransform;
+    UILabel *_activeLabel;
+    PNStackedBar *_prototypeBar;
 }
 
 
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentThisWeekTotalLabel;
-
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *totalCashLabel;
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentTodayTotalLabel;
 
@@ -31,11 +36,10 @@
 @property (nonatomic, strong) PNTextChart *detailLabelsChart;
 
 @property (nonatomic, strong) NSDictionary *chartData;
-@property (nonatomic, strong) UIView *selectedBar;
+@property (nonatomic, strong) PNStackedBar *selectedBar;
 
 @property (nonatomic, strong) UITapGestureRecognizer *singleTap;
 
-- (PNStackedBarChart *)buildStackedBarChart:(NSArray *)xLabels dataItems:(NSArray *)dataItems;
 - (float)getMaxValueFromItems:(NSArray *)dataItems;
 - (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems;
 - (void)handleTouchInDetailBar:(id)sender;
@@ -73,23 +77,7 @@
 }
 
 - (void)renderStackedBarChart {
-    NSMutableArray *chartDataItems = [[NSMutableArray alloc] init];
-    
-    // build the PNStackedBarChartDataItems
-    for (NSArray *items in self.chartData[@"data"]) {
-        NSMutableArray *currentItems = [[NSMutableArray alloc] init];
-        for (NSDictionary *itemData in items) {
-            PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:[(NSNumber *)itemData[@"categoryTotal"] floatValue] color:[Utilities colorFromHexString:itemData[@"categoryColor"]]];
-            [currentItems addObject:item];
-        }
-        [chartDataItems addObject:currentItems];
-    }
-    
-    // Setup the chart
-    self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
-    [self.transactionsCategoryChart setXLabels:self.chartData[@"xLabels"]];
-    [self.transactionsCategoryChart setYMaxValue:[(NSNumber *)self.chartData[@"maxValue"] floatValue]];
-    [self.transactionsCategoryChart strokeChart];
+    self.transactionsCategoryChart = [StackedBarChart buildChart:self.chartData];
     self.transactionsCategoryChart.delegate = self;
     [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
     [self addSubview:self.transactionsCategoryChart];
@@ -129,83 +117,66 @@
 
 - (void)userClickedOnBarCharIndex:(NSInteger)barIndex {
     
-    NSLog(@"Click on bar %@", @(barIndex));
     self.selectedBar = [self.transactionsCategoryChart.bars objectAtIndex:barIndex];
-    
-#warning this needs to be moved above the bar
-//    UILabel *label = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
 
+    _activeLabel = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
     NSArray *items = [(NSArray *)self.chartData[@"data"] objectAtIndex:barIndex];
-    NSArray *labels = [self getXLabelsForHorizontalBar:items];
     
-    NSMutableArray *topLabels = [[NSMutableArray alloc] init];
-    NSMutableArray *bottomLabels = [[NSMutableArray alloc] init];
-    for (int i = 0; i < items.count; i++) {
-        NSDictionary *item = items[i];
-        NSString *percentString = labels[i];
-        [topLabels addObject:[PNTextChartLabelItem dataItemWithText:[item[@"categoryName"] uppercaseString] font:[UIFont fontWithName:@"OpenSans" size:10.f] textColor:[Utilities colorFromHexString:item[@"categoryColor"]] textAlignment:NSTextAlignmentCenter labelHeight:30.f]];
-        [bottomLabels addObject:[PNTextChartLabelItem dataItemWithText:percentString font:[UIFont fontWithName:@"OpenSans-Semibold" size:8.f] textColor:[UIColor darkGrayColor] textAlignment:NSTextAlignmentCenter labelHeight:45.f]];
-    }
+    // copy the bar so we can get its frame after transform
+    _prototypeBar = [[PNStackedBar alloc] initWithFrame:self.selectedBar.frame items:self.selectedBar.items withMaxValue:self.selectedBar.maxValue];
+    _prototypeBar.alpha = 0;
+    [_prototypeBar strokeBar];
+    [self transformBar:_prototypeBar];
     
+    // remove the bar from the chart and add it to the main view
     [self.selectedBar removeFromSuperview];
     [self addSubview:self.selectedBar];
-//    [self addSubview:label];
+ 
+    // bring current label into focus
+    _labelCenterBeforeTransform = _activeLabel.center;
+    _labelFontBeforeTransform = _activeLabel.font;
+    _activeLabel.frame = CGRectMake(_activeLabel.center.x, _activeLabel.center.y, _activeLabel.frame.size.width + 10, _activeLabel.frame.size.height);
+    [_activeLabel removeFromSuperview];
+    [self addSubview:_activeLabel];
 
-    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.transactionsCategoryChart.alpha = 0.f;
-        self.detailLabelsChart.alpha = 1.f;
-        
-        _alphaBeforeTransform = self.selectedBar.alpha;
-        _centerBeforeTransform = self.selectedBar.center;
-        CGAffineTransform barTransform = CGAffineTransformMakeScale(250.f/self.selectedBar.frame.size.height, 4);
-        self.selectedBar.transform = CGAffineTransformRotate(barTransform, 90 * M_PI / 180);
-        
-        self.selectedBar.alpha = 1.f;
-        self.selectedBar.center = CGPointMake(self.center.x, self.center.y - 30);
-        self.singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                action:@selector(handleTouchInDetailBar:)];
-        [self.selectedBar addGestureRecognizer:self.singleTap];
-//        label.alpha = 1.f;
-//        label.center = CGPointMake(self.center.x, self.center.y - 80);
-//        [label setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:label.font.pointSize]];
-#warning TODO need to transform the size after we move its position
+    // animate the detail view
+    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0
+                        options:UIViewAnimationOptionCurveEaseIn animations:^{
+                            self.transactionsCategoryChart.alpha = 0.f;
+                            [self transformBar:self.selectedBar];
+                            self.selectedBar.alpha = 1.f;
+                            self.singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                    action:@selector(handleTouchInDetailBar:)];
+                            [self.selectedBar addGestureRecognizer:self.singleTap];
+                            _activeLabel.center = CGPointMake(self.center.x, self.center.y - 90);
+                            [_activeLabel setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:15]];
+                            _labelAlphaBeforeTransform = _activeLabel.alpha;
+                            _activeLabel.alpha = 1.f;
 
-    } completion:^(BOOL finished) {
-        self.detailLabelsChart = [[PNTextChart alloc] initWithFrame:CGRectMake(self.selectedBar.frame.origin.x - 30, self.selectedBar.frame.origin.y + 80, self.selectedBar.frame.size.width + 50, self.selectedBar.frame.size.height)];
-        NSLog(@"top labels: %@", topLabels);
-        NSLog(@"bottom labels: %@", bottomLabels);
-        [self.detailLabelsChart setTopLabels:topLabels];
-        [self.detailLabelsChart setBottomLabels:bottomLabels];
-        [self.detailLabelsChart setTopLabelWidth:100.f];
-        [self.detailLabelsChart setBottomLabelWidth:100.f];
-        [self.detailLabelsChart strokeChart];
-        self.detailLabelsChart.alpha = 0.f;
-        [self addSubview:self.detailLabelsChart];
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.detailLabelsChart.alpha = 1.f;
-        } completion:nil];
-    }];
+                        }
+                        completion:nil];
+    
+    // animate the detail labels
+    self.detailLabelsChart = [TextDetailChart buildChart:items belowFrame:_prototypeBar.frame];
+    self.detailLabelsChart.alpha = 0.f;
+    [self addSubview:self.detailLabelsChart];
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                        self.detailLabelsChart.alpha = 1.f;
+                     }
+                     completion:nil];
 }
 
-- (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems {
-    float total = [self getMaxValueFromItems:dataItems];
-    NSMutableArray *labels = [[NSMutableArray alloc] init];
-    for (NSDictionary *item in dataItems) {
-        [labels addObject:[NSString stringWithFormat:@"%.02f%%", ([(NSNumber *)item[@"categoryTotal"] floatValue]/total*100)]];
-    }
-    return labels;
-}
-
-- (float)getMaxValueFromItems:(NSArray *)dataItems {
-    float total = 0.0;
-    for (NSDictionary *item in dataItems) {
-        total += [(NSNumber *)item[@"categoryTotal"] floatValue];
-    }
-    return total;
+- (void)transformBar:(UIView *)bar {
+    _alphaBeforeTransform = bar.alpha;
+    _barCenterBeforeTransform = bar.center;
+    CGAffineTransform barTransform = CGAffineTransformMakeScale(250.f/bar.frame.size.height, 4);
+    bar.transform = CGAffineTransformRotate(barTransform, 90 * M_PI / 180);
+    bar.center = CGPointMake(self.center.x, self.center.y - 30);
 }
 
 - (void)handleTouchInDetailBar:(id)sender {
-    NSLog(@"touched big bar");
     UIView *bar = [(UITapGestureRecognizer *)sender view];
     [[(UITapGestureRecognizer *)sender view] removeGestureRecognizer:self.singleTap];
     
@@ -213,16 +184,22 @@
         self.detailLabelsChart.alpha = 0;
     } completion:^(BOOL finished) {
         [self.detailLabelsChart removeFromSuperview];
-        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            bar.center = _centerBeforeTransform;
-            bar.transform = CGAffineTransformIdentity;
-            self.transactionsCategoryChart.alpha = 1;
-            bar.alpha = _alphaBeforeTransform;
-            
-        }
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                            bar.center = _barCenterBeforeTransform;
+                            bar.transform = CGAffineTransformIdentity;
+                            self.transactionsCategoryChart.alpha = 1;
+                            bar.alpha = _alphaBeforeTransform;
+                            _activeLabel.center = _labelCenterBeforeTransform;
+                            _activeLabel.font = _labelFontBeforeTransform;
+                            _activeLabel.alpha = _labelAlphaBeforeTransform;
+                        }
                          completion:^(BOOL finished) {
                              [bar removeFromSuperview];
                              [self.transactionsCategoryChart addSubview:bar];
+                             [_activeLabel removeFromSuperview];
+                             [self.transactionsCategoryChart addSubview:_activeLabel];
                          }];
     }];
    
