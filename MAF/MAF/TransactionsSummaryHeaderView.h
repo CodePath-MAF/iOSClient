@@ -11,7 +11,7 @@
 
 @interface TransactionsSummaryHeaderView : UIView
 
-@property (strong, nonatomic) TransactionsSet *transactionsSet;
+@property (strong, nonatomic) NSDictionary *viewData;
 
 - (void)setActiveBar:(NSInteger)barIndex activeAlpha:(CGFloat)activeAlpha inactiveAlpha:(CGFloat)inactiveAlpha;
 - (void)cleanUpCharts;

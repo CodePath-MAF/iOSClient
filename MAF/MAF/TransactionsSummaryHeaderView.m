@@ -59,39 +59,28 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     [self.transactionsCategoryChart removeFromSuperview];
-
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
-    
-    [PFCloud callFunctionInBackground:@"stackedBarChart" withParameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day)} target:self selector:@selector(fetchChartData:error:)];
+    [self renderStackedBarChart:self.viewData[@"stackedBarChart"]];
 }
 
-- (void)fetchChartData:(NSDictionary *)chartData error:(NSError *)error {
-    if (error) {
-        NSLog(@"error: %@", error);
-    } else {
-        if ([(NSNumber *)chartData[@"hasData"] boolValue]) {
-            self.chartData = chartData;
-            [self renderStackedBarChart];
-        }
-    }
-}
-
-- (void)renderStackedBarChart {
-    self.transactionsCategoryChart = [StackedBarChart buildChart:self.chartData];
+- (void)renderStackedBarChart:(NSDictionary *)chartData {
+    self.transactionsCategoryChart = [StackedBarChart buildChart:chartData];
     self.transactionsCategoryChart.delegate = self;
     [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
     [self addSubview:self.transactionsCategoryChart];
 }
 
-- (void)renderTextDetailChart:(NSNumber *)index {
-    
+- (void)renderTextDetailChart:(NSInteger)index chartData:(NSDictionary *)chartData {
+    NSArray *items = [(NSArray *)chartData[@"data"] objectAtIndex:index];
+    self.detailLabelsChart = [TextDetailChart buildChart:items belowFrame:_prototypeBar.frame];
+    self.detailLabelsChart.alpha = 0.f;
+    [self addSubview:self.detailLabelsChart];
 }
 
-- (void)setTransactionsSet:(TransactionsSet *)transactionsSet {
-    _transactionsSet = transactionsSet;
-    self.spentThisWeekTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet spentThisWeek]];
-    self.spentTodayTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [transactionsSet spentToday]];
-    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [[User currentUser] totalCash]];
+- (void)setViewData:(NSDictionary *)viewData {
+    _viewData = viewData;
+    self.spentThisWeekTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [(NSNumber *)viewData[@"spentThisWeek"] floatValue]];
+    self.spentTodayTotalLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [(NSNumber *)viewData[@"spentToday"] floatValue]];
+    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [(NSNumber *)viewData[@"totalCash"] floatValue]];
 }
 
 - (void)setActiveBar:(NSInteger)barIndex activeAlpha:(CGFloat)activeAlpha inactiveAlpha:(CGFloat)inactiveAlpha {
@@ -118,9 +107,7 @@
 - (void)userClickedOnBarCharIndex:(NSInteger)barIndex {
     
     self.selectedBar = [self.transactionsCategoryChart.bars objectAtIndex:barIndex];
-
     _activeLabel = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
-    NSArray *items = [(NSArray *)self.chartData[@"data"] objectAtIndex:barIndex];
     
     // copy the bar so we can get its frame after transform
     _prototypeBar = [[PNStackedBar alloc] initWithFrame:self.selectedBar.frame
@@ -158,9 +145,7 @@
                         completion:nil];
     
     // animate the detail labels
-    self.detailLabelsChart = [TextDetailChart buildChart:items belowFrame:_prototypeBar.frame];
-    self.detailLabelsChart.alpha = 0.f;
-    [self addSubview:self.detailLabelsChart];
+    [self renderTextDetailChart:barIndex chartData:self.viewData[@"stackedBarChart"]];
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1.0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{

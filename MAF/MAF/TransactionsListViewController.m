@@ -24,11 +24,13 @@
 
 #warning TODO make sure this is only showing TransactionTypeCredit
 
-@interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate, EmptyTransactionsViewDelegate>
+@interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate, EmptyTransactionsViewDelegate> {
+    NSDateFormatter *_dateFormatter;
+}
 
 @property (nonatomic, strong) TransactionTableViewCell *prototypeCell;
 @property (nonatomic, strong) EmptyTransactionsView *emptyView;
-
+@property (nonatomic, strong) NSDictionary *viewData;
 
 @property (weak, nonatomic) IBOutlet TransactionsSummaryHeaderView *summaryView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -42,6 +44,8 @@
     [super viewDidLoad];
     self.title = @"Expenses";
     
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"YYYY-MM-d"];
     self.summaryView = [[[NSBundle mainBundle] loadNibNamed:@"TransactionsSummaryHeaderView" owner:self options:nil] lastObject];
     self.summaryView.alpha = 0.f;
     [self.view addSubview:self.summaryView];
@@ -71,25 +75,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
-        [[self fetchData] continueWithBlock:^id(BFTask *task) {
-            if (task.error) {
-                NSLog(@"Error fetching transactions for user: %@", task.error);
-            } else {
-                [self routeToView];
-            }
-            return task;
-        }];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
+    [PFCloud callFunctionInBackground:@"stackedBarChartDetailView" withParameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [NSDate new]} target:self selector:@selector(fetchData:error:)];
+}
+
+- (void)fetchData:(NSDictionary *)viewData error:(NSError *)error {
+    if (error) {
+        NSLog(@"error: %@", error);
     } else {
-        self.emptyView.alpha = 0;
+        self.viewData = viewData;
         [self routeToView];
     }
 }
 
 - (void)routeToView {
-    [self.summaryView setTransactionsSet:[[TransactionManager instance] transactionsSet]];
+    [self.summaryView setViewData:self.viewData];
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        if (![[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
+        if (![(NSArray *)self.viewData[@"transactionsByDate"] count]) {
             [self.emptyView updateTotalCash];
             self.emptyView.alpha = 1;
         } else {
@@ -99,10 +101,6 @@
             [self.tableView reloadData];
         }
     } completion:nil];
-}
-
-- (BFTask *)fetchData {
-    return [[TransactionManager instance] fetchTransactionsForUser:[User currentUser] ofType:TransactionTypeCredit];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -122,27 +120,28 @@
 #pragma mark - Table view data source
 
 - (NSDate *)getDateForSection:(NSInteger)section {
-    NSSortDescriptor *descendingDateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:NO];
-    NSArray *sortedKeys = [[[[[TransactionManager instance] transactionsSet] transactionsByDate] allKeys] sortedArrayUsingDescriptors:[[NSArray alloc] initWithObjects:descendingDateDescriptor, nil]];
-    return sortedKeys[section];
+    return [_dateFormatter dateFromString:self.viewData[@"dates"][section]];
+}
+
+- (NSString *)getDateStringForSection:(NSInteger)section {
+    return self.viewData[@"dates"][section];
 }
 
 - (NSArray *)getTransactionsForSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
-        NSDate *sectionDate = [self getDateForSection:section];
-        NSArray *sectionTransactions = [[[[TransactionManager instance] transactionsSet] transactionsByDate] objectForKey:sectionDate] ?: [[NSArray alloc] init];
-        return sectionTransactions;
+    if ([self hasTransactions]) {
+        NSString *sectionDateString = [self getDateStringForSection:section];
+        return [self.viewData[@"transactionsByDate"] objectForKey:sectionDateString];
     } else {
         return [[NSArray alloc] init];
     }
 }
 
+- (BOOL)hasTransactions {
+    return (BOOL)[self.viewData[@"transactionsByDate"] count];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
-        return [[[[TransactionManager instance] transactionsSet] transactionsByDate] count];
-    } else {
-        return 0;
-    }
+    return [self.viewData[@"dates"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -169,24 +168,8 @@
     return 0.1f;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
-        NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
-        NSDate *sectionDate = [self getDateForSection:section];
-        if ([today isEqualToDate:sectionDate]) {
-            return @"Today";
-        } else {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"EEEE"];
-            return [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:sectionDate]];
-        }
-    } else {
-        return @"";
-    }
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([[TransactionManager instance] hasTransactionsOfType:TransactionTypeCredit]) {
+    if ([self hasTransactions]) {
         NSString *title;
         NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
         NSDate *sectionDate = [self getDateForSection:section];
