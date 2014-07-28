@@ -21,9 +21,10 @@
 @dynamic type;
 @dynamic status;
 @dynamic paymentInterval;
-@dynamic total;
+@dynamic amount;
 @dynamic paymentAmount;
 @dynamic numPayments;
-@dynamic targetDate;
+@dynamic goalDate;
+@dynamic currentTotal;
 
 @end

@@ -16,7 +16,7 @@
 
 @implementation GoalManager
 
-+ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name type:(enum GoalType)type total:(float)total paymentInterval:(enum GoalPaymentInterval)paymentInterval goalDate:(NSDate *)goalDate {
++ (BFTask *)createGoalForUser:(User *)user name:(NSString *)name type:(enum GoalType)type amount:(float)amount paymentInterval:(enum GoalPaymentInterval)paymentInterval goalDate:(NSDate *)goalDate {
     
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     Goal *goal = [Goal object];
@@ -27,21 +27,21 @@
     float paymentAmount;
     if (paymentInterval > daysToGoal) {
         numMilestones = 1;
-        paymentAmount = total;
+        paymentAmount = amount;
     } else {
         numMilestones = daysToGoal/paymentInterval;
-        paymentAmount = total/numMilestones;
+        paymentAmount = amount/numMilestones;
     }
     
     goal.user = user;
     goal.name = name;
     goal.type = type;
     goal.status = GoalStatusInProgress;
-    goal.total = total;
+    goal.amount = amount;
     goal.paymentInterval = paymentInterval;
     goal.paymentAmount = paymentAmount;
     goal.numPayments = numMilestones;
-    goal.targetDate = goalDate;
+    goal.goalDate = goalDate;
     [goal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             [task setError:error];

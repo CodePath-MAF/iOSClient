@@ -13,5 +13,6 @@
 @interface User : PFUser
 
 @property (nonatomic, assign) float totalCash;
+@property (nonatomic, assign) BOOL setup;
 
 @end

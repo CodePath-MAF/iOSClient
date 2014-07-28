@@ -63,10 +63,20 @@
     
 }
 
+- (void)routeToInitialCashView {
+    SimpleTransactionViewController *vc = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
+    [vc setLabelsAndButtons:InitialCash goal:nil amount:0.00];
+    [self.navigationController setViewControllers:@[vc] animated:YES];
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([User currentUser]) {
+    User *user = [User currentUser];
+    if (user && user.setup) {
         [self routeToDashboard];
+    } else if ([User currentUser]) {
+        [self routeToInitialCashView];
     } else {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
@@ -93,10 +103,9 @@
 }
 
 - (void)successfulSignup {
-    SimpleTransactionViewController *vc = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
-    [vc setLabelsAndButtons:InitialCash goal:nil amount:0.00];
-    [self.navigationController setViewControllers:@[vc] animated:YES];
+    [self routeToInitialCashView];
 }
+
 
 - (void)successfulLogin {
     [self routeToDashboard];

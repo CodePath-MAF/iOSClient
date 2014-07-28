@@ -42,11 +42,11 @@
     self.goalNameLabel.text = self.goal.name;
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.goal.paymentAmount];
    
-    self.paymentDueLabel.text = [Utilities prettyMessageFromTargetDate:self.goal.targetDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
+    self.paymentDueLabel.text = [Utilities prettyMessageFromTargetDate:self.goal.goalDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
 }
 
 - (void)updateColors {
-    if([Utilities isWithinWeekOfTargetDate:self.goal.targetDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval]) {
+    if([Utilities isWithinWeekOfTargetDate:self.goal.goalDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval]) {
         [self.dueImageView setImage:[UIImage imageNamed:@"time_red"]];
         [self.paymentDueLabel setTextColor:[UIColor redColor]];
     }

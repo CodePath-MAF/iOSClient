@@ -60,7 +60,7 @@
     NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
 
-    int goalLifetime = [Utilities daysBetweenDate:self.goal.createdAt andDate:self.goal.targetDate];
+    int goalLifetime = [Utilities daysBetweenDate:self.goal.createdAt andDate:self.goal.goalDate];
     float numPayments = roundf((float)goalLifetime/(float)self.goal.paymentInterval);
 
     float amountPaid = 0;
@@ -71,10 +71,10 @@
     
     float milestonesCount = (float)amountPaid/(float)self.goal.paymentAmount;
     self.paymentsMadeLabel.text = [[NSString stringWithFormat:NUM_PAYMENTS_MADE, (int)milestonesCount, (int)numPayments] uppercaseString];
-    self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.total];
+    self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.amount];
     self.saveToDate.text = [NSString stringWithFormat:@"$%.02f SAVED TO DATE", amountPaid];
     
-    if (self.goal.total == amountPaid) {
+    if (self.goal.amount == amountPaid) {
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.goalAchievedButton.alpha = 1;
             self.makePaymentButton.alpha = 0;
@@ -87,7 +87,7 @@
     _goal = goal;
     self.title = self.goal.name;
     NSString *timeTilString;
-    timeTilString = [Utilities prettyMessageFromTargetDate:self.goal.targetDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
+    timeTilString = [Utilities prettyMessageFromTargetDate:self.goal.goalDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
     self.timeTilDueLabel.text = timeTilString;
 }
 
@@ -244,7 +244,7 @@
 
 - (void)drawProgressBar {
     float goalProgress = [[[TransactionManager instance] transactionsSet] totalPaymentsForGoalId:self.goal.objectId];
-    self.progressView.total = self.goal.total;
+    self.progressView.total = self.goal.amount;
     self.progressView.progress = goalProgress;
     [self.progressView setNeedsDisplay];
 }

@@ -78,7 +78,7 @@
 }
 
 + (NSInteger)numberOfMilestonesforGoal:(Goal *)goal {
-    NSInteger daysToGoal = [self daysBetweenDate:[NSDate new] andDate:goal.targetDate];
+    NSInteger daysToGoal = [self daysBetweenDate:[NSDate new] andDate:goal.goalDate];
     return floor(daysToGoal/goal.paymentInterval);
 }
 

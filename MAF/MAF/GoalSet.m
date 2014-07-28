@@ -34,9 +34,9 @@
     if (!_totalByDate) {
         NSMutableDictionary *goalDict = [[NSMutableDictionary alloc] init];
         for (Goal *goal in self.goals) {
-            NSDate *strippedDate = [Utilities dateWithoutTime:goal.targetDate]; // This should use a different date/ Created? next Payment Interval?
+            NSDate *strippedDate = [Utilities dateWithoutTime:goal.goalDate]; // This should use a different date/ Created? next Payment Interval?
             float total = [(NSNumber *)[goalDict objectForKey:strippedDate] ?: [[NSNumber alloc] initWithFloat:0.0] floatValue];
-            float newTotal = total + goal.total;
+            float newTotal = total + goal.amount;
             [goalDict setObject:@(newTotal) forKey:strippedDate];
         }
         _totalByDate = goalDict;
@@ -48,7 +48,7 @@
     if (!_goalsByDate) {
         NSMutableDictionary *goalsByDateDict = [[NSMutableDictionary alloc] init];
         for (Goal *goal in self.goals) {
-            NSDate *strippedDate = [Utilities dateWithoutTime:goal.targetDate]; // This should use a different date/ Created? next Payment Interval?
+            NSDate *strippedDate = [Utilities dateWithoutTime:goal.goalDate]; // This should use a different date/ Created? next Payment Interval?
             NSMutableArray *goalsForDate = [goalsByDateDict objectForKey:strippedDate] ?: [[NSMutableArray alloc] init];
             [goalsForDate addObject:goal];
             [goalsByDateDict setObject:goalsForDate forKey:strippedDate];
@@ -71,7 +71,7 @@
     if (!_transactionsByGoal) {
         NSMutableDictionary *goalsByDateDict = [[NSMutableDictionary alloc] init];
         for (Goal *goal in self.goals) {
-            NSDate *strippedDate = [Utilities dateWithoutTime:goal.targetDate]; // This should use a different date/ Created? next Payment Interval?
+            NSDate *strippedDate = [Utilities dateWithoutTime:goal.goalDate]; // This should use a different date/ Created? next Payment Interval?
             NSMutableArray *goalsForDate = [goalsByDateDict objectForKey:strippedDate] ?: [[NSMutableArray alloc] init];
             [goalsForDate addObject:goal];
             [goalsByDateDict setObject:goalsForDate forKey:strippedDate];

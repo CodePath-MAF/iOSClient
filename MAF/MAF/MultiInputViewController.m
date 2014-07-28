@@ -339,11 +339,11 @@ static NSInteger const kIntervalPicker = 3;
         }
     } else {
         if (self.currentViewIndex == 0) {
-            self.goalInProgress.total = [[self.amountText.text  substringFromIndex:1] floatValue];
+            self.goalInProgress.amount = [[self.amountText.text  substringFromIndex:1] floatValue];
         } else if (self.currentViewIndex == 1) {
             self.goalInProgress.name = self.nameText.text;
         } else if (self.currentViewIndex == 2) {
-            self.goalInProgress.targetDate = self.datePicker.date;
+            self.goalInProgress.goalDate = self.datePicker.date;
         } else if (self.currentViewIndex == 3) {
             self.goalInProgress.paymentInterval = [self.intervalEnumNames[self.selectedInterval] integerValue];
         }
@@ -412,7 +412,7 @@ static NSInteger const kIntervalPicker = 3;
     } else {
         if (index == 0) {
             mainLabel = @"Amount";
-            subLabel = [NSString stringWithFormat:@"%.02f", self.goalInProgress.total];
+            subLabel = [NSString stringWithFormat:@"%.02f", self.goalInProgress.amount];
         } else if (index == 1) {
             mainLabel = @"Name";
             subLabel = self.goalInProgress.name;
@@ -500,7 +500,7 @@ static NSInteger const kIntervalPicker = 3;
         }
 
         [self startProgress:self.navigationController];
-        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
+        [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:self.transactionInProgress.amount  detail:self.transactionInProgress.name type:type categoryId:category.objectId transactionDate:self.transactionInProgress.transactionDate]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
@@ -511,7 +511,7 @@ static NSInteger const kIntervalPicker = 3;
          }];
     } else {
         [self startProgress:self.navigationController];
-        [[GoalManager createGoalForUser:[User currentUser] name:self.goalInProgress.name type:GoalTypeGoal total:self.goalInProgress.total paymentInterval:self.goalInProgress.paymentInterval goalDate:self.datePicker.date] continueWithBlock:^id(BFTask *task) {
+        [[GoalManager createGoalForUser:[User currentUser] name:self.goalInProgress.name type:GoalTypeGoal amount:self.goalInProgress.amount paymentInterval:self.goalInProgress.paymentInterval goalDate:self.datePicker.date] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error creating goal: %@", task.error);
             } else {

@@ -11,5 +11,6 @@
 @implementation User
 
 @dynamic totalCash;
+@dynamic setup;
 
 @end

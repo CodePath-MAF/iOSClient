@@ -36,7 +36,7 @@
         NSNumber *total = self.formValues[kGoalTotal];
         NSInteger paymentInterval = [[(XLFormOptionsObject *)self.formValues[kGoalPaymentInterval] formValue] integerValue];
         
-        [[GoalManager createGoalForUser:[User currentUser] name:self.formValues[kGoalName] type:GoalTypeGoal total:[total floatValue] paymentInterval:paymentInterval goalDate:self.formValues[kGoalTargetDate]] continueWithBlock:^id(BFTask *task) {
+        [[GoalManager createGoalForUser:[User currentUser] name:self.formValues[kGoalName] type:GoalTypeGoal amount:[total floatValue] paymentInterval:paymentInterval goalDate:self.formValues[kGoalTargetDate]] continueWithBlock:^id(BFTask *task) {
             if (task.error) {
                 NSLog(@"Error creating goal: %@", task.error);
             } else {

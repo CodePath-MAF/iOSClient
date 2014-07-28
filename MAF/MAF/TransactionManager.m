@@ -47,7 +47,7 @@
         transaction.goal = [Goal objectWithoutDataWithObjectId:goalId];
     }
     transaction.amount = amount;
-    transaction.detail = detail;
+    transaction.name = detail;
     transaction.type = type;
     if (categoryId != nil) {
         transaction.category = [TransactionCategory objectWithoutDataWithObjectId:categoryId];

@@ -27,7 +27,7 @@
 
 - (void)setTransaction:(Transaction *)transaction {
     _transaction = transaction;
-    self.transactionDetailLabel.text = transaction.detail;
+    self.transactionDetailLabel.text = transaction.name;
     self.transactionDetailLabel.textColor = [Utilities colorFromHexString:@"#342F33"];
     self.transactionCategoryLabel.text = [transaction.category.name uppercaseString];
     self.transactionCategoryLabel.textColor = [Utilities colorFromHexString:@"#979797"];
