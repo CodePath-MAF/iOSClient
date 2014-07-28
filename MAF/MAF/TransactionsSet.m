@@ -101,12 +101,6 @@
     return _transactionsByGoal;
 }
 
-- (NSDictionary *)transactionsTotalByCategoryForDate:(NSDate *)date {
-    // loop over the array and compile transactionsTotalByCategoryByDate (this should be cached on the instance of the set)
-    // fetch the one that corresponds to the given date
-    return [[NSDictionary alloc] init];
-}
-
 - (float)transactionsTotalForCurrentWeek {
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
     NSArray *previousDates = [Utilities getPreviousDates:7 fromDate:today];
@@ -124,24 +118,6 @@
     NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
     NSDictionary *totalsDict = [self transactionsTotalByDate];
     return [(NSNumber *)[totalsDict objectForKey:today] floatValue] ?: 0.0;
-}
-
-- (NSDictionary *)transactionsTotalByCategoryByDate {
-    if (!_transactionsByCategoryByDate) {
-        NSMutableDictionary *transactionsByCategoryByDateDict = [[NSMutableDictionary alloc] init];
-        for (Transaction *transaction in self.transactions) {
-            if (transaction.type == TransactionTypeDebit) {
-                NSDate *strippedDate = [Utilities dateWithoutTime:transaction.transactionDate];
-                NSMutableDictionary *categoriesForDate = [transactionsByCategoryByDateDict objectForKey:strippedDate] ?: [[NSMutableDictionary alloc] init];
-                NSInteger categoryTotal = [[categoriesForDate objectForKey:transaction.category.name] floatValue] ?: 0.0;
-                categoryTotal += transaction.amount;
-                categoriesForDate[transaction.category.name] = @(categoryTotal);
-                [transactionsByCategoryByDateDict setObject:categoriesForDate forKey:strippedDate];
-            }
-        }
-        _transactionsByCategoryByDate = transactionsByCategoryByDateDict;
-    }
-    return _transactionsByCategoryByDate;
 }
 
 - (NSDictionary *)transactionsByDate {

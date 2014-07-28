@@ -17,13 +17,8 @@
 #import "User.h"
 
 @interface TransactionsSummaryHeaderView() <PNChartDelegate> {
-    NSDictionary *_transactionsTotalByCategoryByDate;
-    float _maxValue;
-
     float _alphaBeforeTransform;
     CGPoint _centerBeforeTransform;
-    NSDateFormatter *_dateFormatter;
-    NSArray *_previousDates;
 }
 
 
@@ -35,11 +30,11 @@
 @property (nonatomic, strong) PNStackedBarChart *transactionsCategoryChart;
 @property (nonatomic, strong) PNTextChart *detailLabelsChart;
 
+@property (nonatomic, strong) NSDictionary *chartData;
 @property (nonatomic, strong) UIView *selectedBar;
 
 @property (nonatomic, strong) UITapGestureRecognizer *singleTap;
 
-- (NSArray *)getDataItemsForDate:(NSDate *)date;
 - (PNStackedBarChart *)buildStackedBarChart:(NSArray *)xLabels dataItems:(NSArray *)dataItems;
 - (float)getMaxValueFromItems:(NSArray *)dataItems;
 - (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems;
@@ -59,74 +54,48 @@
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
-    if (self.transactionsSet) {
-        [self.transactionsCategoryChart removeFromSuperview];
-        
-        _transactionsTotalByCategoryByDate = [self.transactionsSet transactionsTotalByCategoryByDate];
-        _maxValue = 0;
-        
-        NSDate *today = [Utilities dateWithoutTime:[NSDate new]];
-        _previousDates = [Utilities getPreviousDates:7 fromDate:today];
-        _dateFormatter = [[NSDateFormatter alloc] init];
-    #warning make sure the chart x labels support mutlilines
-        [_dateFormatter setDateFormat:@"EEE\r(M/d)"];
-        NSMutableArray *chartXLabels = [[NSMutableArray alloc] init];
-        NSMutableArray *chartDataItems = [[NSMutableArray alloc] init];
-        
-        for (NSDate *previousDate in [_previousDates reverseObjectEnumerator]) {
-            [chartXLabels addObject:[_dateFormatter stringFromDate:previousDate]];
-            [chartDataItems addObject:[self getDataItemsForDate:previousDate]];
-        }
-        
-        self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
-        [self.transactionsCategoryChart setXLabels:chartXLabels];
-        [self.transactionsCategoryChart setYMaxValue:_maxValue];
-        [self.transactionsCategoryChart strokeChart];
-        self.transactionsCategoryChart.delegate = self;
-        [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
-        [self addSubview:self.transactionsCategoryChart];
-        
-    }
-}
+    [self.transactionsCategoryChart removeFromSuperview];
 
-- (NSArray *)getDataItemsForDate:(NSDate *)date {
-    NSDictionary *categoriesForDate = _transactionsTotalByCategoryByDate[date];
-    NSArray *categories = [[TransactionCategoryManager instance] categories];
-    NSMutableArray *dataItems = [[NSMutableArray alloc] init];
-    float dateTotal = 0;
-    for (TransactionCategory *category in categories) {
-        float categoryTotal = [(NSNumber *)[categoriesForDate objectForKey:category.name] floatValue] ?: 0;
-        if (categoryTotal) {
-            dateTotal += categoryTotal;
-            PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:categoryTotal color:[[TransactionCategoryManager instance] colorForCategory:category]];
-            [dataItems addObject:item];
-        }
-    }
-    if (dateTotal > _maxValue) {
-        _maxValue = dateTotal;
-    }
-    return dataItems;
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
     
+    [PFCloud callFunctionInBackground:@"stackedBarChart" withParameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day)} target:self selector:@selector(fetchChartData:error:)];
 }
 
-- (NSArray *)getTextChartDataItemsForDate:(NSDate *)date {
-    NSDictionary *categoriesForDate = _transactionsTotalByCategoryByDate[date];
-    NSArray *categories = [[TransactionCategoryManager instance] categories];
-    NSMutableArray *dataItems = [[NSMutableArray alloc] init];
-    float dateTotal = 0;
-    NSDictionary *item;
-    for (TransactionCategory *category in categories) {
-        float categoryTotal = [(NSNumber *)[categoriesForDate objectForKey:category.name] floatValue] ?: 0;
-        if (categoryTotal) {
-            dateTotal += categoryTotal;
-            item = @{@"categoryTotal": @(categoryTotal), @"color": [[TransactionCategoryManager instance] colorForCategory:category], @"name": [category.name uppercaseString]};
-            [dataItems addObject:item];
+- (void)fetchChartData:(NSDictionary *)chartData error:(NSError *)error {
+    if (error) {
+        NSLog(@"error: %@", error);
+    } else {
+        if ([(NSNumber *)chartData[@"hasData"] boolValue]) {
+            self.chartData = chartData;
+            [self renderStackedBarChart];
         }
     }
-    if (dateTotal > _maxValue) {
-        _maxValue = dateTotal;
+}
+
+- (void)renderStackedBarChart {
+    NSMutableArray *chartDataItems = [[NSMutableArray alloc] init];
+    
+    // build the PNStackedBarChartDataItems
+    for (NSArray *items in self.chartData[@"data"]) {
+        NSMutableArray *currentItems = [[NSMutableArray alloc] init];
+        for (NSDictionary *itemData in items) {
+            PNStackedBarChartDataItem *item = [PNStackedBarChartDataItem dataItemWithValue:[(NSNumber *)itemData[@"categoryTotal"] floatValue] color:[Utilities colorFromHexString:itemData[@"categoryColor"]]];
+            [currentItems addObject:item];
+        }
+        [chartDataItems addObject:currentItems];
     }
-    return dataItems;
+    
+    // Setup the chart
+    self.transactionsCategoryChart = [[PNStackedBarChart alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 175) itemArrays:chartDataItems];
+    [self.transactionsCategoryChart setXLabels:self.chartData[@"xLabels"]];
+    [self.transactionsCategoryChart setYMaxValue:[(NSNumber *)self.chartData[@"maxValue"] floatValue]];
+    [self.transactionsCategoryChart strokeChart];
+    self.transactionsCategoryChart.delegate = self;
+    [self setActiveBar:6 activeAlpha:1.0f inactiveAlpha:0.5f];
+    [self addSubview:self.transactionsCategoryChart];
+}
+
+- (void)renderTextDetailChart:(NSNumber *)index {
     
 }
 
@@ -163,10 +132,10 @@
     NSLog(@"Click on bar %@", @(barIndex));
     self.selectedBar = [self.transactionsCategoryChart.bars objectAtIndex:barIndex];
     
-    UILabel *label = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
-    NSDate *previousDate = _previousDates[_previousDates.count - barIndex - 1];
-    NSArray *items = [self getTextChartDataItemsForDate:previousDate];
-    float total = [self getMaxValueFromItems:items];
+#warning this needs to be moved above the bar
+//    UILabel *label = [self.transactionsCategoryChart.labels objectAtIndex:barIndex];
+
+    NSArray *items = [(NSArray *)self.chartData[@"data"] objectAtIndex:barIndex];
     NSArray *labels = [self getXLabelsForHorizontalBar:items];
     
     NSMutableArray *topLabels = [[NSMutableArray alloc] init];
@@ -174,11 +143,10 @@
     for (int i = 0; i < items.count; i++) {
         NSDictionary *item = items[i];
         NSString *percentString = labels[i];
-        [topLabels addObject:[PNTextChartLabelItem dataItemWithText:item[@"name"] font:[UIFont fontWithName:@"OpenSans" size:10.f] textColor:item[@"color"] textAlignment:NSTextAlignmentCenter labelHeight:30.f]];
+        [topLabels addObject:[PNTextChartLabelItem dataItemWithText:[item[@"categoryName"] uppercaseString] font:[UIFont fontWithName:@"OpenSans" size:10.f] textColor:[Utilities colorFromHexString:item[@"categoryColor"]] textAlignment:NSTextAlignmentCenter labelHeight:30.f]];
         [bottomLabels addObject:[PNTextChartLabelItem dataItemWithText:percentString font:[UIFont fontWithName:@"OpenSans-Semibold" size:8.f] textColor:[UIColor darkGrayColor] textAlignment:NSTextAlignmentCenter labelHeight:45.f]];
     }
     
-    NSLog(@"date: %@, items: %@, labels: %@", previousDate, items, labels);
     [self.selectedBar removeFromSuperview];
     [self addSubview:self.selectedBar];
 //    [self addSubview:label];
@@ -204,6 +172,8 @@
 
     } completion:^(BOOL finished) {
         self.detailLabelsChart = [[PNTextChart alloc] initWithFrame:CGRectMake(self.selectedBar.frame.origin.x - 30, self.selectedBar.frame.origin.y + 80, self.selectedBar.frame.size.width + 50, self.selectedBar.frame.size.height)];
+        NSLog(@"top labels: %@", topLabels);
+        NSLog(@"bottom labels: %@", bottomLabels);
         [self.detailLabelsChart setTopLabels:topLabels];
         [self.detailLabelsChart setBottomLabels:bottomLabels];
         [self.detailLabelsChart setTopLabelWidth:100.f];
@@ -211,7 +181,7 @@
         [self.detailLabelsChart strokeChart];
         self.detailLabelsChart.alpha = 0.f;
         [self addSubview:self.detailLabelsChart];
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.detailLabelsChart.alpha = 1.f;
         } completion:nil];
     }];
@@ -220,8 +190,6 @@
 - (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems {
     float total = [self getMaxValueFromItems:dataItems];
     NSMutableArray *labels = [[NSMutableArray alloc] init];
-#warning TODO add like a 'referenceLabel' to PNStackedBarChartDataItem so we can pull the category from it
-#warning TODO potentially add like a primary and secondary label so we can support multiline values
     for (NSDictionary *item in dataItems) {
         [labels addObject:[NSString stringWithFormat:@"%.02f%%", ([(NSNumber *)item[@"categoryTotal"] floatValue]/total*100)]];
     }
