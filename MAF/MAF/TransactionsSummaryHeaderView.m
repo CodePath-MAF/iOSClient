@@ -206,6 +206,7 @@
 
 - (void)cleanUpCharts {
     [self.detailLabelsChart removeFromSuperview];
+    [_activeLabel removeFromSuperview];
     [self.transactionsCategoryChart removeFromSuperview];
     [self.selectedBar removeFromSuperview];
 }
