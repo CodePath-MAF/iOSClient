@@ -614,7 +614,7 @@
 				ORGANIZATIONNAME = "NinjaSudo Inc";
 				TargetAttributes = {
 					2CBA468C1965DE3A00C6BEDF = {
-						DevelopmentTeam = 9M3HBGVPEU;
+						DevelopmentTeam = QPTTGV9KP3;
 					};
 					2CBA46A71965DE3A00C6BEDF = {
 						TestTargetID = 2CBA468C1965DE3A00C6BEDF;
