@@ -123,7 +123,9 @@
     NSArray *items = [(NSArray *)self.chartData[@"data"] objectAtIndex:barIndex];
     
     // copy the bar so we can get its frame after transform
-    _prototypeBar = [[PNStackedBar alloc] initWithFrame:self.selectedBar.frame items:self.selectedBar.items withMaxValue:self.selectedBar.maxValue];
+    _prototypeBar = [[PNStackedBar alloc] initWithFrame:self.selectedBar.frame
+                                                  items:self.selectedBar.items
+                                           withMaxValue:self.selectedBar.maxValue];
     _prototypeBar.alpha = 0;
     [_prototypeBar strokeBar];
     [self transformBar:_prototypeBar];
