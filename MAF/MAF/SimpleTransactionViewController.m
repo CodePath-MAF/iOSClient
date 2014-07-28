@@ -172,6 +172,7 @@
     [self startProgress:self.navigationController];
     float amount = [[self.amountLabel.text substringFromIndex:1] floatValue];
     if (self.currentType == InitialCash) {
+        [[User currentUser] setSetup:YES];
         [[[TransactionManager instance] createTransactionForUser:[User currentUser] goalId:nil amount:amount detail:@"Initial Cash" type:TransactionTypeCredit categoryId:[[TransactionCategoryManager instance] categoryObjectIdForName:@"Income"] transactionDate:now]
          continueWithBlock:^id(BFTask *task) {
              if (task.error) {

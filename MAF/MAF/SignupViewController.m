@@ -62,11 +62,12 @@
     NSString *name = self.nameTextField.text;
     NSString *password = self.passwordTextField.text;
     
-    PFUser *user = [PFUser user];
+    User *user = [User new];
     user.username = email;
     user.email = email;
     user.password = password;
     user[@"name"] = name;
+    user.setup = NO;
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"failed to signup user: %@", [error userInfo][@"error"]);

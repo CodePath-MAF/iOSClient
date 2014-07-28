@@ -73,7 +73,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     User *user = [User currentUser];
-    if (user && user.setup) {
+    if (user && [(NSNumber *)user[@"setup"] boolValue]) {
         [self routeToDashboard];
     } else if ([User currentUser]) {
         [self routeToInitialCashView];

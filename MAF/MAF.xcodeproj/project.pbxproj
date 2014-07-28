@@ -372,21 +372,11 @@
 				BF144353196A963000C2BB38 /* TransactionsListViewController.h */,
 				BF144354196A963000C2BB38 /* TransactionsListViewController.m */,
 				BF144355196A963000C2BB38 /* TransactionsListViewController.xib */,
-				BAE442E8197F557E00F2A027 /* SimpleTransactionViewController.h */,
-				BAE442E9197F557E00F2A027 /* SimpleTransactionViewController.m */,
-				BAE442EA197F557E00F2A027 /* SimpleTransactionViewController.xib */,
+				BFC167CF1985D5AB0090AE5C /* Forms */,
 				2C6674871974923F00434802 /* GoalDetailViewController.h */,
 				2C6674881974923F00434802 /* GoalDetailViewController.m */,
 				2C6674891974923F00434802 /* GoalDetailViewController.xib */,
-				BAFB2C191975D39400A11C56 /* MultiInputViewController.h */,
-				BAFB2C1A1975D39400A11C56 /* MultiInputViewController.m */,
-				BAFB2C1B1975D39400A11C56 /* MultiInputViewController.xib */,
-				BF4FC9E2197FE6DC00BDF982 /* SignupViewController.h */,
-				BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */,
-				BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */,
-				BFB57ECC198000B1004A0D7B /* LoginViewController.h */,
-				BFB57ECD198000B1004A0D7B /* LoginViewController.m */,
-				BFB57EC9197FFE19004A0D7B /* LoginViewController.xib */,
+				BFC167D01985D5BD0090AE5C /* Login/Signup */,
 				BF26D576198003E70085202E /* MainViewController.h */,
 				BF26D577198003E70085202E /* MainViewController.m */,
 				BF26D578198003E70085202E /* MainViewController.xib */,
@@ -546,6 +536,32 @@
 				BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */,
 			);
 			name = TransactionsTableView;
+			sourceTree = "<group>";
+		};
+		BFC167CF1985D5AB0090AE5C /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				BAFB2C191975D39400A11C56 /* MultiInputViewController.h */,
+				BAFB2C1A1975D39400A11C56 /* MultiInputViewController.m */,
+				BAFB2C1B1975D39400A11C56 /* MultiInputViewController.xib */,
+				BAE442E8197F557E00F2A027 /* SimpleTransactionViewController.h */,
+				BAE442E9197F557E00F2A027 /* SimpleTransactionViewController.m */,
+				BAE442EA197F557E00F2A027 /* SimpleTransactionViewController.xib */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
+		BFC167D01985D5BD0090AE5C /* Login/Signup */ = {
+			isa = PBXGroup;
+			children = (
+				BF4FC9E2197FE6DC00BDF982 /* SignupViewController.h */,
+				BF4FC9E3197FE6DC00BDF982 /* SignupViewController.m */,
+				BF4FC9E4197FE6DC00BDF982 /* SignupViewController.xib */,
+				BFB57ECC198000B1004A0D7B /* LoginViewController.h */,
+				BFB57ECD198000B1004A0D7B /* LoginViewController.m */,
+				BFB57EC9197FFE19004A0D7B /* LoginViewController.xib */,
+			);
+			name = Login/Signup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
