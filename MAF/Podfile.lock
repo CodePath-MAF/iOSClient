@@ -46,6 +46,7 @@ DEPENDENCIES:
   - MRProgress (~> 0.6)
   - Parse (~> 1.2)
   - PNChart (from `https://github.com/mhahn/PNChart.git`)
+  - UICountingLabel
   - XLForm (~> 2.0)
 
 EXTERNAL SOURCES:
