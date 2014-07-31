@@ -9,6 +9,8 @@
 #import "GoalCardView.h"
 #import "Utilities.h"
 #import "OpenSansLightLabel.h"
+#import "TransactionManager.h"
+#import <PNCircleChart.h>
 #import <UICountingLabel.h>
 
 
@@ -43,20 +45,30 @@
     _goal = goal;
     
     
-#warning TODO add Milestone Update
-    NSInteger newMilestoneCount = 0;
-    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", newMilestoneCount, self.goal.numPayments];
+//#warning TODO add Milestone Update
+//    NSInteger newMilestoneCount = 0;
+//    self.milestoneLabel.text = [[NSString alloc] initWithFormat:@"%d OF %d", newMilestoneCount, self.goal.numPayments];
     self.goalNameLabel.text = self.goal.name;
-    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.goal.paymentAmount];
+    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"($%0.2f)", self.goal.paymentAmount];
    
     self.paymentDueLabel.text = [Utilities prettyMessageFromTargetDate:self.goal.goalDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
     
-    float percentComplete = self.goal.currentTotal / self.goal.amount;
-    self.percentCompleteLabel.format = @"%d%%";
-    self.percentCompleteLabel.method = UILabelCountingMethodEaseInOut;
-    [self.percentCompleteLabel countFrom:0 to:percentComplete*100 withDuration:1.0];
+    NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
     
-    [self addCircle:percentComplete];
+    float amountPaid = 0;
+    for (Transaction *t in payments) {
+        amountPaid += t.amount;
+    }
+    amountPaid = roundf(amountPaid);
+    
+
+    
+    float percentComplete = amountPaid / self.goal.amount;
+    self.percentCompleteLabel.format = @"%d%%";
+    self.percentCompleteLabel.method = UILabelCountingMethodEaseIn;
+    [self.percentCompleteLabel countFrom:0.0 to:percentComplete*100 withDuration:1.0];
+    [self addPNCircle:percentComplete];
+    
 }
 
 - (void)updateColors {
@@ -66,41 +78,16 @@
     }
 }
 
-- (void)addCircle:(float)percentageComplete {
-    
-    // Set up the shape of the circle
-    int radius = 40;
-    CAShapeLayer *circle = [CAShapeLayer layer];
-    // Make a circular shape
-    circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
-                                             cornerRadius:radius].CGPath;
-    // Center the shape in self.view
-    circle.position = CGPointMake(CGRectGetMidX(self.frame)-radius,
-                                  CGRectGetMidY(self.frame)-radius);
-    
-    // Configure the apperence of the circle
-    circle.fillColor = [UIColor clearColor].CGColor;
-    circle.strokeColor = [UIColor blackColor].CGColor;
-    circle.lineWidth = 5;
-    circle.strokeEnd = percentageComplete;
-    
-    // Add to parent layer
-    [self.layer addSublayer:circle];
-    
-    // Configure animation
-    CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    drawAnimation.duration            = 1.0; // "animate over 10 seconds or so.."
-    drawAnimation.repeatCount         = 1.0;  // Animate only once..
-    
-    // Animate from no part of the stroke being drawn to the entire stroke being drawn
-    drawAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-    drawAnimation.toValue   = [NSNumber numberWithFloat:percentageComplete];
-    
-    // Experiment with timing to get the appearence to look the way you want
-    drawAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    
-    // Add the animation to the circle
-    [circle addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
+- (void)addPNCircle:(float)percentageComplete {
+    int width = 120;
+    PNCircleChart *circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(10, 40, width, width) andTotal:@100 andCurrent:[NSNumber numberWithFloat:percentageComplete*100] andClockwise:YES andShadow:YES];
+    circleChart.backgroundColor = [UIColor clearColor];
+    circleChart.lineWidth = [NSNumber numberWithInt:3];
+    circleChart.countingLabel.textColor = [UIColor clearColor];
+    [circleChart setStrokeColor:PNGreen];
+    [circleChart strokeChart];
+    [self addSubview:circleChart];
+
 }
 
 @end
