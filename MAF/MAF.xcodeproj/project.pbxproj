@@ -89,6 +89,8 @@
 		BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B52197CD4D700A128AD /* TransactionManager.m */; };
 		BF865B56197CD4D700A128AD /* TransactionCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */; };
 		BF865B59197D71D800A128AD /* OpenSansLightTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BF865B58197D71D800A128AD /* OpenSansLightTextField.m */; };
+		BF963F9F198A13F300C5B40B /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF963F9E198A13F300C5B40B /* ViewManager.m */; };
+		BF963FA3198A199300C5B40B /* NSDictionary+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */; };
 		BFB57ECB197FFE19004A0D7B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB57EC9197FFE19004A0D7B /* LoginViewController.xib */; };
 		BFB57ECE198000B1004A0D7B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB57ECD198000B1004A0D7B /* LoginViewController.m */; };
 		BFBDEED9197B6B3700FE4348 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED8197B6B3700FE4348 /* User.m */; };
@@ -235,6 +237,10 @@
 		BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCategoryManager.m; sourceTree = "<group>"; };
 		BF865B57197D71D800A128AD /* OpenSansLightTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSansLightTextField.h; sourceTree = "<group>"; };
 		BF865B58197D71D800A128AD /* OpenSansLightTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSansLightTextField.m; sourceTree = "<group>"; };
+		BF963F9D198A13F300C5B40B /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
+		BF963F9E198A13F300C5B40B /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
+		BF963FA1198A199300C5B40B /* NSDictionary+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Hash.h"; sourceTree = "<group>"; };
+		BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Hash.m"; sourceTree = "<group>"; };
 		BFB57EC9197FFE19004A0D7B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		BFB57ECC198000B1004A0D7B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BFB57ECD198000B1004A0D7B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -434,6 +440,8 @@
 				BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */,
 				BF144326196A3BB400C2BB38 /* GoalManager.h */,
 				BF144327196A3BB400C2BB38 /* GoalManager.m */,
+				BF963F9D198A13F300C5B40B /* ViewManager.h */,
+				BF963F9E198A13F300C5B40B /* ViewManager.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -444,6 +452,8 @@
 				BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */,
 				2C66748C1974FDB600434802 /* Utilities.h */,
 				2C66748D1974FDB600434802 /* Utilities.m */,
+				BF963FA1198A199300C5B40B /* NSDictionary+Hash.h */,
+				BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -734,6 +744,8 @@
 				BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */,
 				BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
+				BF963FA3198A199300C5B40B /* NSDictionary+Hash.m in Sources */,
+				BF963F9F198A13F300C5B40B /* ViewManager.m in Sources */,
 				BAFB2C1C1975D39400A11C56 /* MultiInputViewController.m in Sources */,
 				BFC167D4198606390090AE5C /* StackedBarChart.m in Sources */,
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,

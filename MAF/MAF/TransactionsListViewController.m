@@ -19,6 +19,7 @@
 #import "EmptyTransactionsView.h"
 #import "User.h"
 #import "Transaction.h"
+#import "ViewManager.h"
 
 #import "Utilities.h"
 
@@ -76,16 +77,21 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
-    [PFCloud callFunctionInBackground:@"stackedBarChartDetailView" withParameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [NSDate new]} target:self selector:@selector(fetchData:error:)];
+    [[[ViewManager instance] fetchViewData:@"stackedBarChartDetailView"
+                                parameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [Utilities dateWithoutTime:[NSDate new]]}
+      ] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"error fetching view data: %@", task.error);
+        } else {
+            [self renderView:task.result];
+        }
+        return task;
+    }];
 }
 
-- (void)fetchData:(NSDictionary *)viewData error:(NSError *)error {
-    if (error) {
-        NSLog(@"error: %@", error);
-    } else {
-        self.viewData = viewData;
-        [self routeToView];
-    }
+- (void)renderView:(NSDictionary *)viewData {
+    self.viewData = viewData;
+    [self routeToView];
 }
 
 - (void)routeToView {
