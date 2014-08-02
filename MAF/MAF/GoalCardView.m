@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *paymentDueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *paymentAmountLabel;
 @property (weak, nonatomic) IBOutlet UICountingLabel *percentCompleteLabel;
+@property (strong, nonatomic) PNCircleChart *animatedChart;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *dueImageView;
@@ -80,14 +81,13 @@
 
 - (void)addPNCircle:(float)percentageComplete {
     int width = 120;
-    PNCircleChart *circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(10, 40, width, width) andTotal:@100 andCurrent:[NSNumber numberWithFloat:percentageComplete*100] andClockwise:YES andShadow:YES];
-    circleChart.backgroundColor = [UIColor clearColor];
-    circleChart.lineWidth = [NSNumber numberWithInt:3];
-    circleChart.countingLabel.textColor = [UIColor clearColor];
-    [circleChart setStrokeColor:PNGreen];
-    [circleChart strokeChart];
-    [self addSubview:circleChart];
-
+    self.animatedChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(10, 40, width, width) andTotal:@100 andCurrent:[NSNumber numberWithFloat:percentageComplete*100] andClockwise:YES andShadow:YES];
+    self.animatedChart.backgroundColor = [UIColor clearColor];
+    self.animatedChart.lineWidth = [NSNumber numberWithInt:2];
+    self.animatedChart.countingLabel.textColor = [UIColor clearColor];
+    [self.animatedChart setStrokeColor:PNGreen];
+    [self.animatedChart strokeChart];
+    [self addSubview:self.animatedChart];
 }
 
 @end
