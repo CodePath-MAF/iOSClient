@@ -31,11 +31,18 @@ Goalie is a mobile application that enables [Mission Asset Fund](http://missiona
 Create `Utilities/ServicesConfig.plist` and add in the Parse Application & Client ID for the project following this sample:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="parseApplicationId">PARSE_APPLICATION_ID</string>
-    <string name="parseClientId">PARSE_CLIENT_ID</string>
-</resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PARSE_CLIENT_ID</key>
+	<string>**ENTER YOUR CLIENT_ID HERE**</string>
+	<key>PARSE_APP_ID</key>
+	<string>**YOUR PARSE_APP_ID HERE**</string>
+	<key>CRITTERCISM_APP_ID</key>
+	<string>**YOUR CRITTERCISM_APP_ID HERE**</string>
+</dict>
+</plist>
 ```
 
 **Note:** This config file will be gitginore.
