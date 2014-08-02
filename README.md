@@ -7,6 +7,7 @@ Goalie is a mobile application that enables [Mission Asset Fund](http://missiona
 - Receive notifications from MAF staff if there are any payment issues or program updates.
 
 ## Walkthrough
+![Video Walkthrough](maf_v1.gif)
 
 ## Screenshots
 
