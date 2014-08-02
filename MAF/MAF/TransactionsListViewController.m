@@ -76,10 +76,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
-    [[[ViewManager instance] fetchViewData:@"stackedBarChartDetailView"
-                                parameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [Utilities dateWithoutTime:[NSDate new]]}
-      ] continueWithBlock:^id(BFTask *task) {
+    [self.fetchDataForView continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"error fetching view data: %@", task.error);
         } else {
@@ -89,6 +86,12 @@
     }];
 }
 
+- (BFTask *)fetchDataForView {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
+    return [[ViewManager instance] fetchViewData:@"stackedBarChartDetailView"
+                                       parameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [Utilities dateWithoutTime:[NSDate new]]}];
+}
+
 - (void)renderView:(NSDictionary *)viewData {
     self.viewData = viewData;
     [self routeToView];
@@ -96,7 +99,7 @@
 
 - (void)routeToView {
     [self.summaryView setViewData:self.viewData];
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         if (![(NSArray *)self.viewData[@"transactionsByDate"] count]) {
             [self.emptyView updateTotalCash];
             self.emptyView.alpha = 1;

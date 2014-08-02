@@ -11,7 +11,9 @@
 
 @interface ViewManager : NSObject
 
+- (BFTask *)fetchViewData:(NSString *)view;
 - (BFTask *)fetchViewData:(NSString *)view parameters:(NSDictionary *)parameters;
+- (void)clearCache;
 
 + (ViewManager *)instance;
 

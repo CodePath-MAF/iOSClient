@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "User.h"
-#import "DashboardViewController.h"
+#import "NewDashboardViewController.h"
 #import "SignupViewController.h"
 #import "LoginViewController.h"
 #import "Utilities.h"
@@ -59,7 +59,7 @@
 }
 
 - (void)routeToDashboard {
-    [self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]]];
+    [self.navigationController setViewControllers:@[[[NewDashboardViewController alloc] init]]];
     
 }
 

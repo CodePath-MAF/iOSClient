@@ -23,6 +23,7 @@ static NSInteger const kIntervalPicker = 3;
 #import "Utilities.h"
 #import "GoalManager.h"
 #import "MRProgress.h"
+#import "ViewManager.h"
 
 @interface MultiInputViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -491,6 +492,7 @@ static NSInteger const kIntervalPicker = 3;
     [self changeProgress:2];
 }
 - (IBAction)finished:(id)sender {
+    [[ViewManager instance] clearCache];
     
     if (self.formType == Transaction_Creation){
         TransactionCategory *category = self.sectionNamesWithId[self.selectedCategory];
@@ -505,7 +507,10 @@ static NSInteger const kIntervalPicker = 3;
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
              } else {
-                 [self finishProgress:self.navigationController];
+                 [[[ViewManager instance] fetchViewData:@"stackedBarChartDetailView"] continueWithBlock:^id(BFTask *task) {
+                      [self finishProgress:self.navigationController];
+                     return nil;
+                 }];
              }
              return task;
          }];

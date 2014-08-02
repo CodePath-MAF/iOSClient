@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Bolts.h"
 
 @interface TransactionsListViewController : UIViewController
+
+- (BFTask *)fetchDataForView;
 
 @end
