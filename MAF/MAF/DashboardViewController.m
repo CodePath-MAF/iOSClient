@@ -216,6 +216,9 @@
 - (void)configureCell:(GoalCardView *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     cell.goal = self.goals[indexPath.item];
+    // Above is the same as
+//    [cell setGoal:self.goals[indexPath.item]];
+    
     [cell updateColors];
 }
 
