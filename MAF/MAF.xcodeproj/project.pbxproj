@@ -58,6 +58,8 @@
 		BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B300219775E6200F68B2E /* TransactionsSet.m */; };
 		BF26D579198003E70085202E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF26D577198003E70085202E /* MainViewController.m */; };
 		BF26D57A198003E70085202E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF26D578198003E70085202E /* MainViewController.xib */; };
+		BF2A26B0198D714B00D49101 /* DashboardTransactionsEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26AF198D714B00D49101 /* DashboardTransactionsEmptyView.m */; };
+		BF2A26B4198D716500D49101 /* DashboardTransactionsEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26B3198D716500D49101 /* DashboardTransactionsEmptyView.xib */; };
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
@@ -190,6 +192,9 @@
 		BF26D576198003E70085202E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		BF26D577198003E70085202E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		BF26D578198003E70085202E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		BF2A26AE198D714B00D49101 /* DashboardTransactionsEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTransactionsEmptyView.h; sourceTree = "<group>"; };
+		BF2A26AF198D714B00D49101 /* DashboardTransactionsEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTransactionsEmptyView.m; sourceTree = "<group>"; };
+		BF2A26B3198D716500D49101 /* DashboardTransactionsEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardTransactionsEmptyView.xib; sourceTree = "<group>"; };
 		BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTransactionsView.xib; sourceTree = "<group>"; };
 		BF4FC9D9197F3BE400BDF982 /* EmptyTransactionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTransactionsView.h; sourceTree = "<group>"; };
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
@@ -390,6 +395,7 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF2A26AD198D6E3D00D49101 /* Dashboard */,
 				BFC167D11986062E0090AE5C /* Charts */,
 				BF865B50197C9A2900A128AD /* TransactionsTableView */,
 				BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */,
@@ -464,6 +470,16 @@
 				BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		BF2A26AD198D6E3D00D49101 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A26AE198D714B00D49101 /* DashboardTransactionsEmptyView.h */,
+				BF2A26AF198D714B00D49101 /* DashboardTransactionsEmptyView.m */,
+				BF2A26B3198D716500D49101 /* DashboardTransactionsEmptyView.xib */,
+			);
+			name = Dashboard;
 			sourceTree = "<group>";
 		};
 		BF865B34197C632200A128AD /* Fonts */ = {
@@ -654,6 +670,7 @@
 				BF865B45197C682A00A128AD /* OpenSans-LightItalic.ttf in Resources */,
 				2CD7C1F91975FD1B007F6CB8 /* GoalCardView.xib in Resources */,
 				2CC35A19197B1D9500716B37 /* LendingSocialCell.xib in Resources */,
+				BF2A26B4198D716500D49101 /* DashboardTransactionsEmptyView.xib in Resources */,
 				BF865B3F197C682A00A128AD /* OpenSans-Bold.ttf in Resources */,
 				BF144357196A963000C2BB38 /* TransactionsListViewController.xib in Resources */,
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
@@ -733,6 +750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF2A26B0198D714B00D49101 /* DashboardTransactionsEmptyView.m in Sources */,
 				BFC167D71986070D0090AE5C /* TextDetailChart.m in Sources */,
 				BF963FA8198B65D500C5B40B /* NewDashboardViewController.m in Sources */,
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,

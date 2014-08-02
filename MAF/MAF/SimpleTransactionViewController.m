@@ -12,7 +12,7 @@
 #import "User.h"
 #import "TransactionManager.h"
 #import "TransactionCategoryManager.h"
-#import "DashboardViewController.h"
+#import "NewDashboardViewController.h"
 #import "MRProgress.h"
 
 @interface SimpleTransactionViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
@@ -178,7 +178,7 @@
              if (task.error) {
                  NSLog(@"Error creating transaction: %@", task.error);
              } else {
-                 [self finishProgress:self.navigationController setViewControllers:@[[[DashboardViewController alloc] init]]];
+                 [self finishProgress:self.navigationController setViewControllers:@[[[NewDashboardViewController alloc] init]]];
              }
              return task;
          }];
