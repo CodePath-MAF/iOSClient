@@ -57,11 +57,9 @@ Install Pods (from XCode project root): 'pod install'
 Below we have the list of third-party libraries used on the app:
 
 - [Parse SDK](https://parse.com/docs/ios_guide): responsible for doing the data synchronization between the app and remote server
-- [ParseLoginUI](https://github.com/ParsePlatform/ParseUI-iOS): UI wrapper for log in/sign up services
 - PNCharts
 - POP
 - MHPrettyDate
-- XLForm
 - Bolts
 - MRProgress
 
