@@ -69,18 +69,18 @@
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     NSString *cacheKey = [NSString stringWithFormat:@"%@:%lu", view, (unsigned long)[parameters hash]];
     NSDictionary *cachedResponse = self._viewDataCache[cacheKey];
-    if (cachedResponse) {
-        [task setResult:cachedResponse];
-    } else {
-        [PFCloud callFunctionInBackground:view withParameters:parameters block:^(NSDictionary *response, NSError *error) {
-            if (error) {
-                [task setError:error];
-            } else {
-                self._viewDataCache[cacheKey] = response;
-                [task setResult:response];
-            }
-        }];
-    }
+//    if (cachedResponse) {
+//        [task setResult:cachedResponse];
+//    } else {
+    [PFCloud callFunctionInBackground:view withParameters:parameters block:^(NSDictionary *response, NSError *error) {
+        if (error) {
+            [task setError:error];
+        } else {
+            self._viewDataCache[cacheKey] = response;
+            [task setResult:response];
+        }
+    }];
+//    }
     return task.task;
 }
 
