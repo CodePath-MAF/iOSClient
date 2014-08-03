@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#define DUE_TODAY_STRING @"DUE TODAY (%@)"
-#define NUM_PAYMENTS_MADE @"%d of %d Milestones Achieved"
 #define CIRCLE_FRIENDS_PER_PAGE 4
 
+#import "PostDetailViewController.h"
 #import "OpenSansBoldLabel.h"
 #import "OpenSansRegularLabel.h"
 #import "OpenSansSemiBoldLabel.h"
@@ -18,235 +17,118 @@
 #import "Friend.h"
 #import "Utilities.h"
 #import "SimpleTransactionViewController.h"
-#import "TransactionManager.h"
-#import "PNChart.h"
 #import "ProgressView.h"
-#import "Transaction.h"
+#import "ViewManager.h"
+#import "Post.h"
+#import "MessageCollectionViewCell.h"
 
 
-@interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-// Lending Circle View Outlets
-@property (weak, nonatomic) IBOutlet UICollectionView *lendingPhotoCollectionView;
-@property (weak, nonatomic) IBOutlet UIPageControl *photoCollectionPageControl;
-@property (weak, nonatomic) IBOutlet UIView *lendingPhotoView;
+@property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
+- (IBAction)_addPostAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *_postTextField;
 
-// Payment Reminder View Outlets
-@property (weak, nonatomic) IBOutlet UILabel *paymentAmountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeTilDueLabel;
-
-// Make Milestone Progress View Outlets
-@property (weak, nonatomic) IBOutlet UIButton *makePaymentButton;
-@property (weak, nonatomic) IBOutlet UIButton *goalAchievedButton;
-@property (weak, nonatomic) IBOutlet UILabel *paymentsMadeLabel;
-@property (weak, nonatomic) IBOutlet UIView *milestoneProgressView;
-
-- (IBAction)flipTileView:(id)sender; // Not Used right now
-- (IBAction)makePayment:(id)sender;
-
-@property (nonatomic, strong) NSMutableArray *lendingFriends;
-
-@property (assign, nonatomic) NSInteger tileNum; // Not Used right now
-
-@property (weak, nonatomic) IBOutlet ProgressView *progressView;
-@property (weak, nonatomic) IBOutlet OpenSansBoldLabel *goalTotal;
-@property (weak, nonatomic) IBOutlet OpenSansRegularLabel *saveToDate;
+@property (strong, nonatomic) NSDictionary *_viewData;
+@property (strong, nonatomic) Goal *_goal;
+@property (strong, nonatomic) NSMutableArray *_posts;
 
 @end
 
 @implementation GoalDetailViewController
 
-- (void)updateLabels {
-    NSArray *payments = [[[TransactionManager instance] transactionsSet] transactionsForGoalId:[self.goal objectId]];
-    self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.2f", self.goal.paymentAmount];
-
-    int goalLifetime = [Utilities daysBetweenDate:self.goal.createdAt andDate:self.goal.goalDate];
-    float numPayments = roundf((float)goalLifetime/(float)self.goal.paymentInterval);
-
-    float amountPaid = 0;
-    for (Transaction *t in payments) {
-        amountPaid += t.amount;
-    }
-    amountPaid = roundf(amountPaid);
-    
-    float milestonesCount = (float)amountPaid/(float)self.goal.paymentAmount;
-    self.paymentsMadeLabel.text = [[NSString stringWithFormat:NUM_PAYMENTS_MADE, (int)milestonesCount, (int)numPayments] uppercaseString];
-    self.goalTotal.text = [NSString stringWithFormat:@"$%.02f", self.goal.amount];
-    self.saveToDate.text = [NSString stringWithFormat:@"$%.02f SAVED TO DATE", amountPaid];
-    
-    if (self.goal.amount == amountPaid) {
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.goalAchievedButton.alpha = 1;
-            self.makePaymentButton.alpha = 0;
-            [self.makePaymentButton removeFromSuperview];
-        } completion:nil];
-    }
+- (void)setViewData:(NSDictionary *)viewData {
+    self._viewData = viewData;
+    self._goal = viewData[@"goal"];
+    self._posts = viewData[@"posts"];
+    [self._collectionView reloadData];
 }
 
-- (void)setGoal:(Goal *)goal {
-    _goal = goal;
-    self.title = self.goal.name;
-    NSString *timeTilString;
-    timeTilString = [Utilities prettyMessageFromTargetDate:self.goal.goalDate withStartDate:[self.goal createdAt] withInterval:self.goal.paymentInterval];
-    self.timeTilDueLabel.text = timeTilString;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Init Users for Social
-        _lendingFriends = [[NSMutableArray alloc] init];
-        NSArray *names = @[@"Sofia.R", @"Mark.S", @"Alyssa.T", @"Rob.C", @"Tom.G", @"Jairo.A", @"Eddie.F", @"Guy.M", @"Mike.H", @"Jose.M", @"Felipe.D", @"Amit.B"];
-        for (int userCount = 0; userCount < 12; userCount++) {
-            NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userCount+1];
-            Friend *friend = [[Friend alloc] initWithName:names[userCount] andPhoto:[UIImage imageNamed:photoName]];
-            [_lendingFriends insertObject:friend atIndex:userCount];
-            
-//            NSLog(@"name: %@", name);
-//            NSLog(@"photoName: %@", photoName);
-        }
-//        NSLog(@"lending user Count: %d", [self.lendingFriends count]);
-        
-        // Custom initialization
-        self.view.frame = [self frameForContentController];
-        self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
-    
-    // Check if Lending Circle Goal Type
-    //    self.goal.type ==
-    self.lendingPhotoView.hidden = NO;
-    
-    // Set Up Social Collection View
-    self.lendingPhotoCollectionView.delegate = self;
-    self.lendingPhotoCollectionView.dataSource = self;
-    self.goalAchievedButton.alpha = 0;
-    
-    UINib *cellNib = [UINib nibWithNibName:@"LendingSocialCell" bundle:nil];
-    [self.lendingPhotoCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"LendingSocialCell"];
-    
-    // Set up Pagination
-    self.photoCollectionPageControl.currentPage = 0;
-    [self.photoCollectionPageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
-    // Set Up Goal Progress View
-    
-    // Set Up Make Payment Button
-#warning TODO create progress update
-    [[self.makePaymentButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:14.f]];
-
-    [Utilities setupRoundedButton:self.makePaymentButton
-                 withCornerRadius:BUTTON_CORNER_RADIUS];
-    [Utilities setupRoundedButton:self.goalAchievedButton withCornerRadius:BUTTON_CORNER_RADIUS];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self._collectionView.delegate = self;
+    self._collectionView.dataSource = self;
+    UINib *cellNib = [UINib nibWithNibName:@"MessageCollectionViewCell" bundle:nil];
+    [self._collectionView registerNib:cellNib forCellWithReuseIdentifier:@"MessageCell"];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self updateLabels];
-    [self drawProgressBar];
-}
-
-#pragma mark - UICollectionView Datasource
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    NSInteger pageCount = [self.lendingFriends count]/CIRCLE_FRIENDS_PER_PAGE;
-    self.photoCollectionPageControl.numberOfPages = pageCount;
-    return pageCount;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return CIRCLE_FRIENDS_PER_PAGE;
-}
-
-- (LendingSocialCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LendingSocialCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"LendingSocialCell" forIndexPath:indexPath];
-    cell.friend = self.lendingFriends[(indexPath.section * CIRCLE_FRIENDS_PER_PAGE) + indexPath.item];
-    return cell;
-}
-
-#pragma mark - UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Selected %d Cell", indexPath.row);
-    // TODO: share goal progress with friends
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Deselected %d Cell", indexPath.row);
-    // TODO: Deselect item
-}
-
-#pragma mark - Page Controller
-
-- (void)pageControlChanged:(id)sender
-{
-    NSLog(@"Page Control Changed");
-    UIPageControl *pageControl = sender;
-    // TODO bounce when move to new page
-    CGFloat pageWidth = self.lendingPhotoCollectionView.frame.size.width;
-    NSLog(@"widthFrame: %f", pageWidth);
-    CGPoint scrollTo = CGPointMake(pageWidth * pageControl.currentPage, 0);
-    NSLog(@"scrollTo: %f", scrollTo.x);
-    [self.lendingPhotoCollectionView setContentOffset:scrollTo animated:YES];
-}
-
-// Paging with scoll
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    CGFloat pageWidth = self.lendingPhotoCollectionView.frame.size.width;
-    self.photoCollectionPageControl.currentPage = self.lendingPhotoCollectionView.contentOffset.x / pageWidth;
-}
-
-#pragma mark - interaction methods
-
-- (IBAction)flipTileView:(id)sender {
-  self.tileNum++; // increment the tile to load
-  switch (self.tileNum) {
-    case 0:
-      NSLog(@"Load Previous Payments View");
-      break;
-    case 1:
-      NSLog(@"Load Social Sharing View");
-      break;
-    case 2:
-      NSLog(@"Load Goals Breakdown Chart View");
-      break;
-    default: // reset tileNum if there isn't a case
-      self.tileNum = 0;
-      break;
-  }
+        
 }
 
 - (IBAction)makePayment:(id)sender {
     SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
-    [simpleTransVC setLabelsAndButtons:MakePayment goal:self.goal amount:self.goal.paymentAmount];
-    [self.navigationController pushViewController:simpleTransVC animated:YES];  
-    NSLog(@"Make a Payment");
+    [simpleTransVC setLabelsAndButtons:MakePayment goal:self._goal amount:self._goal.paymentAmount];
+    [self.navigationController pushViewController:simpleTransVC animated:YES];
 }
 
-#pragma mark Helper Functions
+#pragma mark - Helper Functions
 
 - (CGRect)frameForContentController {
   CGRect contentFrame = self.view.bounds;
   CGFloat heightOffset = self.navigationController.navigationBar.bounds.size.height;
   contentFrame.origin.y += heightOffset;
   contentFrame.size.height -= heightOffset;
-  
-  NSLog(@"%f", heightOffset);
   return contentFrame;
 }
 
-- (void)drawProgressBar {
-    float goalProgress = [[[TransactionManager instance] transactionsSet] totalPaymentsForGoalId:self.goal.objectId];
-    self.progressView.total = self.goal.amount;
-    self.progressView.progress = goalProgress;
-    [self.progressView setNeedsDisplay];
+#pragma mark - UICollectionView Data Source
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self._posts count];
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    Post *post = self._posts[indexPath.item];
+    UICollectionViewCell *cell;
+    switch (post.type) {
+
+        default:
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
+            [(MessageCollectionViewCell *)cell setPost:post];
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandCommentsForPost:)];
+            [cell addGestureRecognizer:tapGesture];
+            break;
+    }
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)expandCommentsForPost:(UITapGestureRecognizer *)gestureRecognizer {
+    Post *post = [(MessageCollectionViewCell *)gestureRecognizer.view post];
+    if ([[post getComments] count]) {
+        PostDetailViewController *vc = [[PostDetailViewController alloc] initWithNibName:@"PostDetailViewController" bundle:nil];
+        vc.post = post;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (IBAction)_addPostAction:(id)sender {
+    Post *post = [Post object];
+    post.content = self._postTextField.text;
+    post.goal = self._goal.parentGoal;
+    post.type = PostTypeMessage;
+    post.user = [User currentUser];
+    [post saveInBackground];
+    NSMutableArray *posts = [[NSMutableArray alloc] initWithObjects:post, nil];
+    [posts addObjectsFromArray:self._posts];
+    self._posts = posts;
+#warning this could just be reload at index paths
+    [self._collectionView reloadData];
+    self._postTextField.text = @"";
+}
 @end

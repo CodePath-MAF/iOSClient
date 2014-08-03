@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostDetailViewController">
+            <connections>
+                <outlet property="_collectionView" destination="AGc-3I-mzt" id="9qb-VQ-ScC"/>
+                <outlet property="_commentContentTextField" destination="TlT-1R-sDX" id="WOm-Ms-e5F"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AGc-3I-mzt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="DX8-6P-8Qu"/>
+                        <constraint firstAttribute="height" constant="200" id="wRb-1L-RDW"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="tUe-nd-LnY">
+                        <size key="itemSize" width="320" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                </collectionView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TlT-1R-sDX">
+                    <rect key="frame" x="20" y="208" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-Vn-jt4">
+                    <rect key="frame" x="110" y="246" width="100" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="G8j-gO-vfw"/>
+                    </constraints>
+                    <state key="normal" title="Comment">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="_addComment:" destination="-1" eventType="touchUpInside" id="lvr-Up-n4h"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="AGc-3I-mzt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4wZ-1n-i0Y"/>
+                <constraint firstAttribute="trailing" secondItem="AGc-3I-mzt" secondAttribute="trailing" id="RET-uz-54a"/>
+                <constraint firstAttribute="trailing" secondItem="TlT-1R-sDX" secondAttribute="trailing" constant="20" id="Wf8-zN-ncL"/>
+                <constraint firstItem="AGc-3I-mzt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZW2-w1-K2M"/>
+                <constraint firstItem="xFb-Vn-jt4" firstAttribute="top" secondItem="TlT-1R-sDX" secondAttribute="bottom" constant="8" id="e0X-S9-mlH"/>
+                <constraint firstItem="TlT-1R-sDX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="fI7-5W-paA"/>
+                <constraint firstItem="TlT-1R-sDX" firstAttribute="top" secondItem="AGc-3I-mzt" secondAttribute="bottom" constant="8" id="r8t-9o-eRY"/>
+                <constraint firstAttribute="centerX" secondItem="xFb-Vn-jt4" secondAttribute="centerX" id="wXD-5e-Iai"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

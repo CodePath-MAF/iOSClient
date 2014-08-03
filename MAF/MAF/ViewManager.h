@@ -9,8 +9,11 @@
 #import "Bolts.h"
 #import <Foundation/Foundation.h>
 
+#import "Goal.h"
+
 @interface ViewManager : NSObject
 
+- (BFTask *)goalDetailViewForGoal:(Goal *)goal;
 - (BFTask *)fetchViewData:(NSString *)view;
 - (BFTask *)fetchViewData:(NSString *)view parameters:(NSDictionary *)parameters;
 - (void)clearCache;

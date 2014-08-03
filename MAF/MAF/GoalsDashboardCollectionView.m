@@ -72,11 +72,8 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    GoalDetailViewController *detailViewController = [[GoalDetailViewController alloc] init];
     Goal *goal = self._goals[indexPath.item];
-    detailViewController.goal = goal;
     [self.dashboardDelegate didSelectGoal:goal];
-#warning TODO custom transition into the Goal Detail VC
 }
 
 #pragma mark Public Methods

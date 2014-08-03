@@ -53,6 +53,16 @@
 		BF2A26B0198D714B00D49101 /* DashboardTransactionsEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26AF198D714B00D49101 /* DashboardTransactionsEmptyView.m */; };
 		BF2A26B4198D716500D49101 /* DashboardTransactionsEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26B3198D716500D49101 /* DashboardTransactionsEmptyView.xib */; };
 		BF2A26BD198D8C1D00D49101 /* GoalsDashboardCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26BC198D8C1D00D49101 /* GoalsDashboardCollectionView.m */; };
+		BF2A26C3198DCE5C00D49101 /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */; };
+		BF2A26C5198DCE8900D49101 /* MessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */; };
+		BF2A26C8198DCF1400D49101 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26C7198DCF1400D49101 /* Post.m */; };
+		BF2A26D0198DFDF900D49101 /* PostDetailReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26CF198DFDF900D49101 /* PostDetailReusableView.m */; };
+		BF2A26D2198DFE0D00D49101 /* PostDetailReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26D1198DFE0D00D49101 /* PostDetailReusableView.xib */; };
+		BF2A26D4198DFEC600D49101 /* CommentReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26D3198DFEC600D49101 /* CommentReusableView.xib */; };
+		BF2A26D7198DFED300D49101 /* CommentReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26D6198DFED300D49101 /* CommentReusableView.m */; };
+		BF2A26DA198DFEE600D49101 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26D9198DFEE600D49101 /* Comment.m */; };
+		BF2A26DE198E0E1D00D49101 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26DC198E0E1D00D49101 /* PostDetailViewController.m */; };
+		BF2A26DF198E0E1D00D49101 /* PostDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26DD198E0E1D00D49101 /* PostDetailViewController.xib */; };
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
@@ -178,6 +188,22 @@
 		BF2A26B3198D716500D49101 /* DashboardTransactionsEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardTransactionsEmptyView.xib; sourceTree = "<group>"; };
 		BF2A26BB198D8C1D00D49101 /* GoalsDashboardCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalsDashboardCollectionView.h; sourceTree = "<group>"; };
 		BF2A26BC198D8C1D00D49101 /* GoalsDashboardCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalsDashboardCollectionView.m; sourceTree = "<group>"; };
+		BF2A26C1198DCE5C00D49101 /* MessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollectionViewCell.h; sourceTree = "<group>"; };
+		BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionViewCell.m; sourceTree = "<group>"; };
+		BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF2A26C6198DCF1400D49101 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		BF2A26C7198DCF1400D49101 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		BF2A26CE198DFDF900D49101 /* PostDetailReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailReusableView.h; sourceTree = "<group>"; };
+		BF2A26CF198DFDF900D49101 /* PostDetailReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailReusableView.m; sourceTree = "<group>"; };
+		BF2A26D1198DFE0D00D49101 /* PostDetailReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetailReusableView.xib; sourceTree = "<group>"; };
+		BF2A26D3198DFEC600D49101 /* CommentReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentReusableView.xib; sourceTree = "<group>"; };
+		BF2A26D5198DFED300D49101 /* CommentReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentReusableView.h; sourceTree = "<group>"; };
+		BF2A26D6198DFED300D49101 /* CommentReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentReusableView.m; sourceTree = "<group>"; };
+		BF2A26D8198DFEE600D49101 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		BF2A26D9198DFEE600D49101 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		BF2A26DB198E0E1D00D49101 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		BF2A26DC198E0E1D00D49101 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		BF2A26DD198E0E1D00D49101 /* PostDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetailViewController.xib; sourceTree = "<group>"; };
 		BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTransactionsView.xib; sourceTree = "<group>"; };
 		BF4FC9D9197F3BE400BDF982 /* EmptyTransactionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTransactionsView.h; sourceTree = "<group>"; };
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
@@ -364,6 +390,9 @@
 				BF26D576198003E70085202E /* MainViewController.h */,
 				BF26D577198003E70085202E /* MainViewController.m */,
 				BF26D578198003E70085202E /* MainViewController.xib */,
+				BF2A26DB198E0E1D00D49101 /* PostDetailViewController.h */,
+				BF2A26DC198E0E1D00D49101 /* PostDetailViewController.m */,
+				BF2A26DD198E0E1D00D49101 /* PostDetailViewController.xib */,
 				BF144353196A963000C2BB38 /* TransactionsListViewController.h */,
 				BF144354196A963000C2BB38 /* TransactionsListViewController.m */,
 				BF144355196A963000C2BB38 /* TransactionsListViewController.xib */,
@@ -380,6 +409,7 @@
 				BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */,
 				BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */,
 				BF2A26AD198D6E3D00D49101 /* Dashboard */,
+				BF2A26C0198DCDFE00D49101 /* Activity Feed */,
 				2CC35A13197B1D3100716B37 /* LendingSocialCell.h */,
 				2CC35A14197B1D3100716B37 /* LendingSocialCell.m */,
 				2CC35A18197B1D9500716B37 /* LendingSocialCell.xib */,
@@ -393,10 +423,16 @@
 		2CBA46C11965DF5900C6BEDF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BF2A26D8198DFEE600D49101 /* Comment.h */,
+				BF2A26D9198DFEE600D49101 /* Comment.m */,
 				BF14432C196A471300C2BB38 /* Goal.h */,
 				BF14432D196A471300C2BB38 /* Goal.m */,
+				BF865AFD197C593000A128AD /* Friend.h */,
+				BF865AFE197C593000A128AD /* Friend.m */,
 				2C95F65F197E5D5700862497 /* GoalSet.h */,
 				2C95F660197E5D5700862497 /* GoalSet.m */,
+				BF2A26C6198DCF1400D49101 /* Post.h */,
+				BF2A26C7198DCF1400D49101 /* Post.m */,
 				BF14432F196A4FAD00C2BB38 /* Transaction.h */,
 				BF144330196A4FAD00C2BB38 /* Transaction.m */,
 				BF1B2FF619770B1100F68B2E /* TransactionCategory.h */,
@@ -405,8 +441,6 @@
 				BF1B300219775E6200F68B2E /* TransactionsSet.m */,
 				BFBDEED7197B6B3700FE4348 /* User.h */,
 				BFBDEED8197B6B3700FE4348 /* User.m */,
-				BF865AFD197C593000A128AD /* Friend.h */,
-				BF865AFE197C593000A128AD /* Friend.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -414,12 +448,12 @@
 		2CBA46C21965DF6800C6BEDF /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				BF865B51197CD4D700A128AD /* TransactionManager.h */,
-				BF865B52197CD4D700A128AD /* TransactionManager.m */,
-				BF865B53197CD4D700A128AD /* TransactionCategoryManager.h */,
-				BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */,
 				BF144326196A3BB400C2BB38 /* GoalManager.h */,
 				BF144327196A3BB400C2BB38 /* GoalManager.m */,
+				BF865B53197CD4D700A128AD /* TransactionCategoryManager.h */,
+				BF865B54197CD4D700A128AD /* TransactionCategoryManager.m */,
+				BF865B51197CD4D700A128AD /* TransactionManager.h */,
+				BF865B52197CD4D700A128AD /* TransactionManager.m */,
 				BF963F9D198A13F300C5B40B /* ViewManager.h */,
 				BF963F9E198A13F300C5B40B /* ViewManager.m */,
 			);
@@ -449,10 +483,26 @@
 				BF2A26AE198D714B00D49101 /* DashboardTransactionsEmptyView.h */,
 				BF2A26AF198D714B00D49101 /* DashboardTransactionsEmptyView.m */,
 				BF2A26B3198D716500D49101 /* DashboardTransactionsEmptyView.xib */,
-				BF2A26BB198D8C1D00D49101 /* GoalsDashboardCollectionView.h */,
 				BF2A26BC198D8C1D00D49101 /* GoalsDashboardCollectionView.m */,
+				BF2A26BB198D8C1D00D49101 /* GoalsDashboardCollectionView.h */,
 			);
 			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		BF2A26C0198DCDFE00D49101 /* Activity Feed */ = {
+			isa = PBXGroup;
+			children = (
+				BF2A26C1198DCE5C00D49101 /* MessageCollectionViewCell.h */,
+				BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */,
+				BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */,
+				BF2A26CE198DFDF900D49101 /* PostDetailReusableView.h */,
+				BF2A26CF198DFDF900D49101 /* PostDetailReusableView.m */,
+				BF2A26D1198DFE0D00D49101 /* PostDetailReusableView.xib */,
+				BF2A26D5198DFED300D49101 /* CommentReusableView.h */,
+				BF2A26D6198DFED300D49101 /* CommentReusableView.m */,
+				BF2A26D3198DFEC600D49101 /* CommentReusableView.xib */,
+			);
+			name = "Activity Feed";
 			sourceTree = "<group>";
 		};
 		BF865B34197C632200A128AD /* Fonts */ = {
@@ -649,6 +699,8 @@
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
 				BF865B43197C682A00A128AD /* OpenSans-Italic.ttf in Resources */,
 				BF865B40197C682A00A128AD /* OpenSans-BoldItalic.ttf in Resources */,
+				BF2A26DF198E0E1D00D49101 /* PostDetailViewController.xib in Resources */,
+				BF2A26D4198DFEC600D49101 /* CommentReusableView.xib in Resources */,
 				BF4FC9E6197FE6DC00BDF982 /* SignupViewController.xib in Resources */,
 				BF865B42197C682A00A128AD /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
@@ -660,9 +712,11 @@
 				BF865B48197C682A00A128AD /* OpenSans-SemiboldItalic.ttf in Resources */,
 				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
 				BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */,
+				BF2A26D2198DFE0D00D49101 /* PostDetailReusableView.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BAFB2C1D1975D39400A11C56 /* MultiInputViewController.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
+				BF2A26C5198DCE8900D49101 /* MessageCollectionViewCell.xib in Resources */,
 				BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */,
 				BF865B47197C682A00A128AD /* OpenSans-Semibold.ttf in Resources */,
 				BF865B44197C682A00A128AD /* OpenSans-Light.ttf in Resources */,
@@ -725,6 +779,7 @@
 				BF963FA8198B65D500C5B40B /* DashboardViewController.m in Sources */,
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,
 				BF865AFF197C593000A128AD /* Friend.m in Sources */,
+				BF2A26C8198DCF1400D49101 /* Post.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
@@ -740,6 +795,7 @@
 				BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
 				BF963FA3198A199300C5B40B /* NSDictionary+Hash.m in Sources */,
+				BF2A26DA198DFEE600D49101 /* Comment.m in Sources */,
 				BF963F9F198A13F300C5B40B /* ViewManager.m in Sources */,
 				BAFB2C1C1975D39400A11C56 /* MultiInputViewController.m in Sources */,
 				BFC167D4198606390090AE5C /* StackedBarChart.m in Sources */,
@@ -750,13 +806,17 @@
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */,
 				BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */,
+				BF2A26D7198DFED300D49101 /* CommentReusableView.m in Sources */,
 				2CBA469D1965DE3A00C6BEDF /* main.m in Sources */,
+				BF2A26C3198DCE5C00D49101 /* MessageCollectionViewCell.m in Sources */,
 				BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */,
 				BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
+				BF2A26D0198DFDF900D49101 /* PostDetailReusableView.m in Sources */,
 				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
 				BF865B4D197C90DC00A128AD /* TransactionsHeaderView.m in Sources */,
+				BF2A26DE198E0E1D00D49101 /* PostDetailViewController.m in Sources */,
 				BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */,
 				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */,

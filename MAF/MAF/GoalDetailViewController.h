@@ -11,6 +11,6 @@
 
 @interface GoalDetailViewController : UIViewController
 
-@property (nonatomic, strong) Goal *goal;
+- (void)setViewData:(NSDictionary *)viewData;
 
 @end

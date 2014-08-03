@@ -86,6 +86,7 @@
 
 - (void)_profileAction {
     [PFUser logOut];
+    [[ViewManager instance] clearCache];
     [self.navigationController setViewControllers:@[[[MainViewController alloc] init]] animated:YES];
 }
 
@@ -154,9 +155,16 @@
 #pragma mark GoalsDashboardCollectionViewDelegate
 
 - (void)didSelectGoal:(Goal *)goal {
-    GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
-    goalDetailViewController.goal = goal;
-    [self.navigationController pushViewController:goalDetailViewController animated:YES];
+    [[[ViewManager instance] goalDetailViewForGoal:goal] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"error loading goal details, %@", task.error);
+        } else {
+            GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
+            [goalDetailViewController setViewData:task.result];
+            [self.navigationController pushViewController:goalDetailViewController animated:YES];
+        }
+        return nil;
+    }];
 }
 
 @end

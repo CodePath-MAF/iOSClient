@@ -16,6 +16,8 @@
 #import "TransactionCategory.h"
 #import "TransactionCategoryManager.h"
 #import "User.h"
+#import "Post.h"
+#import "Comment.h"
 
 @implementation AppDelegate
 
@@ -41,7 +43,7 @@
                                         format:&format
                                         errorDescription:&errorDesc];
     if (!temp) {
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        NSLog(@"Error reading plist: %@, format: %lu", errorDesc, format);
     }
     CRITTERCISM_APP_ID = [temp objectForKey:@"CRITTERCISM_APP_ID"];
     PARSE_APP_ID = [temp objectForKey:@"PARSE_APP_ID"];
@@ -55,6 +57,8 @@
     [Transaction registerSubclass];
     [TransactionCategory registerSubclass];
     [User registerSubclass];
+    [Post registerSubclass];
+    [Comment registerSubclass];
     [Parse setApplicationId:PARSE_APP_ID
               clientKey:PARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

@@ -20,12 +20,8 @@
 
 + (NSDateComponents *)getDateComponentsForDate:(NSDate *)date;
 + (NSDate *)dateWithoutTime:(NSDate *)date;
-+ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 + (NSArray *)getPreviousDates:(int)numPreviousDates fromDate:(NSDate *)fromDate;
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 + (UIButton *)setupRoundedButton:(UIButton *)button withCornerRadius:(CGFloat)cornerRadius;
-+ (NSString *)prettyMessageFromTargetDate:(NSDate *)targetDate withStartDate:(NSDate *)startDate withInterval:(NSInteger)interval;
-+ (BOOL)isWithinWeekOfTargetDate:(NSDate *)targetDate withStartDate:(NSDate *)startDate withInterval:(NSInteger)interval;
-+ (NSString *)getMonthSymbolForMonthNumber:(NSInteger)monthNumber;
 
 @end
