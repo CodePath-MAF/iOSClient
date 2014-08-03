@@ -74,4 +74,12 @@
     [self addSubview:self.animatedChart];
 }
 
+- (void)prepareForReuse {
+    self.animatedChart = nil;
+    self.goal = nil;
+    self.paymentAmountLabel.text = nil;
+    self.paymentDueLabel.text = nil;
+    self.percentCompleteLabel.text = @"0%";
+}
+
 @end
