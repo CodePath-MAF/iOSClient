@@ -34,7 +34,6 @@
     self.messageContentLabel.text = post.content;
     NSLog(@"num comments: %lu", [[post getComments] count]);
     if ([[post getComments] count]) {
-        self._commentsCountLabel.enabled = YES;
         self._commentsCountLabel.text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)[[post getComments] count], nil];
     }
 #warning TODO configure labels

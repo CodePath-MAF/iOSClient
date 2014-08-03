@@ -103,12 +103,23 @@
 }
 
 - (void)successfulSignup {
+    [self addUserToInstallation];
     [self routeToInitialCashView];
 }
 
-
 - (void)successfulLogin {
+    [self addUserToInstallation];
     [self routeToDashboard];
+}
+
+- (void)addUserToInstallation {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation[@"user"] = [User currentUser];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"error adding user to current installation: %@", error);
+        }
+    }];
 }
 
 @end

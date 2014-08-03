@@ -110,11 +110,9 @@
 
 - (void)expandCommentsForPost:(UITapGestureRecognizer *)gestureRecognizer {
     Post *post = [(MessageCollectionViewCell *)gestureRecognizer.view post];
-    if ([[post getComments] count]) {
-        PostDetailViewController *vc = [[PostDetailViewController alloc] initWithNibName:@"PostDetailViewController" bundle:nil];
-        vc.post = post;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    PostDetailViewController *vc = [[PostDetailViewController alloc] initWithNibName:@"PostDetailViewController" bundle:nil];
+    vc.post = post;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)_addPostAction:(id)sender {
@@ -123,6 +121,7 @@
     post.goal = self._goal.parentGoal;
     post.type = PostTypeMessage;
     post.user = [User currentUser];
+    post.comments = [[NSMutableArray alloc] init];
     [post saveInBackground];
     NSMutableArray *posts = [[NSMutableArray alloc] initWithObjects:post, nil];
     [posts addObjectsFromArray:self._posts];

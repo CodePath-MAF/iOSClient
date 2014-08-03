@@ -79,7 +79,11 @@
     comment.post = self.post;
     comment.content = self._commentContentTextField.text;
     [self.post.comments addObject:comment];
-    [self.post saveInBackground];
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"error saving post: %@", error);
+        }
+    }];
     self._commentContentTextField.text = @"";
     [self._collectionView reloadData];
 }
