@@ -38,7 +38,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumInteritemSpacing:0.0];
-    [flowLayout setMinimumLineSpacing:10.0];
+    [flowLayout setMinimumLineSpacing:5.0];
     return [[GoalsDashboardCollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
 }
 
