@@ -26,5 +26,9 @@
 @dynamic numPayments;
 @dynamic goalDate;
 @dynamic currentTotal;
+@dynamic numPaymentsMade;
+@dynamic parentGoal;
+@dynamic cashoutDate;
+@dynamic paidOut;
 
 @end

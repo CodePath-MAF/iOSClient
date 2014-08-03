@@ -39,5 +39,11 @@ NS_ENUM(NSInteger, GoalPaymentInterval) {
 @property (nonatomic, assign) float currentTotal;
 @property (nonatomic, assign) NSInteger numPayments;
 @property (nonatomic, strong) NSDate *goalDate;
+@property (nonatomic, assign) NSInteger numPaymentsMade;
+@property (nonatomic, strong) Goal *parentGoal;
+@property (nonatomic, strong) NSDate *cashoutDate;
+@property (nonatomic, assign) BOOL paidOut;
+
+
 
 @end

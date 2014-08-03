@@ -1,55 +1,35 @@
 //
-//  DashboardViewController.m
+//  NewDashboardViewController.m
 //  MAF
 //
-//  Created by mhahn on 7/6/14.
+//  Created by mhahn on 7/31/14.
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-
 #import <Parse/Parse.h>
-#import "Bolts.h"
+#import "PNChart.h"
 
+#import "DashboardTransactionsEmptyView.h"
 #import "DashboardViewController.h"
-#import "LoginViewController.h"
-#import "SignupViewController.h"
-
-#import "MultiInputViewController.h"
-
-#import "TransactionsListViewController.h"
-#import "TransactionManager.h"
-#import "TransactionsSet.h"
-
+#import "GoalsDashboardCollectionView.h"
 #import "GoalDetailViewController.h"
-#import "GoalCardView.h"
-#import "GoalManager.h"
-#import "GoalStatsView.h"
-#import "CashOverView.h"
-#import "User.h"
+#import "MultiInputViewController.h"
+#import "MainViewController.h"
+#import "ViewManager.h"
 #import "Utilities.h"
 
-#import "MainViewController.h"
+@interface DashboardViewController () <DashboardTransactionsEmptyViewDelegate, GoalsDashboardCollectionViewDelegate>
 
-#define PAGE_CONTROL_HEIGHT 40
-#define ITEMS_IN_SECTION 2
+@property (strong, nonatomic) NSDictionary *viewData;
+@property (weak, nonatomic) IBOutlet UIButton *addTransactionButton;
 
-@interface DashboardViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CashOverViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *chartView;
+@property (weak, nonatomic) IBOutlet UIView *goalsContainer;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) UIPageControl *pageControl;
+@property (strong, nonatomic) DashboardTransactionsEmptyView *transactionsEmptyView;
+@property (strong, nonatomic) GoalsDashboardCollectionView *goalsCollectionView;
 
-@property (weak, nonatomic) IBOutlet GoalStatsView *goalStatsView;
-@property (weak, nonatomic) IBOutlet CashOverView *cashOverView;
-@property (strong, nonatomic) UIView *firstGoalView;
-
-@property (strong, nonatomic) GoalCardView *prototypeCell;
-
-- (void)viewTransactions:(id)sender;
-
-@property (nonatomic, strong) NSMutableArray *goals;
-@property (nonatomic, assign) NSInteger page;
-
-- (void)configureNavigationBar;
+- (IBAction)addTransaction:(id)sender;
 
 @end
 
@@ -57,316 +37,126 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureNavigationBar];
-    [self toggleAlphaForViews:0];
+    self.addTransactionButton.hidden = YES;
+    [self _configureNavigationBar];
     self.title = @"Dashboard";
     
-    // Set Up Collection View delegate & data source
-//    if ([self.goals count] == 0) {
-//        [self loadNoGoalView];
-//    }
-//    else {
-        [self loadGoalCollectionView];
-//    }
-    
-    // Stub Goals Cell
-    UINib *cellNib = [UINib nibWithNibName:@"GoalCardView" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"GoalCardView"];
-    
-    self.prototypeCell = [cellNib instantiateWithOwner:nil options:nil][0];
-    
-    // Set Up Cash OverView - NOT USING FOR NOW
-    self.cashOverView.totalCash = [[User currentUser] totalCash];
-    self.cashOverView.delegate = self;
+    [[[ViewManager instance] fetchViewData:@"dashboardView"] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"Error fetching dashboard view");
+        } else {
+            [self renderView:task.result];
+        }
+        return task;
+    }];
 }
 
-- (void)toggleAlphaForViews:(float)alpha {
-    self.collectionView.alpha = alpha;
-    self.goalStatsView.alpha = alpha;
-    self.cashOverView.alpha = alpha;
+- (void)renderView:(NSDictionary *)viewData {
+    self.viewData = viewData;
+    if ([(NSArray *)self.viewData[@"lineChart"][@"data"] count]) {
+        [self _renderTransactionsView];
+        [self _renderGoalsCollectionView];
+    } else {
+        [self _renderTransactionsEmptyView];
+    }
+
 }
 
-- (void)configureNavigationBar {
+- (void)_configureNavigationBar {
     
     // Set Up Profile Button
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(@"showProfile:")];
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_profile_up"] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(@"_profileAction")];
     [profileButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
     
     [profileButton setBackgroundImage:[UIImage imageNamed:@"btn_profile_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
     self.navigationItem.leftBarButtonItem = profileButton;
     
     // Set Up Add Goal Button
-    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(@"createGoal:")];
+    UIBarButtonItem *goalButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_add_white_up"] style:UIBarButtonItemStylePlain target:self action:NSSelectorFromString(@"_createGoal")];
     [goalButton setImageInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
     [goalButton setBackgroundImage:[UIImage imageNamed:@"btn_add_white_highlight"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = goalButton;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
-}
-
-- (void)loadGoalCollectionView {
-    // Set Delegates
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    
-    self.firstGoalView.hidden = YES;
-    self.collectionView.hidden = NO;
-    
-    // Load initial data
-    [self.collectionView reloadData];
-}
-
-- (void)loadNoGoalView {
-    CGFloat originY = 280; // Not sure why I can't get this programmatically but everything else seems to be wrong.
-    CGFloat height = self.view.frame.size.height - originY;
-    CGFloat width = self.collectionView.frame.size.width;
-    self.firstGoalView.hidden = NO;
-    self.firstGoalView = [[UIView alloc] initWithFrame:CGRectMake(0, originY, width, height)];
-    self.firstGoalView.autoresizingMask = self.collectionView.autoresizingMask;
-    self.firstGoalView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:self.firstGoalView];
-    self.collectionView.hidden = YES;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.cashOverView setTotalCash:[[User currentUser] totalCash]];
-
-    if (![User currentUser]) {
-        LoginViewController *loginViewController = [[LoginViewController alloc] init];
-//        [loginViewController setDelegate:self];
-        
-//        SignupViewController *signupViewController = [[SignupViewController alloc] init];
-//        [signupViewController setDelegate:self];
-        
-//        [loginViewController setSignUpController:signupViewController];
-        self.title = @"Sign Up";
-        self.navigationItem.leftBarButtonItem = nil;
-        self.navigationItem.rightBarButtonItem = nil;
-        [self.navigationController setViewControllers:@[loginViewController]];
-//        [self presentViewController:loginViewController animated:NO completion:NULL];
-    }
-    else {
-        [[self fetchData] continueWithBlock:^id(BFTask *task) {
-            if (task.error) {
-                NSLog(@"Error fetching goals for user: %@", task.error);
-            } else {
-                self.goals = [NSMutableArray arrayWithArray:task.result];
-                [self.collectionView reloadData];
-                if([self.goals count] == 0) {
-                    // TODO add logic for loading transitioning the first goal view
-                }
-                else {
-                    [self.collectionView reloadData];
-                    // TODO load
-                }
-                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                    [self toggleAlphaForViews:1];
-                } completion:nil];
-            }
-            // TODO warning end download spinner here
-            return task;
-        }];
-    }
-}
-
-#pragma mark - Data Loading Methods
-
-- (BFTask *)fetchData {
-    return [[[[TransactionManager instance] fetchTransactionsForUser:[User currentUser]] continueWithBlock:^id(BFTask *task) {
-        if (task.error) {
-            NSLog(@"Error fetching transactions for user");
-        } else {
-            self.goalStatsView.transactionSet = [[TransactionsSet alloc] initWithTransactions:task.result];
-        }
-        return task;
-    }] continueWithBlock:^id(BFTask *task) {
-        return [GoalManager fetchGoalsForUser:[User currentUser]];
-    }];
-}
-
-#pragma mark - UICollectionView Datasource
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-//    NSInteger totalSections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-//    if ((section + 1) == totalSections && [self.goals count] % ITEMS_IN_SECTION) {
-//        return 1;
-//    }
-//    return ([self.goals count] <= 1)?[self.goals count]:ITEMS_IN_SECTION;
-    return [self.goals count];
-}
-
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-//    NSInteger sections = [self.goals count]/ITEMS_IN_SECTION + [self.goals count]%ITEMS_IN_SECTION;
-    NSInteger sections = 1;
-    return sections;
-}
-
-- (void)configureCell:(GoalCardView *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    cell.goal = self.goals[indexPath.item];
-    // Above is the same as
-//    [cell setGoal:self.goals[indexPath.item]];
-    
-    [cell updateColors];
-}
-
-- (GoalCardView *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.prototypeCell = [cv dequeueReusableCellWithReuseIdentifier:@"GoalCardView" forIndexPath:indexPath];
-    
-    [self configureCell:self.prototypeCell atIndexPath:indexPath];
-    
-//    self.prototypeCell.alpha = 0.0f;
-//    
-//    NSInteger direction = 1;
-//    if (indexPath.item % 2) {
-//        direction = -1;
-//    }
-//    
-//    CGRect frame = self.prototypeCell.frame;
-//    CGRect originalFrame = frame;
-//    frame.origin.x = direction*frame.size.width;
-//    self.prototypeCell.frame = frame;
-//    
-//    [UIView transitionWithView:cv
-//                      duration:.75
-//                       options:UIViewAnimationOptionCurveEaseInOut
-//                    animations:^{
-//                        
-//                        //any animatable attribute here.
-//                        self.prototypeCell.alpha = 1.0f;
-//                        self.prototypeCell.frame = originalFrame;
-//                        
-//                    } completion:^(BOOL finished) {
-//                        
-//                        //whatever you want to do upon completion
-//                        
-//                    }];
-    
-    return self.prototypeCell;
-}
-
-#pragma mark - UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Selected %d Cell", indexPath.row);
-    // Create the next view controller.
-    GoalDetailViewController *detailViewController = [[GoalDetailViewController alloc] init];
-    
-    // Pass the selected object to the new view controller.
-    detailViewController.goal = [self.goals objectAtIndex:indexPath.row];
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    // TODO custom transition into a Goal Detail View Controller
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Deselected %d Cell", indexPath.row);
-    // TODO: Deselect item
-}
-
-//- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-//    return NO;
-//}
-
-#pragma mark – UICollectionViewDelegateFlowLayout
-
-//- (UIEdgeInsets)collectionView:
-//(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//    return UIEdgeInsetsMake(-40, 10, 20, 10);
-//}
-
-#pragma mark - Collection View Layout Delegates
-
-// TODO for custom movements and fun stuff
-
-#pragma mark - CashOverView Delegate Methods
-
-- (void)viewTransactions:(id)sender {
-    NSLog(@"Load Transactions View");
-    [self.navigationController pushViewController:[[TransactionsListViewController alloc] init] animated:YES];
-}
-
-#pragma mark - Page Controller
-
-//- (void)pageControlChanged:(id)sender
-//{
-//    NSLog(@"Page Control Changed");
-//    UIPageControl *pageControl = sender;
-//    // TODO bounce when move to new page
-//    CGFloat pageHeight = self.collectionView.frame.size.height * ITEMS_IN_SECTION;
-//    CGPoint scrollTo = CGPointMake(0, pageHeight * pageControl.currentPage);
-//    [self.collectionView setContentOffset:scrollTo animated:YES];
-//}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    
-    // TODO, do some cool stuff with the goals.
-}
-
-// Paging with scroll
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    
-    if(velocity.y > 0) { // scrolling up at a certain velocity
-//        if(self.pageControl.currentPage != 0) {
-//            self.pageControl.currentPage--;
-//        }
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:self.pageControl.currentPage*ITEMS_IN_SECTION] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
-    }
-    else if (velocity.y < 0) { // scrolling down at a certain velocity
-//        self.pageControl.currentPage++;
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:self.pageControl.currentPage*ITEMS_IN_SECTION] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
-    }
-    else { // lock the page back to original
-        
-    }
-}
-
-#pragma mark - NavBar Methods
-
-- (void)createGoal:(id)sender {
-    NSLog(@"Loading Create Goal View");
-//    [self.navigationController pushViewController:[[CreateGoalViewController alloc] init] animated:YES];
-    [self.navigationController pushViewController:[[MultiInputViewController alloc] initWithMultiInputType:Goal_Creation] animated:YES];
     
 }
 
-- (void)showProfile:(id)sender {
+#pragma mark Navigation Actions
+
+- (void)_profileAction {
     [PFUser logOut];
-    [[TransactionManager instance] destroy];
     [self.navigationController setViewControllers:@[[[MainViewController alloc] init]] animated:YES];
 }
 
-#pragma mark - Custom Loading View Methods
-- (void)displayContentController:(UIViewController*)content
-{
-    NSLog(@"Displaying Content");
-    [self addChildViewController:content];            // 1
+- (void)_createGoal {
+    [self.navigationController pushViewController:[[MultiInputViewController alloc] init] animated:YES];
+}
+
+#pragma mark Render Views
+
+- (void)_renderGoalsCollectionView {
+    CGRect frame = CGRectMake(0, 0, self.goalsContainer.frame.size.width, self.goalsContainer.frame.size.height);
+    self.goalsCollectionView = [GoalsDashboardCollectionView makeInstanceWithFrame:frame];
+    self.goalsCollectionView.dashboardDelegate = self;
+    [self.goalsCollectionView setGoalToPrettyDate:self.viewData[@"goalToPrettyDueDate"]];
+    [self.goalsCollectionView setGoals:self.viewData[@"goals"]];
+    [self.goalsContainer addSubview:self.goalsCollectionView];
+}
+
+- (void)_renderTransactionsView {
+    [self _buildChart];
     
-    content.view.frame = [self frameForContentController];             // 2
-    [self.view addSubview:content.view];
-    [content didMoveToParentViewController:self];          // 3
+    [Utilities setupRoundedButton:self.addTransactionButton withCornerRadius:BUTTON_CORNER_RADIUS];
+    self.addTransactionButton.hidden = NO;
+    self.addTransactionButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:self.addTransactionButton.titleLabel.font.pointSize];
 }
 
-- (void)hideContentController:(UIViewController*)content
-{
-#warning this doesn't work as expected yet
-    NSLog(@"Hiding Content");
-    [content willMoveToParentViewController:nil];  // 1
-    [content.view removeFromSuperview];            // 2
-    [content removeFromParentViewController];      // 3
+- (void)_renderTransactionsEmptyView {
+    self.transactionsEmptyView = [[DashboardTransactionsEmptyView alloc] initWithFrame:self.chartView.frame];
+    self.transactionsEmptyView.delegate = self;
+    [self.chartView addSubview:self.transactionsEmptyView];
 }
 
-- (CGRect)frameForContentController {
-    CGRect contentFrame = self.view.bounds;
-    CGFloat heightOffset = self.navigationController.navigationBar.frame.size.height;
-    contentFrame.origin.y += heightOffset;
-    contentFrame.size.height -= heightOffset;
-    return contentFrame;
+- (void)_buildChart {
+    PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 20.0, SCREEN_WIDTH, 200.0)];
+    [lineChart setXLabels:self.viewData[@"lineChart"][@"xLabels"]];
+    [lineChart setYLabelHeight:20.f];
+    lineChart.showCoordinateAxis = YES;
+    
+    
+    NSArray *dataArray = self.viewData[@"lineChart"][@"data"];
+    PNLineChartData *data = [PNLineChartData new];
+    data.inflexionPointColor = [UIColor colorWithRed:35/255.0f green:199/255.0f blue:161/255.0f alpha:1.0f];
+    data.color = [UIColor colorWithRed:52/255.0f green:47/255.0f blue:51/255.0f alpha:1.0f];
+    data.inflexionPointWidth = 15.0;
+    data.inflexionPointStyle = PNLineChartPointStyleCycle;
+    data.itemCount = lineChart.xLabels.count;
+    data.getData = ^(NSUInteger index) {
+        CGFloat yValue = [dataArray[index] floatValue];
+        return [PNLineChartDataItem dataItemWithY:yValue];
+    };
+    lineChart.chartData = @[data];
+    [lineChart strokeChart];
+    [self.chartView addSubview:lineChart];
+}
+
+#pragma mark DashboardTransactionsEmptyDelegate
+
+- (void)addTransactionButtonTriggered:(id)sender {
+    [self.navigationController pushViewController:[[MultiInputViewController alloc] initWithMultiInputType:Transaction_Creation] animated:YES];
+}
+
+- (IBAction)addTransaction:(id)sender {
+    [self addTransactionButtonTriggered:sender];
+}
+
+#pragma mark GoalsDashboardCollectionViewDelegate
+
+- (void)didSelectGoal:(Goal *)goal {
+    GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
+    goalDetailViewController.goal = goal;
+    [self.navigationController pushViewController:goalDetailViewController animated:YES];
 }
 
 @end

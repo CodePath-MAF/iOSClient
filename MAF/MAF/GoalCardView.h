@@ -15,7 +15,6 @@
 @interface GoalCardView : UICollectionViewCell
 
 @property (nonatomic, strong) Goal *goal;
-
-- (void)updateColors;
+@property (nonatomic, strong) NSDictionary *prettyDueDate;
 
 @end
