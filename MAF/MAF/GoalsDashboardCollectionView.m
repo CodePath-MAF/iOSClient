@@ -66,7 +66,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(160, 242);
+    return CGSizeMake(152, 242);
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -75,6 +75,11 @@
     Goal *goal = self._goals[indexPath.item];
     [self.dashboardDelegate didSelectGoal:goal];
 }
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(7, 5, 7, 5);
+}
+
 
 #pragma mark Public Methods
 
