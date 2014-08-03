@@ -137,7 +137,6 @@
     lineChart.chartData = @[data];
     [lineChart strokeChart];
     [self.chartView addSubview:lineChart];
-    NSLog(@"%f", self.chartView.frame.size.height);
 }
 
 #pragma mark DashboardTransactionsEmptyDelegate
