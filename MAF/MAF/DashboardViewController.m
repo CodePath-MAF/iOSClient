@@ -106,11 +106,8 @@
 }
 
 - (void)_renderTransactionsView {
-    [self _buildChart];
-    
-    [Utilities setupRoundedButton:self.addTransactionButton withCornerRadius:BUTTON_CORNER_RADIUS];
+    [self _buildChart];    
     self.addTransactionButton.hidden = NO;
-    self.addTransactionButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:self.addTransactionButton.titleLabel.font.pointSize];
 }
 
 - (void)_renderTransactionsEmptyView {
@@ -120,7 +117,7 @@
 }
 
 - (void)_buildChart {
-    PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 20.0, SCREEN_WIDTH, 200.0)];
+    PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 144.0)];
     [lineChart setXLabels:self.viewData[@"lineChart"][@"xLabels"]];
     [lineChart setYLabelHeight:20.f];
     lineChart.showCoordinateAxis = YES;
@@ -140,6 +137,7 @@
     lineChart.chartData = @[data];
     [lineChart strokeChart];
     [self.chartView addSubview:lineChart];
+    NSLog(@"%f", self.chartView.frame.size.height);
 }
 
 #pragma mark DashboardTransactionsEmptyDelegate
