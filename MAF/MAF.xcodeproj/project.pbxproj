@@ -375,17 +375,17 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BF2A26AD198D6E3D00D49101 /* Dashboard */,
 				BFC167D11986062E0090AE5C /* Charts */,
-				BF865B50197C9A2900A128AD /* TransactionsTableView */,
 				BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */,
 				BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */,
 				BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */,
+				BF2A26AD198D6E3D00D49101 /* Dashboard */,
 				2CC35A13197B1D3100716B37 /* LendingSocialCell.h */,
 				2CC35A14197B1D3100716B37 /* LendingSocialCell.m */,
 				2CC35A18197B1D9500716B37 /* LendingSocialCell.xib */,
 				BF4FC9DC197FC39C00BDF982 /* ProgressView.h */,
 				BF4FC9DD197FC39C00BDF982 /* ProgressView.m */,
+				BF865B50197C9A2900A128AD /* TransactionsTableView */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -393,8 +393,6 @@
 		2CBA46C11965DF5900C6BEDF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BA20AD47197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.h */,
-				BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */,
 				BF14432C196A471300C2BB38 /* Goal.h */,
 				BF14432D196A471300C2BB38 /* Goal.m */,
 				2C95F65F197E5D5700862497 /* GoalSet.h */,
@@ -436,6 +434,8 @@
 				2C66748D1974FDB600434802 /* Utilities.m */,
 				BF963FA1198A199300C5B40B /* NSDictionary+Hash.h */,
 				BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */,
+				BA20AD47197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.h */,
+				BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
