@@ -48,10 +48,10 @@
 }
 
 - (void)_registerNibs {
-    UINib *postNib = [UINib nibWithNibName:@"PostDetailReusableView" bundle:nil];
+    UINib *postNib = [UINib nibWithNibName:@"PostDetailCollectionViewCell" bundle:nil];
     [self._collectionView registerNib:postNib forCellWithReuseIdentifier:@"PostView"];
     
-    UINib *commentNib = [UINib nibWithNibName:@"CommentReusableView" bundle:nil];
+    UINib *commentNib = [UINib nibWithNibName:@"CommentCollectionViewCell" bundle:nil];
     [self._collectionView registerNib:commentNib forCellWithReuseIdentifier:@"CommentView"];
 }
 
