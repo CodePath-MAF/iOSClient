@@ -7,7 +7,7 @@
 //
 
 #import "Comment.h"
-#import "CommentReusableView.h"
+#import "CommentCollectionViewCell.h"
 #import "PostDetailViewController.h"
 
 @interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -67,7 +67,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     Comment *comment = self._comments[indexPath.item];
-    CommentReusableView *commentView = [collectionView dequeueReusableCellWithReuseIdentifier:@"CommentView"
+    CommentCollectionViewCell *commentView = [collectionView dequeueReusableCellWithReuseIdentifier:@"CommentView"
                                                                                  forIndexPath:indexPath];
     commentView.comment = comment;
     return commentView;

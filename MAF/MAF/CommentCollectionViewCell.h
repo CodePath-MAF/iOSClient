@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Comment.h"
 
-@interface CommentReusableView : UICollectionViewCell
+@interface CommentCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) Comment *comment;
 

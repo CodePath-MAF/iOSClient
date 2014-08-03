@@ -8,7 +8,6 @@
 
 static NSInteger const kCategoryPicker = 1;
 static NSInteger const kDayPicker = 2;
-static NSInteger const kIntervalPicker = 3;
 
 #import "UILabel+WhiteUIDatePickerLabels.h"
 
@@ -66,25 +65,25 @@ static NSInteger const kIntervalPicker = 3;
 - (IBAction)finishedBack:(id)sender;
 
 @property (strong, nonatomic) NSArray *allSteps;
-@property (assign, nonatomic) int currentViewIndex;
-@property (assign, nonatomic) int previousViewIndex;
+@property (assign, nonatomic) NSInteger currentViewIndex;
+@property (assign, nonatomic) NSInteger previousViewIndex;
 
 @property (strong, nonatomic) UIPickerView *categoryPicker;
 @property (strong, nonatomic) NSMutableArray *sectionName;
 @property (strong, nonatomic) NSMutableArray *sectionNamesWithId;
-@property (nonatomic, assign) int selectedCategory;
+@property (nonatomic, assign) NSInteger selectedCategory;
 
 @property (strong, nonatomic) UIPickerView *dayPicker;
 @property (strong, nonatomic) NSMutableArray *dateStringValues;
 @property (strong, nonatomic) NSArray *dateObjectValues;
-@property (nonatomic, assign) int selectedDate;
+@property (nonatomic, assign) NSInteger selectedDate;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @property (strong, nonatomic) UIPickerView *intervalPicker;
 @property (strong, nonatomic) NSArray *intervalNames;
 @property (strong, nonatomic) NSArray *intervalEnumNames;
-@property (assign, nonatomic) int selectedInterval;
+@property (assign, nonatomic) NSInteger selectedInterval;
 
 @property (strong, nonatomic) Transaction *transactionInProgress;
 @property (strong, nonatomic) Goal *goalInProgress;
@@ -275,7 +274,7 @@ static NSInteger const kIntervalPicker = 3;
         return NO;
     } else {
         NSString *noPeriods = [textField.text stringByReplacingOccurrencesOfString:@"." withString:@""];
-        int difference = [textField.text length] - [noPeriods length];
+        NSInteger difference = [textField.text length] - [noPeriods length];
         if (difference == 1 && [string isEqualToString:@"."]) {
             return NO;
         } else {
@@ -292,7 +291,7 @@ static NSInteger const kIntervalPicker = 3;
     return YES;
 }
 
-- (void)changeProgress:(int)index {
+- (void)changeProgress:(NSInteger)index {
     [self saveState];
     [self.allSteps[self.currentViewIndex] removeFromSuperview];
 
@@ -315,7 +314,7 @@ static NSInteger const kIntervalPicker = 3;
     } else {
         if (self.previousViewIndex > 0) {
             NSMutableArray *paths = [[NSMutableArray alloc] init];
-            for (int i = self.previousViewIndex; i > self.currentViewIndex; i--) {
+            for (NSInteger i = self.previousViewIndex; i > self.currentViewIndex; i--) {
                 NSIndexPath *path = [NSIndexPath indexPathForRow:i-1 inSection:0];
                 [paths addObject:path];
             }
@@ -392,7 +391,7 @@ static NSInteger const kIntervalPicker = 3;
 }
 
 
-- (NSArray *)getContent:(int)index {
+- (NSArray *)getContent:(NSInteger)index {
     NSString *mainLabel;
     NSString *subLabel;
     if (self.formType == Transaction_Creation){

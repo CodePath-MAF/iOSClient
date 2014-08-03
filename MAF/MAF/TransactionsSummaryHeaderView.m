@@ -27,7 +27,6 @@
     PNStackedBar *_prototypeBar;
 }
 
-
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentThisWeekTotalLabel;
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *totalCashLabel;
 @property (weak, nonatomic) IBOutlet OpenSansSemiBoldLabel *spentTodayTotalLabel;
@@ -39,10 +38,6 @@
 @property (nonatomic, strong) PNStackedBar *selectedBar;
 
 @property (nonatomic, strong) UITapGestureRecognizer *singleTap;
-
-- (float)getMaxValueFromItems:(NSArray *)dataItems;
-- (NSArray *)getXLabelsForHorizontalBar:(NSArray *)dataItems;
-- (void)handleTouchInDetailBar:(id)sender;
 
 @end
 

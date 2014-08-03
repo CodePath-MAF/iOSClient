@@ -23,8 +23,6 @@
 
 #import "Utilities.h"
 
-#warning TODO make sure this is only showing TransactionTypeCredit
-
 @interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate, EmptyTransactionsViewDelegate> {
     NSDateFormatter *_dateFormatter;
 }

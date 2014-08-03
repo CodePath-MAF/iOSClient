@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 
-@interface PostDetailReusableView : UICollectionViewCell
+@interface PostDetailCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) Post *post;
 

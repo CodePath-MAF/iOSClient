@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#import "PostDetailReusableView.h"
+#import "PostDetailCollectionViewCell.h"
 
-@interface PostDetailReusableView()
+@interface PostDetailCollectionViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *_postContentLabel;
 
 
 @end
 
-@implementation PostDetailReusableView
+@implementation PostDetailCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

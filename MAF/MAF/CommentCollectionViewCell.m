@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 NinjaSudo Inc. All rights reserved.
 //
 
-#import "CommentReusableView.h"
+#import "CommentCollectionViewCell.h"
 
-@interface CommentReusableView()
+@interface CommentCollectionViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *_commentContentLabel;
 
 @end
 
-@implementation CommentReusableView
+@implementation CommentCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
