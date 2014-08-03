@@ -69,11 +69,12 @@
                         <constraint firstAttribute="height" constant="248" id="vUx-FR-Lx7"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGm-j7-wFg" userLabel="Goal Container">
-                    <rect key="frame" x="0.0" y="249" width="320" height="319"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGm-j7-wFg" userLabel="Goal Container">
+                    <rect key="frame" x="0.0" y="248" width="320" height="255"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.89429772418478259" green="0.89429772418478259" blue="0.89429772418478259" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="255" id="4xP-Qo-SPK"/>
                         <constraint firstAttribute="width" constant="320" id="85t-Cm-5tB"/>
                     </constraints>
                 </view>

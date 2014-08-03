@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *paymentAmountLabel;
 @property (weak, nonatomic) IBOutlet UICountingLabel *percentCompleteLabel;
 @property (strong, nonatomic) PNCircleChart *animatedChart;
+@property (weak, nonatomic) IBOutlet UIImageView *circleTypeImage;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *dueImageView;
@@ -44,14 +45,25 @@
 
 - (void)setGoal:(Goal *)goal {
     _goal = goal;
-
+    self.layer.cornerRadius = 5;
     self.goalNameLabel.text = self.goal.name;
+    [self setCircleImage:goal];
     self.paymentAmountLabel.text = [[NSString alloc] initWithFormat:@"($%0.2f)", self.goal.paymentAmount];
     float percentComplete = goal.currentTotal / self.goal.amount;
     self.percentCompleteLabel.format = @"%d%%";
     self.percentCompleteLabel.method = UILabelCountingMethodEaseIn;
+    self.percentCompleteLabel.font = [UIFont fontWithName:@"OpenSans-Light" size:32.0];
     [self.percentCompleteLabel countFrom:0.0 to:percentComplete*100 withDuration:1.0];
-    [self addPNCircle:percentComplete];
+    [self addPNCircle:percentComplete goal:goal];
+    [self sendSubviewToBack:self.animatedChart];
+}
+
+- (void)setCircleImage:(Goal *)goal {
+    if (goal.type == GoalTypeGoal) {
+        self.circleTypeImage.image = [UIImage imageNamed:@"img_lending_icon_blue"];
+    } else if (goal.type == GoalTypeLendingCircle) {
+        self.circleTypeImage.image = [UIImage imageNamed:@"img_goal_icon_orange"];
+    }
 }
 
 - (void)setPrettyDueDate:(NSDictionary *)prettyDueDate {
@@ -63,13 +75,18 @@
     }
 }
 
-- (void)addPNCircle:(float)percentageComplete {
-    int width = 120;
-    self.animatedChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(10, 40, width, width) andTotal:@100 andCurrent:[NSNumber numberWithFloat:percentageComplete*100] andClockwise:YES andShadow:YES];
+- (void)addPNCircle:(float)percentageComplete goal:(Goal*)goal{
+    int width = 115;
+    self.animatedChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(9, 36, width, width) andTotal:@100 andCurrent:[NSNumber numberWithFloat:percentageComplete*100] andClockwise:YES andShadow:YES];
     self.animatedChart.backgroundColor = [UIColor clearColor];
-    self.animatedChart.lineWidth = [NSNumber numberWithInt:2];
+    self.animatedChart.lineWidth = [NSNumber numberWithInt:3];
     self.animatedChart.countingLabel.textColor = [UIColor clearColor];
-    [self.animatedChart setStrokeColor:PNGreen];
+    if (goal.type == GoalTypeGoal) {
+        [self.animatedChart setStrokeColor:[UIColor colorWithRed:86.0f/255.0f green:150.0f/255.0f blue:231.0f/255.0f alpha:1.0f]];
+    } else if (goal.type == GoalTypeLendingCircle) {
+        [self.animatedChart setStrokeColor:[UIColor colorWithRed:255.0f/255.0f green:167.0f/255.0f blue:19.0f/255.0f alpha:1.0f]];
+    }
+
     [self.animatedChart strokeChart];
     [self addSubview:self.animatedChart];
 }
