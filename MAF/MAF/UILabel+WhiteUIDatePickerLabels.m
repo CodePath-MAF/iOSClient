@@ -18,7 +18,7 @@
                       withNewSelector:@selector(swizzledSetTextColor:)];
         [self swizzleInstanceSelector:@selector(setFont:)
                       withNewSelector:@selector(swizzledSetFont:)];
-        [self swizzleInstanceSelector:@selector(willMoveToSuperview:)
+        [self swizzleInstanceSelector:@selector(willMoveToSuperview::)
                       withNewSelector:@selector(swizzledWillMoveToSuperview:)];
     });
 }
