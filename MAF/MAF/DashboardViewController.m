@@ -91,7 +91,7 @@
 }
 
 - (void)_createGoal {
-    [self.navigationController pushViewController:[[MultiInputViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[MultiInputViewController alloc] initWithMultiInputType:Goal_Creation] animated:YES];
 }
 
 #pragma mark Render Views
