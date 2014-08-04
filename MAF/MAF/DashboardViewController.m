@@ -123,6 +123,7 @@
     CGRect frame = CGRectMake(0, 0, self.goalsContainer.frame.size.width, self.goalsContainer.frame.size.height);
     self.goalsCollectionView = [GoalsDashboardCollectionView makeInstanceWithFrame:frame];
     self.goalsCollectionView.dashboardDelegate = self;
+    [self.goalsCollectionView setShowsHorizontalScrollIndicator:NO];
     [self.goalsCollectionView setGoalToPrettyDate:self.viewData[@"goalToPrettyDueDate"]];
     [self.goalsCollectionView setGoals:self.viewData[@"goals"]];
     [self.goalsContainer addSubview:self.goalsCollectionView];
@@ -222,7 +223,6 @@
 - (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex {
     CGPoint poi = [self.lineChart.pathPoints[0][pointIndex] CGPointValue];
     self.transitionView = [[UIView alloc] initWithFrame:CGRectMake(poi.x-8.5, poi.y+11.5, 17, 17)];
-    NSLog(@"%f %f", poi.x, poi.y);
     self.transitionView.backgroundColor = [UIColor whiteColor];
     self.transitionView.layer.borderColor = [UIColor colorWithRed:35/255.0f green:199/255.0f blue:161/255.0f alpha:1.0f].CGColor;
     self.transitionView.layer.borderWidth = 2.0f;
