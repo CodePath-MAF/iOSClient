@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:TransitionManager.m">
+   </FileRef>
+   <FileRef
       location = "group:MAF.xcodeproj">
    </FileRef>
    <FileRef
