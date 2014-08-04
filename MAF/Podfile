@@ -13,6 +13,7 @@ pod 'XLForm', '~> 2.0'
 pod 'MHPrettyDate'
 pod 'MRProgress', '~> 0.6'
 pod 'UICountingLabel'
+pod 'pop'
 
 end
 

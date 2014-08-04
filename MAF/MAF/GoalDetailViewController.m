@@ -13,6 +13,7 @@
 #import "OpenSansRegularLabel.h"
 #import "OpenSansSemiBoldLabel.h"
 #import "GoalDetailViewController.h"
+
 #import "LendingSocialCell.h"
 #import "Friend.h"
 #import "Utilities.h"
@@ -21,6 +22,19 @@
 #import "ViewManager.h"
 #import "Post.h"
 #import "MessageCollectionViewCell.h"
+
+// Goal Details Circle
+#import <POP/POP.h>
+#import "UIView+Animated.h"
+#import "UIView+Circle.h"
+#import "GoalDetailsCircleView.h"
+#import "UIColor+CustomColors.h"
+
+#define CIRCLE_OFFSET 8.0f
+#define BIG_CIRCLE_DIAMETER 100.0f
+#define SMALL_CIRCLE_DIAMETER 40.0f
+#define BAR_HEIGHT 20.0f
+#define DEFAULT_USER_COUNT 4.0f
 
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -32,6 +46,12 @@
 @property (strong, nonatomic) NSDictionary *_viewData;
 @property (strong, nonatomic) Goal *_goal;
 @property (strong, nonatomic) NSMutableArray *_posts;
+
+@property (nonatomic, strong) UIBezierPath *friendsPath;
+@property (nonatomic) BOOL toggle;
+@property (nonatomic, strong) GoalDetailsCircleView *goalDetailsCircle;
+@property (nonatomic, strong) NSMutableArray *friendViews;
+@property (nonatomic, strong) NSArray *circleDestinations;
 
 @end
 
@@ -63,6 +83,30 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     self.navigationItem.title = self._goal.name;
+    
+    [self addGoalDetailsView];
+    
+    // Pop In Center Circle
+    [self.goalDetailsCircle scaleUpTo:1.0f beginTime:0.0f onCompletion:nil];
+    
+    self.friendViews = [[NSMutableArray alloc] init];
+    CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
+    CGPoint topCenter = CGPointMake(self.goalDetailsCircle.center.x, self.goalDetailsCircle.center.y-radius);
+    
+    for (int userNum = 0; userNum < 8; userNum++) {
+        NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userNum+1];
+        UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
+        friendView.center = topCenter;
+        [friendView setRoundedWithDiameter:SMALL_CIRCLE_DIAMETER];
+        [self.friendViews addObject:friendView];
+        [self.view addSubview:friendView];
+    }
+    
+    // Find Destinations around Center Circle
+    self.circleDestinations = [self findPointsForItems:self.friendViews aroundCircleView:self.goalDetailsCircle];
+    
+    // Animate around Circle
+    [self popInViews:self.friendViews withDestinations:self.circleDestinations];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,6 +152,107 @@
             break;
     }
     return cell;
+}
+
+#pragma mark - Add Views
+
+- (void)addGoalDetailsView
+{
+    CGPoint goalCenter = CGPointMake(self.view.center.x, BIG_CIRCLE_DIAMETER + SMALL_CIRCLE_DIAMETER + CIRCLE_OFFSET);
+    self.goalDetailsCircle = [[GoalDetailsCircleView alloc] initWithDiameter:BIG_CIRCLE_DIAMETER atPoint:goalCenter];
+    self.goalDetailsCircle.backgroundColor = [UIColor clearColor];
+    self.goalDetailsCircle.strokeColor = [UIColor customGreenColor];
+    
+    // first reduce the view to 1/100th of its original dimension
+    CGAffineTransform trans = CGAffineTransformScale(self.goalDetailsCircle.transform, 0.01, 0.01);
+    self.goalDetailsCircle.transform = trans;	// do it instantly, no animation
+    
+    [self.view addSubview:self.goalDetailsCircle];
+}
+
+#pragma mark - Goal Details Circle Animations
+
+- (void)popInViews:(NSArray *)views withDestinations:(NSArray *)destinations {
+    NSInteger itemCount = 0;
+    for (UIView *friendView in self.friendViews) {
+        CGPoint destination = [destinations[itemCount] CGPointValue];
+        // first reduce the view to 1/100th of its original dimension
+        CGAffineTransform trans = CGAffineTransformScale(friendView.transform, 0.01, 0.01);
+        friendView.transform = trans;	// do it instantly, no animation
+        // set starting point for friend view (NOT USED)
+        //        CGPoint startPoint = (itemCount > 0) ? destination : friendView.center;
+        NSLog((self.toggle)? @"YES":@"NO");
+        if (!self.toggle) {
+            friendView.center = destination;
+        }
+        
+        if (itemCount % 2) { // TODO adjust to the current user/payment user
+            friendView.layer.borderWidth = 2;
+            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+        }
+        // Not USED RIGHT NOW
+        //        // find start/destination slope
+        //        CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
+        //
+        //        CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        //        positionAnimation.beginTime = CACurrentMediaTime() + itemCount*.25;
+        //        positionAnimation.duration = .5;
+        //        positionAnimation.path = [UIBezierPath bezierPathWithArcCenter:self.goalDetailsCircle.center
+        //                                                                radius:radius
+        //                                                            startAngle:0.2f
+        //                                                              endAngle:0.2f
+        //                                                             clockwise:YES].CGPath;
+        //        positionAnimation.calculationMode = kCAAnimationPaced;
+        //        [friendView.layer addAnimation:positionAnimation forKey:@"positionAnimation"];
+        
+        [friendView scaleUpTo:1.0f beginTime:CACurrentMediaTime() + itemCount*.15 onCompletion:nil];
+        itemCount++;
+    }
+}
+
+- (void)animateViews:(NSArray *)views toDestinations:(NSArray *)destinations {
+    for (NSInteger countA = 0; countA < [views count]; countA++) {
+        CGPoint destination = [destinations[countA] CGPointValue];
+        UIImageView *friendView = [views objectAtIndex:countA];
+        
+        // calculate animation path / arc
+        if (countA % 2) {
+            friendView.layer.borderWidth = 2;
+            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+        }
+        [friendView scaleUpTo:0.8f withCenter:destination beginTime:CACurrentMediaTime() + countA*.15 onCompletion:nil];
+    }
+}
+
+- (NSArray *)findPointsForItems:(NSArray *)items onPath:(UIBezierPath *)path {
+    NSMutableArray *destinations = [[NSMutableArray alloc] init];
+    
+    NSInteger itemCount = [items count];
+    for (int itemNum = 0; itemNum < itemCount; itemNum++) {
+        CGFloat x = (itemNum) * (SMALL_CIRCLE_DIAMETER) + SMALL_CIRCLE_DIAMETER/2 + CIRCLE_OFFSET;
+        CGFloat y = BAR_HEIGHT + CIRCLE_OFFSET + SMALL_CIRCLE_DIAMETER;
+        NSValue *destination = [NSValue valueWithCGPoint:CGPointMake(x, y)];
+        [destinations addObject:destination];
+    }
+    
+    return destinations;
+}
+
+- (NSArray *)findPointsForItems:(NSArray *)items aroundCircleView:(UIView *)view {
+    NSMutableArray *destinations = [[NSMutableArray alloc] init];
+    
+    CGFloat radius = BIG_CIRCLE_DIAMETER/2 + SMALL_CIRCLE_DIAMETER/2 + CIRCLE_OFFSET;
+    CGPoint center = view.center;
+    NSInteger itemCount = [items count];
+    for (int itemNum = 0; itemNum < itemCount; itemNum++) {
+        CGFloat itemRatio = (float)itemNum/(float)itemCount;
+        CGFloat x = center.x + radius * cosf(itemRatio * 2*M_PI - M_PI_2); // minus pi/2 to start at top of circle
+        CGFloat y = center.y + radius * sinf(itemRatio * 2*M_PI - M_PI_2); // minus pi/2 to start at top of circle
+        NSValue *destination = [NSValue valueWithCGPoint:CGPointMake(x, y)];
+        [destinations addObject:destination];
+    }
+    
+    return destinations;
 }
 
 #pragma mark - UICollectionViewDelegate

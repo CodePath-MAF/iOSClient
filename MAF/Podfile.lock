@@ -36,6 +36,7 @@ PODS:
     - Facebook-iOS-SDK (~> 3.11)
   - PNChart (0.3.3):
     - UICountingLabel (~> 1.0.0)
+  - pop (1.0.6)
   - UICountingLabel (1.0.0)
   - XLForm (2.0.0)
 
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - MRProgress (~> 0.6)
   - Parse (~> 1.2)
   - PNChart (from `https://github.com/mhahn/PNChart.git`)
+  - pop
   - UICountingLabel
   - XLForm (~> 2.0)
 
@@ -61,6 +63,7 @@ SPEC CHECKSUMS:
   MRProgress: bacc0f2f6c547e4ab21fd48ed14e19cbd70de3e4
   Parse: 28c0dc54f30201a369d29a2f76c09fa43b2add16
   PNChart: 05cffd0b525db04421eae5bfa8f119bd9363e59e
+  pop: e518794da38942c05255eb64b36d894e70cb4f00
   UICountingLabel: 0a0e9e34bf4690dbd127aaec552d19ed938087a9
   XLForm: e065ea92da75acb51a577c40f2bb540c814982a3
 
