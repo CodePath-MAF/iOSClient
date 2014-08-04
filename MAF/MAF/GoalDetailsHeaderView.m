@@ -70,8 +70,9 @@
 
 - (void)applyLayoutAttributes:(CSStickyHeaderFlowLayoutAttributes *)layoutAttributes {
     
-    if (!self._progressBar) {
+    if (!self._progressBar && self._goal) {
         self._progressBar = [[UIView alloc] initWithFrame:CGRectMake(0, self._goalInformationView.frame.size.height, 0, 0)];
+        self._progressBar.alpha = 0;
         self._progressBar.backgroundColor = [UIColor customGreenColor];
         self._progressBar.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self._progressBar];
@@ -114,7 +115,9 @@
                                                                     metrics:nil
                                                                       views:viewsDictionary];
     
-    NSArray *constraint_V = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[subview(256)]"
+    CGFloat progressWidth = (self._goal.currentTotal/self._goal.amount) * 320.0;
+    NSString *constraint_V1 = [[NSString alloc] initWithFormat:@"H:[subview(%f)]", progressWidth, nil];
+    NSArray *constraint_V = [NSLayoutConstraint constraintsWithVisualFormat:constraint_V1
                                                                     options:0
                                                                     metrics:nil
                                                                       views:viewsDictionary];
@@ -174,7 +177,8 @@
 }
 
 - (void)_animateSocialCircles {
-    [self._goalProgressView setStrokeEnd:0.8 animated:YES];
+    CGFloat percentComplete = self._goal.currentTotal/self._goal.amount;
+    [self._goalProgressView setStrokeEnd:percentComplete animated:YES];
 
     self.friendViews = [[NSMutableArray alloc] init];
 //    CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
