@@ -72,7 +72,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wun-Ab-W5n">
-                                        <rect key="frame" x="12" y="29" width="32" height="22"/>
+                                        <rect key="frame" x="5" y="23" width="39" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="img-new-post-icon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,6 +119,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="img-new-post-icon" width="16" height="14"/>
+        <image name="img-new-post-icon" width="31" height="31"/>
     </resources>
 </document>
