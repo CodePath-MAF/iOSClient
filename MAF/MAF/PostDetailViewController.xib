@@ -58,22 +58,30 @@
                                 <constraint firstAttribute="width" constant="28" id="Cin-lJ-ouQ"/>
                                 <constraint firstAttribute="height" constant="28" id="NlJ-xl-8Bn"/>
                             </constraints>
-                            <state key="normal" image="btn_close_white_up"/>
+                            <state key="normal" image="btn_close_gray_up"/>
                             <connections>
                                 <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="OUe-bT-Lea"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GNh-M0-U9I">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GNh-M0-U9I" userLabel="Divider">
                             <rect key="frame" x="0.0" y="27" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qey-KZ-XlL" customClass="OpenSansRegularLabel">
+                            <rect key="frame" x="145" y="5" width="30" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="oJ5-Ws-L9z" secondAttribute="trailing" id="Aye-8V-i4e"/>
                         <constraint firstItem="oJ5-Ws-L9z" firstAttribute="top" secondItem="VLj-Y4-39R" secondAttribute="top" id="QKz-kc-H8b"/>
+                        <constraint firstAttribute="centerX" secondItem="Qey-KZ-XlL" secondAttribute="centerX" id="TrB-wp-bfb"/>
                         <constraint firstAttribute="bottom" secondItem="oJ5-Ws-L9z" secondAttribute="bottom" id="Yeq-Sw-KA2"/>
+                        <constraint firstAttribute="centerY" secondItem="Qey-KZ-XlL" secondAttribute="centerY" id="bES-Od-rhY"/>
                         <constraint firstAttribute="height" constant="28" id="hJW-pw-OeG"/>
                     </constraints>
                 </view>
@@ -101,6 +109,6 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_close_white_up" width="10" height="10"/>
+        <image name="btn_close_gray_up" width="11" height="11"/>
     </resources>
 </document>
