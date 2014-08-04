@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIColor+CustomColors.h"
+#import "UIView+Animated.h"
+#import "UIView+Circle.h"
 #import "MHPrettyDate.h"
 #import "Goal.h"
 
