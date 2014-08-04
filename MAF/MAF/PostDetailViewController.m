@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
 @property (weak, nonatomic) IBOutlet UITextField *_commentContentTextField;
 @property (weak, nonatomic) IBOutlet UIView *_postView;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, assign) CGPoint originalCenter;
+
 
 - (IBAction)_addComment:(id)sender;
 - (IBAction)dismiss:(id)sender;
@@ -33,7 +36,8 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-        
+        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+        [self.view addGestureRecognizer:self.tapGesture];
     }
     return self;
 }
@@ -41,14 +45,17 @@
 - (void)keyboardDidShow:(NSNotification *)notification
 {
     // Get the size of the keyboard.
+    self.tapGesture.enabled = YES;
     CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGFloat diffY = keyboardRect.origin.y - (self.view.frame.origin.y + self.view.frame.size.height + keyboardRect.size.height/2);
-    [self.view moveToPoint:CGPointMake(self.view.center.x, self.view.center.y + 10 - diffY) withBeginTime:CACurrentMediaTime() onCompletion:nil];
+    CGFloat diffY = keyboardRect.origin.y - (self.view.center.y + self.view.frame.size.height/2);
+    self.originalCenter = self.view.center;
+    [self.view moveToPoint:CGPointMake(self.view.center.x, self.view.center.y - diffY) withBeginTime:CACurrentMediaTime() onCompletion:nil];
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
-    [self.view moveToPoint:CGPointMake(self.view.center.x, self.view.center.y) withBeginTime:CACurrentMediaTime() onCompletion:nil];
+    [self.view moveToPoint:self.originalCenter withBeginTime:CACurrentMediaTime() onCompletion:nil];
+    self.tapGesture.enabled = NO;
 }
 
 - (void)viewDidLoad {
@@ -58,7 +65,6 @@
     self._collectionView.delegate = self;
     self._collectionView.dataSource = self;
     self._commentContentTextField.delegate = self;
-    self.title = @"Comment";
     
     switch (self.post.type) {
         case PostTypeEvent: {
@@ -139,6 +145,10 @@
     self._commentContentTextField.text = @"";
     [self._collectionView reloadData];
     [[ViewManager instance] clearCache];
+}
+
+- (void)dismissKeyboard:(id)sender {
+    [self._commentContentTextField resignFirstResponder];
 }
 
 - (IBAction)dismiss:(id)sender
