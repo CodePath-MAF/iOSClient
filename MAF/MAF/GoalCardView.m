@@ -70,8 +70,10 @@
     self.paymentDueLabel.text = prettyDueDate[@"prettyDate"];
     if ([prettyDueDate[@"warning"] boolValue]) {
         self.dueImageView.image = [UIImage imageNamed:@"time_red"];
+//        self.paymentDueLabel.textColor = [UIColor customRedColor];
     } else {
         self.dueImageView.image = [UIImage imageNamed:@"time_gray"];
+//        self.paymentDueLabel.textColor = [UIColor customGrayColor];
     }
 }
 
