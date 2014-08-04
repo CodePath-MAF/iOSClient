@@ -27,7 +27,7 @@
 #define BAR_HEIGHT 20.0f
 #define DEFAULT_USER_COUNT 4.0f
 
-@interface GoalDetailsHeaderView()
+@interface GoalDetailsHeaderView() <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *_cashoutSchedule;
 @property (nonatomic, strong) Goal *_goal;
@@ -64,6 +64,7 @@
     if (self._cashoutSchedule && !self._goalProgressChartAnimated) {
         [self _animateSocialCircles];
         self._goalProgressChartAnimated = YES;
+        self._addPostTextField.delegate = self;
     }
 }
 
@@ -316,6 +317,15 @@
 - (IBAction)_addPostAction:(id)sender {
     [self.delegate addPost:self._addPostTextField.text];
     self._addPostTextField.text = @"";
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self._addPostTextField) {
+        [textField resignFirstResponder];
+        [self _addPostAction:nil];
+        return NO;
+    }
+    return YES;
 }
 
 @end
