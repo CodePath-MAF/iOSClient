@@ -13,6 +13,7 @@
 #import "OpenSansRegularLabel.h"
 #import "OpenSansSemiBoldLabel.h"
 #import "GoalDetailViewController.h"
+
 #import "LendingSocialCell.h"
 #import "Friend.h"
 #import "Utilities.h"
@@ -22,8 +23,8 @@
 #import "Post.h"
 #import "MessageCollectionViewCell.h"
 
+// Goal Details Circle
 #import <POP/POP.h>
-#import "PNChart.h"
 #import "UIView+Animated.h"
 #import "UIView+Circle.h"
 #import "GoalDetailsCircleView.h"
