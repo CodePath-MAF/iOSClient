@@ -10,6 +10,8 @@
 #import "PNChart.h"
 
 #import "GoalDetailsHeaderView.h"
+#import "Goal.h"
+#import "OpenSansLightLabel.h"
 
 // Goal Details Circle
 #import <POP/POP.h>
@@ -26,6 +28,8 @@
 
 @interface GoalDetailsHeaderView()
 
+@property (nonatomic, strong) NSArray *_cashoutSchedule;
+@property (nonatomic, strong) Goal *_goal;
 @property (nonatomic) BOOL _goalProgressChartAnimated;
 
 @property (weak, nonatomic) IBOutlet UIView *_goalInformationView;
@@ -37,6 +41,8 @@
 @property (nonatomic) BOOL toggle;
 @property (nonatomic, strong) NSMutableArray *friendViews;
 @property (nonatomic, strong) NSArray *circleDestinations;
+@property (weak, nonatomic) IBOutlet OpenSansLightLabel *_thisMonthPayeeLabel;
+@property (weak, nonatomic) IBOutlet OpenSansLightLabel *_nextCashoutLabel;
 
 @end
 
@@ -50,10 +56,17 @@
     return self;
 }
 
+- (void)_renderView {
+    if (self._cashoutSchedule && !self._goalProgressChartAnimated) {
+        [self _animateSocialCircles];
+        self._goalProgressChartAnimated = YES;
+    }
+}
+
 - (void)applyLayoutAttributes:(CSStickyHeaderFlowLayoutAttributes *)layoutAttributes {
     
     if (!self._progressBar) {
-        self._progressBar = [[UIView alloc] initWithFrame:CGRectMake(0, self._goalInformationView.frame.size.height, 100, 50)];
+        self._progressBar = [[UIView alloc] initWithFrame:CGRectMake(0, self._goalInformationView.frame.size.height, 0, 0)];
         self._progressBar.backgroundColor = [UIColor customGreenColor];
         self._progressBar.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self._progressBar];
@@ -74,8 +87,7 @@
         self._progressBar.alpha = 0;
     }
     
-    if (!self._goalProgressChartAnimated) {
-//        [self _animateGoalProgressChart];
+    if (self._cashoutSchedule && !self._goalProgressChartAnimated) {
         [self _animateSocialCircles];
         self._goalProgressChartAnimated = YES;
     }
@@ -92,7 +104,7 @@
 
 - (void)_addConstraintsToProgressBar {
     NSDictionary *viewsDictionary = @{@"subview": self._progressBar};
-    NSArray *constraint_H = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[subview(50)]"
+    NSArray *constraint_H = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[subview(20)]"
                                                                     options:0
                                                                     metrics:nil
                                                                       views:viewsDictionary];
@@ -107,7 +119,7 @@
                                                                         metrics:nil
                                                                           views:viewsDictionary];
     
-    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[subview]-0-|"
+    NSArray *constraint_POS_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[subview]-71-|"
                                                                         options:0
                                                                         metrics:nil
                                                                           views:viewsDictionary];
@@ -157,23 +169,22 @@
 }
 
 - (void)_animateSocialCircles {
-//    [self addGoalDetailsView];
-//    [self._goalProgressView scaleUpTo:1.0f beginTime:0.0f onCompletion:nil];
     [self._goalProgressView setStrokeEnd:0.8 animated:YES];
 
     self.friendViews = [[NSMutableArray alloc] init];
 //    CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
     CGPoint topCenter = CGPointMake(self._goalProgressView.center.x, self._goalProgressView.center.y);
 
-    for (int userNum = 0; userNum < 8; userNum++) {
-        NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userNum+1];
+    [self._cashoutSchedule enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
+#warning we also have access to "paidOut" here if we want to display the check mark
+        NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%@", obj[@"profileImageId"], nil];
         UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
         friendView.center = topCenter;
         [friendView setRoundedWithDiameter:SMALL_CIRCLE_DIAMETER];
         friendView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.friendViews addObject:friendView];
         [self._goalInformationView addSubview:friendView];
-    }
+    }];
 
     // Find Destinations around Center Circle
     self.circleDestinations = [self findPointsForItems:self.friendViews aroundCircleView:self._goalProgressView];
@@ -238,8 +249,6 @@
         //        [friendView.layer addAnimation:positionAnimation forKey:@"positionAnimation"];
         
         [friendView scaleUpTo:1.0f beginTime:CACurrentMediaTime() + itemCount*.15 onCompletion:^(POPAnimation *animation, BOOL animated) {
-            NSLog(@"superview: %@", friendView.superview);
-            NSLog(@"friendView: %@", friendView);
             [self _addConstraintsToFriendView:friendView];
         }];
         itemCount++;
@@ -267,7 +276,7 @@
     
     CGFloat radius = BIG_CIRCLE_DIAMETER/2 + SMALL_CIRCLE_DIAMETER/2 + CIRCLE_OFFSET;
     CGPoint center = view.center;
-    center.y += 73;
+    center.y += 120;
     NSInteger itemCount = [items count];
     for (int itemNum = 0; itemNum < itemCount; itemNum++) {
         CGFloat itemRatio = (float)itemNum/(float)itemCount;
@@ -278,6 +287,26 @@
     }
     
     return destinations;
+}
+
+- (void)setViewData:(NSDictionary *)viewData {
+    _viewData = viewData;
+    self._goal = viewData[@"goal"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM"];
+    
+    NSString *cashoutDateString = [[dateFormatter stringFromDate:self._goal[@"cashOutDate"]] uppercaseString];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    NSString *numberAsString = [numberFormatter stringFromNumber:self._goal[@"amount"]];
+    
+    self._thisMonthPayeeLabel.text = [[[NSString alloc] initWithFormat:@"THIS MONTH: %@", viewData[@"goalDetails"][@"currentCashOutUserName"]] uppercaseString];
+    self._nextCashoutLabel.text = [[NSString alloc] initWithFormat:@"YOU WILL RECEIVE %@ IN %@", numberAsString, cashoutDateString, nil];
+    
+    self._cashoutSchedule = viewData[@"goalDetails"][@"cashOutSchedule"];
+    [self _renderView];
 }
 
 @end

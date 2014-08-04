@@ -10,4 +10,6 @@
 
 @interface GoalDetailsHeaderView : UICollectionViewCell
 
+@property (nonatomic, strong) NSDictionary *viewData;
+
 @end

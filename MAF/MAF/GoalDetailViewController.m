@@ -13,6 +13,7 @@
 #import "OpenSansRegularLabel.h"
 #import "OpenSansSemiBoldLabel.h"
 #import "GoalDetailViewController.h"
+#import "GoalDetailsHeaderView.h"
 
 #import "LendingSocialCell.h"
 #import "Friend.h"
@@ -75,8 +76,8 @@
     CSStickyHeaderFlowLayout *layout = (id)self._collectionView.collectionViewLayout;
     
     if ([layout isKindOfClass:[CSStickyHeaderFlowLayout class]]) {
-        layout.parallaxHeaderReferenceSize = CGSizeMake(320, 370);
-        layout.parallaxHeaderMinimumReferenceSize = CGSizeMake(320, 85);
+        layout.parallaxHeaderReferenceSize = CGSizeMake(320, 450);
+        layout.parallaxHeaderMinimumReferenceSize = CGSizeMake(320, 150);
         layout.parallaxHeaderAlwaysOnTop = YES;
     }
     
@@ -132,9 +133,10 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if ([kind isEqualToString:CSStickyHeaderParallaxHeader]) {
-        UICollectionReusableView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+        GoalDetailsHeaderView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
                                                                             withReuseIdentifier:@"HeaderView"
                                                                                    forIndexPath:indexPath];
+        cell.viewData = self._viewData;
         return cell;
     }
     return nil;

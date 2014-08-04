@@ -7,29 +7,92 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="BVN-oC-1Fo" customClass="GoalDetailsHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="330"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="330"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-81-SIq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="330"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYU-zZ-2eB" customClass="GoalDetailsCircleView">
-                                <rect key="frame" x="95" y="85" width="130" height="130"/>
+                                <rect key="frame" x="95" y="50" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAYOUT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="110" translatesAutoresizingMaskIntoConstraints="NO" id="2lk-CQ-yAg" customClass="OpenSansSemiBoldLabel">
+                                        <rect key="frame" x="10" y="15" width="110" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="RKT-Sm-fNQ"/>
+                                            <constraint firstAttribute="width" constant="110" id="zgd-jI-dH7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THIS MONTH: RUAL" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="110" translatesAutoresizingMaskIntoConstraints="NO" id="fIE-OB-axF" customClass="OpenSansLightLabel">
+                                        <rect key="frame" x="10" y="42" width="110" height="12"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.23019607349999999" green="0.29033687139999997" blue="0.32672991070000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU WILL RECIEVE $1200 IN SEPTEMBER" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="110" translatesAutoresizingMaskIntoConstraints="NO" id="gqL-dA-dOp" customClass="OpenSansLightLabel">
+                                        <rect key="frame" x="10" y="60" width="110" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.23019607349999999" green="0.29033687139999997" blue="0.32672991070000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="1Zk-Mu-JLg"/>
+                                    <constraint firstAttribute="trailing" secondItem="fIE-OB-axF" secondAttribute="trailing" constant="10" id="2Yn-w4-VBc"/>
+                                    <constraint firstItem="2lk-CQ-yAg" firstAttribute="top" secondItem="pYU-zZ-2eB" secondAttribute="top" constant="15" id="6LS-Nc-DoB"/>
                                     <constraint firstAttribute="width" constant="130" id="AXf-F9-64P"/>
+                                    <constraint firstItem="fIE-OB-axF" firstAttribute="leading" secondItem="pYU-zZ-2eB" secondAttribute="leading" constant="10" id="Bho-z3-iJn"/>
+                                    <constraint firstItem="fIE-OB-axF" firstAttribute="top" secondItem="2lk-CQ-yAg" secondAttribute="bottom" constant="5" id="ED0-bG-POh"/>
+                                    <constraint firstItem="gqL-dA-dOp" firstAttribute="leading" secondItem="pYU-zZ-2eB" secondAttribute="leading" constant="10" id="QAM-3U-rBh"/>
+                                    <constraint firstAttribute="trailing" secondItem="gqL-dA-dOp" secondAttribute="trailing" constant="10" id="cFV-WN-OqH"/>
+                                    <constraint firstAttribute="centerX" secondItem="2lk-CQ-yAg" secondAttribute="centerX" id="hll-bP-d3H"/>
+                                    <constraint firstItem="gqL-dA-dOp" firstAttribute="top" secondItem="fIE-OB-axF" secondAttribute="bottom" constant="6" id="pDM-dw-hhu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyv-d5-O8E">
+                                <rect key="frame" x="0.0" y="259" width="320" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a post..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-Un-ePd">
+                                        <rect key="frame" x="52" y="23" width="248" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wun-Ab-W5n">
+                                        <rect key="frame" x="20" y="31" width="11" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_add_green_up">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98119055710000003" green="0.98119055710000003" blue="0.98119055710000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Gmz-Pf-euA"/>
+                                    <constraint firstAttribute="height" constant="71" id="edg-rx-MaL"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Jyv-d5-O8E" firstAttribute="leading" secondItem="y6l-81-SIq" secondAttribute="leading" id="VTK-me-Mrb"/>
+                            <constraint firstItem="Jyv-d5-O8E" firstAttribute="top" secondItem="pYU-zZ-2eB" secondAttribute="bottom" constant="79" id="WpP-fq-WZ7"/>
+                            <constraint firstAttribute="trailing" secondItem="Jyv-d5-O8E" secondAttribute="trailing" id="gLX-YA-aKc"/>
+                            <constraint firstAttribute="bottom" secondItem="Jyv-d5-O8E" secondAttribute="bottom" id="kai-BK-OLL"/>
                             <constraint firstItem="pYU-zZ-2eB" firstAttribute="leading" secondItem="y6l-81-SIq" secondAttribute="leading" constant="95" id="mJC-Fc-mAC"/>
-                            <constraint firstAttribute="bottom" secondItem="pYU-zZ-2eB" secondAttribute="bottom" constant="85" id="uSx-Qg-RN9"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -42,10 +105,16 @@
                 <constraint firstAttribute="bottom" secondItem="y6l-81-SIq" secondAttribute="bottom" id="fzM-xL-8wl"/>
                 <constraint firstItem="y6l-81-SIq" firstAttribute="top" secondItem="BVN-oC-1Fo" secondAttribute="top" id="jkG-Q8-S3F"/>
             </constraints>
+            <size key="customSize" width="320" height="330"/>
             <connections>
                 <outlet property="_goalInformationView" destination="y6l-81-SIq" id="SOq-eP-cYY"/>
                 <outlet property="_goalProgressView" destination="pYU-zZ-2eB" id="zNd-Z9-f2n"/>
+                <outlet property="_nextCashoutLabel" destination="gqL-dA-dOp" id="ezN-MZ-i4M"/>
+                <outlet property="_thisMonthPayeeLabel" destination="fIE-OB-axF" id="QQD-vM-ktl"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="btn_add_green_up" width="11" height="11"/>
+    </resources>
 </document>

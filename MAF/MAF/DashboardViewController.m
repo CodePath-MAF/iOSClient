@@ -33,6 +33,7 @@
 
 @property (strong, nonatomic) PNLineChart *lineChart;
 
+@property (strong, nonatomic) UIView *transitionView;
 
 - (IBAction)addTransaction:(id)sender;
 
@@ -45,7 +46,10 @@
     self.addTransactionButton.hidden = YES;
     [self _configureNavigationBar];
     self.title = @"Dashboard";
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [[[ViewManager instance] fetchViewData:@"dashboardView"] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error fetching dashboard view");
@@ -54,6 +58,11 @@
         }
         return task;
     }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.transitionView removeFromSuperview];
 }
 
 - (void)renderView:(NSDictionary *)viewData {
@@ -154,13 +163,12 @@
         bubble.transform = circleTransform;
     } completion:^(BOOL finished) {
     }];
-    
-    
 }
+
 - (void)fadeTransactions {
     CATransition* transition = [CATransition animation];
     
-    transition.duration = 0.3;
+    transition.duration = 0.0;
     transition.type = kCATransitionFade;
     
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
@@ -197,17 +205,15 @@
 
 - (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex {
     CGPoint poi = [self.lineChart.pathPoints[0][pointIndex] CGPointValue];
-    UIView *circleTransitionView = [[UIView alloc] initWithFrame:CGRectMake(poi.x-8.5, poi.y+11.5, 17, 17)];
+    self.transitionView = [[UIView alloc] initWithFrame:CGRectMake(poi.x-8.5, poi.y+11.5, 17, 17)];
     NSLog(@"%f %f", poi.x, poi.y);
-    circleTransitionView.backgroundColor = [UIColor whiteColor];
-    circleTransitionView.layer.borderColor = [UIColor colorWithRed:35/255.0f green:199/255.0f blue:161/255.0f alpha:1.0f].CGColor;
-    circleTransitionView.layer.borderWidth = 2.0f;
-    circleTransitionView.layer.cornerRadius = 8.5;
-    circleTransitionView.layer.masksToBounds = YES;
-    [self.view addSubview:circleTransitionView];
-    [self bubblePop:circleTransitionView];
+    self.transitionView.backgroundColor = [UIColor whiteColor];
+    self.transitionView.layer.borderColor = [UIColor colorWithRed:35/255.0f green:199/255.0f blue:161/255.0f alpha:1.0f].CGColor;
+    self.transitionView.layer.borderWidth = 2.0f;
+    self.transitionView.layer.cornerRadius = 8.5;
+    self.transitionView.layer.masksToBounds = YES;
+    [self.view addSubview:self.transitionView];
+    [self bubblePop:self.transitionView];
 }
-
-
 
 @end
