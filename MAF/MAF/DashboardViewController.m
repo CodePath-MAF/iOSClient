@@ -183,6 +183,7 @@
     transition.type = kCATransitionFade;
     
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    TransactionsListViewController *vc = [[TransactionsListViewController alloc] init];
     [self.navigationController pushViewController:[[TransactionsListViewController alloc] init] animated:NO];
 }
 
@@ -229,6 +230,18 @@
     self.transitionView.layer.cornerRadius = 8.5;
     self.transitionView.layer.masksToBounds = YES;
     [self.view addSubview:self.transitionView];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    NSString *dateString = [[NSString alloc] initWithFormat:@"%@, 2014", self.viewData[@"lineChart"][@"xLabels"][pointIndex]];
+    
+    NSDate *today = [Utilities dateWithoutTime:[[NSDate alloc] init]];
+    NSDate *date = [Utilities dateWithoutTime:[dateFormatter dateFromString:dateString]];
+    if ([date compare:today] > 0) {
+        date = today;
+    }
+    self.nextDate = [Utilities dateWithoutTime:date];
     [self bubblePop:self.transitionView];
 }
 

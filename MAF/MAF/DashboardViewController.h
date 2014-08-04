@@ -10,4 +10,6 @@
 
 @interface DashboardViewController : UIViewController
 
+@property (nonatomic, strong) NSDate *nextDate;
+
 @end

@@ -21,6 +21,8 @@
 #import "Transaction.h"
 #import "ViewManager.h"
 
+#import "DashboardViewController.h"
+
 #import "Utilities.h"
 
 @interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate, EmptyTransactionsViewDelegate> {
@@ -39,10 +41,18 @@
 
 @implementation TransactionsListViewController
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.date = [[NSDate alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Expenses";
-    
+    self.date = [(DashboardViewController *)self.navigationController.viewControllers[0] nextDate];
     _dateFormatter = [[NSDateFormatter alloc] init];
     [_dateFormatter setDateFormat:@"YYYY-MM-d"];
     self.summaryView = [[[NSBundle mainBundle] loadNibNamed:@"TransactionsSummaryHeaderView" owner:self options:nil] lastObject];
@@ -85,9 +95,9 @@
 }
 
 - (BFTask *)fetchDataForView {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate new]];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self.date];
     return [[ViewManager instance] fetchViewData:@"stackedBarChartDetailView"
-                                       parameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [Utilities dateWithoutTime:[NSDate new]]}];
+                                       parameters:@{@"userId": [[User currentUser] objectId], @"year": @(components.year), @"month": @(components.month), @"day": @(components.day), @"today": [Utilities dateWithoutTime:self.date]}];
 }
 
 - (void)renderView:(NSDictionary *)viewData {
