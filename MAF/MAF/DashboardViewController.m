@@ -18,7 +18,7 @@
 #import "ViewManager.h"
 #import "Utilities.h"
 
-@interface DashboardViewController () <DashboardTransactionsEmptyViewDelegate, GoalsDashboardCollectionViewDelegate>
+@interface DashboardViewController () <DashboardTransactionsEmptyViewDelegate, GoalsDashboardCollectionViewDelegate, PNChartDelegate>
 
 @property (strong, nonatomic) NSDictionary *viewData;
 @property (weak, nonatomic) IBOutlet UIButton *addTransactionButton;
@@ -28,6 +28,8 @@
 
 @property (strong, nonatomic) DashboardTransactionsEmptyView *transactionsEmptyView;
 @property (strong, nonatomic) GoalsDashboardCollectionView *goalsCollectionView;
+
+@property (strong, nonatomic) PNLineChart *lineChart;
 
 - (IBAction)addTransaction:(id)sender;
 
@@ -117,10 +119,10 @@
 }
 
 - (void)_buildChart {
-    PNLineChart *lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 144.0)];
-    [lineChart setXLabels:self.viewData[@"lineChart"][@"xLabels"]];
-    [lineChart setYLabelHeight:20.f];
-    lineChart.showCoordinateAxis = YES;
+    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 144.0)];
+    [self.lineChart setXLabels:self.viewData[@"lineChart"][@"xLabels"]];
+    [self.lineChart setYLabelHeight:20.f];
+    self.lineChart.showCoordinateAxis = YES;
     
     
     NSArray *dataArray = self.viewData[@"lineChart"][@"data"];
@@ -129,14 +131,15 @@
     data.color = [UIColor colorWithRed:52/255.0f green:47/255.0f blue:51/255.0f alpha:1.0f];
     data.inflexionPointWidth = 15.0;
     data.inflexionPointStyle = PNLineChartPointStyleCycle;
-    data.itemCount = lineChart.xLabels.count;
+    data.itemCount = self.lineChart.xLabels.count;
     data.getData = ^(NSUInteger index) {
         CGFloat yValue = [dataArray[index] floatValue];
         return [PNLineChartDataItem dataItemWithY:yValue];
     };
-    lineChart.chartData = @[data];
-    [lineChart strokeChart];
-    [self.chartView addSubview:lineChart];
+    self.lineChart.chartData = @[data];
+    [self.lineChart strokeChart];
+    [self.chartView addSubview:self.lineChart];
+    self.lineChart.delegate = self;
 }
 
 #pragma mark DashboardTransactionsEmptyDelegate
@@ -162,6 +165,12 @@
         }
         return nil;
     }];
+}
+
+#pragma mark PNChartDelegate
+
+- (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex {
+    NSLog(@"bye %f %f %i %i", point.x, point.y, lineIndex, pointIndex);
 }
 
 @end
