@@ -65,7 +65,12 @@
     self._collectionView.delegate = self;
     self._collectionView.dataSource = self;
     self._commentContentTextField.delegate = self;
-    
+
+    [self _registerNibs];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     switch (self.post.type) {
         case PostTypeEvent: {
             EventCollectionViewCell *eventView = [[[NSBundle mainBundle] loadNibNamed:@"EventCollectionViewCell" owner:nil options:nil] firstObject];
@@ -81,12 +86,6 @@
             break;
         }
     }
-
-    [self _registerNibs];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 }
 
 - (void)setPost:(Post *)post {
