@@ -12,6 +12,7 @@
 #import "GoalDetailsHeaderView.h"
 #import "Goal.h"
 #import "OpenSansLightLabel.h"
+#import "Post.h"
 
 // Goal Details Circle
 #import <POP/POP.h>
@@ -43,6 +44,9 @@
 @property (nonatomic, strong) NSArray *circleDestinations;
 @property (weak, nonatomic) IBOutlet OpenSansLightLabel *_thisMonthPayeeLabel;
 @property (weak, nonatomic) IBOutlet OpenSansLightLabel *_nextCashoutLabel;
+@property (weak, nonatomic) IBOutlet UITextField *_addPostTextField;
+- (IBAction)_addPostAction:(id)sender;
+
 
 @end
 
@@ -75,13 +79,13 @@
     
     [UIView beginAnimations:@"" context:nil];
     
-    if (layoutAttributes.progressiveness <= 0.16) {
+    if (layoutAttributes.progressiveness <= 0.02) {
         [self _addAlphaToLendingCircleDetails:0];
     } else {
         [self _addAlphaToLendingCircleDetails:1];
     }
     
-    if (layoutAttributes.progressiveness <= 0.15) {
+    if (layoutAttributes.progressiveness <= 0.02) {
         self._progressBar.alpha = 1;
     } else {
         self._progressBar.alpha = 0;
@@ -307,6 +311,11 @@
     
     self._cashoutSchedule = viewData[@"goalDetails"][@"cashOutSchedule"];
     [self _renderView];
+}
+
+- (IBAction)_addPostAction:(id)sender {
+    [self.delegate addPost:self._addPostTextField.text];
+    self._addPostTextField.text = @"";
 }
 
 @end

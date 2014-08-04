@@ -28,7 +28,7 @@
 #import "MessageCollectionViewCell.h"
 #import "CSStickyHeaderFlowLayout.h"
 
-@interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate,UIViewControllerTransitioningDelegate>
+@interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GoalDetailsHeaderViewDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
 - (IBAction)_addPostAction:(id)sender;
@@ -140,6 +140,7 @@
                                                                             withReuseIdentifier:@"HeaderView"
                                                                                    forIndexPath:indexPath];
         cell.viewData = self._viewData;
+        cell.delegate = self;
         return cell;
     }
     return nil;
@@ -184,9 +185,9 @@
     [self.navigationController presentViewController:modalVC animated:YES completion:nil];
 }
 
-- (IBAction)_addPostAction:(id)sender {
+- (void)addPost:(NSString *)contents {
     Post *post = [Post object];
-    post.content = self._postTextField.text;
+    post.content = contents;
     post.goal = self._goal.parentGoal;
     post.type = PostTypeMessage;
     post.user = [User currentUser];
@@ -197,7 +198,6 @@
     self._posts = posts;
 #warning this could just be reload at index paths
     [self._collectionView reloadData];
-    self._postTextField.text = @"";
     [[ViewManager instance] clearCache];
 }
 

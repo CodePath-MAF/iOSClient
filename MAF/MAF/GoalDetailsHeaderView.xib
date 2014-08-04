@@ -77,6 +77,9 @@
                                         <state key="normal" image="btn_add_green_up">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="_addPostAction:" destination="BVN-oC-1Fo" eventType="touchUpInside" id="sjX-WM-lIe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98119055710000003" green="0.98119055710000003" blue="0.98119055710000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -107,6 +110,7 @@
             </constraints>
             <size key="customSize" width="320" height="330"/>
             <connections>
+                <outlet property="_addPostTextField" destination="CIu-Un-ePd" id="uuK-9v-rce"/>
                 <outlet property="_goalInformationView" destination="y6l-81-SIq" id="SOq-eP-cYY"/>
                 <outlet property="_goalProgressView" destination="pYU-zZ-2eB" id="zNd-Z9-f2n"/>
                 <outlet property="_nextCashoutLabel" destination="gqL-dA-dOp" id="ezN-MZ-i4M"/>

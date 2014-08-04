@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GoalDetailsHeaderViewDelegate <NSObject>
+
+- (void)addPost:(NSString *)contents;
+
+@end
+
 @interface GoalDetailsHeaderView : UICollectionViewCell
 
 @property (nonatomic, strong) NSDictionary *viewData;
+@property (nonatomic, strong) id<GoalDetailsHeaderViewDelegate> delegate;
 
 @end
