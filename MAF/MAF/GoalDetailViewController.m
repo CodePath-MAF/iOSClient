@@ -31,8 +31,6 @@
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GoalDetailsHeaderViewDelegate, UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
-- (IBAction)_addPostAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *_postTextField;
 
 @property (strong, nonatomic) NSDictionary *_viewData;
 @property (strong, nonatomic) Goal *_goal;

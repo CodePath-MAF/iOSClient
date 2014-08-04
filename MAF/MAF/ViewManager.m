@@ -42,10 +42,13 @@
 }
 
 - (BFTask *)goalDetailViewForGoal:(Goal *)goal {
-    return [self fetchViewData:@"goalDetailView" parameters:@{
-                                                              @"goalId": goal.objectId,
-                                                              @"parentGoalId": goal.parentGoal.objectId,
-                                                              }];
+    NSDictionary *parameters;
+    if (goal[@"parentGoal"]) {
+        parameters = @{@"goalId": goal.objectId, @"parentGoalId": goal.parentGoal.objectId};
+    } else {
+        parameters = @{@"goalId": goal.objectId};
+    }
+    return [self fetchViewData:@"goalDetailView" parameters:parameters];
 }
 
 - (BFTask *)dashboardView {
