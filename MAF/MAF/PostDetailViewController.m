@@ -10,6 +10,7 @@
 #import "CommentCollectionViewCell.h"
 #import "MessageCollectionViewCell.h"
 #import "PostDetailViewController.h"
+#import "EventCollectionViewCell.h"
 #import "ViewManager.h"
 #import "UIView+Animated.h"
 
@@ -59,10 +60,22 @@
     self._commentContentTextField.delegate = self;
     self.title = @"Comment";
     
-    MessageCollectionViewCell *postView = [[[NSBundle mainBundle] loadNibNamed:@"MessageCollectionViewCell" owner:nil options:nil] firstObject];
-    postView.post = self.post;
-    [self._postView addSubview:postView];
-    
+    switch (self.post.type) {
+        case PostTypeEvent: {
+            EventCollectionViewCell *eventView = [[[NSBundle mainBundle] loadNibNamed:@"EventCollectionViewCell" owner:nil options:nil] firstObject];
+            eventView.post = self.post;
+            [self._postView addSubview:eventView];
+            break;
+        }
+            
+        default: {
+            MessageCollectionViewCell *postView = [[[NSBundle mainBundle] loadNibNamed:@"MessageCollectionViewCell" owner:nil options:nil] firstObject];
+            postView.post = self.post;
+            [self._postView addSubview:postView];
+            break;
+        }
+    }
+
     [self _registerNibs];
 }
 
