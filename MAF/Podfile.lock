@@ -1,6 +1,7 @@
 PODS:
   - Bolts (1.1.1)
   - CrittercismSDK (4.3.4)
+  - CSStickyHeaderFlowLayout (0.2.1)
   - Facebook-iOS-SDK (3.16.2):
     - Bolts
   - MHPrettyDate (1.1.1)
@@ -43,6 +44,7 @@ PODS:
 DEPENDENCIES:
   - Bolts (~> 1.1)
   - CrittercismSDK
+  - CSStickyHeaderFlowLayout
   - MHPrettyDate
   - MRProgress (~> 0.6)
   - Parse (~> 1.2)
@@ -58,6 +60,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
+  CSStickyHeaderFlowLayout: 50d1968dc88560419a96beab3de0fa47a4294eac
   Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
   MHPrettyDate: d9f42f2ec3dfece6352f18ac77aa33312174e09e
   MRProgress: bacc0f2f6c547e4ab21fd48ed14e19cbd70de3e4

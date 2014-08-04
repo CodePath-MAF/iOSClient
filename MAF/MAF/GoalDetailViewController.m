@@ -22,6 +22,7 @@
 #import "ViewManager.h"
 #import "Post.h"
 #import "MessageCollectionViewCell.h"
+#import "CSStickyHeaderFlowLayout.h"
 
 // Goal Details Circle
 #import <POP/POP.h>
@@ -47,6 +48,8 @@
 @property (strong, nonatomic) Goal *_goal;
 @property (strong, nonatomic) NSMutableArray *_posts;
 
+@property (nonatomic, strong) UINib *_headerNib;
+
 @property (nonatomic, strong) UIBezierPath *friendsPath;
 @property (nonatomic) BOOL toggle;
 @property (nonatomic, strong) GoalDetailsCircleView *goalDetailsCircle;
@@ -67,6 +70,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self._headerNib = [UINib nibWithNibName:@"GoalDetailsHeaderView" bundle:nil];
     }
     return self;
 }
@@ -83,30 +87,45 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     self.navigationItem.title = self._goal.name;
+    [self _setupParallaxHeader];
     
-    [self addGoalDetailsView];
+//    [self addGoalDetailsView];
     
     // Pop In Center Circle
-    [self.goalDetailsCircle scaleUpTo:1.0f beginTime:0.0f onCompletion:nil];
+//    [self.goalDetailsCircle scaleUpTo:1.0f beginTime:0.0f onCompletion:nil];
+//    
+//    self.friendViews = [[NSMutableArray alloc] init];
+//    CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
+//    CGPoint topCenter = CGPointMake(self.goalDetailsCircle.center.x, self.goalDetailsCircle.center.y-radius);
+//    
+//    for (int userNum = 0; userNum < 8; userNum++) {
+//        NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userNum+1];
+//        UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
+//        friendView.center = topCenter;
+//        [friendView setRoundedWithDiameter:SMALL_CIRCLE_DIAMETER];
+//        [self.friendViews addObject:friendView];
+//        [self.view addSubview:friendView];
+//    }
+//    
+//    // Find Destinations around Center Circle
+//    self.circleDestinations = [self findPointsForItems:self.friendViews aroundCircleView:self.goalDetailsCircle];
+//    
+//    // Animate around Circle
+//    [self popInViews:self.friendViews withDestinations:self.circleDestinations];
+}
+
+- (void)_setupParallaxHeader {
+    CSStickyHeaderFlowLayout *layout = (id)self._collectionView.collectionViewLayout;
     
-    self.friendViews = [[NSMutableArray alloc] init];
-    CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
-    CGPoint topCenter = CGPointMake(self.goalDetailsCircle.center.x, self.goalDetailsCircle.center.y-radius);
-    
-    for (int userNum = 0; userNum < 8; userNum++) {
-        NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%d", userNum+1];
-        UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
-        friendView.center = topCenter;
-        [friendView setRoundedWithDiameter:SMALL_CIRCLE_DIAMETER];
-        [self.friendViews addObject:friendView];
-        [self.view addSubview:friendView];
+    if ([layout isKindOfClass:[CSStickyHeaderFlowLayout class]]) {
+        layout.parallaxHeaderReferenceSize = CGSizeMake(320, 300);
+        layout.parallaxHeaderMinimumReferenceSize = CGSizeMake(320, 110);
+        layout.parallaxHeaderAlwaysOnTop = YES;
     }
     
-    // Find Destinations around Center Circle
-    self.circleDestinations = [self findPointsForItems:self.friendViews aroundCircleView:self.goalDetailsCircle];
-    
-    // Animate around Circle
-    [self popInViews:self.friendViews withDestinations:self.circleDestinations];
+    [self._collectionView registerNib:self._headerNib
+          forSupplementaryViewOfKind:CSStickyHeaderParallaxHeader
+                 withReuseIdentifier:@"HeaderView"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -253,6 +272,16 @@
     }
     
     return destinations;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([kind isEqualToString:CSStickyHeaderParallaxHeader]) {
+        UICollectionReusableView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                            withReuseIdentifier:@"HeaderView"
+                                                                                   forIndexPath:indexPath];
+        return cell;
+    }
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegate

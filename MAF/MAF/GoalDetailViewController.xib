@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoalDetailViewController">
             <connections>
                 <outlet property="_collectionView" destination="j4k-Kp-wao" id="dkd-d8-9dD"/>
-                <outlet property="_postTextField" destination="OSZ-Hw-PDv" id="e8V-hG-jG4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="6Tw-JC-Wdp"/>
             </connections>
         </placeholder>
@@ -17,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-Kp-wao">
-                    <rect key="frame" x="0.0" y="349" width="320" height="219"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.88434103260869568" green="0.88434103260869568" blue="0.88434103260869568" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="Fqb-Br-sPK"/>
-                        <constraint firstAttribute="height" constant="219" id="c0a-jl-rjZ"/>
+                        <constraint firstAttribute="height" constant="568" id="c0a-jl-rjZ"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="E3Y-ZE-9FS">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="E3Y-ZE-9FS" customClass="CSStickyHeaderFlowLayout">
                         <size key="itemSize" width="320" height="72"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -32,53 +31,10 @@
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjC-mS-8bN">
-                    <rect key="frame" x="0.0" y="277" width="320" height="72"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OSZ-Hw-PDv">
-                            <rect key="frame" x="103" y="21" width="197" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="AAd-Mi-D7d"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB4-nj-mSE">
-                            <rect key="frame" x="20" y="22" width="63" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="TWO-ad-QnU"/>
-                            </constraints>
-                            <state key="normal" title="Add post">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="_addPostAction:" destination="-1" eventType="touchUpInside" id="P0b-8H-rOV"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.98119055706521741" green="0.98119055706521741" blue="0.98119055706521741" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="97U-JU-IHA"/>
-                        <constraint firstAttribute="trailing" secondItem="OSZ-Hw-PDv" secondAttribute="trailing" constant="20" id="9kd-Ob-hhz"/>
-                        <constraint firstAttribute="bottom" secondItem="LB4-nj-mSE" secondAttribute="bottom" constant="20" id="DJW-ik-33w"/>
-                        <constraint firstItem="LB4-nj-mSE" firstAttribute="top" secondItem="bjC-mS-8bN" secondAttribute="top" constant="22" id="HtZ-Vt-pM8"/>
-                        <constraint firstItem="OSZ-Hw-PDv" firstAttribute="leading" secondItem="LB4-nj-mSE" secondAttribute="trailing" constant="20" id="VlJ-dF-WI0"/>
-                        <constraint firstAttribute="bottom" secondItem="OSZ-Hw-PDv" secondAttribute="bottom" constant="21" id="dDd-2m-21S"/>
-                        <constraint firstItem="LB4-nj-mSE" firstAttribute="leading" secondItem="bjC-mS-8bN" secondAttribute="leading" constant="20" id="jFP-jv-9rU"/>
-                        <constraint firstItem="OSZ-Hw-PDv" firstAttribute="top" secondItem="bjC-mS-8bN" secondAttribute="top" constant="21" id="sVm-Il-EqU"/>
-                        <constraint firstAttribute="height" constant="72" id="ui9-GT-f2p"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="bjC-mS-8bN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Ba-h9-4cb"/>
-                <constraint firstItem="j4k-Kp-wao" firstAttribute="top" secondItem="bjC-mS-8bN" secondAttribute="bottom" id="8dR-Pe-IPW"/>
                 <constraint firstAttribute="bottom" secondItem="j4k-Kp-wao" secondAttribute="bottom" id="FtY-aG-ZYv"/>
-                <constraint firstAttribute="trailing" secondItem="bjC-mS-8bN" secondAttribute="trailing" id="Viw-O6-tTS"/>
                 <constraint firstAttribute="trailing" secondItem="j4k-Kp-wao" secondAttribute="trailing" id="XVc-8c-YEh"/>
                 <constraint firstItem="j4k-Kp-wao" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cLp-pG-x9g"/>
             </constraints>

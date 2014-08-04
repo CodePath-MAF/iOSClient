@@ -48,6 +48,8 @@
 		BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FFD197757AB00F68B2E /* TransactionsSummaryHeaderView.m */; };
 		BF1B3000197757AB00F68B2E /* TransactionsSummaryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1B2FFE197757AB00F68B2E /* TransactionsSummaryHeaderView.xib */; };
 		BF1B300319775E6200F68B2E /* TransactionsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B300219775E6200F68B2E /* TransactionsSet.m */; };
+		BF1D6FA0198F46F000970163 /* GoalDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1D6F9F198F46F000970163 /* GoalDetailsHeaderView.m */; };
+		BF1D6FA2198F46FD00970163 /* GoalDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1D6FA1198F46FD00970163 /* GoalDetailsHeaderView.xib */; };
 		BF26D579198003E70085202E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF26D577198003E70085202E /* MainViewController.m */; };
 		BF26D57A198003E70085202E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF26D578198003E70085202E /* MainViewController.xib */; };
 		BF2A26B0198D714B00D49101 /* DashboardTransactionsEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26AF198D714B00D49101 /* DashboardTransactionsEmptyView.m */; };
@@ -183,6 +185,9 @@
 		BF1B2FFE197757AB00F68B2E /* TransactionsSummaryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionsSummaryHeaderView.xib; sourceTree = "<group>"; };
 		BF1B300119775E6200F68B2E /* TransactionsSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsSet.h; sourceTree = "<group>"; };
 		BF1B300219775E6200F68B2E /* TransactionsSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsSet.m; sourceTree = "<group>"; };
+		BF1D6F9E198F46F000970163 /* GoalDetailsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalDetailsHeaderView.h; sourceTree = "<group>"; };
+		BF1D6F9F198F46F000970163 /* GoalDetailsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalDetailsHeaderView.m; sourceTree = "<group>"; };
+		BF1D6FA1198F46FD00970163 /* GoalDetailsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalDetailsHeaderView.xib; sourceTree = "<group>"; };
 		BF26D576198003E70085202E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		BF26D577198003E70085202E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		BF26D578198003E70085202E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -621,6 +626,9 @@
 				D25A6BAE198F34AE00E6EBFD /* GoalDetailsCircleView.h */,
 				D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */,
 				D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */,
+				BF1D6F9E198F46F000970163 /* GoalDetailsHeaderView.h */,
+				BF1D6F9F198F46F000970163 /* GoalDetailsHeaderView.m */,
+				BF1D6FA1198F46FD00970163 /* GoalDetailsHeaderView.xib */,
 			);
 			name = "Goal Details";
 			sourceTree = "<group>";
@@ -761,6 +769,7 @@
 				D25A6BB2198F34AE00E6EBFD /* GoalDetailsCircleView.xib in Resources */,
 				BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
+				BF1D6FA2198F46FD00970163 /* GoalDetailsHeaderView.xib in Resources */,
 				BAFB2C1D1975D39400A11C56 /* MultiInputViewController.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BF2A26C5198DCE8900D49101 /* MessageCollectionViewCell.xib in Resources */,
@@ -852,6 +861,7 @@
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,
 				BF865B21197C61C500A128AD /* OpenSansExtraBoldLabel.m in Sources */,
 				2C95F661197E5D5700862497 /* GoalSet.m in Sources */,
+				BF1D6FA0198F46F000970163 /* GoalDetailsHeaderView.m in Sources */,
 				BF26D579198003E70085202E /* MainViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */,
