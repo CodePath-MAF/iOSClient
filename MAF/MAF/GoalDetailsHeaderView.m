@@ -233,7 +233,6 @@
         friendView.transform = trans;	// do it instantly, no animation
         // set starting point for friend view (NOT USED)
         //        CGPoint startPoint = (itemCount > 0) ? destination : friendView.center;
-        NSLog((self.toggle)? @"YES":@"NO");
         if (!self.toggle) {
             friendView.center = destination;
         }
