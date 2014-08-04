@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import <QuartzCore/QuartzCore.h>
 #import "PNChart.h"
 
 #import "DashboardTransactionsEmptyView.h"
@@ -17,6 +18,7 @@
 #import "MainViewController.h"
 #import "ViewManager.h"
 #import "Utilities.h"
+#import "TransactionsListViewController.h"
 
 @interface DashboardViewController () <DashboardTransactionsEmptyViewDelegate, GoalsDashboardCollectionViewDelegate, PNChartDelegate>
 
@@ -30,6 +32,7 @@
 @property (strong, nonatomic) GoalsDashboardCollectionView *goalsCollectionView;
 
 @property (strong, nonatomic) PNLineChart *lineChart;
+
 
 - (IBAction)addTransaction:(id)sender;
 
@@ -142,6 +145,29 @@
     self.lineChart.delegate = self;
 }
 
+- (void)bubblePop:(UIView *)bubble {
+    CGAffineTransform circleTransform = CGAffineTransformMakeScale(80, 80);
+    [self performSelector:@selector(fadeTransactions) withObject:nil afterDelay:0.1];
+
+    [UIView animateWithDuration:2.0 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        bubble.layer.borderWidth = 1;
+        bubble.transform = circleTransform;
+    } completion:^(BOOL finished) {
+    }];
+    
+    
+}
+- (void)fadeTransactions {
+    CATransition* transition = [CATransition animation];
+    
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:[[TransactionsListViewController alloc] init] animated:NO];
+}
+
+
 #pragma mark DashboardTransactionsEmptyDelegate
 
 - (void)addTransactionButtonTriggered:(id)sender {
@@ -170,7 +196,18 @@
 #pragma mark PNChartDelegate
 
 - (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex {
-    NSLog(@"bye %f %f %i %i", point.x, point.y, lineIndex, pointIndex);
+    CGPoint poi = [self.lineChart.pathPoints[0][pointIndex] CGPointValue];
+    UIView *circleTransitionView = [[UIView alloc] initWithFrame:CGRectMake(poi.x-8.5, poi.y+11.5, 17, 17)];
+    NSLog(@"%f %f", poi.x, poi.y);
+    circleTransitionView.backgroundColor = [UIColor whiteColor];
+    circleTransitionView.layer.borderColor = [UIColor colorWithRed:35/255.0f green:199/255.0f blue:161/255.0f alpha:1.0f].CGColor;
+    circleTransitionView.layer.borderWidth = 2.0f;
+    circleTransitionView.layer.cornerRadius = 8.5;
+    circleTransitionView.layer.masksToBounds = YES;
+    [self.view addSubview:circleTransitionView];
+    [self bubblePop:circleTransitionView];
 }
+
+
 
 @end
