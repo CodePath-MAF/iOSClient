@@ -14,22 +14,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-81-SIq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYU-zZ-2eB">
-                                <rect key="frame" x="110" y="75" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYU-zZ-2eB" customClass="GoalDetailsCircleView">
+                                <rect key="frame" x="95" y="85" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="1Zk-Mu-JLg"/>
-                                    <constraint firstAttribute="width" constant="100" id="AXf-F9-64P"/>
+                                    <constraint firstAttribute="height" constant="130" id="1Zk-Mu-JLg"/>
+                                    <constraint firstAttribute="width" constant="130" id="AXf-F9-64P"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="pYU-zZ-2eB" secondAttribute="centerX" id="1Tz-Vs-Iml"/>
-                            <constraint firstAttribute="centerY" secondItem="pYU-zZ-2eB" secondAttribute="centerY" id="CUX-9w-m2g"/>
+                            <constraint firstItem="pYU-zZ-2eB" firstAttribute="leading" secondItem="y6l-81-SIq" secondAttribute="leading" constant="95" id="mJC-Fc-mAC"/>
+                            <constraint firstAttribute="bottom" secondItem="pYU-zZ-2eB" secondAttribute="bottom" constant="85" id="uSx-Qg-RN9"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -39,7 +39,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="y6l-81-SIq" secondAttribute="trailing" id="Ml5-pj-MJT"/>
                 <constraint firstItem="y6l-81-SIq" firstAttribute="leading" secondItem="BVN-oC-1Fo" secondAttribute="leading" id="dsz-wM-dse"/>
-                <constraint firstAttribute="bottom" secondItem="y6l-81-SIq" secondAttribute="bottom" constant="50" id="fzM-xL-8wl"/>
+                <constraint firstAttribute="bottom" secondItem="y6l-81-SIq" secondAttribute="bottom" id="fzM-xL-8wl"/>
                 <constraint firstItem="y6l-81-SIq" firstAttribute="top" secondItem="BVN-oC-1Fo" secondAttribute="top" id="jkG-Q8-S3F"/>
             </constraints>
             <connections>

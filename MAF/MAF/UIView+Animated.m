@@ -43,20 +43,20 @@ typedef struct {
                      }];
 }
 
-- (void)moveToPoint:(CGPoint)point withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete {
+- (void)moveToPoint:(CGPoint)point withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete {
     POPSpringAnimation *positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPosition];
     positionAnimation.toValue = [NSValue valueWithCGPoint:point];
     positionAnimation.beginTime = beginTime;
     [self.layer pop_addAnimation:positionAnimation forKey:@"layerPositionAnimation"];
 }
 
-- (void)scaleUpTo:(CGFloat)scale withCenter:(CGPoint)center beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete
+- (void)scaleUpTo:(CGFloat)scale withCenter:(CGPoint)center beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete
 {
     [self moveToPoint:center withBeginTime:beginTime onCompletion:nil];
     [self scaleUpTo:scale beginTime:beginTime onCompletion:complete];
 }
 
-- (void)scaleUpTo:(CGFloat)scale beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete
+- (void)scaleUpTo:(CGFloat)scale beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete
 {
     POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(scale, scale)];
@@ -66,7 +66,7 @@ typedef struct {
     [self.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
 }
 
-- (void)scaleDownTo:(CGFloat)scale withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete
+- (void)scaleDownTo:(CGFloat)scale withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete
 {
     POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(scale, scale)];

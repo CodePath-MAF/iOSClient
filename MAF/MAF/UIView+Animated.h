@@ -16,11 +16,11 @@
 
 
 // Move To
-- (void)moveToPoint:(CGPoint)point withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete;
+- (void)moveToPoint:(CGPoint)point withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete;
 // Scale Up
-- (void)scaleUpTo:(CGFloat)scale withCenter:(CGPoint)center beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete;
-- (void)scaleUpTo:(CGFloat)scale beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete;
+- (void)scaleUpTo:(CGFloat)scale withCenter:(CGPoint)center beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete;
+- (void)scaleUpTo:(CGFloat)scale beginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete;
 // Scale Down
-- (void)scaleDownTo:(CGFloat)scale withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *, BOOL))complete;
+- (void)scaleDownTo:(CGFloat)scale withBeginTime:(NSTimeInterval)beginTime onCompletion:(void (^)(POPAnimation *animation, BOOL animated))complete;
 
 @end

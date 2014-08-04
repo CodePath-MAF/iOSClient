@@ -105,7 +105,6 @@
 		BFC167D71986070D0090AE5C /* TextDetailChart.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC167D61986070D0090AE5C /* TextDetailChart.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
 		D25A6BB1198F34AE00E6EBFD /* GoalDetailsCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */; };
-		D25A6BB2198F34AE00E6EBFD /* GoalDetailsCircleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */; };
 		D25A6BBA198F34F000E6EBFD /* UIView+Animated.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BB7198F34F000E6EBFD /* UIView+Animated.m */; };
 		D25A6BBB198F34F000E6EBFD /* UIView+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BB9198F34F000E6EBFD /* UIView+Circle.m */; };
 		D25A6BBE198F34FC00E6EBFD /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BBD198F34FC00E6EBFD /* UIColor+CustomColors.m */; };
@@ -276,7 +275,6 @@
 		BFC167D61986070D0090AE5C /* TextDetailChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetailChart.m; sourceTree = "<group>"; };
 		D25A6BAE198F34AE00E6EBFD /* GoalDetailsCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalDetailsCircleView.h; sourceTree = "<group>"; };
 		D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalDetailsCircleView.m; sourceTree = "<group>"; };
-		D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalDetailsCircleView.xib; sourceTree = "<group>"; };
 		D25A6BB6198F34F000E6EBFD /* UIView+Animated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animated.h"; sourceTree = "<group>"; };
 		D25A6BB7198F34F000E6EBFD /* UIView+Animated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animated.m"; sourceTree = "<group>"; };
 		D25A6BB8198F34F000E6EBFD /* UIView+Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Circle.h"; sourceTree = "<group>"; };
@@ -625,7 +623,6 @@
 			children = (
 				D25A6BAE198F34AE00E6EBFD /* GoalDetailsCircleView.h */,
 				D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */,
-				D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */,
 				BF1D6F9E198F46F000970163 /* GoalDetailsHeaderView.h */,
 				BF1D6F9F198F46F000970163 /* GoalDetailsHeaderView.m */,
 				BF1D6FA1198F46FD00970163 /* GoalDetailsHeaderView.xib */,
@@ -766,7 +763,6 @@
 				BF865B41197C682A00A128AD /* OpenSans-ExtraBold.ttf in Resources */,
 				BF865B48197C682A00A128AD /* OpenSans-SemiboldItalic.ttf in Resources */,
 				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
-				D25A6BB2198F34AE00E6EBFD /* GoalDetailsCircleView.xib in Resources */,
 				BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BF1D6FA2198F46FD00970163 /* GoalDetailsHeaderView.xib in Resources */,

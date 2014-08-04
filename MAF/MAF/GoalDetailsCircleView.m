@@ -9,6 +9,7 @@
 #import "GoalDetailsCircleView.h"
 #import "UIView+Animated.h"
 #import "UIView+Circle.h"
+#import "UIColor+CustomColors.h"
 
 @interface GoalDetailsCircleView()
 @property(nonatomic) CAShapeLayer *circleLayer;
@@ -30,12 +31,19 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setRoundedWithDiameter:130];
+    self.clipsToBounds = YES;
+    [self addCircleLayer];
+    self.strokeColor = [UIColor customGreenColor];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         NSAssert(frame.size.width == frame.size.height, @"A circle must have the same height and width.");
-        
     }
     return self;
 }
