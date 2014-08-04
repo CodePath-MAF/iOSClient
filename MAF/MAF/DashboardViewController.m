@@ -72,6 +72,9 @@
 - (void)renderView:(NSDictionary *)viewData {
     self.viewData = viewData;
     if ([(NSArray *)self.viewData[@"lineChart"][@"data"] count]) {
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+        self.title = [[NSString alloc] initWithFormat:@"Cash: %@", [numberFormatter stringFromNumber:viewData[@"totalCash"]]];
         [self _renderTransactionsView];
         [self _renderGoalsCollectionView];
     } else {
