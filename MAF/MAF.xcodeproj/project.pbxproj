@@ -102,6 +102,11 @@
 		BFC167D4198606390090AE5C /* StackedBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC167D3198606390090AE5C /* StackedBarChart.m */; };
 		BFC167D71986070D0090AE5C /* TextDetailChart.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC167D61986070D0090AE5C /* TextDetailChart.m */; };
 		C57A3931956D4561A3CA636E /* libPods-MAF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B3346FE0FB4EC3973C6B68 /* libPods-MAF.a */; };
+		D25A6BB1198F34AE00E6EBFD /* GoalDetailsCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */; };
+		D25A6BB2198F34AE00E6EBFD /* GoalDetailsCircleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */; };
+		D25A6BBA198F34F000E6EBFD /* UIView+Animated.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BB7198F34F000E6EBFD /* UIView+Animated.m */; };
+		D25A6BBB198F34F000E6EBFD /* UIView+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BB9198F34F000E6EBFD /* UIView+Circle.m */; };
+		D25A6BBE198F34FC00E6EBFD /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BBD198F34FC00E6EBFD /* UIColor+CustomColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +269,15 @@
 		BFC167D3198606390090AE5C /* StackedBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedBarChart.m; sourceTree = "<group>"; };
 		BFC167D51986070D0090AE5C /* TextDetailChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextDetailChart.h; sourceTree = "<group>"; };
 		BFC167D61986070D0090AE5C /* TextDetailChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetailChart.m; sourceTree = "<group>"; };
+		D25A6BAE198F34AE00E6EBFD /* GoalDetailsCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalDetailsCircleView.h; sourceTree = "<group>"; };
+		D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalDetailsCircleView.m; sourceTree = "<group>"; };
+		D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalDetailsCircleView.xib; sourceTree = "<group>"; };
+		D25A6BB6198F34F000E6EBFD /* UIView+Animated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animated.h"; sourceTree = "<group>"; };
+		D25A6BB7198F34F000E6EBFD /* UIView+Animated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animated.m"; sourceTree = "<group>"; };
+		D25A6BB8198F34F000E6EBFD /* UIView+Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Circle.h"; sourceTree = "<group>"; };
+		D25A6BB9198F34F000E6EBFD /* UIView+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Circle.m"; sourceTree = "<group>"; };
+		D25A6BBC198F34FC00E6EBFD /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
+		D25A6BBD198F34FC00E6EBFD /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +342,7 @@
 		2CBA46961965DE3A00C6BEDF /* MAF */ = {
 			isa = PBXGroup;
 			children = (
+				D25A6BB3198F34D500E6EBFD /* Categories */,
 				BF865B34197C632200A128AD /* Fonts */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
 				2CBA46C21965DF6800C6BEDF /* APIs */,
@@ -399,6 +414,7 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D25A6BAD198F349600E6EBFD /* Goal Details */,
 				BFC167D11986062E0090AE5C /* Charts */,
 				BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */,
 				BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */,
@@ -599,6 +615,45 @@
 			name = Charts;
 			sourceTree = "<group>";
 		};
+		D25A6BAD198F349600E6EBFD /* Goal Details */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BAE198F34AE00E6EBFD /* GoalDetailsCircleView.h */,
+				D25A6BAF198F34AE00E6EBFD /* GoalDetailsCircleView.m */,
+				D25A6BB0198F34AE00E6EBFD /* GoalDetailsCircleView.xib */,
+			);
+			name = "Goal Details";
+			sourceTree = "<group>";
+		};
+		D25A6BB3198F34D500E6EBFD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BB5198F34DF00E6EBFD /* UIColor */,
+				D25A6BB4198F34DB00E6EBFD /* UIView */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		D25A6BB4198F34DB00E6EBFD /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BB6198F34F000E6EBFD /* UIView+Animated.h */,
+				D25A6BB7198F34F000E6EBFD /* UIView+Animated.m */,
+				D25A6BB8198F34F000E6EBFD /* UIView+Circle.h */,
+				D25A6BB9198F34F000E6EBFD /* UIView+Circle.m */,
+			);
+			name = UIView;
+			sourceTree = "<group>";
+		};
+		D25A6BB5198F34DF00E6EBFD /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BBC198F34FC00E6EBFD /* UIColor+CustomColors.h */,
+				D25A6BBD198F34FC00E6EBFD /* UIColor+CustomColors.m */,
+			);
+			name = UIColor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -703,6 +758,7 @@
 				BF865B41197C682A00A128AD /* OpenSans-ExtraBold.ttf in Resources */,
 				BF865B48197C682A00A128AD /* OpenSans-SemiboldItalic.ttf in Resources */,
 				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
+				D25A6BB2198F34AE00E6EBFD /* GoalDetailsCircleView.xib in Resources */,
 				BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BAFB2C1D1975D39400A11C56 /* MultiInputViewController.xib in Resources */,
@@ -770,6 +826,7 @@
 				BF963FA8198B65D500C5B40B /* DashboardViewController.m in Sources */,
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,
 				BF865AFF197C593000A128AD /* Friend.m in Sources */,
+				D25A6BBE198F34FC00E6EBFD /* UIColor+CustomColors.m in Sources */,
 				BF2A26C8198DCF1400D49101 /* Post.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
@@ -787,8 +844,10 @@
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
 				BF963FA3198A199300C5B40B /* NSDictionary+Hash.m in Sources */,
 				BF2A26DA198DFEE600D49101 /* Comment.m in Sources */,
+				D25A6BBB198F34F000E6EBFD /* UIView+Circle.m in Sources */,
 				BF963F9F198A13F300C5B40B /* ViewManager.m in Sources */,
 				BAFB2C1C1975D39400A11C56 /* MultiInputViewController.m in Sources */,
+				D25A6BBA198F34F000E6EBFD /* UIView+Animated.m in Sources */,
 				BFC167D4198606390090AE5C /* StackedBarChart.m in Sources */,
 				2C66748E1974FDB600434802 /* Utilities.m in Sources */,
 				BF865B21197C61C500A128AD /* OpenSansExtraBoldLabel.m in Sources */,
@@ -811,6 +870,7 @@
 				BF865B2D197C626800A128AD /* OpenSansLightItalicLabel.m in Sources */,
 				BF1B2FFF197757AB00F68B2E /* TransactionsSummaryHeaderView.m in Sources */,
 				BF865B55197CD4D700A128AD /* TransactionManager.m in Sources */,
+				D25A6BB1198F34AE00E6EBFD /* GoalDetailsCircleView.m in Sources */,
 				BF865B59197D71D800A128AD /* OpenSansLightTextField.m in Sources */,
 				BF865B30197C627B00A128AD /* OpenSansSemiBoldLabel.m in Sources */,
 				BF865B24197C61FF00A128AD /* OpenSansItalicLabel.m in Sources */,
