@@ -11,8 +11,9 @@
 #import "MessageCollectionViewCell.h"
 #import "PostDetailViewController.h"
 #import "ViewManager.h"
+#import "UIView+Animated.h"
 
-@interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSArray *_comments;
 @property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
@@ -29,9 +30,24 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+        
     }
     return self;
+}
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    // Get the size of the keyboard.
+    CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGFloat diffY = keyboardRect.origin.y - (self.view.frame.origin.y + self.view.frame.size.height + keyboardRect.size.height/2);
+    [self.view moveToPoint:CGPointMake(self.view.center.x, self.view.center.y + 10 - diffY) withBeginTime:CACurrentMediaTime() onCompletion:nil];
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [self.view moveToPoint:CGPointMake(self.view.center.x, self.view.center.y) withBeginTime:CACurrentMediaTime() onCompletion:nil];
 }
 
 - (void)viewDidLoad {
@@ -40,7 +56,7 @@
     self.view.layer.cornerRadius = 8.0f;
     self._collectionView.delegate = self;
     self._collectionView.dataSource = self;
-    
+    self._commentContentTextField.delegate = self;
     self.title = @"Comment";
     
     MessageCollectionViewCell *postView = [[[NSBundle mainBundle] loadNibNamed:@"MessageCollectionViewCell" owner:nil options:nil] firstObject];
@@ -85,6 +101,17 @@
     return commentView;
 }
 
+#pragma mark - TextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self _addComment:textField];
+    
+    [textField resignFirstResponder];
+    [self dismiss:textField];
+    
+    return YES;
+}
+
 - (IBAction)_addComment:(id)sender {
     Comment *comment = [Comment object];
     comment.user = [User currentUser];
@@ -99,7 +126,6 @@
     self._commentContentTextField.text = @"";
     [self._collectionView reloadData];
     [[ViewManager instance] clearCache];
-    [self dismiss:sender];
 }
 
 - (IBAction)dismiss:(id)sender

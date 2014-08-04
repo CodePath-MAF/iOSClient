@@ -28,7 +28,7 @@
     dimmingView.layer.opacity = 0.0;
     
     UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
-    CGFloat sizeReductionRatio = (float)4/5;
+    CGFloat sizeReductionRatio = (float)3/7;
     toView.frame = CGRectMake(0,
                               0,
                               CGRectGetWidth(transitionContext.containerView.bounds),

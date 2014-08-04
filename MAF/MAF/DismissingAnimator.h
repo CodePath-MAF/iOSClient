@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DismissingAnimator : NSObject
+@interface DismissingAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @end
