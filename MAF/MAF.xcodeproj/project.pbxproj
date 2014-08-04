@@ -33,6 +33,7 @@
 		BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */; };
 		BA20AD49197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */; };
 		BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */; };
+		BA7645FD198F4C880071B8ED /* MosaicAnimatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7645FC198F4C880071B8ED /* MosaicAnimatorView.m */; };
 		BAE442EB197F557E00F2A027 /* SimpleTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE442E9197F557E00F2A027 /* SimpleTransactionViewController.m */; };
 		BAE442EC197F557E00F2A027 /* SimpleTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE442EA197F557E00F2A027 /* SimpleTransactionViewController.xib */; };
 		BAFB2C1C1975D39400A11C56 /* MultiInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAFB2C1A1975D39400A11C56 /* MultiInputViewController.m */; };
@@ -167,6 +168,8 @@
 		BA20AD47197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WhiteUIDatePickerLabels.h"; sourceTree = "<group>"; };
 		BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WhiteUIDatePickerLabels.m"; sourceTree = "<group>"; };
 		BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServicesConfig.plist; sourceTree = "<group>"; };
+		BA7645FB198F4C880071B8ED /* MosaicAnimatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicAnimatorView.h; sourceTree = "<group>"; };
+		BA7645FC198F4C880071B8ED /* MosaicAnimatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicAnimatorView.m; sourceTree = "<group>"; };
 		BAE442E8197F557E00F2A027 /* SimpleTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTransactionViewController.h; sourceTree = "<group>"; };
 		BAE442E9197F557E00F2A027 /* SimpleTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTransactionViewController.m; sourceTree = "<group>"; };
 		BAE442EA197F557E00F2A027 /* SimpleTransactionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTransactionViewController.xib; sourceTree = "<group>"; };
@@ -506,6 +509,8 @@
 				2C66748C1974FDB600434802 /* Utilities.h */,
 				2C66748D1974FDB600434802 /* Utilities.m */,
 				BF963FA1198A199300C5B40B /* NSDictionary+Hash.h */,
+				BA7645FB198F4C880071B8ED /* MosaicAnimatorView.h */,
+				BA7645FC198F4C880071B8ED /* MosaicAnimatorView.m */,
 				BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */,
 				BA20AD47197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.h */,
 				BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */,
@@ -889,6 +894,7 @@
 				BF2A26B0198D714B00D49101 /* DashboardTransactionsEmptyView.m in Sources */,
 				BF2A26BD198D8C1D00D49101 /* GoalsDashboardCollectionView.m in Sources */,
 				BFC167D71986070D0090AE5C /* TextDetailChart.m in Sources */,
+				BA7645FD198F4C880071B8ED /* MosaicAnimatorView.m in Sources */,
 				BF963FA8198B65D500C5B40B /* DashboardViewController.m in Sources */,
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,
 				D25A6BC4198FDB7A00E6EBFD /* PresentingAnimator.m in Sources */,

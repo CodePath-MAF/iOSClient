@@ -22,6 +22,7 @@
 #import "ViewManager.h"
 #import "Utilities.h"
 #import "TransactionsListViewController.h"
+#import "MosaicAnimatorView.h"
 
 @interface DashboardViewController () <DashboardTransactionsEmptyViewDelegate, GoalsDashboardCollectionViewDelegate, PNChartDelegate>
 
@@ -61,6 +62,7 @@
         }
         return task;
     }];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -126,7 +128,7 @@
     CGRect frame = CGRectMake(0, 0, self.goalsContainer.frame.size.width, self.goalsContainer.frame.size.height);
     self.goalsCollectionView = [GoalsDashboardCollectionView makeInstanceWithFrame:frame];
     self.goalsCollectionView.dashboardDelegate = self;
-    [self.goalsCollectionView setShowsHorizontalScrollIndicator:NO];
+    self.goalsCollectionView.showsHorizontalScrollIndicator = NO;
     [self.goalsCollectionView setGoalToPrettyDate:self.viewData[@"goalToPrettyDueDate"]];
     [self.goalsCollectionView setGoals:self.viewData[@"goals"]];
     [self.goalsContainer addSubview:self.goalsCollectionView];
@@ -204,22 +206,23 @@
 #pragma mark GoalsDashboardCollectionViewDelegate
 
 - (void)didSelectGoal:(Goal *)goal {
-    [[[ViewManager instance] goalDetailViewForGoal:goal] continueWithBlock:^id(BFTask *task) {
-        if (task.error) {
-            NSLog(@"error loading goal details, %@", task.error);
-        } else {
-            if (goal.type == 1) {
-                GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
-                [goalDetailViewController setViewData:task.result];
-                [self.navigationController pushViewController:goalDetailViewController animated:YES];
-            } else {
-                SimpleGoalDetailViewController *simpleGoalDetailViewController = [[SimpleGoalDetailViewController alloc] initWithNibName:@"SimpleGoalDetailViewController" bundle:nil];
-                [simpleGoalDetailViewController setViewData:task.result];
-                [self.navigationController pushViewController:simpleGoalDetailViewController animated:YES];
-            }
-        }
-        return nil;
-    }];
+    MosaicAnimatorView *mos = [MosaicAnimatorView overlayMosaicAnimatorView:self.view withFrame:CGRectMake(100,160, 120, 120)];
+//    [[[ViewManager instance] goalDetailViewForGoal:goal] continueWithBlock:^id(BFTask *task) {
+//        if (task.error) {
+//            NSLog(@"error loading goal details, %@", task.error);
+//        } else {
+//            if (goal.type == 1) {
+//                GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
+//                [goalDetailViewController setViewData:task.result];
+//                [self.navigationController pushViewController:goalDetailViewController animated:YES];
+//            } else {
+//                SimpleGoalDetailViewController *simpleGoalDetailViewController = [[SimpleGoalDetailViewController alloc] initWithNibName:@"SimpleGoalDetailViewController" bundle:nil];
+//                [simpleGoalDetailViewController setViewData:task.result];
+//                [self.navigationController pushViewController:simpleGoalDetailViewController animated:YES];
+//            }
+//        }
+//        return nil;
+//    }];
 }
 
 #pragma mark PNChartDelegate
@@ -246,6 +249,7 @@
     }
     self.nextDate = [Utilities dateWithoutTime:date];
     [self bubblePop:self.transitionView];
+
 }
 
 @end
