@@ -183,22 +183,9 @@
 #warning we also have access to "paidOut" here if we want to display the check mark
         NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%@", obj[@"profileImageId"], nil];
         UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
-        
-        if ([obj[@"paidOut"] boolValue]) {
-            UIImageView *checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn_circle_leftarrow_white_highlight"]];
-            CGRect frame = CGRectMake(friendView.center.x, friendView.center.y, 6, 6);
-            checkImageView.frame = frame;
-            [friendView addSubview:checkImageView];
-        }
-        else {
-            friendView.layer.borderWidth = 2;
-            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
-        }
-        
         friendView.center = topCenter;
         [friendView setRoundedWithDiameter:SMALL_CIRCLE_DIAMETER];
-        friendView.translatesAutoresizingMaskIntoConstraints = YES;
-        
+        friendView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.friendViews addObject:friendView];
         [self._goalInformationView addSubview:friendView];
     }];
@@ -237,26 +224,19 @@
     for (UIView *friendView in self.friendViews) {
         CGPoint destination = [destinations[itemCount] CGPointValue];
         // first reduce the view to 1/100th of its original dimension
-        
         CGAffineTransform trans = CGAffineTransformScale(friendView.transform, 0.01, 0.01);
         friendView.transform = trans;	// do it instantly, no animation
-        for (UIImageView *view in friendView.subviews) {
-            view.transform = trans; // transform all subviews too
-        }
-        
         // set starting point for friend view (NOT USED)
         //        CGPoint startPoint = (itemCount > 0) ? destination : friendView.center;
-
-        if (itemCount % 2) { // TODO adjust to the current user/payment user
-            friendView.layer.borderWidth = 2;
-            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
-        }
-        
-//        NSLog((self.toggle)? @"YES":@"NO");
+        NSLog((self.toggle)? @"YES":@"NO");
         if (!self.toggle) {
             friendView.center = destination;
         }
         
+        if (itemCount % 2) { // TODO adjust to the current user/payment user
+            friendView.layer.borderWidth = 2;
+            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+        }
         // Not USED RIGHT NOW
         //        // find start/destination slope
         //        CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
@@ -274,12 +254,6 @@
         
         [friendView scaleUpTo:1.0f beginTime:CACurrentMediaTime() + itemCount*.15 onCompletion:^(POPAnimation *animation, BOOL animated) {
             [self _addConstraintsToFriendView:friendView];
-            NSInteger itemCount = 1;
-            for (UIView *view in friendView.subviews) {
-                [view scaleUpTo:1.0f beginTime:itemCount*0.05 onCompletion:^(POPAnimation *animation, BOOL animated) {
-                    [self _addConstraintsToFriendView:view];
-                }];
-            }
         }];
         itemCount++;
     }
@@ -295,7 +269,6 @@
             friendView.layer.borderWidth = 2;
             friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
         }
-        
         [friendView scaleUpTo:0.8f withCenter:destination beginTime:CACurrentMediaTime() + countA*.15 onCompletion:^(POPAnimation *animation, BOOL animated) {
             [self _addConstraintsToFriendView:friendView];
         }];
