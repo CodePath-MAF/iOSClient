@@ -233,10 +233,10 @@
             friendView.center = destination;
         }
         
-        if (itemCount % 2) { // TODO adjust to the current user/payment user
-            friendView.layer.borderWidth = 2;
-            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
-        }
+//        if (itemCount % 2) { // TODO adjust to the current user/payment user
+//            friendView.layer.borderWidth = 2;
+//            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+//        }
         // Not USED RIGHT NOW
         //        // find start/destination slope
         //        CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
@@ -263,12 +263,12 @@
     for (NSInteger countA = 0; countA < [views count]; countA++) {
         CGPoint destination = [destinations[countA] CGPointValue];
         UIImageView *friendView = [views objectAtIndex:countA];
-        
-        // calculate animation path / arc
-        if (countA % 2) {
-            friendView.layer.borderWidth = 2;
-            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
-        }
+//        
+//        // calculate animation path / arc
+//        if (countA % 2) {
+//            friendView.layer.borderWidth = 2;
+//            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+//        }
         [friendView scaleUpTo:0.8f withCenter:destination beginTime:CACurrentMediaTime() + countA*.15 onCompletion:^(POPAnimation *animation, BOOL animated) {
             [self _addConstraintsToFriendView:friendView];
         }];
