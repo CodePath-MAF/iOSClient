@@ -73,9 +73,11 @@
 
 - (void)setViewData:(NSDictionary *)viewData {
     _viewData = viewData;
-    self.spentThisWeekTotalLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", [(NSNumber *)viewData[@"spentThisWeek"] floatValue]];
-    self.spentTodayTotalLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [(NSNumber *)viewData[@"spentToday"] floatValue]];
-    self.totalCashLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", [(NSNumber *)viewData[@"totalCash"] floatValue]];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    self.spentThisWeekTotalLabel.text = [numberFormatter stringFromNumber:(NSNumber *)viewData[@"spentThisWeek"]];
+    self.spentTodayTotalLabel.text = [numberFormatter stringFromNumber:(NSNumber *)viewData[@"spentToday"]];
+    self.totalCashLabel.text = [numberFormatter stringFromNumber:(NSNumber *)viewData[@"totalCash"]];
 }
 
 - (void)setActiveBar:(NSInteger)barIndex activeAlpha:(CGFloat)activeAlpha inactiveAlpha:(CGFloat)inactiveAlpha {

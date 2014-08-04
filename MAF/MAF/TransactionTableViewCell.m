@@ -27,12 +27,14 @@
 
 - (void)setTransaction:(Transaction *)transaction {
     _transaction = transaction;
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
     self.transactionDetailLabel.text = transaction.name;
     self.transactionDetailLabel.textColor = [Utilities colorFromHexString:@"#342F33"];
     self.transactionCategoryLabel.text = [transaction.category.name uppercaseString];
     self.transactionCategoryLabel.textColor = [Utilities colorFromHexString:@"#979797"];
     self.categoryColorView.backgroundColor = [Utilities colorFromHexString:transaction.category.color];
-    self.transactionAmountLabel.text = [[NSString alloc] initWithFormat:@"$%.02f", transaction.amount];
+    self.transactionAmountLabel.text = [numberFormatter stringFromNumber:[[NSNumber alloc] initWithFloat:transaction.amount]];
     self.transactionAmountLabel.textColor = [Utilities colorFromHexString:@"#4A4A4A"];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
