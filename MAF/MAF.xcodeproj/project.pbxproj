@@ -63,6 +63,8 @@
 		BF2A26DA198DFEE600D49101 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26D9198DFEE600D49101 /* Comment.m */; };
 		BF2A26DE198E0E1D00D49101 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26DC198E0E1D00D49101 /* PostDetailViewController.m */; };
 		BF2A26DF198E0E1D00D49101 /* PostDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26DD198E0E1D00D49101 /* PostDetailViewController.xib */; };
+		BF4A72E11990116300CD131D /* SimpleGoalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4A72DE1990116300CD131D /* SimpleGoalDetailViewController.m */; };
+		BF4A72E21990116300CD131D /* SimpleGoalDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4A72E01990116300CD131D /* SimpleGoalDetailViewController.xib */; };
 		BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */; };
 		BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */; };
 		BF4FC9DE197FC39C00BDF982 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4FC9DD197FC39C00BDF982 /* ProgressView.m */; };
@@ -210,6 +212,9 @@
 		BF2A26DB198E0E1D00D49101 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		BF2A26DC198E0E1D00D49101 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		BF2A26DD198E0E1D00D49101 /* PostDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetailViewController.xib; sourceTree = "<group>"; };
+		BF4A72DE1990116300CD131D /* SimpleGoalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleGoalDetailViewController.m; sourceTree = "<group>"; };
+		BF4A72DF1990116300CD131D /* SimpleGoalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGoalDetailViewController.h; sourceTree = "<group>"; };
+		BF4A72E01990116300CD131D /* SimpleGoalDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleGoalDetailViewController.xib; sourceTree = "<group>"; };
 		BF4FC9D7197F3BD900BDF982 /* EmptyTransactionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTransactionsView.xib; sourceTree = "<group>"; };
 		BF4FC9D9197F3BE400BDF982 /* EmptyTransactionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTransactionsView.h; sourceTree = "<group>"; };
 		BF4FC9DA197F3BE400BDF982 /* EmptyTransactionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTransactionsView.m; sourceTree = "<group>"; };
@@ -413,6 +418,9 @@
 				BF2A26DB198E0E1D00D49101 /* PostDetailViewController.h */,
 				BF2A26DC198E0E1D00D49101 /* PostDetailViewController.m */,
 				BF2A26DD198E0E1D00D49101 /* PostDetailViewController.xib */,
+				BF4A72DE1990116300CD131D /* SimpleGoalDetailViewController.m */,
+				BF4A72DF1990116300CD131D /* SimpleGoalDetailViewController.h */,
+				BF4A72E01990116300CD131D /* SimpleGoalDetailViewController.xib */,
 				BF144353196A963000C2BB38 /* TransactionsListViewController.h */,
 				BF144354196A963000C2BB38 /* TransactionsListViewController.m */,
 				BF144355196A963000C2BB38 /* TransactionsListViewController.xib */,
@@ -783,6 +791,7 @@
 				BF865B3F197C682A00A128AD /* OpenSans-Bold.ttf in Resources */,
 				BF144357196A963000C2BB38 /* TransactionsListViewController.xib in Resources */,
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
+				BF4A72E21990116300CD131D /* SimpleGoalDetailViewController.xib in Resources */,
 				BF865B43197C682A00A128AD /* OpenSans-Italic.ttf in Resources */,
 				BF865B40197C682A00A128AD /* OpenSans-BoldItalic.ttf in Resources */,
 				BF2A26DF198E0E1D00D49101 /* PostDetailViewController.xib in Resources */,
@@ -867,6 +876,7 @@
 				D25A6BC4198FDB7A00E6EBFD /* PresentingAnimator.m in Sources */,
 				BF865AFF197C593000A128AD /* Friend.m in Sources */,
 				D25A6BBE198F34FC00E6EBFD /* UIColor+CustomColors.m in Sources */,
+				BF4A72E11990116300CD131D /* SimpleGoalDetailViewController.m in Sources */,
 				BF2A26C8198DCF1400D49101 /* Post.m in Sources */,
 				BF14432E196A471300C2BB38 /* Goal.m in Sources */,
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,

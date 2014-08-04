@@ -16,6 +16,7 @@
 #import "DashboardViewController.h"
 #import "GoalsDashboardCollectionView.h"
 #import "GoalDetailViewController.h"
+#import "SimpleGoalDetailViewController.h"
 #import "MultiInputViewController.h"
 #import "MainViewController.h"
 #import "ViewManager.h"
@@ -202,9 +203,15 @@
         if (task.error) {
             NSLog(@"error loading goal details, %@", task.error);
         } else {
-            GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
-            [goalDetailViewController setViewData:task.result];
-            [self.navigationController pushViewController:goalDetailViewController animated:YES];
+            if (goal.type == 1) {
+                GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
+                [goalDetailViewController setViewData:task.result];
+                [self.navigationController pushViewController:goalDetailViewController animated:YES];
+            } else {
+                SimpleGoalDetailViewController *simpleGoalDetailViewController = [[SimpleGoalDetailViewController alloc] initWithNibName:@"SimpleGoalDetailViewController" bundle:nil];
+                [simpleGoalDetailViewController setViewData:task.result];
+                [self.navigationController pushViewController:simpleGoalDetailViewController animated:YES];
+            }
         }
         return nil;
     }];
