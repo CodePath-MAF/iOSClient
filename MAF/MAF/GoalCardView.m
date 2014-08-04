@@ -60,9 +60,9 @@
 
 - (void)setCircleImage:(Goal *)goal {
     if (goal.type == GoalTypeGoal) {
-        self.circleTypeImage.image = [UIImage imageNamed:@"img_lending_icon_blue"];
-    } else if (goal.type == GoalTypeLendingCircle) {
         self.circleTypeImage.image = [UIImage imageNamed:@"img_goal_icon_orange"];
+    } else if (goal.type == GoalTypeLendingCircle) {
+        self.circleTypeImage.image = [UIImage imageNamed:@"img_lending_icon_blue"];
     }
 }
 
@@ -84,9 +84,9 @@
     self.animatedChart.lineWidth = [NSNumber numberWithInt:3];
     self.animatedChart.countingLabel.textColor = [UIColor clearColor];
     if (goal.type == GoalTypeGoal) {
-        [self.animatedChart setStrokeColor:[UIColor colorWithRed:86.0f/255.0f green:150.0f/255.0f blue:231.0f/255.0f alpha:1.0f]];
-    } else if (goal.type == GoalTypeLendingCircle) {
         [self.animatedChart setStrokeColor:[UIColor colorWithRed:255.0f/255.0f green:167.0f/255.0f blue:19.0f/255.0f alpha:1.0f]];
+    } else if (goal.type == GoalTypeLendingCircle) {
+        [self.animatedChart setStrokeColor:[UIColor colorWithRed:86.0f/255.0f green:150.0f/255.0f blue:231.0f/255.0f alpha:1.0f]];
     }
 
     [self.animatedChart strokeChart];
