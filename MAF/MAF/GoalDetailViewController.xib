@@ -17,57 +17,70 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-Kp-wao">
-                    <rect key="frame" x="0.0" y="268" width="320" height="300"/>
+                    <rect key="frame" x="0.0" y="349" width="320" height="219"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="backgroundColor" red="0.88434103260869568" green="0.88434103260869568" blue="0.88434103260869568" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="Fqb-Br-sPK"/>
-                        <constraint firstAttribute="height" constant="300" id="c0a-jl-rjZ"/>
+                        <constraint firstAttribute="height" constant="219" id="c0a-jl-rjZ"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="24" minimumInteritemSpacing="0.0" id="E3Y-ZE-9FS">
-                        <size key="itemSize" width="320" height="50"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="E3Y-ZE-9FS">
+                        <size key="itemSize" width="320" height="72"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OSZ-Hw-PDv">
-                    <rect key="frame" x="20" y="55" width="280" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjC-mS-8bN">
+                    <rect key="frame" x="0.0" y="277" width="320" height="72"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OSZ-Hw-PDv">
+                            <rect key="frame" x="103" y="21" width="197" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="AAd-Mi-D7d"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB4-nj-mSE">
+                            <rect key="frame" x="20" y="22" width="63" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="TWO-ad-QnU"/>
+                            </constraints>
+                            <state key="normal" title="Add post">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="_addPostAction:" destination="-1" eventType="touchUpInside" id="P0b-8H-rOV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98119055706521741" green="0.98119055706521741" blue="0.98119055706521741" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="AAd-Mi-D7d"/>
-                        <constraint firstAttribute="width" constant="280" id="y3u-1Q-gWp"/>
+                        <constraint firstAttribute="width" constant="320" id="97U-JU-IHA"/>
+                        <constraint firstAttribute="trailing" secondItem="OSZ-Hw-PDv" secondAttribute="trailing" constant="20" id="9kd-Ob-hhz"/>
+                        <constraint firstAttribute="bottom" secondItem="LB4-nj-mSE" secondAttribute="bottom" constant="20" id="DJW-ik-33w"/>
+                        <constraint firstItem="LB4-nj-mSE" firstAttribute="top" secondItem="bjC-mS-8bN" secondAttribute="top" constant="22" id="HtZ-Vt-pM8"/>
+                        <constraint firstItem="OSZ-Hw-PDv" firstAttribute="leading" secondItem="LB4-nj-mSE" secondAttribute="trailing" constant="20" id="VlJ-dF-WI0"/>
+                        <constraint firstAttribute="bottom" secondItem="OSZ-Hw-PDv" secondAttribute="bottom" constant="21" id="dDd-2m-21S"/>
+                        <constraint firstItem="LB4-nj-mSE" firstAttribute="leading" secondItem="bjC-mS-8bN" secondAttribute="leading" constant="20" id="jFP-jv-9rU"/>
+                        <constraint firstItem="OSZ-Hw-PDv" firstAttribute="top" secondItem="bjC-mS-8bN" secondAttribute="top" constant="21" id="sVm-Il-EqU"/>
+                        <constraint firstAttribute="height" constant="72" id="ui9-GT-f2p"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB4-nj-mSE">
-                    <rect key="frame" x="40" y="93" width="280" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="TWO-ad-QnU"/>
-                        <constraint firstAttribute="width" constant="280" id="Z2l-Ya-zCI"/>
-                    </constraints>
-                    <state key="normal" title="Add post">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="_addPostAction:" destination="-1" eventType="touchUpInside" id="P0b-8H-rOV"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OSZ-Hw-PDv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="5RJ-ad-VpL"/>
+                <constraint firstItem="bjC-mS-8bN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Ba-h9-4cb"/>
+                <constraint firstItem="j4k-Kp-wao" firstAttribute="top" secondItem="bjC-mS-8bN" secondAttribute="bottom" id="8dR-Pe-IPW"/>
                 <constraint firstAttribute="bottom" secondItem="j4k-Kp-wao" secondAttribute="bottom" id="FtY-aG-ZYv"/>
-                <constraint firstAttribute="trailing" secondItem="LB4-nj-mSE" secondAttribute="trailing" id="GGa-Fy-yqR"/>
-                <constraint firstItem="LB4-nj-mSE" firstAttribute="top" secondItem="OSZ-Hw-PDv" secondAttribute="bottom" constant="8" id="P44-bi-55V"/>
-                <constraint firstItem="OSZ-Hw-PDv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="VCC-9E-MOV"/>
+                <constraint firstAttribute="trailing" secondItem="bjC-mS-8bN" secondAttribute="trailing" id="Viw-O6-tTS"/>
                 <constraint firstAttribute="trailing" secondItem="j4k-Kp-wao" secondAttribute="trailing" id="XVc-8c-YEh"/>
                 <constraint firstItem="j4k-Kp-wao" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cLp-pG-x9g"/>
-                <constraint firstItem="LB4-nj-mSE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="zft-Hj-fYm"/>
-                <constraint firstAttribute="trailing" secondItem="OSZ-Hw-PDv" secondAttribute="trailing" constant="20" id="zn6-Cc-Phm"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

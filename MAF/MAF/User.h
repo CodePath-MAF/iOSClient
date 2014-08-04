@@ -14,5 +14,6 @@
 
 @property (nonatomic, assign) float totalCash;
 @property (nonatomic, assign) BOOL setup;
+@property (nonatomic, assign) NSInteger profileImageId;
 
 @end

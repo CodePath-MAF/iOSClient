@@ -56,8 +56,6 @@
 		BF2A26C3198DCE5C00D49101 /* MessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */; };
 		BF2A26C5198DCE8900D49101 /* MessageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */; };
 		BF2A26C8198DCF1400D49101 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26C7198DCF1400D49101 /* Post.m */; };
-		BF2A26D0198DFDF900D49101 /* PostDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26CF198DFDF900D49101 /* PostDetailCollectionViewCell.m */; };
-		BF2A26D2198DFE0D00D49101 /* PostDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26D1198DFE0D00D49101 /* PostDetailCollectionViewCell.xib */; };
 		BF2A26D4198DFEC600D49101 /* CommentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2A26D3198DFEC600D49101 /* CommentCollectionViewCell.xib */; };
 		BF2A26D7198DFED300D49101 /* CommentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26D6198DFED300D49101 /* CommentCollectionViewCell.m */; };
 		BF2A26DA198DFEE600D49101 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2A26D9198DFEE600D49101 /* Comment.m */; };
@@ -193,9 +191,6 @@
 		BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF2A26C6198DCF1400D49101 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		BF2A26C7198DCF1400D49101 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		BF2A26CE198DFDF900D49101 /* PostDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailCollectionViewCell.h; sourceTree = "<group>"; };
-		BF2A26CF198DFDF900D49101 /* PostDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailCollectionViewCell.m; sourceTree = "<group>"; };
-		BF2A26D1198DFE0D00D49101 /* PostDetailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetailCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF2A26D3198DFEC600D49101 /* CommentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF2A26D5198DFED300D49101 /* CommentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCollectionViewCell.h; sourceTree = "<group>"; };
 		BF2A26D6198DFED300D49101 /* CommentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCollectionViewCell.m; sourceTree = "<group>"; };
@@ -495,9 +490,6 @@
 				BF2A26C1198DCE5C00D49101 /* MessageCollectionViewCell.h */,
 				BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */,
 				BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */,
-				BF2A26CE198DFDF900D49101 /* PostDetailCollectionViewCell.h */,
-				BF2A26CF198DFDF900D49101 /* PostDetailCollectionViewCell.m */,
-				BF2A26D1198DFE0D00D49101 /* PostDetailCollectionViewCell.xib */,
 				BF2A26D5198DFED300D49101 /* CommentCollectionViewCell.h */,
 				BF2A26D6198DFED300D49101 /* CommentCollectionViewCell.m */,
 				BF2A26D3198DFEC600D49101 /* CommentCollectionViewCell.xib */,
@@ -712,7 +704,6 @@
 				BF865B48197C682A00A128AD /* OpenSans-SemiboldItalic.ttf in Resources */,
 				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
 				BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */,
-				BF2A26D2198DFE0D00D49101 /* PostDetailCollectionViewCell.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BAFB2C1D1975D39400A11C56 /* MultiInputViewController.xib in Resources */,
 				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
@@ -813,7 +804,6 @@
 				BA0C9B061975D79B00B15AEC /* CreateTransactionTableViewCell.m in Sources */,
 				BF144328196A3BB400C2BB38 /* GoalManager.m in Sources */,
 				BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */,
-				BF2A26D0198DFDF900D49101 /* PostDetailCollectionViewCell.m in Sources */,
 				BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */,
 				BF865B4D197C90DC00A128AD /* TransactionsHeaderView.m in Sources */,
 				BF2A26DE198E0E1D00D49101 /* PostDetailViewController.m in Sources */,

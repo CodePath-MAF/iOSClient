@@ -7,20 +7,54 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iXh-Sa-W69" customClass="CommentCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWh-jB-sNY">
-                    <rect key="frame" x="20" y="14" width="259" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="Hcj-On-cRa" customClass="OpenSansLightLabel">
+                    <rect key="frame" x="77" y="28" width="223" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="Nsu-9q-NU1"/>
+                        <constraint firstAttribute="width" constant="223" id="bH3-hW-xJL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="me9-WL-zy7">
+                    <rect key="frame" x="9" y="9" width="53" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="VU8-Pn-PhQ"/>
+                        <constraint firstAttribute="width" constant="53" id="iY3-z7-AvX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyh-gl-oCK" customClass="OpenSansSemiBoldLabel">
+                    <rect key="frame" x="77" y="9" width="158" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="158" id="sEw-sJ-26t"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96346382470000003" green="0.96346382470000003" blue="0.96346382470000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="kyh-gl-oCK" firstAttribute="leading" secondItem="me9-WL-zy7" secondAttribute="trailing" constant="15" id="6RU-mZ-UeL"/>
+                <constraint firstItem="me9-WL-zy7" firstAttribute="leading" secondItem="iXh-Sa-W69" secondAttribute="leading" constant="9" id="Btn-Aq-d7l"/>
+                <constraint firstItem="Hcj-On-cRa" firstAttribute="top" secondItem="kyh-gl-oCK" secondAttribute="bottom" constant="1" id="Hgn-0S-ynF"/>
+                <constraint firstAttribute="bottom" secondItem="me9-WL-zy7" secondAttribute="bottom" constant="9" id="WCU-GF-wGm"/>
+                <constraint firstItem="kyh-gl-oCK" firstAttribute="top" secondItem="iXh-Sa-W69" secondAttribute="top" constant="9" id="aVO-3x-5OI"/>
+                <constraint firstItem="Hcj-On-cRa" firstAttribute="leading" secondItem="me9-WL-zy7" secondAttribute="trailing" constant="15" id="lE8-0B-Rzt"/>
+                <constraint firstItem="me9-WL-zy7" firstAttribute="top" secondItem="iXh-Sa-W69" secondAttribute="top" constant="9" id="p9X-Pq-N3W"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="_commentContentLabel" destination="PWh-jB-sNY" id="Oax-H1-FIt"/>
+                <outlet property="_commentContentLabel" destination="Hcj-On-cRa" id="eyy-7K-8dW"/>
+                <outlet property="_commenterNameLabel" destination="kyh-gl-oCK" id="j8p-QJ-dFv"/>
+                <outlet property="_commenterProfileImage" destination="me9-WL-zy7" id="8th-YQ-HSs"/>
             </connections>
         </view>
     </objects>

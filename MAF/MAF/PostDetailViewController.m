@@ -8,13 +8,17 @@
 
 #import "Comment.h"
 #import "CommentCollectionViewCell.h"
+#import "MessageCollectionViewCell.h"
 #import "PostDetailViewController.h"
+#import "ViewManager.h"
 
 @interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) NSArray *_comments;
 @property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
 @property (weak, nonatomic) IBOutlet UITextField *_commentContentTextField;
+@property (weak, nonatomic) IBOutlet UIView *_postView;
+
 - (IBAction)_addComment:(id)sender;
 
 @end
@@ -34,6 +38,10 @@
     
     self._collectionView.delegate = self;
     self._collectionView.dataSource = self;
+    
+    MessageCollectionViewCell *postView = [[[NSBundle mainBundle] loadNibNamed:@"MessageCollectionViewCell" owner:nil options:nil] firstObject];
+    postView.post = self.post;
+    [self._postView addSubview:postView];
     
     [self _registerNibs];
 }
@@ -79,12 +87,14 @@
     comment.post = self.post;
     comment.content = self._commentContentTextField.text;
     [self.post.comments addObject:comment];
-    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [PFCloud callFunctionInBackground:@"createComment" withParameters:@{@"postId": self.post.objectId, @"userId": comment.user.objectId, @"content": comment.content} block:^(id object, NSError *error) {
         if (error) {
-            NSLog(@"error saving post: %@", error);
+            NSLog(@"error saving comment: %@", error);
         }
     }];
     self._commentContentTextField.text = @"";
     [self._collectionView reloadData];
+    [[ViewManager instance] clearCache];
 }
+
 @end

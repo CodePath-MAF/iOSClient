@@ -12,5 +12,6 @@
 
 @dynamic totalCash;
 @dynamic setup;
+@dynamic profileImageId;
 
 @end

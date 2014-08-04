@@ -53,12 +53,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self._collectionView.delegate = self;
     self._collectionView.dataSource = self;
     UINib *cellNib = [UINib nibWithNibName:@"MessageCollectionViewCell" bundle:nil];
+    
     [self._collectionView registerNib:cellNib forCellWithReuseIdentifier:@"MessageCell"];
+    
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
+    self.navigationItem.title = self._goal.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -108,6 +112,15 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    Post *post = self._posts[indexPath.item];
+    CGFloat height = 75.0;
+    if (post.content.length > 50) {
+        height = 110.0;
+    }
+    return CGSizeMake(320, height);
+}
+
 - (void)expandCommentsForPost:(UITapGestureRecognizer *)gestureRecognizer {
     Post *post = [(MessageCollectionViewCell *)gestureRecognizer.view post];
     PostDetailViewController *vc = [[PostDetailViewController alloc] initWithNibName:@"PostDetailViewController" bundle:nil];
@@ -129,5 +142,7 @@
 #warning this could just be reload at index paths
     [self._collectionView reloadData];
     self._postTextField.text = @"";
+    [[ViewManager instance] clearCache];
 }
+
 @end
