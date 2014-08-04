@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -10,13 +10,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="223" translatesAutoresizingMaskIntoConstraints="NO" id="Hcj-On-cRa" customClass="OpenSansLightLabel">
-                    <rect key="frame" x="77" y="28" width="223" height="34"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="233" translatesAutoresizingMaskIntoConstraints="NO" id="Hcj-On-cRa" customClass="OpenSansLightLabel">
+                    <rect key="frame" x="77" y="27" width="233" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="34" id="Nsu-9q-NU1"/>
-                        <constraint firstAttribute="width" constant="223" id="bH3-hW-xJL"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -29,12 +25,9 @@
                         <constraint firstAttribute="width" constant="53" id="iY3-z7-AvX"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyh-gl-oCK" customClass="OpenSansSemiBoldLabel">
-                    <rect key="frame" x="77" y="9" width="158" height="18"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyh-gl-oCK" customClass="OpenSansSemiBoldLabel">
+                    <rect key="frame" x="77" y="9" width="38" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="158" id="sEw-sJ-26t"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -43,12 +36,15 @@
             <color key="backgroundColor" red="0.96346382470000003" green="0.96346382470000003" blue="0.96346382470000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="kyh-gl-oCK" firstAttribute="leading" secondItem="me9-WL-zy7" secondAttribute="trailing" constant="15" id="6RU-mZ-UeL"/>
+                <constraint firstItem="kyh-gl-oCK" firstAttribute="leading" secondItem="Hcj-On-cRa" secondAttribute="leading" id="8t4-WL-18x"/>
                 <constraint firstItem="me9-WL-zy7" firstAttribute="leading" secondItem="iXh-Sa-W69" secondAttribute="leading" constant="9" id="Btn-Aq-d7l"/>
-                <constraint firstItem="Hcj-On-cRa" firstAttribute="top" secondItem="kyh-gl-oCK" secondAttribute="bottom" constant="1" id="Hgn-0S-ynF"/>
+                <constraint firstAttribute="trailing" secondItem="Hcj-On-cRa" secondAttribute="trailing" constant="10" id="CMI-9f-Ckb"/>
+                <constraint firstItem="Hcj-On-cRa" firstAttribute="top" secondItem="kyh-gl-oCK" secondAttribute="bottom" id="Hgn-0S-ynF"/>
                 <constraint firstAttribute="bottom" secondItem="me9-WL-zy7" secondAttribute="bottom" constant="9" id="WCU-GF-wGm"/>
                 <constraint firstItem="kyh-gl-oCK" firstAttribute="top" secondItem="iXh-Sa-W69" secondAttribute="top" constant="9" id="aVO-3x-5OI"/>
-                <constraint firstItem="Hcj-On-cRa" firstAttribute="leading" secondItem="me9-WL-zy7" secondAttribute="trailing" constant="15" id="lE8-0B-Rzt"/>
+                <constraint firstAttribute="bottom" secondItem="Hcj-On-cRa" secondAttribute="bottom" constant="5" id="itH-Hc-goJ"/>
                 <constraint firstItem="me9-WL-zy7" firstAttribute="top" secondItem="iXh-Sa-W69" secondAttribute="top" constant="9" id="p9X-Pq-N3W"/>
+                <constraint firstItem="Hcj-On-cRa" firstAttribute="top" secondItem="kyh-gl-oCK" secondAttribute="bottom" id="xbN-30-kDh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

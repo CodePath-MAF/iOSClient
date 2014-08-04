@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *_postView;
 
 - (IBAction)_addComment:(id)sender;
+- (IBAction)dismiss:(id)sender;
 
 @end
 
@@ -36,8 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.layer.cornerRadius = 8.0f;
     self._collectionView.delegate = self;
     self._collectionView.dataSource = self;
+    
+    self.title = @"Comment";
     
     MessageCollectionViewCell *postView = [[[NSBundle mainBundle] loadNibNamed:@"MessageCollectionViewCell" owner:nil options:nil] firstObject];
     postView.post = self.post;
@@ -95,6 +99,12 @@
     self._commentContentTextField.text = @"";
     [self._collectionView reloadData];
     [[ViewManager instance] clearCache];
+    [self dismiss:sender];
+}
+
+- (IBAction)dismiss:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
