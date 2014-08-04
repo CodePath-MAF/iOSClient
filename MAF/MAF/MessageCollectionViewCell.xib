@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="214" translatesAutoresizingMaskIntoConstraints="NO" id="Pyg-iX-NaG" customClass="OpenSansRegularLabel">
-                    <rect key="frame" x="86" y="33" width="214" height="15"/>
+                    <rect key="frame" x="86" y="25" width="214" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="214" id="Kms-jr-Ifm"/>
@@ -43,28 +43,25 @@
                         <constraint firstAttribute="width" constant="53" id="gQe-nU-sMJ"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZl-PC-PPD">
-                    <rect key="frame" x="86" y="9" width="51" height="19"/>
+                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ca5-Mc-Evv">
+                    <rect key="frame" x="86" y="9" width="45" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="51" id="Y8f-2A-b0n"/>
-                        <constraint firstAttribute="height" constant="19" id="vtx-II-0xy"/>
+                        <constraint firstAttribute="width" constant="45" id="3s7-4r-17V"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="PS6-ZM-BI5"/>
+                        <constraint firstAttribute="height" constant="12" id="jwx-sG-Tld"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <state key="normal" title="MESSAGE">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
+                <constraint firstItem="Ca5-Mc-Evv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="6xU-PB-Ehq"/>
                 <constraint firstItem="Pyg-iX-NaG" firstAttribute="leading" secondItem="177-zW-pqv" secondAttribute="trailing" constant="21" id="7gh-EN-4Yc"/>
-                <constraint firstItem="iZl-PC-PPD" firstAttribute="leading" secondItem="177-zW-pqv" secondAttribute="trailing" constant="21" id="Bar-4q-Zzs"/>
                 <constraint firstAttribute="trailing" secondItem="wNa-Bh-t5W" secondAttribute="trailing" id="E7H-OE-Lhs"/>
+                <constraint firstItem="Pyg-iX-NaG" firstAttribute="top" secondItem="Ca5-Mc-Evv" secondAttribute="bottom" constant="4" id="FhJ-Yi-lqA"/>
                 <constraint firstItem="wNa-Bh-t5W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Nra-FF-agi"/>
-                <constraint firstItem="iZl-PC-PPD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="bON-8X-gvG"/>
+                <constraint firstItem="Ca5-Mc-Evv" firstAttribute="leading" secondItem="177-zW-pqv" secondAttribute="trailing" constant="21" id="Obf-E6-j3p"/>
                 <constraint firstItem="177-zW-pqv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="dwq-4v-fVi"/>
-                <constraint firstItem="Pyg-iX-NaG" firstAttribute="top" secondItem="iZl-PC-PPD" secondAttribute="bottom" constant="5" id="ekW-Su-t4C"/>
                 <constraint firstItem="177-zW-pqv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="rVp-Zk-UnS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -72,7 +69,7 @@
                 <outlet property="_commentsCountImage" destination="7si-uX-MyU" id="u0j-cE-hHP"/>
                 <outlet property="_commentsCountLabel" destination="wNa-Bh-t5W" id="nTj-4b-TFz"/>
                 <outlet property="_messageContentLabel" destination="Pyg-iX-NaG" id="icV-07-ZFT"/>
-                <outlet property="_postTypeButton" destination="iZl-PC-PPD" id="bOc-Kl-LNU"/>
+                <outlet property="_postTypeImage" destination="Ca5-Mc-Evv" id="2ns-FE-FjV"/>
                 <outlet property="_profileImageView" destination="177-zW-pqv" id="2CC-Uy-Jni"/>
             </connections>
         </view>

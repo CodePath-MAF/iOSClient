@@ -15,8 +15,8 @@
 @property (weak, nonatomic) IBOutlet OpenSansRegularLabel *_messageContentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *_commentsCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *_profileImageView;
-@property (weak, nonatomic) IBOutlet UIButton *_postTypeButton;
 @property (weak, nonatomic) IBOutlet UIImageView *_commentsCountImage;
+@property (weak, nonatomic) IBOutlet UIImageView *_postTypeImage;
 
 @end
 
@@ -32,8 +32,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [Utilities setupRoundedButton:self._postTypeButton withCornerRadius:5.0];
-    self._postTypeButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:self._postTypeButton.titleLabel.font.pointSize];
+//    [Utilities setupRoundedButton:self._postTypeButton withCornerRadius:5.0];
+//    self._postTypeButton.titleLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:self._postTypeButton.titleLabel.font.pointSize];
 }
 
 - (void)setPost:(Post *)post {
@@ -45,6 +45,21 @@
         self._commentsCountLabel.hidden = NO;
         self._commentsCountLabel.text = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)[[post getComments] count], nil];
     }
+    
+    NSString *messageType;
+    switch (post.type) {
+        case PostTypeEvent:
+            messageType = @"event";
+            break;
+        case PostTypeQuestion:
+            messageType = @"question";
+            break;
+            
+        default:
+            messageType = @"message";
+            break;
+    }
+    self._postTypeImage.image = [UIImage imageNamed:[[NSString alloc] initWithFormat:@"img-post-type-%@", messageType, nil]];
 }
 
 - (void)prepareForReuse {

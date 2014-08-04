@@ -100,6 +100,10 @@
 		BF963FA3198A199300C5B40B /* NSDictionary+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */; };
 		BF963FA8198B65D500C5B40B /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF963FA6198B65D500C5B40B /* DashboardViewController.m */; };
 		BF963FA9198B65D500C5B40B /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF963FA7198B65D500C5B40B /* DashboardViewController.xib */; };
+		BF9B678A1990265800425EAB /* PaymentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9B67891990265800425EAB /* PaymentCollectionViewCell.m */; };
+		BF9B678C199026AD00425EAB /* PaymentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9B678B199026AD00425EAB /* PaymentCollectionViewCell.xib */; };
+		BF9B678F19902C3000425EAB /* EventCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9B678E19902C3000425EAB /* EventCollectionViewCell.m */; };
+		BF9B679119902C3D00425EAB /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9B679019902C3D00425EAB /* EventCollectionViewCell.xib */; };
 		BFB57ECB197FFE19004A0D7B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB57EC9197FFE19004A0D7B /* LoginViewController.xib */; };
 		BFB57ECE198000B1004A0D7B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB57ECD198000B1004A0D7B /* LoginViewController.m */; };
 		BFBDEED9197B6B3700FE4348 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBDEED8197B6B3700FE4348 /* User.m */; };
@@ -271,6 +275,12 @@
 		BF963FA5198B65D500C5B40B /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		BF963FA6198B65D500C5B40B /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		BF963FA7198B65D500C5B40B /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		BF9B67881990265800425EAB /* PaymentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCollectionViewCell.h; sourceTree = "<group>"; };
+		BF9B67891990265800425EAB /* PaymentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCollectionViewCell.m; sourceTree = "<group>"; };
+		BF9B678B199026AD00425EAB /* PaymentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF9B678D19902C3000425EAB /* EventCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCollectionViewCell.h; sourceTree = "<group>"; };
+		BF9B678E19902C3000425EAB /* EventCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCollectionViewCell.m; sourceTree = "<group>"; };
+		BF9B679019902C3D00425EAB /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFB57EC9197FFE19004A0D7B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		BFB57ECC198000B1004A0D7B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BFB57ECD198000B1004A0D7B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -521,12 +531,18 @@
 		BF2A26C0198DCDFE00D49101 /* Activity Feed */ = {
 			isa = PBXGroup;
 			children = (
-				BF2A26C1198DCE5C00D49101 /* MessageCollectionViewCell.h */,
-				BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */,
-				BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */,
 				BF2A26D5198DFED300D49101 /* CommentCollectionViewCell.h */,
 				BF2A26D6198DFED300D49101 /* CommentCollectionViewCell.m */,
 				BF2A26D3198DFEC600D49101 /* CommentCollectionViewCell.xib */,
+				BF2A26C1198DCE5C00D49101 /* MessageCollectionViewCell.h */,
+				BF2A26C2198DCE5C00D49101 /* MessageCollectionViewCell.m */,
+				BF2A26C4198DCE8900D49101 /* MessageCollectionViewCell.xib */,
+				BF9B67881990265800425EAB /* PaymentCollectionViewCell.h */,
+				BF9B67891990265800425EAB /* PaymentCollectionViewCell.m */,
+				BF9B678B199026AD00425EAB /* PaymentCollectionViewCell.xib */,
+				BF9B678D19902C3000425EAB /* EventCollectionViewCell.h */,
+				BF9B678E19902C3000425EAB /* EventCollectionViewCell.m */,
+				BF9B679019902C3D00425EAB /* EventCollectionViewCell.xib */,
 			);
 			name = "Activity Feed";
 			sourceTree = "<group>";
@@ -784,6 +800,7 @@
 				BFB57ECB197FFE19004A0D7B /* LoginViewController.xib in Resources */,
 				BF865B4F197C90F500A128AD /* TransactionsHeaderView.xib in Resources */,
 				BF963FA9198B65D500C5B40B /* DashboardViewController.xib in Resources */,
+				BF9B678C199026AD00425EAB /* PaymentCollectionViewCell.xib in Resources */,
 				BF865B45197C682A00A128AD /* OpenSans-LightItalic.ttf in Resources */,
 				2CD7C1F91975FD1B007F6CB8 /* GoalCardView.xib in Resources */,
 				2CC35A19197B1D9500716B37 /* LendingSocialCell.xib in Resources */,
@@ -791,6 +808,7 @@
 				BF865B3F197C682A00A128AD /* OpenSans-Bold.ttf in Resources */,
 				BF144357196A963000C2BB38 /* TransactionsListViewController.xib in Resources */,
 				2C66748B1974923F00434802 /* GoalDetailViewController.xib in Resources */,
+				BF9B679119902C3D00425EAB /* EventCollectionViewCell.xib in Resources */,
 				BF4A72E21990116300CD131D /* SimpleGoalDetailViewController.xib in Resources */,
 				BF865B43197C682A00A128AD /* OpenSans-Italic.ttf in Resources */,
 				BF865B40197C682A00A128AD /* OpenSans-BoldItalic.ttf in Resources */,
@@ -892,6 +910,7 @@
 				BF865B56197CD4D700A128AD /* TransactionCategoryManager.m in Sources */,
 				BF4FC9DB197F3BE400BDF982 /* EmptyTransactionsView.m in Sources */,
 				BF865B33197C629800A128AD /* OpenSansSemiBoldItalicLabel.m in Sources */,
+				BF9B678A1990265800425EAB /* PaymentCollectionViewCell.m in Sources */,
 				2C66748A1974923F00434802 /* GoalDetailViewController.m in Sources */,
 				BF963FA3198A199300C5B40B /* NSDictionary+Hash.m in Sources */,
 				BF2A26DA198DFEE600D49101 /* Comment.m in Sources */,
@@ -904,6 +923,7 @@
 				BF865B21197C61C500A128AD /* OpenSansExtraBoldLabel.m in Sources */,
 				2C95F661197E5D5700862497 /* GoalSet.m in Sources */,
 				BF1D6FA0198F46F000970163 /* GoalDetailsHeaderView.m in Sources */,
+				BF9B678F19902C3000425EAB /* EventCollectionViewCell.m in Sources */,
 				BF26D579198003E70085202E /* MainViewController.m in Sources */,
 				2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */,
 				BF865B18197C5F2100A128AD /* OpenSansRegularLabel.m in Sources */,

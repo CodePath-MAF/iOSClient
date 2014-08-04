@@ -14,7 +14,7 @@ NS_ENUM(NSInteger, PostType) {
     PostTypeMessage = 1,
     PostTypeQuestion = 2,
     PostTypeEvent = 3,
-    PostTypeReminder = 4,
+    PostTypePayment = 4,
 };
 
 @interface Post : PFObject <PFSubclassing>

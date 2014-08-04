@@ -26,6 +26,8 @@
 #import "ViewManager.h"
 #import "Post.h"
 #import "MessageCollectionViewCell.h"
+#import "PaymentCollectionViewCell.h"
+#import "EventCollectionViewCell.h"
 #import "CSStickyHeaderFlowLayout.h"
 
 @interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GoalDetailsHeaderViewDelegate, UIViewControllerTransitioningDelegate>
@@ -66,6 +68,12 @@
     UINib *cellNib = [UINib nibWithNibName:@"MessageCollectionViewCell" bundle:nil];
     
     [self._collectionView registerNib:cellNib forCellWithReuseIdentifier:@"MessageCell"];
+    
+    UINib *paymentCellNib = [UINib nibWithNibName:@"PaymentCollectionViewCell" bundle:nil];
+    [self._collectionView registerNib:paymentCellNib forCellWithReuseIdentifier:@"PaymentCell"];
+    
+    UINib *eventCellNib = [UINib nibWithNibName:@"EventCollectionViewCell" bundle:nil];
+    [self._collectionView registerNib:eventCellNib forCellWithReuseIdentifier:@"EventCell"];
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
@@ -122,13 +130,28 @@
     Post *post = self._posts[indexPath.item];
     UICollectionViewCell *cell;
     switch (post.type) {
+            
+        case PostTypePayment: {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PaymentCell" forIndexPath:indexPath];
+            [(PaymentCollectionViewCell *)cell setGoal:self._goal];
+            break;
+        }
+            
+        case PostTypeEvent: {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EventCell" forIndexPath:indexPath];
+            [(EventCollectionViewCell *)cell setPost:post];
+            UITapGestureRecognizer *eventTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandCommentsForPost:)];
+            [cell addGestureRecognizer:eventTap];
+            break;
+        }
 
-        default:
+        default: {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MessageCell" forIndexPath:indexPath];
             [(MessageCollectionViewCell *)cell setPost:post];
             UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandCommentsForPost:)];
             [cell addGestureRecognizer:tapGesture];
             break;
+        }
     }
     return cell;
 }
