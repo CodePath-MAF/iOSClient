@@ -69,12 +69,12 @@
                                         <rect key="frame" x="52" y="23" width="248" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wun-Ab-W5n">
-                                        <rect key="frame" x="20" y="31" width="11" height="22"/>
+                                        <rect key="frame" x="12" y="29" width="32" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_add_green_up">
+                                        <state key="normal" image="img-new-post-icon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -119,6 +119,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="btn_add_green_up" width="11" height="11"/>
+        <image name="img-new-post-icon" width="16" height="14"/>
     </resources>
 </document>
