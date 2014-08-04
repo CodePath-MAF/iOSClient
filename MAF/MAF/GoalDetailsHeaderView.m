@@ -130,28 +130,28 @@
     [self addConstraints:constraint_POS_V];
 }
 
-- (void)_addConstraintsToFriendView:(UIView *)friendView {
-    NSDictionary *viewsDictionary = @{@"subview": friendView};
+- (void)_addConstraintsToView:(UIView *)view withParent:(UIView *)parentView {
+    NSDictionary *viewsDictionary = @{@"subview": view};
     
-    NSString *constaint_H1 = [[NSString alloc] initWithFormat:@"V:[subview(%f)]", friendView.frame.size.width];
+    NSString *constaint_H1 = [[NSString alloc] initWithFormat:@"V:[subview(%f)]", view.frame.size.width];
     NSArray *constraint_H = [NSLayoutConstraint constraintsWithVisualFormat:constaint_H1
                                                                     options:0
                                                                     metrics:nil
                                                                       views:viewsDictionary];
     
-    NSString *constraint_V1 = [[NSString alloc] initWithFormat:@"H:[subview(%f)]", friendView.frame.size.height];
+    NSString *constraint_V1 = [[NSString alloc] initWithFormat:@"H:[subview(%f)]", view.frame.size.height];
     NSArray *constraint_V = [NSLayoutConstraint constraintsWithVisualFormat:constraint_V1
                                                                     options:0
                                                                     metrics:nil
                                                                       views:viewsDictionary];
     
-    NSString *horizontalConstraint = [[NSString alloc] initWithFormat:@"H:|-%f-[subview]", friendView.frame.origin.x];
+    NSString *horizontalConstraint = [[NSString alloc] initWithFormat:@"H:|-%f-[subview]", view.frame.origin.x];
     NSArray *constraint_POS_H = [NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraint
                                                                         options:0
                                                                         metrics:nil
                                                                           views:viewsDictionary];
     
-    float vertical = self._goalInformationView.frame.size.height - friendView.frame.origin.y - friendView.frame.size.height;
+    float vertical = parentView.frame.size.height - view.frame.origin.y - view.frame.size.height;
     if (vertical < 0) {
         vertical = 0;
     }
@@ -161,10 +161,10 @@
                                                                         metrics:nil
                                                                           views:viewsDictionary];
     
-    [friendView addConstraints:constraint_H];
-    [friendView addConstraints:constraint_V];
-    [self addConstraints:constraint_POS_H];
-    [self addConstraints:constraint_POS_V];
+    [view addConstraints:constraint_H];
+    [view addConstraints:constraint_V];
+    [parentView addConstraints:constraint_POS_H];
+    [parentView addConstraints:constraint_POS_V];
     
 }
 
@@ -174,21 +174,24 @@
     self.friendViews = [[NSMutableArray alloc] init];
 //    CGFloat radius = BIG_CIRCLE_DIAMETER/2+CIRCLE_OFFSET+SMALL_CIRCLE_DIAMETER/2;
     CGPoint topCenter = CGPointMake(self._goalProgressView.center.x, self._goalProgressView.center.y);
-
+    __block BOOL nextPayOut = YES;
     [self._cashoutSchedule enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop) {
-#warning we also have access to "paidOut" here if we want to display the check mark
         NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%@", obj[@"profileImageId"], nil];
         UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
         
         if ([obj[@"paidOut"] boolValue]) {
             UIImageView *checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn_circle_leftarrow_white_highlight"]];
-            CGRect frame = CGRectMake(friendView.center.x, friendView.center.y, 6, 6);
+            CGRect frame = CGRectMake(friendView.center.x, friendView.center.y, 8, 8);
             checkImageView.frame = frame;
+            [checkImageView setRoundedWithDiameter:6];
+            checkImageView.translatesAutoresizingMaskIntoConstraints = YES;
             [friendView addSubview:checkImageView];
+            NSLog(@"PaidOut!");
         }
-        else {
+        else if (nextPayOut) {
             friendView.layer.borderWidth = 2;
             friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+            nextPayOut = NO;
         }
         
         friendView.center = topCenter;
@@ -236,17 +239,13 @@
         
         CGAffineTransform trans = CGAffineTransformScale(friendView.transform, 0.01, 0.01);
         friendView.transform = trans;	// do it instantly, no animation
+        
         for (UIImageView *view in friendView.subviews) {
             view.transform = trans; // transform all subviews too
         }
         
         // set starting point for friend view (NOT USED)
         //        CGPoint startPoint = (itemCount > 0) ? destination : friendView.center;
-
-        if (itemCount % 2) { // TODO adjust to the current user/payment user
-            friendView.layer.borderWidth = 2;
-            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
-        }
         
 //        NSLog((self.toggle)? @"YES":@"NO");
         if (!self.toggle) {
@@ -269,11 +268,12 @@
         //        [friendView.layer addAnimation:positionAnimation forKey:@"positionAnimation"];
         
         [friendView scaleUpTo:1.0f beginTime:CACurrentMediaTime() + itemCount*.15 onCompletion:^(POPAnimation *animation, BOOL animated) {
-            [self _addConstraintsToFriendView:friendView];
+            [self _addConstraintsToView:friendView withParent:self._goalInformationView];
             NSInteger itemCount = 1;
             for (UIView *view in friendView.subviews) {
                 [view scaleUpTo:1.0f beginTime:itemCount*0.05 onCompletion:^(POPAnimation *animation, BOOL animated) {
-                    [self _addConstraintsToFriendView:view];
+                    [self _addConstraintsToView:view withParent:friendView];
+                    
                 }];
             }
         }];
@@ -287,13 +287,13 @@
         UIImageView *friendView = [views objectAtIndex:countA];
         
         // calculate animation path / arc
-        if (countA % 2) {
-            friendView.layer.borderWidth = 2;
-            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
-        }
+//        if (countA % 2) {
+//            friendView.layer.borderWidth = 2;
+//            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+//        }
         
         [friendView scaleUpTo:0.8f withCenter:destination beginTime:CACurrentMediaTime() + countA*.15 onCompletion:^(POPAnimation *animation, BOOL animated) {
-            [self _addConstraintsToFriendView:friendView];
+            [self _addConstraintsToView:friendView withParent:self._goalInformationView];
         }];
     }
 }
