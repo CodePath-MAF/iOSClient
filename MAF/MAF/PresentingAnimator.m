@@ -24,15 +24,15 @@
     fromView.userInteractionEnabled = NO;
     
     UIView *dimmingView = [[UIView alloc] initWithFrame:fromView.bounds];
-    dimmingView.backgroundColor = [UIColor customGrayColor];
+    dimmingView.backgroundColor = [UIColor blackColor];
     dimmingView.layer.opacity = 0.0;
     
     UIView *toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey].view;
     CGFloat heightRatio = (float)4/7;
-    CGFloat widthRatio = (float)6/7;
+//    CGFloat widthRatio = (float)6/7;
     toView.frame = CGRectMake(0,
                               0,
-                              widthRatio*CGRectGetWidth(transitionContext.containerView.bounds),
+                              CGRectGetWidth(transitionContext.containerView.bounds),
                               heightRatio*CGRectGetHeight(transitionContext.containerView.bounds));
     toView.center = CGPointMake(transitionContext.containerView.center.x, -transitionContext.containerView.center.y);
     
