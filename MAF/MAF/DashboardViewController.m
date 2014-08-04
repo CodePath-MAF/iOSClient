@@ -63,6 +63,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.transitionView removeFromSuperview];
+    [self _cleanupViews];
 }
 
 - (void)renderView:(NSDictionary *)viewData {
@@ -109,6 +110,11 @@
 }
 
 #pragma mark Render Views
+
+- (void)_cleanupViews {
+    [self.lineChart removeFromSuperview];
+    [self.goalsCollectionView removeFromSuperview];
+}
 
 - (void)_renderGoalsCollectionView {
     CGRect frame = CGRectMake(0, 0, self.goalsContainer.frame.size.width, self.goalsContainer.frame.size.height);
