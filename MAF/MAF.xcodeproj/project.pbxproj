@@ -108,6 +108,8 @@
 		D25A6BBA198F34F000E6EBFD /* UIView+Animated.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BB7198F34F000E6EBFD /* UIView+Animated.m */; };
 		D25A6BBB198F34F000E6EBFD /* UIView+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BB9198F34F000E6EBFD /* UIView+Circle.m */; };
 		D25A6BBE198F34FC00E6EBFD /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BBD198F34FC00E6EBFD /* UIColor+CustomColors.m */; };
+		D25A6BC4198FDB7A00E6EBFD /* PresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BC3198FDB7A00E6EBFD /* PresentingAnimator.m */; };
+		D25A6BC7198FDB8D00E6EBFD /* DismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25A6BC6198FDB8D00E6EBFD /* DismissingAnimator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +283,10 @@
 		D25A6BB9198F34F000E6EBFD /* UIView+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Circle.m"; sourceTree = "<group>"; };
 		D25A6BBC198F34FC00E6EBFD /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		D25A6BBD198F34FC00E6EBFD /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		D25A6BC2198FDB7900E6EBFD /* PresentingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentingAnimator.h; sourceTree = "<group>"; };
+		D25A6BC3198FDB7A00E6EBFD /* PresentingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentingAnimator.m; sourceTree = "<group>"; };
+		D25A6BC5198FDB8D00E6EBFD /* DismissingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissingAnimator.h; sourceTree = "<group>"; };
+		D25A6BC6198FDB8D00E6EBFD /* DismissingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingAnimator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +351,7 @@
 		2CBA46961965DE3A00C6BEDF /* MAF */ = {
 			isa = PBXGroup;
 			children = (
+				D25A6BBF198FDB4700E6EBFD /* Animator */,
 				D25A6BB3198F34D500E6EBFD /* Categories */,
 				BF865B34197C632200A128AD /* Fonts */,
 				2CBA46C31965EC1200C6BEDF /* Utilities */,
@@ -659,6 +666,33 @@
 			name = UIColor;
 			sourceTree = "<group>";
 		};
+		D25A6BBF198FDB4700E6EBFD /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BC1198FDB5900E6EBFD /* PresentingAnimator */,
+				D25A6BC0198FDB4F00E6EBFD /* DismissingAnimator */,
+			);
+			name = Animator;
+			sourceTree = "<group>";
+		};
+		D25A6BC0198FDB4F00E6EBFD /* DismissingAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BC5198FDB8D00E6EBFD /* DismissingAnimator.h */,
+				D25A6BC6198FDB8D00E6EBFD /* DismissingAnimator.m */,
+			);
+			name = DismissingAnimator;
+			sourceTree = "<group>";
+		};
+		D25A6BC1198FDB5900E6EBFD /* PresentingAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				D25A6BC2198FDB7900E6EBFD /* PresentingAnimator.h */,
+				D25A6BC3198FDB7A00E6EBFD /* PresentingAnimator.m */,
+			);
+			name = PresentingAnimator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -830,6 +864,7 @@
 				BFC167D71986070D0090AE5C /* TextDetailChart.m in Sources */,
 				BF963FA8198B65D500C5B40B /* DashboardViewController.m in Sources */,
 				BFBDEED9197B6B3700FE4348 /* User.m in Sources */,
+				D25A6BC4198FDB7A00E6EBFD /* PresentingAnimator.m in Sources */,
 				BF865AFF197C593000A128AD /* Friend.m in Sources */,
 				D25A6BBE198F34FC00E6EBFD /* UIColor+CustomColors.m in Sources */,
 				BF2A26C8198DCF1400D49101 /* Post.m in Sources */,
@@ -837,6 +872,7 @@
 				BF865B27197C622100A128AD /* OpenSansExtraBoldItalicLabel.m in Sources */,
 				BF865B1B197C615D00A128AD /* OpenSansBoldLabel.m in Sources */,
 				BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */,
+				D25A6BC7198FDB8D00E6EBFD /* DismissingAnimator.m in Sources */,
 				BF865B1E197C619200A128AD /* OpenSansBoldItalicLabel.m in Sources */,
 				BFB57ECE198000B1004A0D7B /* LoginViewController.m in Sources */,
 				BF865B2A197C624800A128AD /* OpenSansLightLabel.m in Sources */,

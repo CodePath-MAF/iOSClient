@@ -8,12 +8,15 @@
 
 #define CIRCLE_FRIENDS_PER_PAGE 4
 
-#import "PostDetailViewController.h"
 #import "OpenSansBoldLabel.h"
 #import "OpenSansRegularLabel.h"
 #import "OpenSansSemiBoldLabel.h"
 #import "GoalDetailViewController.h"
 #import "GoalDetailsHeaderView.h"
+
+#import "PresentingAnimator.h"
+#import "DismissingAnimator.h"
+#import "PostDetailViewController.h"
 
 #import "LendingSocialCell.h"
 #import "Friend.h"
@@ -25,7 +28,7 @@
 #import "MessageCollectionViewCell.h"
 #import "CSStickyHeaderFlowLayout.h"
 
-@interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GoalDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate,UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *_collectionView;
 - (IBAction)_addPostAction:(id)sender;
@@ -142,6 +145,20 @@
     return nil;
 }
 
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    return [PresentingAnimator new];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [DismissingAnimator new];
+}
+
 #pragma mark - UICollectionViewDelegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -155,9 +172,16 @@
 
 - (void)expandCommentsForPost:(UITapGestureRecognizer *)gestureRecognizer {
     Post *post = [(MessageCollectionViewCell *)gestureRecognizer.view post];
-    PostDetailViewController *vc = [[PostDetailViewController alloc] initWithNibName:@"PostDetailViewController" bundle:nil];
-    vc.post = post;
-    [self.navigationController pushViewController:vc animated:YES];
+//    PostDetailViewController *vc = [[PostDetailViewController alloc] initWithNibName:@"PostDetailViewController" bundle:nil];
+//    vc.post = post;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    PostDetailViewController *modalVC = [PostDetailViewController new];
+    modalVC.post = post;
+    modalVC.transitioningDelegate = self;
+    modalVC.modalPresentationStyle = UIModalPresentationCustom;
+    
+    [self.navigationController presentViewController:modalVC animated:YES completion:nil];
 }
 
 - (IBAction)_addPostAction:(id)sender {
