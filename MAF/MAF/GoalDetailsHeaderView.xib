@@ -13,35 +13,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FoA-oN-g7M">
-                        <rect key="frame" x="0.0" y="250" width="320" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.13725490200000001" green="0.78039215689999997" blue="0.63137254899999995" alpha="1" colorSpace="deviceRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="NiU-dI-QGU"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6l-81-SIq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYU-zZ-2eB">
+                                <rect key="frame" x="110" y="75" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="1Zk-Mu-JLg"/>
+                                    <constraint firstAttribute="width" constant="100" id="AXf-F9-64P"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="pYU-zZ-2eB" secondAttribute="centerX" id="1Tz-Vs-Iml"/>
+                            <constraint firstAttribute="centerY" secondItem="pYU-zZ-2eB" secondAttribute="centerY" id="CUX-9w-m2g"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="FoA-oN-g7M" secondAttribute="bottom" id="3Qd-qq-e4S"/>
-                <constraint firstAttribute="trailing" secondItem="FoA-oN-g7M" secondAttribute="trailing" id="FeT-oI-teI"/>
                 <constraint firstAttribute="trailing" secondItem="y6l-81-SIq" secondAttribute="trailing" id="Ml5-pj-MJT"/>
-                <constraint firstItem="FoA-oN-g7M" firstAttribute="top" secondItem="y6l-81-SIq" secondAttribute="bottom" id="bA9-34-NDs"/>
                 <constraint firstItem="y6l-81-SIq" firstAttribute="leading" secondItem="BVN-oC-1Fo" secondAttribute="leading" id="dsz-wM-dse"/>
+                <constraint firstAttribute="bottom" secondItem="y6l-81-SIq" secondAttribute="bottom" constant="50" id="fzM-xL-8wl"/>
                 <constraint firstItem="y6l-81-SIq" firstAttribute="top" secondItem="BVN-oC-1Fo" secondAttribute="top" id="jkG-Q8-S3F"/>
-                <constraint firstItem="FoA-oN-g7M" firstAttribute="leading" secondItem="BVN-oC-1Fo" secondAttribute="leading" id="lFW-Nx-RiV"/>
             </constraints>
             <connections>
                 <outlet property="_goalInformationView" destination="y6l-81-SIq" id="SOq-eP-cYY"/>
-                <outlet property="_progressBar" destination="FoA-oN-g7M" id="YHe-mo-H89"/>
+                <outlet property="_goalProgressView" destination="pYU-zZ-2eB" id="zNd-Z9-f2n"/>
             </connections>
         </collectionViewCell>
     </objects>

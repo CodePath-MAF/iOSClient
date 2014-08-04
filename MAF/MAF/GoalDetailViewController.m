@@ -119,7 +119,7 @@
     
     if ([layout isKindOfClass:[CSStickyHeaderFlowLayout class]]) {
         layout.parallaxHeaderReferenceSize = CGSizeMake(320, 300);
-        layout.parallaxHeaderMinimumReferenceSize = CGSizeMake(320, 110);
+        layout.parallaxHeaderMinimumReferenceSize = CGSizeMake(320, 85);
         layout.parallaxHeaderAlwaysOnTop = YES;
     }
     
