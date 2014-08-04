@@ -40,6 +40,15 @@
     return [self colorWithRed:73 green:145 blue:226];
 }
 
++ (UIColor *)customLightGrayGolor
+{
+    return [self colorWithRed:243 green:243 blue:243];
+}
+
++ (UIColor *)customLightFontColor {
+    return [self colorWithRed:141 green:141 blue:141];
+}
+
 #pragma mark - Private class methods
 
 + (UIColor *)colorWithRed:(NSUInteger)red

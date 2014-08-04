@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PNChart.h"
 
+#import "UIColor+CustomColors.h"
+
 #import "DashboardTransactionsEmptyView.h"
 #import "DashboardViewController.h"
 #import "GoalsDashboardCollectionView.h"
@@ -137,11 +139,12 @@
 }
 
 - (void)_buildChart {
-    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 144.0)];
+    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, 160.0)];
+    self.lineChart.xLabelFont = [UIFont fontWithName:@"OpenSans-Semibold" size:11.0];
+    self.lineChart.yLabelFont = [UIFont fontWithName:@"OpenSans" size:11.0];
     [self.lineChart setXLabels:self.viewData[@"lineChart"][@"xLabels"]];
     [self.lineChart setYLabelHeight:20.f];
-    self.lineChart.showCoordinateAxis = YES;
-    
+
     
     NSArray *dataArray = self.viewData[@"lineChart"][@"data"];
     PNLineChartData *data = [PNLineChartData new];

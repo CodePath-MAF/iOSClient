@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -22,12 +22,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOE-JE-SAc" userLabel="Chart">
-                            <rect key="frame" x="0.0" y="20" width="320" height="144"/>
+                            <rect key="frame" x="0.0" y="39" width="320" height="168"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="320" id="5mC-Fd-gM5"/>
-                                <constraint firstAttribute="height" constant="144" id="hAf-U5-c8u"/>
+                                <constraint firstAttribute="height" constant="168" id="hAf-U5-c8u"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skB-bE-CQC" userLabel="Line Spacer">
@@ -55,17 +54,26 @@
                                 <action selector="addTransaction:" destination="-1" eventType="touchUpInside" id="wGQ-Eb-GlM"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash Spent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owE-UG-XyB" customClass="OpenSansSemiBoldLabel">
+                            <rect key="frame" x="130" y="15" width="61" height="14"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="ZLh-wR-f51" firstAttribute="top" secondItem="skB-bE-CQC" secondAttribute="bottom" constant="13" id="2qo-MI-Ts5"/>
                         <constraint firstAttribute="trailing" secondItem="skB-bE-CQC" secondAttribute="trailing" id="7Ri-Yx-0F5"/>
                         <constraint firstItem="skB-bE-CQC" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" id="9Re-eG-DpI"/>
-                        <constraint firstItem="IOE-JE-SAc" firstAttribute="top" secondItem="qYY-SW-bQz" secondAttribute="top" constant="20" id="AqJ-yf-k9L"/>
-                        <constraint firstAttribute="trailing" secondItem="IOE-JE-SAc" secondAttribute="trailing" id="GBA-xf-WqE"/>
-                        <constraint firstItem="skB-bE-CQC" firstAttribute="top" secondItem="IOE-JE-SAc" secondAttribute="bottom" constant="15" id="X83-kh-IeA"/>
-                        <constraint firstItem="IOE-JE-SAc" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" id="pGF-Zg-xQh"/>
-                        <constraint firstAttribute="centerX" secondItem="ZLh-wR-f51" secondAttribute="centerX" id="tqO-Wt-uQ3"/>
+                        <constraint firstAttribute="centerX" secondItem="owE-UG-XyB" secondAttribute="centerX" id="DpL-tK-uCI"/>
+                        <constraint firstAttribute="trailing" secondItem="ZLh-wR-f51" secondAttribute="trailing" constant="9" id="ECN-D4-QFB"/>
+                        <constraint firstItem="owE-UG-XyB" firstAttribute="top" secondItem="qYY-SW-bQz" secondAttribute="top" constant="15" id="L7O-tP-9wb"/>
+                        <constraint firstAttribute="trailing" secondItem="IOE-JE-SAc" secondAttribute="trailing" id="S36-4l-H2n"/>
+                        <constraint firstItem="IOE-JE-SAc" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" id="Wcj-gc-9PC"/>
+                        <constraint firstAttribute="bottom" secondItem="ZLh-wR-f51" secondAttribute="bottom" constant="11" id="fgI-js-YIi"/>
+                        <constraint firstItem="ZLh-wR-f51" firstAttribute="top" secondItem="skB-bE-CQC" secondAttribute="bottom" constant="13" id="l7X-bX-g4a"/>
+                        <constraint firstItem="ZLh-wR-f51" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" constant="8" id="lGU-js-8Ql"/>
+                        <constraint firstItem="IOE-JE-SAc" firstAttribute="top" secondItem="owE-UG-XyB" secondAttribute="bottom" constant="10" id="uYJ-vd-lSK"/>
                         <constraint firstAttribute="height" constant="248" id="vUx-FR-Lx7"/>
                     </constraints>
                 </view>
