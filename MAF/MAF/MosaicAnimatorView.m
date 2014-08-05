@@ -31,6 +31,8 @@
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         mosaicView.alpha = 0;
     } completion:^(BOOL finished) {
+        [mosaicView.whiteBackground removeFromSuperview];
+        [mosaicView removeFromSuperview];
     }];
 }
 

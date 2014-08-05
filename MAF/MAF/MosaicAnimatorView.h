@@ -14,4 +14,5 @@
 
 + (MosaicAnimatorView *)overlayMosaicAnimatorView:(UIView *)viewToPop withFrame:(CGRect)frame;
 + (void)finishOverlayAnimator: (MosaicAnimatorView *)mosaicView;
+
 @end

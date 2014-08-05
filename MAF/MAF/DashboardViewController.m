@@ -49,15 +49,17 @@
     [super viewDidLoad];
     self.addTransactionButton.hidden = YES;
     [self _configureNavigationBar];
-    self.title = @"Dashboard";
+//    self.title = @"Dashboard";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    MosaicAnimatorView *mos = [MosaicAnimatorView overlayMosaicAnimatorView:self.view withFrame:CGRectMake(100,160, 120, 120)];
     [[[ViewManager instance] fetchViewData:@"dashboardView"] continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"Error fetching dashboard view");
         } else {
+            [MosaicAnimatorView finishOverlayAnimator:mos];
             [self renderView:task.result];
         }
         return task;
@@ -207,22 +209,23 @@
 
 - (void)didSelectGoal:(Goal *)goal {
     MosaicAnimatorView *mos = [MosaicAnimatorView overlayMosaicAnimatorView:self.view withFrame:CGRectMake(100,160, 120, 120)];
-//    [[[ViewManager instance] goalDetailViewForGoal:goal] continueWithBlock:^id(BFTask *task) {
-//        if (task.error) {
-//            NSLog(@"error loading goal details, %@", task.error);
-//        } else {
-//            if (goal.type == 1) {
-//                GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
-//                [goalDetailViewController setViewData:task.result];
-//                [self.navigationController pushViewController:goalDetailViewController animated:YES];
-//            } else {
-//                SimpleGoalDetailViewController *simpleGoalDetailViewController = [[SimpleGoalDetailViewController alloc] initWithNibName:@"SimpleGoalDetailViewController" bundle:nil];
-//                [simpleGoalDetailViewController setViewData:task.result];
-//                [self.navigationController pushViewController:simpleGoalDetailViewController animated:YES];
-//            }
-//        }
-//        return nil;
-//    }];
+    [[[ViewManager instance] goalDetailViewForGoal:goal] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            NSLog(@"error loading goal details, %@", task.error);
+        } else {
+            [MosaicAnimatorView finishOverlayAnimator:mos];
+            if (goal.type == 1) {
+                GoalDetailViewController *goalDetailViewController = [[GoalDetailViewController alloc] initWithNibName:@"GoalDetailViewController" bundle:[NSBundle mainBundle]];
+                [goalDetailViewController setViewData:task.result];
+                [self.navigationController pushViewController:goalDetailViewController animated:YES];
+            } else {
+                SimpleGoalDetailViewController *simpleGoalDetailViewController = [[SimpleGoalDetailViewController alloc] initWithNibName:@"SimpleGoalDetailViewController" bundle:nil];
+                [simpleGoalDetailViewController setViewData:task.result];
+                [self.navigationController pushViewController:simpleGoalDetailViewController animated:YES];
+            }
+        }
+        return nil;
+    }];
 }
 
 #pragma mark PNChartDelegate
