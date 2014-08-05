@@ -215,9 +215,7 @@
     post.user = [User currentUser];
     post.comments = [[NSMutableArray alloc] init];
     [post saveInBackground];
-    NSMutableArray *posts = [[NSMutableArray alloc] initWithObjects:post, nil];
-    [posts addObjectsFromArray:self._posts];
-    self._posts = posts;
+    [self._posts insertObject:post atIndex:0];
 #warning this could just be reload at index paths
     [self._collectionView reloadData];
     [[ViewManager instance] clearCache];
