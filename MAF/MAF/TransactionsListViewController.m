@@ -24,6 +24,7 @@
 #import "DashboardViewController.h"
 
 #import "Utilities.h"
+#import "MosaicAnimatorView.h"
 
 @interface TransactionsListViewController () <UITableViewDataSource, UITableViewDelegate, EmptyTransactionsViewDelegate> {
     NSDateFormatter *_dateFormatter;
@@ -84,10 +85,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+     MosaicAnimatorView *mos = [MosaicAnimatorView overlayMosaicAnimatorView:self.view withFrame:CGRectMake(100,160, 120, 120)];
     [self.fetchDataForView continueWithBlock:^id(BFTask *task) {
         if (task.error) {
             NSLog(@"error fetching view data: %@", task.error);
         } else {
+            [MosaicAnimatorView finishOverlayAnimator:mos];
             [self renderView:task.result];
         }
         return task;

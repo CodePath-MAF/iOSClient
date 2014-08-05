@@ -11,6 +11,10 @@
 
 @implementation MosaicAnimatorView
 
++ (MosaicAnimatorView *)overlayMosaicAnimatorView:(UIView *)viewToPop {
+    return [MosaicAnimatorView overlayMosaicAnimatorView:viewToPop withFrame:CGRectMake(100,160, 120, 120)];
+}
+
 + (MosaicAnimatorView *)overlayMosaicAnimatorView:(UIView *)viewToPop withFrame:(CGRect)frame {
     MosaicAnimatorView *mos = [[MosaicAnimatorView alloc] initWithFrame:frame];
     mos.alpha = 0;
@@ -20,7 +24,7 @@
     mos.whiteBackground.alpha = 0;
     [viewToPop addSubview:mos];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        mos.whiteBackground.alpha = 0.6;
+        mos.whiteBackground.alpha = 0.8;
         mos.alpha = 1.0;
     } completion:^(BOOL finished) {
     }];
@@ -30,6 +34,7 @@
 + (void)finishOverlayAnimator: (MosaicAnimatorView *)mosaicView {
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         mosaicView.alpha = 0;
+        mosaicView.whiteBackground.alpha = 0;
     } completion:^(BOOL finished) {
         [mosaicView.whiteBackground removeFromSuperview];
         [mosaicView removeFromSuperview];
@@ -105,7 +110,7 @@
     
     //Set the duration of the animation (play with it
     //until it looks nice for you)
-    activityImageView.animationDuration = 1.6;
+    activityImageView.animationDuration = 1.5;
     
     
     //Position the activity image view somewhere in

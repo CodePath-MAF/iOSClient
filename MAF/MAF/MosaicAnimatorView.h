@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIView *whiteBackground;
 
++ (MosaicAnimatorView *)overlayMosaicAnimatorView:(UIView *)viewToPop;
 + (MosaicAnimatorView *)overlayMosaicAnimatorView:(UIView *)viewToPop withFrame:(CGRect)frame;
 + (void)finishOverlayAnimator: (MosaicAnimatorView *)mosaicView;
 
