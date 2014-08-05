@@ -90,7 +90,7 @@
     self.goalAchievedButton.alpha = 0;
     // Set Up Make Payment Button
     [[self.makePaymentButton titleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:14.f]];
-
+    self.title = self.goal.name;
     [Utilities setupRoundedButton:self.makePaymentButton
                  withCornerRadius:BUTTON_CORNER_RADIUS];
     [Utilities setupRoundedButton:self.goalAchievedButton withCornerRadius:BUTTON_CORNER_RADIUS];
