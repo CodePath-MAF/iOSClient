@@ -189,8 +189,14 @@
         NSString *photoName = [[NSString alloc] initWithFormat:@"profile_%@", obj[@"profileImageId"], nil];
         UIImageView *friendView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:photoName]];
         friendView.center = topCenter;
-        [friendView setRoundedWithDiameter:SMALL_CIRCLE_DIAMETER];
+        [friendView setRoundedWithDiameter:friendView.frame.size.width];
         friendView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        if ([obj[@"paidOut"] boolValue]) {
+            friendView.layer.borderWidth = 2;
+            friendView.layer.borderColor = [UIColor customGreenColor].CGColor;
+        }
+        
         [self.friendViews addObject:friendView];
         [self._goalInformationView addSubview:friendView];
     }];
