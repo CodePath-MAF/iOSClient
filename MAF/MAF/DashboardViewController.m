@@ -190,7 +190,6 @@
     transition.type = kCATransitionFade;
     
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-    TransactionsListViewController *vc = [[TransactionsListViewController alloc] init];
     [self.navigationController pushViewController:[[TransactionsListViewController alloc] init] animated:NO];
 }
 
