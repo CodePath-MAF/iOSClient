@@ -122,11 +122,14 @@
 #pragma mark - TextFieldDelegate methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self _addComment:textField];
-    
-    [textField resignFirstResponder];
-    [self dismiss:textField];
-    
+    if (textField == self._commentContentTextField) {
+        if ([textField.text isEqual:@""]) {
+            [self _addComment:textField];
+        }
+        
+        [textField resignFirstResponder];
+        [self dismiss:textField];
+    }
     return YES;
 }
 

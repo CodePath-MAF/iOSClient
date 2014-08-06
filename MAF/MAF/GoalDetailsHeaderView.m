@@ -331,7 +331,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self._addPostTextField) {
         [textField resignFirstResponder];
-        [self _addPostAction:nil];
+        
+        if ([textField.text isEqual:@""]) {
+            [self _addPostAction:nil];
+        }
         return NO;
     }
     return YES;
