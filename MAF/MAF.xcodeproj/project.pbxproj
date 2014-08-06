@@ -508,12 +508,6 @@
 				BA2BF6E4197B6541006BE506 /* ServicesConfig.plist */,
 				2C66748C1974FDB600434802 /* Utilities.h */,
 				2C66748D1974FDB600434802 /* Utilities.m */,
-				BF963FA1198A199300C5B40B /* NSDictionary+Hash.h */,
-				BA7645FB198F4C880071B8ED /* MosaicAnimatorView.h */,
-				BA7645FC198F4C880071B8ED /* MosaicAnimatorView.m */,
-				BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */,
-				BA20AD47197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.h */,
-				BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -669,6 +663,8 @@
 		D25A6BB3198F34D500E6EBFD /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D25A6BC91991D4B200E6EBFD /* NSDictionary */,
+				D25A6BC81991D4AD00E6EBFD /* UILabel */,
 				D25A6BB5198F34DF00E6EBFD /* UIColor */,
 				D25A6BB4198F34DB00E6EBFD /* UIView */,
 			);
@@ -698,6 +694,7 @@
 		D25A6BBF198FDB4700E6EBFD /* Animator */ = {
 			isa = PBXGroup;
 			children = (
+				D25A6BCA1991D4DE00E6EBFD /* LoadingAnimator */,
 				D25A6BC1198FDB5900E6EBFD /* PresentingAnimator */,
 				D25A6BC0198FDB4F00E6EBFD /* DismissingAnimator */,
 			);
@@ -720,6 +717,33 @@
 				D25A6BC3198FDB7A00E6EBFD /* PresentingAnimator.m */,
 			);
 			name = PresentingAnimator;
+			sourceTree = "<group>";
+		};
+		D25A6BC81991D4AD00E6EBFD /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				BA20AD47197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.h */,
+				BA20AD48197F919B0043B3BB /* UILabel+WhiteUIDatePickerLabels.m */,
+			);
+			name = UILabel;
+			sourceTree = "<group>";
+		};
+		D25A6BC91991D4B200E6EBFD /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				BF963FA1198A199300C5B40B /* NSDictionary+Hash.h */,
+				BF963FA2198A199300C5B40B /* NSDictionary+Hash.m */,
+			);
+			name = NSDictionary;
+			sourceTree = "<group>";
+		};
+		D25A6BCA1991D4DE00E6EBFD /* LoadingAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				BA7645FB198F4C880071B8ED /* MosaicAnimatorView.h */,
+				BA7645FC198F4C880071B8ED /* MosaicAnimatorView.m */,
+			);
+			name = LoadingAnimator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
