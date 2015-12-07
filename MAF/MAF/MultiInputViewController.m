@@ -8,7 +8,7 @@
 
 static NSInteger const kCategoryPicker = 1;
 static NSInteger const kDayPicker = 2;
-static NSInteger const kIntervalPicker = 3;
+//static NSInteger const kIntervalPicker = 3;
 
 #import "UILabel+WhiteUIDatePickerLabels.h"
 

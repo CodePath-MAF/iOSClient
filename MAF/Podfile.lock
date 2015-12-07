@@ -1,45 +1,43 @@
 PODS:
-  - Bolts (1.1.1)
-  - CrittercismSDK (4.3.4)
-  - CSStickyHeaderFlowLayout (0.2.1)
-  - Facebook-iOS-SDK (3.16.2):
-    - Bolts
+  - Bolts (1.1.3)
+  - CrittercismSDK (5.0.7)
+  - CSStickyHeaderFlowLayout (0.2.3)
   - MHPrettyDate (1.1.1)
-  - MRProgress (0.6.0):
-    - MRProgress/ActivityIndicator
-    - MRProgress/Blur
-    - MRProgress/Circular
-    - MRProgress/Icons
-    - MRProgress/NavigationBarProgress
-    - MRProgress/Overlay
-  - MRProgress/ActivityIndicator (0.6.0):
+  - MRProgress (0.8.1):
+    - MRProgress/ActivityIndicator (= 0.8.1)
+    - MRProgress/Blur (= 0.8.1)
+    - MRProgress/Circular (= 0.8.1)
+    - MRProgress/Icons (= 0.8.1)
+    - MRProgress/NavigationBarProgress (= 0.8.1)
+    - MRProgress/Overlay (= 0.8.1)
+  - MRProgress/ActivityIndicator (0.8.1):
     - MRProgress/Stopable
-  - MRProgress/Blur (0.6.0):
+  - MRProgress/Blur (0.8.1):
     - MRProgress/Helper
-  - MRProgress/Circular (0.6.0):
+  - MRProgress/Circular (0.8.1):
     - MRProgress/Helper
     - MRProgress/ProgressBaseClass
     - MRProgress/Stopable
-  - MRProgress/Helper (0.6.0)
-  - MRProgress/Icons (0.6.0)
-  - MRProgress/NavigationBarProgress (0.6.0):
+  - MRProgress/Helper (0.8.1)
+  - MRProgress/Icons (0.8.1)
+  - MRProgress/NavigationBarProgress (0.8.1):
     - MRProgress/ProgressBaseClass
-  - MRProgress/Overlay (0.6.0):
+  - MRProgress/Overlay (0.8.1):
     - MRProgress/ActivityIndicator
     - MRProgress/Blur
     - MRProgress/Circular
     - MRProgress/Helper
     - MRProgress/Icons
-  - MRProgress/ProgressBaseClass (0.6.0)
-  - MRProgress/Stopable (0.6.0):
+  - MRProgress/ProgressBaseClass (0.8.1)
+  - MRProgress/Stopable (0.8.1):
     - MRProgress/Helper
-  - Parse (1.2.20):
-    - Facebook-iOS-SDK (~> 3.11)
+  - Parse (1.6.0):
+    - Bolts (~> 1.1.3)
   - PNChart (0.3.3):
     - UICountingLabel (~> 1.0.0)
-  - pop (1.0.6)
+  - pop (1.0.7)
   - UICountingLabel (1.0.0)
-  - XLForm (2.0.0)
+  - XLForm (2.1.0)
 
 DEPENDENCIES:
   - Bolts (~> 1.1)
@@ -57,17 +55,21 @@ EXTERNAL SOURCES:
   PNChart:
     :git: https://github.com/mhahn/PNChart.git
 
-SPEC CHECKSUMS:
-  Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
-  CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
-  CSStickyHeaderFlowLayout: 50d1968dc88560419a96beab3de0fa47a4294eac
-  Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
-  MHPrettyDate: d9f42f2ec3dfece6352f18ac77aa33312174e09e
-  MRProgress: bacc0f2f6c547e4ab21fd48ed14e19cbd70de3e4
-  Parse: 28c0dc54f30201a369d29a2f76c09fa43b2add16
-  PNChart: 05cffd0b525db04421eae5bfa8f119bd9363e59e
-  pop: e518794da38942c05255eb64b36d894e70cb4f00
-  UICountingLabel: 0a0e9e34bf4690dbd127aaec552d19ed938087a9
-  XLForm: e065ea92da75acb51a577c40f2bb540c814982a3
+CHECKOUT OPTIONS:
+  PNChart:
+    :commit: 3e889b7f9fe994122ce74e6b2a55e2fde20431a5
+    :git: https://github.com/mhahn/PNChart.git
 
-COCOAPODS: 0.33.1
+SPEC CHECKSUMS:
+  Bolts: e431c88fd02115d4a34016c2100bbfa4d2d5b146
+  CrittercismSDK: f1364ebf70823dea25a5f5edbed31f445b36120a
+  CSStickyHeaderFlowLayout: 42633a45d33abd6dd6937b81b6d2381e01c86835
+  MHPrettyDate: e0e5975041f0210c0542f4c5d7e3e44d1a8537be
+  MRProgress: 72653f3ffd13c7bbac8c9de1da9bf0249fc2717d
+  Parse: 049e2ce21644e2ffa61534dc6ce51b38e3e03846
+  PNChart: 78ee288d3bf8112dc5fe14b8911d9fd3b7c1adad
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  UICountingLabel: 540feeca6bbb78be892c8ab75b6ad02313cb2b10
+  XLForm: ba9e657a360a810ab1f64cc2cd6307fd99a86866
+
+COCOAPODS: 0.39.0

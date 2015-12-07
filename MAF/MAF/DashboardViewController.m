@@ -251,7 +251,6 @@
     }
     self.nextDate = [Utilities dateWithoutTime:date];
     [self bubblePop:self.transitionView];
-
 }
 
 @end

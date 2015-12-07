@@ -123,7 +123,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self._commentContentTextField) {
-        if ([textField.text isEqual:@""]) {
+        if (![textField.text isEqual:@""]) {
             [self _addComment:textField];
         }
         
@@ -133,7 +133,7 @@
     return YES;
 }
 
-- (IBAction)_addComment:(id)sender {
+- (void)_addComment:(id)sender {
     Comment *comment = [Comment object];
     comment.user = [User currentUser];
     comment.post = self.post;

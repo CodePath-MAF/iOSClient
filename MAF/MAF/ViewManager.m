@@ -71,7 +71,7 @@
 - (BFTask *)fetchViewData:(NSString *)view parameters:(NSDictionary *)parameters {
     BFTaskCompletionSource *task = [BFTaskCompletionSource taskCompletionSource];
     NSString *cacheKey = [NSString stringWithFormat:@"%@:%lu", view, (unsigned long)[parameters hash]];
-    NSDictionary *cachedResponse = self._viewDataCache[cacheKey];
+//    NSDictionary *cachedResponse = self._viewDataCache[cacheKey];
 //    if (cachedResponse) {
 //        [task setResult:cachedResponse];
 //    } else {

@@ -1,5 +1,4 @@
 # Security
-ServicesConfig.plist
 
 # OS X Finder
 .DS_Store
@@ -27,4 +26,5 @@ build/
 *.dat
 *.dep
 
-#Pods/
+# Pods
+Pods/

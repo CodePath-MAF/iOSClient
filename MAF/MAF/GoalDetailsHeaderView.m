@@ -324,7 +324,9 @@
 }
 
 - (IBAction)_addPostAction:(id)sender {
-    [self.delegate addPost:self._addPostTextField.text];
+    if (![self._addPostTextField.text isEqual:@""]) {
+        [self.delegate addPost:self._addPostTextField.text];
+    }
     self._addPostTextField.text = @"";
 }
 
@@ -332,7 +334,7 @@
     if (textField == self._addPostTextField) {
         [textField resignFirstResponder];
         
-        if ([textField.text isEqual:@""]) {
+        if (![textField.text isEqual:@""]) {
             [self _addPostAction:nil];
         }
         return NO;

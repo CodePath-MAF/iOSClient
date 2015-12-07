@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   ServicesConfig.plist
+   MAF
+
+   Created by Edward Freeman on 12/1/15.
+   Copyright (c) 2015 NinjaSudo Inc. All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+        <key>PARSE_CLIENT_ID</key>
+        <string>SPC4XFKVlnX4ChVu7jS0IwTjfKDAY9uxXh1Y8jsy</string>
+        <key>PARSE_APP_ID</key>
+        <string>qK7qJuFt6weBIrBx9eTzK1UBWJvkqb3jH6l8aw22</string>
+        <key>CRITTERCISM_APP_ID</key>
+        <string>565e34d5d224ac0a00ed4486</string>
+    </dict>
+</plist>

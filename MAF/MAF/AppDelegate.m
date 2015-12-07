@@ -25,7 +25,7 @@
     static NSString *CRITTERCISM_APP_ID;
     static NSString *PARSE_APP_ID;
     static NSString *PARSE_CLIENT_KEY;
-
+    
     /* read in api config from plist */
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
@@ -43,7 +43,7 @@
                                         format:&format
                                         errorDescription:&errorDesc];
     if (!temp) {
-        NSLog(@"Error reading plist: %@, format: %lu", errorDesc, format);
+        NSLog(@"Error reading plist: %@, format: %lu", errorDesc, (unsigned long)format);
     }
     CRITTERCISM_APP_ID = [temp objectForKey:@"CRITTERCISM_APP_ID"];
     PARSE_APP_ID = [temp objectForKey:@"PARSE_APP_ID"];
@@ -69,13 +69,14 @@
     
     // trigger fetching of categories
     [[TransactionCategoryManager instance] fetchCategories];
+    
+    // setup view controller
     MainViewController *vc = [[MainViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
     navController.navigationBar.translucent = NO;
     self.window.rootViewController = navController;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-
-    self.window.backgroundColor = [UIColor whiteColor];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

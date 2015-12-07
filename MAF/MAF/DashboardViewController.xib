@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardViewController">
@@ -18,20 +19,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYY-SW-bQz" userLabel="Chart Container">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="248"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="312"/>
                     <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash Spent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owE-UG-XyB" customClass="OpenSansSemiBoldLabel">
+                            <rect key="frame" x="130" y="5" width="60.5" height="13.5"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOE-JE-SAc" userLabel="Chart">
-                            <rect key="frame" x="0.0" y="39" width="320" height="168"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <rect key="frame" x="0.0" y="76" width="320" height="168"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="320" id="5mC-Fd-gM5"/>
                                 <constraint firstAttribute="height" constant="168" id="hAf-U5-c8u"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skB-bE-CQC" userLabel="Line Spacer">
-                            <rect key="frame" x="0.0" y="179" width="320" height="1"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <rect key="frame" x="0.0" y="243" width="320" height="1"/>
+                            <animations/>
                             <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="320" id="b4B-3K-4Ja"/>
@@ -39,8 +45,8 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLh-wR-f51">
-                            <rect key="frame" x="8" y="193" width="303" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="frame" x="8" y="257" width="303" height="44"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="NuY-xj-Dw5"/>
                             </constraints>
@@ -54,51 +60,47 @@
                                 <action selector="addTransaction:" destination="-1" eventType="touchUpInside" id="wGQ-Eb-GlM"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash Spent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owE-UG-XyB" customClass="OpenSansSemiBoldLabel">
-                            <rect key="frame" x="130" y="15" width="61" height="14"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="skB-bE-CQC" secondAttribute="trailing" id="7Ri-Yx-0F5"/>
                         <constraint firstItem="skB-bE-CQC" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" id="9Re-eG-DpI"/>
                         <constraint firstAttribute="centerX" secondItem="owE-UG-XyB" secondAttribute="centerX" id="DpL-tK-uCI"/>
                         <constraint firstAttribute="trailing" secondItem="ZLh-wR-f51" secondAttribute="trailing" constant="9" id="ECN-D4-QFB"/>
-                        <constraint firstItem="owE-UG-XyB" firstAttribute="top" secondItem="qYY-SW-bQz" secondAttribute="top" constant="15" id="L7O-tP-9wb"/>
+                        <constraint firstItem="skB-bE-CQC" firstAttribute="bottom" secondItem="IOE-JE-SAc" secondAttribute="bottom" id="Fdv-7K-1hT"/>
+                        <constraint firstItem="owE-UG-XyB" firstAttribute="top" secondItem="qYY-SW-bQz" secondAttribute="top" constant="5" id="L7O-tP-9wb"/>
                         <constraint firstAttribute="trailing" secondItem="IOE-JE-SAc" secondAttribute="trailing" id="S36-4l-H2n"/>
                         <constraint firstItem="IOE-JE-SAc" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" id="Wcj-gc-9PC"/>
                         <constraint firstAttribute="bottom" secondItem="ZLh-wR-f51" secondAttribute="bottom" constant="11" id="fgI-js-YIi"/>
                         <constraint firstItem="ZLh-wR-f51" firstAttribute="top" secondItem="skB-bE-CQC" secondAttribute="bottom" constant="13" id="l7X-bX-g4a"/>
                         <constraint firstItem="ZLh-wR-f51" firstAttribute="leading" secondItem="qYY-SW-bQz" secondAttribute="leading" constant="8" id="lGU-js-8Ql"/>
-                        <constraint firstItem="IOE-JE-SAc" firstAttribute="top" secondItem="owE-UG-XyB" secondAttribute="bottom" constant="10" id="uYJ-vd-lSK"/>
-                        <constraint firstAttribute="height" constant="248" id="vUx-FR-Lx7"/>
+                        <constraint firstItem="IOE-JE-SAc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="owE-UG-XyB" secondAttribute="bottom" constant="5" id="uYJ-vd-lSK"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGm-j7-wFg" userLabel="Goal Container">
-                    <rect key="frame" x="0.0" y="248" width="320" height="255"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="0.0" y="312" width="320" height="256"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.89429772418478259" green="0.89429772418478259" blue="0.89429772418478259" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="255" id="4xP-Qo-SPK"/>
+                        <constraint firstAttribute="height" constant="256" id="4xP-Qo-SPK"/>
                         <constraint firstAttribute="width" constant="320" id="85t-Cm-5tB"/>
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="XGm-j7-wFg" firstAttribute="top" secondItem="qYY-SW-bQz" secondAttribute="bottom" id="1Jt-Rs-CD2"/>
                 <constraint firstItem="qYY-SW-bQz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Cn-X9-SCO"/>
+                <constraint firstAttribute="bottom" secondItem="XGm-j7-wFg" secondAttribute="bottom" id="MoL-Xf-SDQ"/>
                 <constraint firstItem="XGm-j7-wFg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SIX-qF-vbz"/>
+                <constraint firstAttribute="bottom" secondItem="XGm-j7-wFg" secondAttribute="bottom" id="aFA-Rp-js2"/>
                 <constraint firstItem="qYY-SW-bQz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="exL-vu-a8E"/>
                 <constraint firstAttribute="trailing" secondItem="qYY-SW-bQz" secondAttribute="trailing" id="svi-eb-CO9"/>
                 <constraint firstAttribute="trailing" secondItem="XGm-j7-wFg" secondAttribute="trailing" id="tzk-1S-wBc"/>
                 <constraint firstItem="qYY-SW-bQz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wbB-F8-o2Q"/>
-                <constraint firstItem="XGm-j7-wFg" firstAttribute="top" secondItem="qYY-SW-bQz" secondAttribute="bottom" id="xNp-to-vE9"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>

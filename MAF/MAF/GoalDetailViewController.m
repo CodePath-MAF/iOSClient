@@ -80,6 +80,7 @@
     self.navigationItem.title = self._goal.name;
     [self _setupParallaxHeader];
     
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)_setupParallaxHeader {
@@ -97,10 +98,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-        
+    
 }
 
-- (IBAction)makePayment:(id)sender {
+- (void)makePayment:(id)sender {
     SimpleTransactionViewController *simpleTransVC = [[SimpleTransactionViewController alloc] initWithNibName:@"SimpleTransactionViewController" bundle:nil];
     [simpleTransVC setLabelsAndButtons:MakePayment goal:self._goal amount:self._goal.paymentAmount];
     [self.navigationController pushViewController:simpleTransVC animated:YES];

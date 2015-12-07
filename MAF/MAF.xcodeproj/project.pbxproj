@@ -13,13 +13,15 @@
 		2C66748E1974FDB600434802 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C66748D1974FDB600434802 /* Utilities.m */; };
 		2C95F618197CC91400862497 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C95F617197CC91400862497 /* Reveal.framework */; };
 		2C95F661197E5D5700862497 /* GoalSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C95F660197E5D5700862497 /* GoalSet.m */; };
+		2CA793841C0E52D60034E928 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */; };
+		2CA793881C0EB20A0034E928 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA793871C0EB20A0034E928 /* LaunchScreen.storyboard */; };
+		2CA7938A1C0EB2C80034E928 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CA793891C0EB2C80034E928 /* Images.xcassets */; };
 		2CBA46911965DE3A00C6BEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46901965DE3A00C6BEDF /* Foundation.framework */; };
 		2CBA46931965DE3A00C6BEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */; };
 		2CBA46951965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
 		2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46991965DE3A00C6BEDF /* InfoPlist.strings */; };
 		2CBA469D1965DE3A00C6BEDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA469C1965DE3A00C6BEDF /* main.m */; };
 		2CBA46A11965DE3A00C6BEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA46A01965DE3A00C6BEDF /* AppDelegate.m */; };
-		2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA46A21965DE3A00C6BEDF /* Images.xcassets */; };
 		2CBA46AA1965DE3A00C6BEDF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46A91965DE3A00C6BEDF /* XCTest.framework */; };
 		2CBA46AB1965DE3A00C6BEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46901965DE3A00C6BEDF /* Foundation.framework */; };
 		2CBA46AC1965DE3A00C6BEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBA46941965DE3A00C6BEDF /* UIKit.framework */; };
@@ -42,7 +44,6 @@
 		BF14432E196A471300C2BB38 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14432D196A471300C2BB38 /* Goal.m */; };
 		BF144331196A4FAD00C2BB38 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144330196A4FAD00C2BB38 /* Transaction.m */; };
 		BF144351196A95D600C2BB38 /* TransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF14434F196A95D600C2BB38 /* TransactionTableViewCell.m */; };
-		BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144350196A95D600C2BB38 /* TransactionTableViewCell.xib */; };
 		BF144356196A963000C2BB38 /* TransactionsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF144354196A963000C2BB38 /* TransactionsListViewController.m */; };
 		BF144357196A963000C2BB38 /* TransactionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF144355196A963000C2BB38 /* TransactionsListViewController.xib */; };
 		BF1B2FF819770B1100F68B2E /* TransactionCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B2FF719770B1100F68B2E /* TransactionCategory.m */; };
@@ -139,6 +140,8 @@
 		2C95F617197CC91400862497 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		2C95F65F197E5D5700862497 /* GoalSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalSet.h; sourceTree = "<group>"; };
 		2C95F660197E5D5700862497 /* GoalSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalSet.m; sourceTree = "<group>"; };
+		2CA793871C0EB20A0034E928 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2CA793891C0EB2C80034E928 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2CBA468D1965DE3A00C6BEDF /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBA46901965DE3A00C6BEDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2CBA46921965DE3A00C6BEDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,7 +152,6 @@
 		2CBA469E1965DE3A00C6BEDF /* MAF-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAF-Prefix.pch"; sourceTree = "<group>"; };
 		2CBA469F1965DE3A00C6BEDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2CBA46A01965DE3A00C6BEDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2CBA46A21965DE3A00C6BEDF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2CBA46A81965DE3A00C6BEDF /* MAFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBA46A91965DE3A00C6BEDF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2CBA46B11965DE3A00C6BEDF /* MAFTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFTests-Info.plist"; sourceTree = "<group>"; };
@@ -161,7 +163,8 @@
 		2CD7C1F51975FD08007F6CB8 /* GoalCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalCardView.h; sourceTree = "<group>"; };
 		2CD7C1F61975FD08007F6CB8 /* GoalCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalCardView.m; sourceTree = "<group>"; };
 		2CD7C1F81975FD1B007F6CB8 /* GoalCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalCardView.xib; sourceTree = "<group>"; };
-		2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.xcconfig"; path = "Pods/Pods-MAF.xcconfig"; sourceTree = "<group>"; };
+		4D61D5F6322F44EE0754C2B4 /* Pods-MAF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MAF/Pods-MAF.debug.xcconfig"; sourceTree = "<group>"; };
+		4F4C129BE939B94498C557A5 /* Pods-MAF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAF.release.xcconfig"; path = "Pods/Target Support Files/Pods-MAF/Pods-MAF.release.xcconfig"; sourceTree = "<group>"; };
 		BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTransactionTableViewCell.h; sourceTree = "<group>"; };
 		BA0C9B041975D79B00B15AEC /* CreateTransactionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTransactionTableViewCell.m; sourceTree = "<group>"; };
 		BA0C9B051975D79B00B15AEC /* CreateTransactionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTransactionTableViewCell.xib; sourceTree = "<group>"; };
@@ -341,7 +344,7 @@
 				2CBA46AF1965DE3A00C6BEDF /* MAFTests */,
 				2CBA468F1965DE3A00C6BEDF /* Frameworks */,
 				2CBA468E1965DE3A00C6BEDF /* Products */,
-				2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */,
+				FFF2ECB3B4DA5C2BBC68AF0E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -379,7 +382,6 @@
 				2CBA46BF1965DF4F00C6BEDF /* ViewControllers */,
 				2CBA469F1965DE3A00C6BEDF /* AppDelegate.h */,
 				2CBA46A01965DE3A00C6BEDF /* AppDelegate.m */,
-				2CBA46A21965DE3A00C6BEDF /* Images.xcassets */,
 				BF865B4A197C683600A128AD /* Resources */,
 				2CBA46971965DE3A00C6BEDF /* Supporting Files */,
 			);
@@ -389,6 +391,7 @@
 		2CBA46971965DE3A00C6BEDF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CA793891C0EB2C80034E928 /* Images.xcassets */,
 				2CBA46981965DE3A00C6BEDF /* MAF-Info.plist */,
 				2CBA46991965DE3A00C6BEDF /* InfoPlist.strings */,
 				2CBA469C1965DE3A00C6BEDF /* main.m */,
@@ -445,6 +448,7 @@
 		2CBA46C01965DF5500C6BEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2CA793871C0EB20A0034E928 /* LaunchScreen.storyboard */,
 				D25A6BAD198F349600E6EBFD /* Goal Details */,
 				BFC167D11986062E0090AE5C /* Charts */,
 				BA0C9B031975D79B00B15AEC /* CreateTransactionTableViewCell.h */,
@@ -746,6 +750,15 @@
 			name = LoadingAnimator;
 			sourceTree = "<group>";
 		};
+		FFF2ECB3B4DA5C2BBC68AF0E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D61D5F6322F44EE0754C2B4 /* Pods-MAF.debug.xcconfig */,
+				4F4C129BE939B94498C557A5 /* Pods-MAF.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -758,6 +771,7 @@
 				2CBA468A1965DE3A00C6BEDF /* Frameworks */,
 				2CBA468B1965DE3A00C6BEDF /* Resources */,
 				2668476067494B849368D3FB /* Copy Pods Resources */,
+				47955A5E9EB39065FF54FF3E /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -792,11 +806,11 @@
 		2CBA46851965DE3A00C6BEDF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "NinjaSudo Inc";
 				TargetAttributes = {
 					2CBA468C1965DE3A00C6BEDF = {
-						DevelopmentTeam = QPTTGV9KP3;
+						DevelopmentTeam = 25F7RJW6VQ;
 					};
 					2CBA46A71965DE3A00C6BEDF = {
 						TestTargetID = 2CBA468C1965DE3A00C6BEDF;
@@ -841,23 +855,23 @@
 				BF4A72E21990116300CD131D /* SimpleGoalDetailViewController.xib in Resources */,
 				BF865B43197C682A00A128AD /* OpenSans-Italic.ttf in Resources */,
 				BF865B40197C682A00A128AD /* OpenSans-BoldItalic.ttf in Resources */,
+				2CA7938A1C0EB2C80034E928 /* Images.xcassets in Resources */,
 				BF2A26DF198E0E1D00D49101 /* PostDetailViewController.xib in Resources */,
 				BF2A26D4198DFEC600D49101 /* CommentCollectionViewCell.xib in Resources */,
 				BF4FC9E6197FE6DC00BDF982 /* SignupViewController.xib in Resources */,
 				BF865B42197C682A00A128AD /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				2CBA469B1965DE3A00C6BEDF /* InfoPlist.strings in Resources */,
-				2CBA46A31965DE3A00C6BEDF /* Images.xcassets in Resources */,
 				2C667486197449B000434802 /* (null) in Resources */,
 				BF26D57A198003E70085202E /* MainViewController.xib in Resources */,
 				BAE442EC197F557E00F2A027 /* SimpleTransactionViewController.xib in Resources */,
 				BF865B41197C682A00A128AD /* OpenSans-ExtraBold.ttf in Resources */,
+				2CA793881C0EB20A0034E928 /* LaunchScreen.storyboard in Resources */,
 				BF865B48197C682A00A128AD /* OpenSans-SemiboldItalic.ttf in Resources */,
 				BA0C9B071975D79B00B15AEC /* CreateTransactionTableViewCell.xib in Resources */,
 				BA2BF6E5197B6541006BE506 /* ServicesConfig.plist in Resources */,
-				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
+				2CA793841C0E52D60034E928 /* TransactionTableViewCell.xib in Resources */,
 				BF1D6FA2198F46FD00970163 /* GoalDetailsHeaderView.xib in Resources */,
 				BAFB2C1D1975D39400A11C56 /* MultiInputViewController.xib in Resources */,
-				BF144352196A95D600C2BB38 /* TransactionTableViewCell.xib in Resources */,
 				BF2A26C5198DCE8900D49101 /* MessageCollectionViewCell.xib in Resources */,
 				BF4FC9D8197F3BD900BDF982 /* EmptyTransactionsView.xib in Resources */,
 				BF865B47197C682A00A128AD /* OpenSans-Semibold.ttf in Resources */,
@@ -890,7 +904,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-MAF-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAF/Pods-MAF-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47955A5E9EB39065FF54FF3E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAF/Pods-MAF-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EEEA856705EF4A2E82F6B0E4 /* Check Pods Manifest.lock */ = {
@@ -1037,6 +1066,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1093,7 +1123,7 @@
 		};
 		2CBA46BA1965DE3A00C6BEDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */;
+			baseConfigurationReference = 4D61D5F6322F44EE0754C2B4 /* Pods-MAF.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1106,15 +1136,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAF/MAF-Prefix.pch";
 				INFOPLIST_FILE = "MAF/MAF-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ninjasudo.missionasset;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		2CBA46BB1965DE3A00C6BEDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E34DCBB40434C76BFF78BCA /* Pods-MAF.xcconfig */;
+			baseConfigurationReference = 4F4C129BE939B94498C557A5 /* Pods-MAF.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1127,8 +1159,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAF/MAF-Prefix.pch";
 				INFOPLIST_FILE = "MAF/MAF-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ninjasudo.missionasset;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1149,6 +1183,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MAFTests/MAFTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ninjasudo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1167,6 +1202,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAF/MAF-Prefix.pch";
 				INFOPLIST_FILE = "MAFTests/MAFTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ninjasudo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
